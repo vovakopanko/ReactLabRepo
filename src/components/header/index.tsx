@@ -64,7 +64,18 @@ const Header: FC<null> = () => {
                 borderWidth: 10,
               }}
             >
-              <text style={{ fontSize: 18 }}>{item.item}</text>
+              {item.item === "Product" ? (
+                <select style={{}}>
+                  <option selected value="p1">
+                    {item.item}
+                  </option>
+                  <option value="p2">PC</option>
+                  <option value="p3">Playstation 5</option>
+                  <option value="p4">XBox</option>
+                </select>
+              ) : (
+                <text style={{ fontSize: 18 }}>{item.item}</text>
+              )}
             </div>
           </NavLink>
         ))}
