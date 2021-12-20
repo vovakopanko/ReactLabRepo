@@ -1,16 +1,10 @@
-const About = () => {
+import { colors } from "@/styles/paletteColors";
+import { FC } from "react";
+
+const About: FC = () => {
   return (
     <div>
-      <text
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          fontSize: 24,
-          color: "#9934cc",
-        }}
-      >
-        About
-      </text>
+      <h1 style={{ color: colors.PURPURE, textAlign: "center" }}>About</h1>
     </div>
   );
 };

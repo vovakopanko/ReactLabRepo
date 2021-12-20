@@ -1,14 +1,14 @@
 import { FC } from "react";
 import ReactDom from "react-dom";
 import { Route, Routes } from "react-router-dom";
-import About from "./components/about";
-import useWindowDimensions from "./components/api/dimensions";
-import Footer from "./components/footer";
-import Header from "./components/header";
-import Home from "./components/home";
-import Product from "./components/product";
-import Registration from "./components/registration";
-import SignUp from "./components/signUp";
+import About from "./components/About";
+import useWindowDimensions from "./constants/dimensions";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import Home from "./components/Home";
+import Product from "./components/Product";
+import Registration from "./components/SignIn";
+import SignUp from "./components/SignUp";
 
 const AppContainer = () => {
   const { height, width } = useWindowDimensions();
