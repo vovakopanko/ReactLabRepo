@@ -1,4 +1,4 @@
-export type itemsType = {
+export type MenuItem = {
   id: number;
   item: string;
   link: string;

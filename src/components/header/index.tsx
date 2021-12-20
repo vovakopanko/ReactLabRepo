@@ -1,10 +1,10 @@
 import { FC } from "react";
 import { NavLink } from "react-router-dom";
-import { colors } from "../../styles/paletteColors";
-import useWindowDimensions from "../../constants/dimensions";
-import { itemsType } from "./types";
+import { colors } from "../../styles/palette";
+import { MenuItem } from "./types";
+import styled from "styled-components";
 
-const menuItems: itemsType[] = [
+const menuItems: MenuItem[] = [
   { id: 0, item: "Home", link: "/home" },
   { id: 1, item: "Product", link: "/product" },
   { id: 2, item: "About", link: "/about" },
@@ -13,10 +13,9 @@ const menuItems: itemsType[] = [
 ];
 const webSiteName: string = "Game Store";
 
-const MenuContainer = ({ id, link, item }: itemsType) => {
+const MenuItem = ({ id, link, item }: MenuItem) => {
   return (
     <NavLink
-      key={id}
       to={link}
       style={({ isActive }) => {
         return {
@@ -26,33 +25,24 @@ const MenuContainer = ({ id, link, item }: itemsType) => {
         };
       }}
     >
-      <div
-        style={{
-          padding: 10,
-          borderBottomColor: colors.WHITE,
-          borderWidth: 10,
-        }}
-      >
-        <text style={{ fontSize: 18 }}>{item}</text>
-      </div>
+      <TitleBlock key={id}>
+        <TitleName>{item}</TitleName>
+      </TitleBlock>
     </NavLink>
   );
 };
 
-const Header: FC<null> = () => {
-  const { width } = useWindowDimensions();
-
+const Header: FC = () => {
   return (
-    <div
+    <header
       style={{
         backgroundColor: colors.BLACK,
         display: "flex",
         alignItems: "center",
-        maxWidth: width,
       }}
     >
       <div style={{ width: "60%" }}>
-        <text
+        <p
           style={{
             color: colors.WHITE,
             fontSize: 21,
@@ -60,7 +50,7 @@ const Header: FC<null> = () => {
           }}
         >
           {webSiteName}
-        </text>
+        </p>
       </div>
       <div
         style={{
@@ -72,11 +62,24 @@ const Header: FC<null> = () => {
         }}
       >
         {menuItems.map((item) => (
-          <MenuContainer id={item.id} link={item.link} item={item.item} />
+          <MenuItem
+            key={item.id}
+            id={item.id}
+            link={item.link}
+            item={item.item}
+          />
         ))}
       </div>
-    </div>
+    </header>
   );
 };
+
+const TitleName = styled.h1`
+  font-size: 18px;
+`;
+
+const TitleBlock = styled.section`
+  padding: 10;
+`;
 
 export default Header;

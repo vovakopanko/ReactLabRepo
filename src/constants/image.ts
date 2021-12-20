@@ -7,4 +7,7 @@ export const images = {
   SEGA: require("../assets/images/sega.png"),
   SPACE_GAME: require("../assets/images/space_game.png"),
   XBOX: require("../assets/images/xbox.png"),
+  XBOX_LOGO: require("../assets/images/xboxLogo.png"),
+  WINDOWS: require("../assets/images/windows.png"),
+  PS: require("../assets/images/ps5.png"),
 };

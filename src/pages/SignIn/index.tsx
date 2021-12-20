@@ -1,17 +1,17 @@
-import { colors } from "@/styles/paletteColors";
+import { colors } from "@/styles/palette";
 import { FC } from "react";
 
-const Registration: FC<null> = () => {
+const Registration: FC = () => {
   return (
     <div>
       <h1 style={{ color: colors.PURPURE, textAlign: "center" }}>
         Registration
       </h1>
       <div>
-        <text>Login:</text>
+        <p>Login:</p>
       </div>
       <div>
-        <text>Password:</text>
+        <p>Password:</p>
       </div>
     </div>
   );

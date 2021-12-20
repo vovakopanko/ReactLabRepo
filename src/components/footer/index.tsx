@@ -1,6 +1,5 @@
 import { images } from "@/constants/image";
 import { FC } from "react";
-import useWindowDimensions from "../../constants/dimensions";
 import { logoGamesT } from "./types";
 
 const logoGames: logoGamesT[] = [
@@ -49,16 +48,13 @@ const logoGames: logoGamesT[] = [
   },
 ];
 
-const Footer: FC<null> = () => {
-  const { width } = useWindowDimensions();
-
+const Footer: FC = () => {
   return (
-    <div
+    <footer
       style={{
         backgroundColor: "grey",
         paddingTop: 5,
         paddingBottom: 5,
-        maxWidth: width,
         display: "flex",
         justifyContent: "space-around",
         alignItems: "center",
@@ -66,19 +62,20 @@ const Footer: FC<null> = () => {
     >
       {logoGames.map((logo) => (
         <GamesContainer
+          key={logo.id}
           id={logo.id}
           link={logo.link}
           image={logo.image}
           alt={logo.alt}
         />
       ))}
-    </div>
+    </footer>
   );
 };
 
 const GamesContainer = ({ id, link, image, alt }: logoGamesT) => {
   return (
-    <a key={id} href={link} target="_blank" rel="noopener noreferrer">
+    <a href={link} target="_blank" rel="noopener noreferrer">
       <img src={image} style={{ width: "100%", height: 25 }} alt={alt} />
     </a>
   );

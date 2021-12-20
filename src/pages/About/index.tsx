@@ -1,4 +1,4 @@
-import { colors } from "@/styles/paletteColors";
+import { colors } from "@/styles/palette";
 import { FC } from "react";
 
 const About: FC = () => {
