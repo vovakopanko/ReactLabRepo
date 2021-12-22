@@ -10,4 +10,8 @@ export const images = {
   XBOX_LOGO: require("../assets/images/xboxLogo.png"),
   WINDOWS: require("../assets/images/windows.png"),
   PS: require("../assets/images/ps5.png"),
+  OVERWATCH: require("../assets/images/overwatch.png"),
+  MINECRAFT: require("../assets/images/minecraft.png"),
+  TERRARIA: require("../assets/images/terraria.png"),
+  BACKGROUND: require("../assets/images/backgroundImage.png"),
 };

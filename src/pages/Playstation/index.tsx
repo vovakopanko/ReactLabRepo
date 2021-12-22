@@ -2,19 +2,11 @@ import { colors } from "@/styles/palette";
 import { FC } from "react";
 import styled from "styled-components";
 
-const Registration: FC = () => {
+const Playstation: FC = () => {
   return (
-    <div>
-      <Container>
-        <Title>Soon there will be content for Registration</Title>
-      </Container>
-      <div>
-        <Title>Login:</Title>
-      </div>
-      <div>
-        <Title>Password:</Title>
-      </div>
-    </div>
+    <Container>
+      <Title>Soon there will be content for Playstation</Title>
+    </Container>
   );
 };
 
@@ -29,4 +21,4 @@ const Title = styled.span`
   text-align: center;
 `;
 
-export default Registration;
+export default Playstation;

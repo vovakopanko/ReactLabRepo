@@ -13,4 +13,8 @@ export type Category = {
 
 export type CardItem = {
   title: string;
+  prise: string;
+  url: string;
+  alt: string;
+  amountStars: number;
 };

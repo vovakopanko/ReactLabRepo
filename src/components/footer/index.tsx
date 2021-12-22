@@ -1,5 +1,6 @@
 import { images } from "@/constants/image";
 import { FC } from "react";
+import { BlockImageLogo, FooterContent, ImageLogo } from "./style";
 import { logoGamesT } from "./types";
 
 const logoGames: logoGamesT[] = [
@@ -50,16 +51,7 @@ const logoGames: logoGamesT[] = [
 
 const Footer: FC = () => {
   return (
-    <footer
-      style={{
-        backgroundColor: "grey",
-        paddingTop: 5,
-        paddingBottom: 5,
-        display: "flex",
-        justifyContent: "space-around",
-        alignItems: "center",
-      }}
-    >
+    <FooterContent>
       {logoGames.map((logo) => (
         <GamesContainer
           key={logo.id}
@@ -69,15 +61,15 @@ const Footer: FC = () => {
           alt={logo.alt}
         />
       ))}
-    </footer>
+    </FooterContent>
   );
 };
 
-const GamesContainer = ({ id, link, image, alt }: logoGamesT) => {
+const GamesContainer = ({ link, image, alt }: logoGamesT) => {
   return (
-    <a href={link} target="_blank" rel="noopener noreferrer">
-      <img src={image} style={{ width: "100%", height: 25 }} alt={alt} />
-    </a>
+    <BlockImageLogo href={link} target="_blank" rel="noopener noreferrer">
+      <ImageLogo src={image} alt={alt} />
+    </BlockImageLogo>
   );
 };
 
