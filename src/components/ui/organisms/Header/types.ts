@@ -1,9 +1,10 @@
 export type MenuItem = {
-  id: number;
+  id?: number;
   item: string;
   link: string;
-  setSelectedProduct?: any;
-  selectedProduct?: boolean;
+  onClick?: () => void;
+  selected?: boolean;
+  withDropdown?: boolean;
 };
 
 export type dropDownItem = {

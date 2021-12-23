@@ -13,5 +13,5 @@ export const images = {
   OVERWATCH: require("../assets/images/overwatch.png"),
   MINECRAFT: require("../assets/images/minecraft.png"),
   TERRARIA: require("../assets/images/terraria.png"),
-  BACKGROUND: require("../assets/images/backgroundImage.png"),
+  BACKGROUND: require("../assets/images/backgroundImage.jpeg"),
 };

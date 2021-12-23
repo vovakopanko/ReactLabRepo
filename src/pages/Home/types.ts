@@ -3,18 +3,3 @@ export type ItemComponent = {
   name: string;
   componentName: JSX.Element;
 };
-
-export type Category = {
-  id?: number;
-  alt: string;
-  title: string;
-  image: string;
-};
-
-export type CardItem = {
-  title: string;
-  prise: string;
-  url: string;
-  alt: string;
-  amountStars: number;
-};

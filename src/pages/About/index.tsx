@@ -1,24 +1,9 @@
-import { colors } from "@/styles/palette";
+import { PageContainerInfo } from "@/components/ui/atoms";
 import { FC } from "react";
-import styled from "styled-components";
 
 const About: FC = () => {
-  return (
-    <Container>
-      <Title>Soon there will be content for About</Title>
-    </Container>
-  );
+  const pageInfo = "Soon there will be content for About";
+  return <PageContainerInfo pageInfo={pageInfo} />;
 };
-
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-self: center;
-`;
-
-const Title = styled.span`
-  color: ${colors.WHITE};
-  text-align: center;
-`;
 
 export default About;

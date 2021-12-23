@@ -1,13 +1,15 @@
 import styled from "styled-components";
-import { colors } from "./../../styles/palette/index";
+import { colors } from "../../../../styles/palette/index";
 
-export const HeaderContent = styled.header`
+export const HeaderContainer = styled.header`
+  height: 5vh;
+  justify-content: space-between;
   background-color: ${colors.BLACK};
   display: flex;
   align-items: center;
 `;
 
-export const HeaderRightBlock = styled.div`
+export const Menu = styled.div`
   width: "40%";
   display: flex;
   flex-direction: row;
@@ -15,25 +17,8 @@ export const HeaderRightBlock = styled.div`
   justify-content: flex-end;
 `;
 
-export const DropDownIcon = styled.span`
-  margin-left: 5;
-  background-color: ${colors.WHITE};
-`;
-
-export const TitleBlock = styled.div`
-  padding: 20px;
-`;
-
-export const Title = styled.span`
-  font-size: 18px;
-  color: ${colors.WHITE};
-`;
-
-export const HeaderLeftBlock = styled.div`
-  width: 60%;
-`;
-
-export const TitleName = styled.p`
+export const Logo = styled.h1`
+  font-weight: 400;
   color: ${colors.WHITE};
   font-size: 21px;
   padding-left: 16px;

@@ -1,4 +1,4 @@
-import { colors } from "./../../styles/palette/index";
+import { colors } from "../../../../styles/palette/index";
 import styled from "styled-components";
 
 export const BlockImageLogo = styled.a`
@@ -10,7 +10,8 @@ export const ImageLogo = styled.img`
   height: 25px;
 `;
 
-export const FooterContent = styled.footer`
+export const FooterContainer = styled.footer`
+  height: 3vh;
   background-color: ${colors.LIGHT_GRAY};
   padding-top: 5px;
   padding-bottom: 5px;
