@@ -14,9 +14,15 @@ export const Title = styled.h2`
   color: ${colors.LIGHT_GRAY};
 `;
 
+export const Container = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 export const BlurEffect = styled.div`
+  width: 80%;
   padding: 20px;
   margin-top: 20px;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(2px) grayscale(0.5);
   border-radius: 25px;
 `;

@@ -10,11 +10,9 @@ export const HeaderContainer = styled.header`
 `;
 
 export const Menu = styled.div`
-  width: "40%";
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-end;
 `;
 
 export const Logo = styled.h1`

@@ -48,6 +48,9 @@ const BackgroundImg = styled.div`
 const Container = styled.div`
   position: absolute;
   left: 0;
+  top: 0;
+  margin: 0;
+  padding: 0;
   width: 100%;
   overflow: hidden;
 `;

@@ -6,6 +6,9 @@ export type CardItem = {
   amountStars: number;
   description: string;
   age: string;
+  isXbox: boolean;
+  isPC: boolean;
+  isPS: boolean;
 };
 
 export type GameCard = {
@@ -17,4 +20,7 @@ export type GameCard = {
   amountStars: number;
   age: string;
   description: string;
+  isXbox: boolean;
+  isPC: boolean;
+  isPS: boolean;
 };

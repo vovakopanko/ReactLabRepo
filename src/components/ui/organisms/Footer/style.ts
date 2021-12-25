@@ -7,7 +7,7 @@ export const BlockImageLogo = styled.a`
 
 export const ImageLogo = styled.img`
   width: 100%;
-  height: 25px;
+  height: 3vh;
 `;
 
 export const FooterContainer = styled.footer`

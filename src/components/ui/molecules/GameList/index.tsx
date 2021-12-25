@@ -1,17 +1,20 @@
 import { images } from "@/constants/image";
-import { StarOutlined } from "@ant-design/icons";
+import { StarTwoTone } from "@ant-design/icons";
+import Button from "../../atoms/Button";
 import {
   AgeRestrictions,
-  Button,
   CardBackBlock,
   CardBlock,
   FlipContainer,
   Flipper,
   GameDescription,
   GamesBlock,
-  ImageLogo,
+  Image,
+  ImagePlatform,
+  ImagePlatformContainer,
   PriseBlock,
   Span,
+  StarContainer,
 } from "./style";
 import { CardItem, GameCard } from "./types";
 
@@ -27,6 +30,9 @@ const gamesCards: GameCard[] = [
     description: `Overwatch is a vibrant team game with a diverse cast of heroes.
     Travel the world, fight for objects and lead your team to victory in
     6v6 battles.`,
+    isXbox: false,
+    isPC: true,
+    isPS: false,
   },
   {
     id: 1,
@@ -38,6 +44,9 @@ const gamesCards: GameCard[] = [
     age: "14+",
     description:
       "Minecraft is an indie sandbox computer game created by Swedish programmer Markus Persson and published by his company Mojang AB.",
+    isXbox: true,
+    isPC: true,
+    isPS: true,
   },
   {
     id: 2,
@@ -49,6 +58,9 @@ const gamesCards: GameCard[] = [
     age: "18+",
     description:
       "Terraria is a sandbox adventure computer game developed by the American studio Re-Logic. It was released in 2011 for Microsoft Windows computers and distributed through the digital distribution system Steam.",
+    isXbox: true,
+    isPC: true,
+    isPS: true,
   },
 ];
 
@@ -60,26 +72,36 @@ const CardsItem = ({
   amountStars,
   description,
   age,
+  isXbox,
+  isPC,
+  isPS,
 }: CardItem) => {
   return (
     <FlipContainer>
       <Flipper>
         <CardBlock>
-          <ImageLogo src={url} alt={alt} />
+          <ImagePlatformContainer>
+            {isXbox && (
+              <ImagePlatform src={images.XBOX_LOGO} alt={"XboxLogo"} />
+            )}
+            {isPC && <ImagePlatform src={images.WINDOWS} alt={"PCLogo"} />}
+            {isPS && <ImagePlatform src={images.PLAYSTATION} alt={"PSLogo"} />}
+          </ImagePlatformContainer>
+          <Image src={url} alt={alt} />
           <PriseBlock>
             <Span>{title}</Span>
             <Span>{prise}</Span>
           </PriseBlock>
-          <div>
+          <StarContainer>
             {Array.from({ length: amountStars }, () => (
-              <StarOutlined />
+              <StarTwoTone twoToneColor="#ffd802" />
             ))}
-          </div>
+          </StarContainer>
         </CardBlock>
         <CardBackBlock>
           <GameDescription>{description}</GameDescription>
           <AgeRestrictions>{age}</AgeRestrictions>
-          <Button>Add to cart</Button>
+          <Button title={"Add to cart"} />
         </CardBackBlock>
       </Flipper>
     </FlipContainer>
@@ -99,6 +121,9 @@ const GameList = () => {
           amountStars,
           description,
           age,
+          isXbox,
+          isPC,
+          isPS,
         }: GameCard) => (
           <CardsItem
             key={id}
@@ -109,6 +134,9 @@ const GameList = () => {
             amountStars={amountStars}
             description={description}
             age={age}
+            isXbox={isXbox}
+            isPC={isPC}
+            isPS={isPS}
           />
         )
       )}

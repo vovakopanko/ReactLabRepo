@@ -6,7 +6,7 @@ export const CategoryContainer = styled.div`
     transition: 0.3s;
     align-items: center;
 
-    border: 5px solid ${colors.RED};
+    box-shadow: 0px 0px 20px 0px ${colors.RED};
     border-width: 5px 5px 10px 5px;
   }
   display: flex;
@@ -15,11 +15,11 @@ export const CategoryContainer = styled.div`
   flex-direction: column;
 
   margin-top: 20px;
-  width: 20vw;
+  width: 17vw;
   height: 20vh;
 
   border-radius: 20px;
-  border: solid ${colors.LIGHT_GRAY};
+  box-shadow: 0px 5px 20px 0px ${colors.LIGHT_GRAY};
   border-width: 5px 5px 10px 5px;
   background-color: ${colors.BLACK};
 `;
@@ -29,7 +29,7 @@ export const Subtitle = styled.h3`
   color: ${colors.LIGHT_GRAY};
 `;
 
-export const GameLogoImage = styled.img`
+export const GameImage = styled.img`
   width: 80px;
   height: 80px;
   padding-top: 10px;

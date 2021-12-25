@@ -1,4 +1,3 @@
-import { Container } from "./../../atoms/style";
 import { colors } from "@/styles/palette";
 import styled from "styled-components";
 
@@ -10,7 +9,8 @@ export const GamesBlock = styled.div`
 `;
 
 export const Span = styled.span`
-  font-size: 15px;
+  padding: 10px;
+  font-size: 17px;
   color: ${colors.WHITE};
   padding-bottom: 5px;
 `;
@@ -21,10 +21,22 @@ export const PriseBlock = styled.div`
   justify-content: space-between;
 `;
 
-export const ImageLogo = styled.img`
+export const Image = styled.img`
   width: 100%;
   height: 80%;
   border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+`;
+
+export const ImagePlatform = styled.img`
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+`;
+
+export const ImagePlatformContainer = styled.div`
+  position: absolute;
+  background-color: ${colors.BLACK};
   border-top-left-radius: 15px;
 `;
 
@@ -47,22 +59,21 @@ export const Flipper = styled.div`
 export const CardBlock = styled.div`
   z-index: 3;
   backface-visibility: hidden;
-  position: absolute;
+
   transform: rotateY(0deg);
 
   top: 0;
   left: 0;
 
-  border: 5px solid ${colors.LIGHT_GRAY};
   border-radius: 15px;
-  background-color: ${colors.LIGHT_GRAY};
+  background-color: ${colors.BLACK};
+  box-shadow: 0px 0px 10px 0px ${colors.RED};
 
   height: 40vh;
   width: 30vh;
 `;
 
 export const CardBackBlock = styled.div`
-  padding: 20px;
   backface-visibility: hidden;
   transform: rotateY(180deg);
 
@@ -73,21 +84,22 @@ export const CardBackBlock = styled.div`
   display: flex;
   flex-direction: column;
 
-  border: 5px solid ${colors.RED};
   border-radius: 15px;
   background-color: ${colors.BLACK};
+  box-shadow: 0px 0px 10px 0px ${colors.RED};
 
   height: 40vh;
   width: 30vh;
 `;
 
 export const GameDescription = styled.div`
-  font-size: 21px;
+  padding: 0px 20px;
+  font-size: 16px;
   display: flex;
   color: ${colors.WHITE};
   align-items: center;
   text-align: center;
-  height: 70%;
+  height: 60%;
 `;
 
 export const AgeRestrictions = styled.h2`
@@ -96,12 +108,6 @@ export const AgeRestrictions = styled.h2`
   height: 10%;
 `;
 
-export const Button = styled.button`
-  font-size: 250;
-  width: 200px;
-  align-self: center;
-  height: 40px;
-  border-radius: 15px;
-  background-color: ${colors.RED};
-  color: ${colors.WHITE};
+export const StarContainer = styled.div`
+  margin-left: 10;
 `;

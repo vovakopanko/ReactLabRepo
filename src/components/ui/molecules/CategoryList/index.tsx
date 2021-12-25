@@ -3,7 +3,7 @@ import {
   BlockItem,
   CategoryContainer,
   GameLogo,
-  GameLogoImage,
+  GameImage,
   Subtitle,
 } from "./style";
 import { TCategory } from "./types";
@@ -16,14 +16,14 @@ const categories: TCategory[] = [
 
 const Category = ({ alt, title, image }: TCategory) => {
   return (
-    <div>
+    <>
       <CategoryContainer>
         <GameLogo>
-          <GameLogoImage src={image} alt={alt} />
+          <GameImage src={image} alt={alt} />
         </GameLogo>
         <Subtitle>{title}</Subtitle>
       </CategoryContainer>
-    </div>
+    </>
   );
 };
 

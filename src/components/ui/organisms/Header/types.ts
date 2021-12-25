@@ -6,9 +6,3 @@ export type MenuItem = {
   selected?: boolean;
   withDropdown?: boolean;
 };
-
-export type dropDownItem = {
-  id: number;
-  title: string;
-  link: string;
-};
