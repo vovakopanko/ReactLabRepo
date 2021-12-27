@@ -1,4 +1,4 @@
-import { PageContainerInfo } from "@/components/ui/atoms";
+import { PageContainerInfo } from "@/components/ui/molecules/PageInfo";
 import { FC } from "react";
 
 const Playstation: FC = () => {

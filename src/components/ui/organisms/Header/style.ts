@@ -1,5 +1,5 @@
+import { colors } from "./../../../../styles/palette/index";
 import styled from "styled-components";
-import { colors } from "../../../../styles/palette/index";
 
 export const HeaderContainer = styled.header`
   height: 5vh;
@@ -7,19 +7,20 @@ export const HeaderContainer = styled.header`
   background-color: ${colors.BLACK};
   display: flex;
   align-items: center;
+  &:hover > input {
+    opacity: 0.8;
+  }
 `;
 
 export const Menu = styled.div`
   display: flex;
-  flex-direction: row;
   align-items: center;
-`;
-
-export const Logo = styled.h1`
-  font-weight: 400;
-  color: ${colors.WHITE};
-  font-size: 21px;
-  padding-left: 16px;
+  @media (max-width: 1368px) {
+    flex-direction: row;
+  }
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const DropDownBlock = styled.div`
@@ -31,4 +32,32 @@ export const DropDownBlock = styled.div`
   overflow: hidden;
   z-index: 5;
   background-color: ${colors.BLACK};
+`;
+
+export const Burger = styled.input`
+  color: ${colors.WHITE};
+  background-color: ${colors.BLACK};
+  padding: 10px;
+  border: none;
+  overflow: hidden;
+  display: none;
+  height: 5vh;
+  @media (max-width: 768px) {
+    display: block;
+  }
+`;
+
+export const MenuBurger = styled.div`
+  display: none;
+  @media (max-width: 768px) {
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    top: 5vh;
+    width: 100vw;
+    flex-direction: column;
+    background-color: ${colors.BLACK};
+  }
 `;

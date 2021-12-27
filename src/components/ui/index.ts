@@ -5,7 +5,10 @@ import Header from "./organisms/Header";
 import SearchBar from "./molecules/SearchBar";
 import GameList from "./molecules/GameList";
 import CategoryList from "./molecules/CategoryList";
-import DropDownContainer from "./molecules/DropDown";
+import DropDown from "./molecules/DropDown";
+import Blur from "./atoms/Blur";
+import Line from "./molecules/DividingLine";
+import SectionList from "./organisms/SectionList";
 
 export {
   MenuItem,
@@ -14,7 +17,10 @@ export {
   SearchBar,
   GameList,
   CategoryList,
-  DropDownContainer,
+  DropDown,
   ItemsList,
+  Blur,
+  Line,
+  SectionList,
 };
 // all ui components export/import here

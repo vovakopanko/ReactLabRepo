@@ -9,4 +9,7 @@ export const Item = styled.li`
   font-size: 18px;
   color: ${colors.WHITE};
   list-style-type: none;
+  &:hover {
+    color: ${colors.RED};
+  }
 `;

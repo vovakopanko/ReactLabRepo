@@ -1,26 +1,16 @@
-import { CategoryList, GameList, SearchBar } from "@/components/ui";
+import {
+  CategoryList,
+  GameList,
+  SearchBar,
+  SectionList,
+} from "@/components/ui";
 import { FC } from "react";
-import { BlurEffect, Line, Title, Container } from "./style";
-import { ItemComponent } from "./types";
+import { Container } from "./style";
 
 const homeComponent = [
-  { id: 0, name: "Categories", componentName: <CategoryList /> },
-  { id: 1, name: "New games", componentName: <GameList /> },
+  { id: 0, name: "Categories", renderComponent: <CategoryList /> },
+  { id: 1, name: "New games", renderComponent: <GameList /> },
 ];
-
-const ItemsComponent = ({ name, componentName }: ItemComponent) => {
-  return (
-    <Container>
-      <BlurEffect>
-        <Title>{name}</Title>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <Line />
-        </div>
-        {componentName}
-      </BlurEffect>
-    </Container>
-  );
-};
 
 const Home: FC = () => {
   return (
@@ -28,12 +18,8 @@ const Home: FC = () => {
       <Container>
         <SearchBar />
       </Container>
-      {homeComponent.map((component) => (
-        <ItemsComponent
-          key={component.id}
-          name={component.name}
-          componentName={component.componentName}
-        />
+      {homeComponent.map(({ id, name, renderComponent }) => (
+        <SectionList key={id} name={name} renderComponent={renderComponent} />
       ))}
     </>
   );

@@ -15,17 +15,24 @@ const dropDownItems: dropDownItem[] = [
 
 const DropDownContainer = ({ item }: { item: string }) => {
   return (
-    <DropDown>
-      <DropDownTitle>{item}</DropDownTitle>
-      <StyleCaretDownOutlined />
-      <ContentDropDown>
-        {dropDownItems.map(({ id, link, title }) => (
-          <LinkItems key={id} to={link}>
-            {title}
-          </LinkItems>
-        ))}
-      </ContentDropDown>
-    </DropDown>
+    <>
+      {dropDownItems.map(({ id, link, title }) => (
+        <LinkItems key={id} to={link}>
+          {title}
+        </LinkItems>
+      ))}
+      <DropDown>
+        <DropDownTitle>{item}</DropDownTitle>
+        <StyleCaretDownOutlined />
+        <ContentDropDown>
+          {dropDownItems.map(({ id, link, title }) => (
+            <LinkItems key={id} to={link}>
+              {title}
+            </LinkItems>
+          ))}
+        </ContentDropDown>
+      </DropDown>
+    </>
   );
 };
 

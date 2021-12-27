@@ -1,4 +1,4 @@
-import { PageContainerInfo } from "@/components/ui/atoms";
+import { PageContainerInfo } from "@/components/ui/molecules/PageInfo";
 import { colors } from "@/styles/palette";
 import { FC } from "react";
 import styled from "styled-components";

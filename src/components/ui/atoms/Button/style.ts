@@ -14,6 +14,6 @@ export const ButtonStyle = styled.button`
   }
 `;
 
-export const ButtonTitle = styled.span`=
+export const Title = styled.span`=
     font-size: 18;
 `;

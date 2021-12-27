@@ -16,27 +16,20 @@ const categories: TCategory[] = [
 
 const Category = ({ alt, title, image }: TCategory) => {
   return (
-    <>
-      <CategoryContainer>
-        <GameLogo>
-          <GameImage src={image} alt={alt} />
-        </GameLogo>
-        <Subtitle>{title}</Subtitle>
-      </CategoryContainer>
-    </>
+    <CategoryContainer>
+      <GameLogo>
+        <GameImage src={image} alt={alt} />
+      </GameLogo>
+      <Subtitle>{title}</Subtitle>
+    </CategoryContainer>
   );
 };
 
 const CategoryList = () => {
   return (
     <BlockItem>
-      {categories.map((item) => (
-        <Category
-          key={item.id}
-          alt={item.alt}
-          title={item.title}
-          image={item.image}
-        />
+      {categories.map(({ alt, title, image, id }: TCategory) => (
+        <Category key={id} alt={alt} title={title} image={image} />
       ))}
     </BlockItem>
   );
