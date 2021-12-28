@@ -18,10 +18,9 @@ const AppContainer = () => {
   return (
     <Container>
       <Header />
-      <BackgroundImg>
+      <Background>
         <Routes>
           <Route path="/home" element={<Home />} />
-          {/* <Route path="/product" element={<Product />} /> */}
           <Route path="/about" element={<About />} />
           <Route path="/registration" element={<Registration />} />
           <Route path="/signUp" element={<SignUp />} />
@@ -30,13 +29,13 @@ const AppContainer = () => {
           <Route path="/xbox" element={<XBox />} />
           <Route path="/ps5" element={<Playstation />} />
         </Routes>
-      </BackgroundImg>
+      </Background>
       <Footer />
     </Container>
   );
 };
 
-const BackgroundImg = styled.div`
+const Background = styled.div`
   background-image: url(${images.BACKGROUND});
   min-height: 90vh;
   height: 100%;
