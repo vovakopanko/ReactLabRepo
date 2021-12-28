@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { useState } from "react";
-import SearchPanel from "../../atoms/SearchPanel";
+import SearchPanel from "../../atoms/Input";
 import { SearchBlock } from "./style";
 
 const SearchBar: FC = () => {

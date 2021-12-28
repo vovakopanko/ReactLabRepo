@@ -1,6 +1,6 @@
 import { images } from "@/constants/image";
 import { FC } from "react";
-import Category from "../../molecules/Category";
+import Category from "../Category";
 import { BlockItem } from "./style";
 import { TCategory } from "./types";
 

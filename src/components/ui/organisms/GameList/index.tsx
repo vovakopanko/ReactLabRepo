@@ -4,7 +4,7 @@ import { FC } from "react";
 import { useState } from "react";
 import GameCard from "../../molecules/GameCard";
 import { FlipContainer, Flipper, GamesBlock } from "./style";
-import { CardItem, TGameCard } from "./types";
+import { TCardItem, TGameCard } from "./types";
 
 const gamesCards: TGameCard[] = [
   {
@@ -54,16 +54,17 @@ const gamesCards: TGameCard[] = [
   },
 ];
 
-const CardsItem = ({
-  title,
-  prise,
-  url,
-  alt,
-  amountStars,
-  description,
-  age,
-  imagePlatforms,
-}: CardItem) => {
+const CardItem: FC<TCardItem> = (props) => {
+  const {
+    title,
+    prise,
+    url,
+    alt,
+    amountStars,
+    description,
+    age,
+    imagePlatforms,
+  } = props;
   const [focused, setFocused] = useState(false);
 
   const onMouseEnter = useCallback(() => setFocused(true), []);
@@ -87,34 +88,12 @@ const CardsItem = ({
   );
 };
 
-const GameList: FC = () => {
+const GameList: FC<TGameCard> = () => {
   return (
     <GamesBlock>
-      {gamesCards.map(
-        ({
-          id,
-          title,
-          prise,
-          url,
-          alt,
-          amountStars,
-          description,
-          age,
-          imagePlatforms,
-        }: TGameCard) => (
-          <CardsItem
-            key={id}
-            title={title}
-            prise={prise}
-            url={url}
-            alt={alt}
-            amountStars={amountStars}
-            description={description}
-            age={age}
-            imagePlatforms={imagePlatforms}
-          />
-        )
-      )}
+      {gamesCards.map((item) => (
+        <CardItem key={item.id} {...item} />
+      ))}
     </GamesBlock>
   );
 };

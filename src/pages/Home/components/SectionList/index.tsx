@@ -1,7 +1,7 @@
 import { ItemComponent } from "@/pages/Home/types";
 import { FC } from "react";
-import Blur from "../../atoms/Blur";
-import SectionHeader from "../../atoms/SectionHeader";
+import Blur from "../../../../components/ui/atoms/Blur";
+import SectionHeader from "../../../../components/ui/atoms/SectionHeader";
 import { Container } from "./style";
 
 const SectionList: FC<ItemComponent> = ({ name, renderComponent }) => {

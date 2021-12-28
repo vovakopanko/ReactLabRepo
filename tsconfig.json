@@ -10,10 +10,7 @@
       "images/*": ["src/assets/images/*"],
       "fonts/*": ["src/assets/fonts/*"],
       "@components/": ["src/components/*"],
-      "@palette/*": ["src/style/palette*"],
-      "@atoms/*": ["src/components/ui/atoms*"],
-      "@molecules/*": ["src/components/ui/molecules*"],
-      "@organisms/*": ["src/components/ui/organisms*"],
+      "@palette/*": ["src/style/palette*"]
     },
     "jsx": "react-jsx",
     "allowJs": true,

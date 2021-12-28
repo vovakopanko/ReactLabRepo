@@ -1,13 +1,9 @@
 import { FC } from "react";
-import { Input } from "./style";
+import { StyleInput } from "./style";
+import { TInput } from "./type";
 
-type TInput = {
-  searchData: string;
-  setSearchData: (value: string) => void;
-};
-
-const SearchPanel: FC<TInput> = ({ searchData, setSearchData }) => (
-  <Input
+const Input: FC<TInput> = ({ searchData, setSearchData }) => (
+  <StyleInput
     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
       console.log("Your data: ", searchData);
       return setSearchData(e.target.value);
@@ -16,4 +12,4 @@ const SearchPanel: FC<TInput> = ({ searchData, setSearchData }) => (
   />
 );
 
-export default SearchPanel;
+export default Input;

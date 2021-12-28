@@ -1,7 +1,7 @@
 import { colors } from "@/styles/palette";
 import styled from "styled-components";
 
-export const StoreGame = styled.a`
+export const StyleStoreGame = styled.a`
   padding: 5;
   @media (max-width: 1368px) {
   }

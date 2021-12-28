@@ -1,4 +1,4 @@
-export type CardItem = {
+export type TCardItem = {
   title: string;
   prise: string;
   url: string;

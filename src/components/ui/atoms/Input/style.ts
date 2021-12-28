@@ -1,6 +1,6 @@
 import { colors } from "@/styles/palette";
 import styled from "styled-components";
-export const Input = styled.input`
+export const StyleInput = styled.input`
   color: ${colors.WHITE};
   width: 95%;
   height: 30px;

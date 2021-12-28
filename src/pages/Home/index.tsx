@@ -1,10 +1,7 @@
-import {
-  CategoryList,
-  GameList,
-  SearchBar,
-  SectionList,
-} from "@/components/ui";
+import { GameList, SearchBar } from "@/components/ui";
 import { FC } from "react";
+import CategoryList from "./components/CategoryList";
+import SectionList from "./components/SectionList";
 import { Container } from "./style";
 
 const homeComponent = [

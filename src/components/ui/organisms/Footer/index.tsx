@@ -1,6 +1,6 @@
 import { images } from "@/constants/image";
 import { FC } from "react";
-import { StoreGame, FooterContainer, StoreLogo } from "./style";
+import { StyleStoreGame, FooterContainer, StoreLogo } from "./style";
 import { logoGamesT } from "./types";
 
 const logoGames: logoGamesT[] = [
@@ -52,24 +52,17 @@ const logoGames: logoGamesT[] = [
 const Footer: FC = () => {
   return (
     <FooterContainer>
-      {logoGames.map((logo) => (
-        <StoreGames
-          key={logo.id}
-          id={logo.id}
-          link={logo.link}
-          image={logo.image}
-          alt={logo.alt}
-        />
+      {logoGames.map(({ link, image, alt, id }) => (
+        <StyleStoreGame
+          key={id}
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <StoreLogo src={image} alt={alt} />
+        </StyleStoreGame>
       ))}
     </FooterContainer>
-  );
-};
-
-const StoreGames = ({ link, image, alt }: logoGamesT) => {
-  return (
-    <StoreGame href={link} target="_blank" rel="noopener noreferrer">
-      <StoreLogo src={image} alt={alt} />
-    </StoreGame>
   );
 };
 
