@@ -1,4 +1,8 @@
-export type TItemList = {
-  id: number | undefined;
-  item: string;
+export type MenuItem = {
+  id?: number;
+  label: string;
+  link: string;
+  onClick?: () => void;
+  selected?: boolean;
+  withDropdown?: boolean;
 };

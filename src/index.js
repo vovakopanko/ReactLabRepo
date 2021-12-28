@@ -19,19 +19,17 @@ const AppContainer = () => {
     <Container>
       <Header />
       <BackgroundImg>
-        <div style={{ padding: 20 }}>
-          <Routes>
-            <Route path="/home" element={<Home />} />
-            {/* <Route path="/product" element={<Product />} /> */}
-            <Route path="/about" element={<About />} />
-            <Route path="/registration" element={<Registration />} />
-            <Route path="/signUp" element={<SignUp />} />
-            <Route path="*" element={<Home />} />
-            <Route path="/pc" element={<PC />} />
-            <Route path="/xbox" element={<XBox />} />
-            <Route path="/ps5" element={<Playstation />} />
-          </Routes>
-        </div>
+        <Routes>
+          <Route path="/home" element={<Home />} />
+          {/* <Route path="/product" element={<Product />} /> */}
+          <Route path="/about" element={<About />} />
+          <Route path="/registration" element={<Registration />} />
+          <Route path="/signUp" element={<SignUp />} />
+          <Route path="*" element={<Home />} />
+          <Route path="/pc" element={<PC />} />
+          <Route path="/xbox" element={<XBox />} />
+          <Route path="/ps5" element={<Playstation />} />
+        </Routes>
       </BackgroundImg>
       <Footer />
     </Container>

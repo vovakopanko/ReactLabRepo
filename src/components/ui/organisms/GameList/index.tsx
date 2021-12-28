@@ -88,7 +88,7 @@ const CardItem: FC<TCardItem> = (props) => {
   );
 };
 
-const GameList: FC<TGameCard> = () => {
+const GameList: FC = () => {
   return (
     <GamesBlock>
       {gamesCards.map((item) => (

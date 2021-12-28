@@ -1,7 +1,7 @@
-import { MenuItem } from "@/components/ui/organisms/Header/types";
 import { FC } from "react";
 import DropDownContainer from "../DropDown";
 import { StyledNavLink, StyleItem } from "./styles";
+import { MenuItem } from "./type";
 
 const MenuItem: FC<MenuItem> = ({ id, link, label, withDropdown }) => {
   return (

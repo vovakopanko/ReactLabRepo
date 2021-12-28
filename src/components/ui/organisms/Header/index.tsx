@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useCallback, useState } from "react";
 import { MenuItem as MenuItemType } from "./types";
 import { HeaderContainer, Menu, Burger, MenuBurger } from "./style";
 import { MenuItem } from "../..";
@@ -15,12 +15,17 @@ const menuItems: MenuItemType[] = [
 const webSiteName: string = "Game Store";
 
 const Header: FC = () => {
-  const [onClick, setOnClick] = useState(false);
+  const [showDropDown, setShowDropDown] = useState(false);
+
+  const toggleShowDropDown = useCallback(
+    () => () => setShowDropDown((isShow) => !isShow),
+    []
+  );
   return (
     <HeaderContainer>
       <Logo>{webSiteName}</Logo>
-      <Burger type="button" value="=" onClick={() => setOnClick(!onClick)} />
-      {onClick && (
+      <Burger type="button" value="=" onClick={() => toggleShowDropDown} />
+      {showDropDown && (
         <MenuBurger>
           {menuItems.map(({ label, link, withDropdown }) => (
             <MenuItem
