@@ -1,8 +1,7 @@
-import { colors } from "./../../../../styles/palette/index";
+import { colors } from "@/styles/palette";
 import styled from "styled-components";
 
-export const ButtonStyle = styled.button`
-  font-size: 25;
+export const ButtonContainer = styled.button`
   min-width: 40%;
   align-self: center;
   height: 40px;
@@ -11,9 +10,11 @@ export const ButtonStyle = styled.button`
   color: ${colors.WHITE};
   &:hover {
     background-color: ${colors.RED};
+    border: none;
+    cursor: pointer;
   }
 `;
 
 export const Title = styled.span`=
-    font-size: 18;
+    font-size: 21;
 `;

@@ -1,6 +1,5 @@
 import { colors } from "@/styles/palette";
 import styled from "styled-components";
-
 export const CategoryContainer = styled.div`
   &:hover {
     transition: 0.3s;
@@ -27,16 +26,6 @@ export const CategoryContainer = styled.div`
     height: 20vh;
   }
 `;
-export const Subtitle = styled.h3`
-  font-size: 18px;
-  text-align: center;
-  color: ${colors.LIGHT_GRAY};
-  @media (max-width: 1368px) {
-  }
-  @media (max-width: 768px) {
-    font-size: 16px;
-  }
-`;
 
 export const GameImage = styled.img`
   width: 80px;
@@ -57,15 +46,13 @@ export const GameLogo = styled.div`
   justify-content: center;
 `;
 
-export const BlockItem = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+export const Subtitle = styled.h3`
+  font-size: 18px;
+  text-align: center;
+  color: ${colors.LIGHT_GRAY};
   @media (max-width: 1368px) {
   }
   @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    font-size: 16px;
   }
 `;

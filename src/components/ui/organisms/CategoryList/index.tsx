@@ -1,11 +1,7 @@
 import { images } from "@/constants/image";
-import {
-  BlockItem,
-  CategoryContainer,
-  GameLogo,
-  GameImage,
-  Subtitle,
-} from "./style";
+import { FC } from "react";
+import Category from "../../molecules/Category";
+import { BlockItem } from "./style";
 import { TCategory } from "./types";
 
 const categories: TCategory[] = [
@@ -14,18 +10,7 @@ const categories: TCategory[] = [
   { id: 2, alt: "xbox", title: "Xbox One", image: images.XBOX_LOGO },
 ];
 
-const Category = ({ alt, title, image }: TCategory) => {
-  return (
-    <CategoryContainer>
-      <GameLogo>
-        <GameImage src={image} alt={alt} />
-      </GameLogo>
-      <Subtitle>{title}</Subtitle>
-    </CategoryContainer>
-  );
-};
-
-const CategoryList = () => {
+const CategoryList: FC = () => {
   return (
     <BlockItem>
       {categories.map(({ alt, title, image, id }: TCategory) => (

@@ -9,7 +9,11 @@
       "@/*": ["src/*"],
       "images/*": ["src/assets/images/*"],
       "fonts/*": ["src/assets/fonts/*"],
-      "@components/": ["src/components/*"]
+      "@components/": ["src/components/*"],
+      "@palette/*": ["src/style/palette*"],
+      "@atoms/*": ["src/components/ui/atoms*"],
+      "@molecules/*": ["src/components/ui/molecules*"],
+      "@organisms/*": ["src/components/ui/organisms*"],
     },
     "jsx": "react-jsx",
     "allowJs": true,

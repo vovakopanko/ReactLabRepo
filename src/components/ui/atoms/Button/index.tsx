@@ -1,10 +1,10 @@
-import { ButtonStyle, Title } from "./style";
+import { ButtonContainer, Title } from "./style";
 
 const Button = ({ title }: { title: string }) => {
   return (
-    <ButtonStyle>
+    <ButtonContainer>
       <Title>{title}</Title>
-    </ButtonStyle>
+    </ButtonContainer>
   );
 };
 

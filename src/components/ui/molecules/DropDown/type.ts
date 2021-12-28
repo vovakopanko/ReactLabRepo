@@ -3,3 +3,5 @@ export type dropDownItem = {
   title: string;
   link: string;
 };
+
+export type HeaderTitleName = { item: string };

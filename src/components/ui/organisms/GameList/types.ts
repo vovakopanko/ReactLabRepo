@@ -6,12 +6,10 @@ export type CardItem = {
   amountStars: number;
   description: string;
   age: string;
-  isXbox: boolean;
-  isPC: boolean;
-  isPS: boolean;
+  imagePlatforms: imagesPlatforms[];
 };
 
-export type GameCard = {
+export type TGameCard = {
   id: number;
   title: string;
   prise: string;
@@ -20,7 +18,7 @@ export type GameCard = {
   amountStars: number;
   age: string;
   description: string;
-  isXbox: boolean;
-  isPC: boolean;
-  isPS: boolean;
+  imagePlatforms: imagesPlatforms[];
 };
+
+export type imagesPlatforms = { src: string; alt: string };

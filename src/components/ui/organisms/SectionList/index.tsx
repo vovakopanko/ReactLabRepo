@@ -1,15 +1,14 @@
 import { ItemComponent } from "@/pages/Home/types";
 import { FC } from "react";
 import Blur from "../../atoms/Blur";
-import Line from "../../molecules/DividingLine";
-import { Title, Container } from "./style";
+import SectionHeader from "../../atoms/SectionHeader";
+import { Container } from "./style";
 
 const SectionList: FC<ItemComponent> = ({ name, renderComponent }) => {
   return (
     <Container>
       <Blur>
-        <Title>{name}</Title>
-        <Line />
+        <SectionHeader name={name} />
         {renderComponent}
       </Blur>
     </Container>

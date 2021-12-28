@@ -1,24 +1,12 @@
 import { images } from "@/constants/image";
-import { StarTwoTone } from "@ant-design/icons";
-import Button from "../../atoms/Button";
-import {
-  AgeRestrictions,
-  CardBackBlock,
-  CardBlock,
-  FlipContainer,
-  Flipper,
-  GameDescription,
-  GamesBlock,
-  Image,
-  ImagePlatform,
-  ImagePlatformContainer,
-  PriseBlock,
-  Span,
-  StarContainer,
-} from "./style";
-import { CardItem, GameCard } from "./types";
+import { useCallback } from "react";
+import { FC } from "react";
+import { useState } from "react";
+import GameCard from "../../molecules/GameCard";
+import { FlipContainer, Flipper, GamesBlock } from "./style";
+import { CardItem, TGameCard } from "./types";
 
-const gamesCards: GameCard[] = [
+const gamesCards: TGameCard[] = [
   {
     id: 0,
     title: "OverWatch",
@@ -30,9 +18,7 @@ const gamesCards: GameCard[] = [
     description: `Overwatch is a vibrant team game with a diverse cast of heroes.
     Travel the world, fight for objects and lead your team to victory in
     6v6 battles.`,
-    isXbox: false,
-    isPC: true,
-    isPS: false,
+    imagePlatforms: [{ src: images.WINDOWS, alt: "PCLogo" }],
   },
   {
     id: 1,
@@ -44,10 +30,13 @@ const gamesCards: GameCard[] = [
     age: "14+",
     description:
       "Minecraft is an indie sandbox computer game created by Swedish programmer Markus Persson and published by his company Mojang AB.",
-    isXbox: true,
-    isPC: true,
-    isPS: true,
+    imagePlatforms: [
+      { src: images.XBOX_LOGO, alt: "XboxLogo" },
+      { src: images.WINDOWS, alt: "PCLogo" },
+      { src: images.PLAYSTATION, alt: "PSLogo" },
+    ],
   },
+
   {
     id: 2,
     title: "Terraria",
@@ -58,9 +47,10 @@ const gamesCards: GameCard[] = [
     age: "18+",
     description:
       "Terraria is a sandbox adventure computer game developed by the American studio Re-Logic. It was released in 2011 for Microsoft Windows computers and distributed through the digital distribution system Steam.",
-    isXbox: true,
-    isPC: true,
-    isPS: true,
+    imagePlatforms: [
+      { src: images.WINDOWS, alt: "PCLogo" },
+      { src: images.PLAYSTATION, alt: "PSLogo" },
+    ],
   },
 ];
 
@@ -72,43 +62,32 @@ const CardsItem = ({
   amountStars,
   description,
   age,
-  isXbox,
-  isPC,
-  isPS,
+  imagePlatforms,
 }: CardItem) => {
+  const [focused, setFocused] = useState(false);
+
+  const onMouseEnter = useCallback(() => setFocused(true), []);
+  const onMouseLeave = useCallback(() => setFocused(false), []);
+
   return (
-    <FlipContainer>
-      <Flipper>
-        <CardBlock>
-          <ImagePlatformContainer>
-            {isXbox && (
-              <ImagePlatform src={images.XBOX_LOGO} alt={"XboxLogo"} />
-            )}
-            {isPC && <ImagePlatform src={images.WINDOWS} alt={"PCLogo"} />}
-            {isPS && <ImagePlatform src={images.PLAYSTATION} alt={"PSLogo"} />}
-          </ImagePlatformContainer>
-          <Image src={url} alt={alt} />
-          <PriseBlock>
-            <Span>{title}</Span>
-            <Span>{prise}</Span>
-          </PriseBlock>
-          <StarContainer>
-            {Array.from({ length: amountStars }, () => (
-              <StarTwoTone twoToneColor="#ffd802" />
-            ))}
-          </StarContainer>
-        </CardBlock>
-        <CardBackBlock>
-          <GameDescription>{description}</GameDescription>
-          <AgeRestrictions>{age}</AgeRestrictions>
-          <Button title={"Add to cart"} />
-        </CardBackBlock>
+    <FlipContainer onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+      <Flipper focused={focused}>
+        <GameCard
+          title={title}
+          prise={prise}
+          url={url}
+          alt={alt}
+          amountStars={amountStars}
+          description={description}
+          age={age}
+          imagePlatforms={imagePlatforms}
+        />
       </Flipper>
     </FlipContainer>
   );
 };
 
-const GameList = () => {
+const GameList: FC = () => {
   return (
     <GamesBlock>
       {gamesCards.map(
@@ -121,10 +100,8 @@ const GameList = () => {
           amountStars,
           description,
           age,
-          isXbox,
-          isPC,
-          isPS,
-        }: GameCard) => (
+          imagePlatforms,
+        }: TGameCard) => (
           <CardsItem
             key={id}
             title={title}
@@ -134,9 +111,7 @@ const GameList = () => {
             amountStars={amountStars}
             description={description}
             age={age}
-            isXbox={isXbox}
-            isPC={isPC}
-            isPS={isPS}
+            imagePlatforms={imagePlatforms}
           />
         )
       )}

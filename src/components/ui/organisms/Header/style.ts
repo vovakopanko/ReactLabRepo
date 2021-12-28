@@ -1,4 +1,4 @@
-import { colors } from "./../../../../styles/palette/index";
+import { colors } from "@/styles/palette";
 import styled from "styled-components";
 
 export const HeaderContainer = styled.header`
@@ -57,7 +57,12 @@ export const MenuBurger = styled.div`
     right: 0;
     top: 5vh;
     width: 100vw;
+    height: 50vh;
+    justify-content: center;
     flex-direction: column;
     background-color: ${colors.BLACK};
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    box-shadow: 0px 5px 5px 0px ${colors.LIGHT_GRAY};
   }
 `;

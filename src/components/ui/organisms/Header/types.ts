@@ -1,6 +1,6 @@
 export type MenuItem = {
   id?: number;
-  item: string;
+  label: string;
   link: string;
   onClick?: () => void;
   selected?: boolean;

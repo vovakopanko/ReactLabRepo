@@ -60,32 +60,6 @@ export const ImagePlatformContainer = styled.div`
   border-top-left-radius: 15px;
 `;
 
-export const FlipContainer = styled.div`
-  perspective: 1000px;
-  height: 40vh;
-  width: 30vh;
-  @media (max-width: 1368px) {
-  }
-  @media (max-width: 1200px) {
-    padding: 10px 0px;
-  }
-  @media (max-width: 768px) {
-    padding: 10px 0px;
-    height: 50vh;
-    width: 30vh;
-  }
-`;
-
-export const Flipper = styled.div`
-  &:hover {
-    transform: rotateY(180deg);
-  }
-  transition: 0.6s;
-  transform-style: preserve-3d;
-
-  position: relative;
-`;
-
 export const CardBlock = styled.div`
   z-index: 3;
   backface-visibility: hidden;
@@ -110,18 +84,14 @@ export const CardBlock = styled.div`
 export const CardBackBlock = styled.div`
   backface-visibility: hidden;
   transform: rotateY(180deg);
-
   position: absolute;
   top: 0;
   left: 0;
-
   display: flex;
   flex-direction: column;
-
   border-radius: 15px;
   background-color: ${colors.BLACK};
   box-shadow: 0px 0px 10px 0px ${colors.RED};
-
   height: 40vh;
   width: 30vh;
   @media (max-width: 768px) {

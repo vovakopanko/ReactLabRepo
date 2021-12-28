@@ -12,7 +12,14 @@ export const StyledNavLink = styled(NavLink)`
   display: flex;
   align-items: center;
   height: 5vh;
+  @media (max-width: 768px) {
+    padding-bottom: 5px;
+  }
   &.active {
     background-color: ${colors.LIGHT_GRAY};
+    @media (max-width: 768px) {
+      padding-bottom: 5px;
+      background-color: transparent;
+    }
   }
 `;

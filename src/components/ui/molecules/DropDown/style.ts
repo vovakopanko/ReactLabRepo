@@ -1,7 +1,7 @@
+import { colors } from "@/styles/palette";
 import { CaretDownOutlined } from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { colors } from "./../../../../styles/palette/index";
 
 export const StyleCaretDownOutlined = styled(CaretDownOutlined)`
   color: ${colors.WHITE};
@@ -10,7 +10,7 @@ export const StyleCaretDownOutlined = styled(CaretDownOutlined)`
   }
 `;
 
-export const DropDown = styled.div`
+export const StyleDropDown = styled.div`
   min-width: 120px;
   position: relative;
   &:hover > div > a {
@@ -53,7 +53,7 @@ export const LinkItems = styled(NavLink)`
   display: none;
   transition: 0.3 all;
   &.active {
-    background-color: ${colors.LIGHT_GRAY};
+    color: ${colors.RED};
   }
   &:hover {
     color: ${colors.RED};

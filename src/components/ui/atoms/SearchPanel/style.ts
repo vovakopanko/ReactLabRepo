@@ -1,14 +1,6 @@
 import { colors } from "@/styles/palette";
 import styled from "styled-components";
-
-export const SearchBlock = styled.div`
-  width: 80%;
-  padding: 20px;
-  justify-content: center;
-  display: flex;
-`;
-
-export const SearchPanel = styled.input`
+export const Input = styled.input`
   color: ${colors.WHITE};
   width: 95%;
   height: 30px;

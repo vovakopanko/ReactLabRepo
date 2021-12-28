@@ -1,17 +1,13 @@
+import { FC } from "react";
 import { useState } from "react";
-import { Input, SearchBlock } from "./style";
+import SearchPanel from "../../atoms/SearchPanel";
+import { SearchBlock } from "./style";
 
-const SearchBar = () => {
+const SearchBar: FC = () => {
   const [searchData, setSearchData] = useState("Search");
   return (
     <SearchBlock>
-      <Input
-        onChange={(e) => {
-          console.log("Your data: ", searchData);
-          return setSearchData(e.target.value);
-        }}
-        placeholder={searchData}
-      />
+      <SearchPanel searchData={searchData} setSearchData={setSearchData} />
     </SearchBlock>
   );
 };

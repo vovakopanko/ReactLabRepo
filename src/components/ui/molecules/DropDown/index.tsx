@@ -1,11 +1,12 @@
+import { FC } from "react";
 import {
-  DropDown,
+  StyleDropDown,
   DropDownTitle,
   StyleCaretDownOutlined,
   ContentDropDown,
   LinkItems,
 } from "./style";
-import { dropDownItem } from "./type";
+import { dropDownItem, HeaderTitleName } from "./type";
 
 const dropDownItems: dropDownItem[] = [
   { id: 0, title: "PC", link: "/pc" },
@@ -13,7 +14,7 @@ const dropDownItems: dropDownItem[] = [
   { id: 2, title: "Playstation 5", link: "/ps5" },
 ];
 
-const DropDownContainer = ({ item }: { item: string }) => {
+const DropDown: FC<HeaderTitleName> = ({ item }) => {
   return (
     <>
       {dropDownItems.map(({ id, link, title }) => (
@@ -21,7 +22,7 @@ const DropDownContainer = ({ item }: { item: string }) => {
           {title}
         </LinkItems>
       ))}
-      <DropDown>
+      <StyleDropDown>
         <DropDownTitle>{item}</DropDownTitle>
         <StyleCaretDownOutlined />
         <ContentDropDown>
@@ -31,9 +32,9 @@ const DropDownContainer = ({ item }: { item: string }) => {
             </LinkItems>
           ))}
         </ContentDropDown>
-      </DropDown>
+      </StyleDropDown>
     </>
   );
 };
 
-export default DropDownContainer;
+export default DropDown;

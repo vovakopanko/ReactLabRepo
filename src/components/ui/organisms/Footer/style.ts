@@ -1,7 +1,7 @@
-import { colors } from "../../../../styles/palette/index";
+import { colors } from "@/styles/palette";
 import styled from "styled-components";
 
-export const BlockImageLogo = styled.a`
+export const StoreGame = styled.a`
   padding: 5;
   @media (max-width: 1368px) {
   }
@@ -10,7 +10,7 @@ export const BlockImageLogo = styled.a`
   }
 `;
 
-export const ImageLogo = styled.img`
+export const StoreLogo = styled.img`
   width: 100%;
   height: 3vh;
   @media (max-width: 1368px) {
