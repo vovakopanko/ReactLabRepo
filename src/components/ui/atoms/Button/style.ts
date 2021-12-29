@@ -8,9 +8,10 @@ export const ButtonContainer = styled.button`
   border-radius: 15px;
   background-color: ${colors.LIGHT_GRAY};
   color: ${colors.WHITE};
+  border: none;
   &:hover {
     background-color: ${colors.RED};
-    border: none;
+
     cursor: pointer;
   }
 `;

@@ -33,7 +33,7 @@ const GameCard = ({
       <CardBlock>
         <ImagePlatformContainer>
           {imagePlatforms.map((platform: imagesPlatforms) => (
-            <GamePlatform {...platform} />
+            <GamePlatform key={platform.id} {...platform} />
           ))}
         </ImagePlatformContainer>
         <Image src={url} alt={alt} />
