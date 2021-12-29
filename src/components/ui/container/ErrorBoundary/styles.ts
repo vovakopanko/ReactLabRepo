@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyleError = styled.h1`
+export const ErrorMessageTitle = styled.h1`
   text-align: center;
 `;
 

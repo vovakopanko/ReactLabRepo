@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleError, StyleErrorBoundary } from "./styles";
+import { ErrorMessageTitle, StyleErrorBoundary } from "./styles";
 import { Props, State } from "./types";
 
 class ErrorBoundary extends React.Component<Props, State> {
@@ -20,7 +20,7 @@ class ErrorBoundary extends React.Component<Props, State> {
     if (this.state.hasError) {
       return (
         <StyleErrorBoundary>
-          <StyleError>Something went wrong.</StyleError>
+          <ErrorMessageTitle>Something went wrong.</ErrorMessageTitle>
         </StyleErrorBoundary>
       );
     }
