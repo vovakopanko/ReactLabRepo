@@ -18,7 +18,7 @@ const gamesCards: TGameCard[] = [
     description: `Overwatch is a vibrant team game with a diverse cast of heroes.
     Travel the world, fight for objects and lead your team to victory in
     6v6 battles.`,
-    imagePlatforms: [{ src: images.WINDOWS, alt: "PCLogo" }],
+    imagePlatforms: [{ id: 0, src: images.WINDOWS, alt: "PCLogo" }],
   },
   {
     id: 1,
@@ -31,9 +31,9 @@ const gamesCards: TGameCard[] = [
     description:
       "Minecraft is an indie sandbox computer game created by Swedish programmer Markus Persson and published by his company Mojang AB.",
     imagePlatforms: [
-      { src: images.XBOX_LOGO, alt: "XboxLogo" },
-      { src: images.WINDOWS, alt: "PCLogo" },
-      { src: images.PLAYSTATION, alt: "PSLogo" },
+      { id: 0, src: images.XBOX_LOGO, alt: "XboxLogo" },
+      { id: 1, src: images.WINDOWS, alt: "PCLogo" },
+      { id: 2, src: images.PLAYSTATION, alt: "PSLogo" },
     ],
   },
 
@@ -48,8 +48,8 @@ const gamesCards: TGameCard[] = [
     description:
       "Terraria is a sandbox adventure computer game developed by the American studio Re-Logic. It was released in 2011 for Microsoft Windows computers and distributed through the digital distribution system Steam.",
     imagePlatforms: [
-      { src: images.WINDOWS, alt: "PCLogo" },
-      { src: images.PLAYSTATION, alt: "PSLogo" },
+      { id: 0, src: images.WINDOWS, alt: "PCLogo" },
+      { id: 1, src: images.PLAYSTATION, alt: "PSLogo" },
     ],
   },
 ];

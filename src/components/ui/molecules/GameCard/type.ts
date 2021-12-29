@@ -9,4 +9,4 @@ export type CardItem = {
   imagePlatforms: imagesPlatforms[];
 };
 
-export type imagesPlatforms = { src: string; alt: string };
+export type imagesPlatforms = { id: number; src: string; alt: string };

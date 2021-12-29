@@ -3,7 +3,16 @@ import { FC } from "react";
 
 const About: FC = () => {
   const pageInfo = "Soon there will be content for About";
-  return <PageContainerInfo pageInfo={pageInfo} />;
+  return (
+    <div
+      style={{
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <PageContainerInfo pageInfo={pageInfo} />
+    </div>
+  );
 };
 
 export default About;
