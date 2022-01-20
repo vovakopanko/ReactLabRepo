@@ -1,14 +1,49 @@
-import { FC } from "react";
-import { StyleInput } from "./style";
-import { TInput } from "./type";
+import { FC, useEffect, useState } from "react";
+import { StyledNavLink, StyleItem } from "../../molecules/MenuItem/styles";
+import { TGameCard } from "../../organisms/GameList/types";
+import { DropDownFinder, FinderContainer, StyleInput } from "./style";
 
-const Input: FC<TInput> = ({ searchData, setSearchData }) => (
-  <StyleInput
-    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-      return setSearchData(e.target.value);
-    }}
-    placeholder={searchData}
-  />
-);
+const Input: FC = () => {
+  const [searchData, setSearchData] = useState("Search");
+  const [findArray, setFindArray] = useState([]);
+
+  useEffect(() => {
+    const query = async () => {
+      let uri = "http://localhost:3000/gameCards?_sort=amountStars&_order=desc";
+      if (searchData) {
+        uri += `&q=${searchData}`;
+      }
+
+      const res = await fetch(uri);
+      const terms = await res.json();
+      setFindArray(terms);
+    };
+    query();
+  }, [searchData]);
+
+  return (
+    <FinderContainer>
+      <StyleInput
+        type="text"
+        name="searchTerm"
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+          return setSearchData(e.target.value.trim());
+        }}
+        placeholder={searchData}
+      />
+      <DropDownFinder>
+        {findArray.map((a: TGameCard, index: number) => (
+          <StyledNavLink
+            key={index}
+            to={a.title}
+            onClick={() => alert("got product" + " " + `${a.title}`)}
+          >
+            <StyleItem>{a.title}</StyleItem>
+          </StyledNavLink>
+        ))}
+      </DropDownFinder>
+    </FinderContainer>
+  );
+};
 
 export default Input;

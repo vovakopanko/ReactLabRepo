@@ -45,21 +45,18 @@ const GameList: FC = () => {
 
   useEffect(() => {
     const query = async () => {
-      let uri = "http://localhost:3000/gameCards";
+      let uri = "http://localhost:3000/gameCards?_sort=amountStars&_order=desc";
       const res = await fetch(uri);
-      const posts = await res.json();
-      setGamesCards(posts);
+      const games = await res.json();
+      setGamesCards(games);
     };
-    if (gamesCards) {
-      query();
-    }
+    query();
   }, []);
-
   return (
     <GamesBlock>
-      {gamesCards.map((item) => (
-        <CardItem key={item.id} {...item} />
-      ))}
+      {gamesCards
+        .map((item) => <CardItem key={item.id} {...item} />)
+        .slice(0, 3)}
     </GamesBlock>
   );
 };
