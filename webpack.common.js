@@ -175,7 +175,10 @@ module.exports = function (env, argv) {
                     ? (loaderContext, _localIdentName, localName, options) => {
                         // it simplifies classNames fo debug purpose
                         const request = path
-                          .relative(options.context || "", loaderContext.resourcePath)
+                          .relative(
+                            options.context || "",
+                            loaderContext.resourcePath
+                          )
                           .replace(`src${path.sep}`, "")
                           .replace(".module.css", "")
                           .replace(".module.scss", "")
@@ -206,7 +209,10 @@ module.exports = function (env, argv) {
     },
     plugins: [
       new webpack.WatchIgnorePlugin({ paths: [/\.d\.ts$/] }), // ignore d.ts files in --watch mode
-      new webpack.IgnorePlugin({ resourceRegExp: /^\.\/locale$/, contextRegExp: /moment$/ }), // it adds force-ignoring unused parts of modules like moment/locale/*.js
+      new webpack.IgnorePlugin({
+        resourceRegExp: /^\.\/locale$/,
+        contextRegExp: /moment$/,
+      }), // it adds force-ignoring unused parts of modules like moment/locale/*.js
       new webpack.DefinePlugin({
         // it adds custom Global definition to the project like BASE_URL for index.html
         "process.env": {

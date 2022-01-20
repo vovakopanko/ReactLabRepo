@@ -1,11 +1,11 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import ReactDom from "react-dom";
 import { Route, Routes } from "react-router-dom";
 import About from "./pages/About";
 import Home from "./pages/Home";
 import Product from "./pages/Product";
 import Registration from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
+
 import PC from "./pages/Product/PC";
 import XBox from "./pages/Product/XBox";
 import Playstation from "./pages/Product/Playstation";
@@ -13,22 +13,25 @@ import { colors } from "./styles/palette";
 import { images } from "./constants/image";
 import styled from "styled-components";
 import { Footer, Header } from "./components/ui";
+import SignIn from "./components/ui/container/SignIn";
+import SignUp from "./components/ui/container/SignUp";
 
 const AppContainer = () => {
+  const [isOpen, setIsOpen] = useState(true);
   return (
     <Container>
-      <Header />
+      <Header setIsOpen={setIsOpen} isOpen={isOpen} />
       <Background>
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/registration" element={<Registration />} />
-          <Route path="/signUp" element={<SignUp />} />
           <Route path="*" element={<Home />} />
           <Route path="/pc" element={<PC />} />
           <Route path="/xbox" element={<XBox />} />
           <Route path="/ps5" element={<Playstation />} />
         </Routes>
+        <SignUp />
+        <SignIn />
       </Background>
       <Footer />
     </Container>

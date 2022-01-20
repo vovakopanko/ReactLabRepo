@@ -1,58 +1,10 @@
-import { images } from "@/constants/image";
 import { useCallback } from "react";
 import { FC } from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import GameCard from "../../molecules/GameCard";
 import { FlipContainer, Flipper, GamesBlock } from "./style";
 import { TCardItem, TGameCard } from "./types";
-
-const gamesCards: TGameCard[] = [
-  {
-    id: 0,
-    title: "OverWatch",
-    prise: "23.99$",
-    url: images.OVERWATCH,
-    alt: "OverWatch",
-    amountStars: 5,
-    age: "12+",
-    description: `Overwatch is a vibrant team game with a diverse cast of heroes.
-    Travel the world, fight for objects and lead your team to victory in
-    6v6 battles.`,
-    imagePlatforms: [{ id: 0, src: images.WINDOWS, alt: "PCLogo" }],
-  },
-  {
-    id: 1,
-    title: "MineCraft",
-    prise: "25.99$",
-    url: images.MINECRAFT,
-    alt: "MineCraft",
-    amountStars: 4,
-    age: "14+",
-    description:
-      "Minecraft is an indie sandbox computer game created by Swedish programmer Markus Persson and published by his company Mojang AB.",
-    imagePlatforms: [
-      { id: 0, src: images.XBOX_LOGO, alt: "XboxLogo" },
-      { id: 1, src: images.WINDOWS, alt: "PCLogo" },
-      { id: 2, src: images.PLAYSTATION, alt: "PSLogo" },
-    ],
-  },
-
-  {
-    id: 2,
-    title: "Terraria",
-    prise: "4.99$",
-    url: images.TERRARIA,
-    alt: "Terraria",
-    amountStars: 5,
-    age: "18+",
-    description:
-      "Terraria is a sandbox adventure computer game developed by the American studio Re-Logic. It was released in 2011 for Microsoft Windows computers and distributed through the digital distribution system Steam.",
-    imagePlatforms: [
-      { id: 0, src: images.WINDOWS, alt: "PCLogo" },
-      { id: 1, src: images.PLAYSTATION, alt: "PSLogo" },
-    ],
-  },
-];
 
 const CardItem: FC<TCardItem> = (props) => {
   const {
@@ -65,11 +17,11 @@ const CardItem: FC<TCardItem> = (props) => {
     age,
     imagePlatforms,
   } = props;
+
   const [focused, setFocused] = useState(false);
 
   const onMouseEnter = useCallback(() => setFocused(true), []);
   const onMouseLeave = useCallback(() => setFocused(false), []);
-
   return (
     <FlipContainer onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
       <Flipper focused={focused}>
@@ -89,6 +41,20 @@ const CardItem: FC<TCardItem> = (props) => {
 };
 
 const GameList: FC = () => {
+  const [gamesCards, setGamesCards] = useState<TGameCard[]>([]);
+
+  useEffect(() => {
+    const query = async () => {
+      let uri = "http://localhost:3000/gameCards";
+      const res = await fetch(uri);
+      const posts = await res.json();
+      setGamesCards(posts);
+    };
+    if (gamesCards) {
+      query();
+    }
+  }, []);
+
   return (
     <GamesBlock>
       {gamesCards.map((item) => (

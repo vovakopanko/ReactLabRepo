@@ -14,9 +14,9 @@ import {
 import { StarTwoTone } from "@ant-design/icons";
 import Button from "../../atoms/Button";
 
-const GamePlatform = ({ src, alt }: { src: string; alt: string }) => (
-  <ImagePlatform src={src} alt={alt} />
-);
+const GamePlatform = ({ src, alt }: { src: string; alt: string }) => {
+  return <ImagePlatform src={src} alt={alt} />;
+};
 
 const GameCard = ({
   imagePlatforms,
@@ -28,12 +28,16 @@ const GameCard = ({
   description,
   age,
 }: CardItem) => {
+  const counter = [];
+  for (let i = 0; i < amountStars; i++) {
+    counter.push("star");
+  }
   return (
     <>
       <CardBlock>
         <ImagePlatformContainer>
-          {imagePlatforms.map((platform: imagesPlatforms) => (
-            <GamePlatform key={platform.id} {...platform} />
+          {imagePlatforms.map((platform: imagesPlatforms, index: number) => (
+            <GamePlatform key={index} {...platform} />
           ))}
         </ImagePlatformContainer>
         <Image src={url} alt={alt} />
@@ -42,9 +46,9 @@ const GameCard = ({
           <Span>{prise}</Span>
         </PriseBlock>
         <StarContainer>
-          {Array.from({ length: amountStars }, () => (
-            <StarTwoTone twoToneColor="#ffd802" />
-          ))}
+          {counter.map((_, index) => {
+            return <StarTwoTone key={index} twoToneColor="#ffd802" />;
+          })}
         </StarContainer>
       </CardBlock>
       <CardBackBlock>
