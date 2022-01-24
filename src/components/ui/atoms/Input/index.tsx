@@ -1,3 +1,4 @@
+import { searchAPI } from "@/api/SearchAPI";
 import { FC, useEffect, useState } from "react";
 import { StyledNavLink, StyleItem } from "../../molecules/MenuItem/styles";
 import { TGameCard } from "../../organisms/GameList/types";
@@ -5,18 +6,14 @@ import { DropDownFinder, FinderContainer, StyleInput } from "./style";
 
 const Input: FC = () => {
   const [searchData, setSearchData] = useState("Search");
-  const [findArray, setFindArray] = useState([]);
+  const [findArray, setFindArray] = useState<TGameCard[]>([]);
 
   useEffect(() => {
     const query = async () => {
-      let uri = "http://localhost:3000/gameCards?_sort=amountStars&_order=desc";
       if (searchData) {
-        uri += `&q=${searchData}`;
+        const data = await searchAPI.getSearchURL(`&q=${searchData}`);
+        setFindArray(data);
       }
-
-      const res = await fetch(uri);
-      const terms = await res.json();
-      setFindArray(terms);
     };
     query();
   }, [searchData]);
