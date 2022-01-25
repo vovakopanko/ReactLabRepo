@@ -1,12 +1,13 @@
 import { searchAPI } from "@/api/SearchAPI";
 import { FC, useEffect, useState } from "react";
-import { StyledNavLink, StyleItem } from "../../molecules/MenuItem/styles";
 import { TGameCard } from "../../organisms/GameList/types";
-import { DropDownFinder, FinderContainer, StyleInput } from "./style";
+import ConditionalRenderList from "./ConditionalRenderList";
+import { FinderContainer, StyleInput } from "./style";
 
 const Input: FC = () => {
-  const [searchData, setSearchData] = useState("Search");
+  const [searchData, setSearchData] = useState("");
   const [findArray, setFindArray] = useState<TGameCard[]>([]);
+  const [toggle, setToggle] = useState(true);
 
   useEffect(() => {
     const query = async () => {
@@ -23,22 +24,22 @@ const Input: FC = () => {
       <StyleInput
         type="text"
         name="searchTerm"
+        autoComplete="off"
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          return setSearchData(e.target.value.trim());
+          setSearchData(e.target.value.trim());
+          setToggle(true);
         }}
+        // onBlur={() => setToggle(false)}
+        value={searchData}
         placeholder={searchData}
       />
-      <DropDownFinder>
-        {findArray.map((a: TGameCard, index: number) => (
-          <StyledNavLink
-            key={index}
-            to={a.title}
-            onClick={() => alert("got product" + " " + `${a.title}`)}
-          >
-            <StyleItem>{a.title}</StyleItem>
-          </StyledNavLink>
-        ))}
-      </DropDownFinder>
+      <ConditionalRenderList
+        value={searchData}
+        list={findArray}
+        setValue={setSearchData}
+        toggle={toggle}
+        setToggle={setToggle}
+      />
     </FinderContainer>
   );
 };
