@@ -11,7 +11,7 @@ const Input: FC = () => {
   useEffect(() => {
     const query = async () => {
       if (searchData) {
-        const data = await searchAPI.getSearchURL(`&q=${searchData}`);
+        const data = await searchAPI.getGameCards(`&q=${searchData}`);
         setFindArray(data);
       }
     };

@@ -1,3 +1,4 @@
+import { searchAPI } from "@/api/SearchAPI";
 import { useCallback } from "react";
 import { FC } from "react";
 import { useEffect } from "react";
@@ -45,13 +46,12 @@ const GameList: FC = () => {
 
   useEffect(() => {
     const query = async () => {
-      let uri = "http://localhost:3000/gameCards?_sort=amountStars&_order=desc";
-      const res = await fetch(uri);
-      const games = await res.json();
+      const games = await searchAPI.getGameCards("");
       setGamesCards(games);
     };
     query();
   }, []);
+
   return (
     <GamesBlock>
       {gamesCards

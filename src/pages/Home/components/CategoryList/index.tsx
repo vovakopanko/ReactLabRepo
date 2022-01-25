@@ -10,7 +10,7 @@ const CategoryList: FC = () => {
 
   useEffect(() => {
     const query = async () => {
-      const data = await categoryAPI.getCategoryURL();
+      const data = await categoryAPI.getCategories();
       setCategories(data);
     };
     query();
