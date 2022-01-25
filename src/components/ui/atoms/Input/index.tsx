@@ -19,6 +19,23 @@ const Input: FC = () => {
     query();
   }, [searchData]);
 
+  console.log("1fdf", findArray);
+
+  // don't work debounce/Throttling
+  // added other libraries, but there were no changes
+
+  const debounce = (fn: any, delay: any) => {
+    let timeoutId: any;
+    return function (...args: any[]) {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+      timeoutId = setTimeout(() => {
+        fn(...args);
+      }, delay);
+    };
+  };
+
   return (
     <FinderContainer>
       <StyleInput
@@ -26,7 +43,8 @@ const Input: FC = () => {
         name="searchTerm"
         autoComplete="off"
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          setSearchData(e.target.value.trim());
+          debounce(setSearchData(e.target.value.trim()), 300);
+          // setSearchData(e.target.value.trim());
           setToggle(true);
         }}
         // onBlur={() => setToggle(false)}

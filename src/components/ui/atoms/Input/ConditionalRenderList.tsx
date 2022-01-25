@@ -25,8 +25,9 @@ const ConditionalRenderList = ({
       return (
         toggle && (
           <StyledList>
-            {filteredList.map((item) => (
+            {filteredList.map((item, index) => (
               <StyledItem
+                key={index}
                 danger=""
                 onClick={() => {
                   setValue(item.title);
