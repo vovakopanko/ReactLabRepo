@@ -18,9 +18,17 @@ import SignUp from "./components/ui/molecules/SignUp";
 
 const AppContainer = () => {
   const [isOpen, setIsOpen] = useState(true);
+  const [isOpenAuth, setIsOpenAuth] = useState(false);
+  const [isOpenRegistration, setIsOpenRegistration] = useState(false);
+
   return (
     <Container>
-      <Header setIsOpen={setIsOpen} isOpen={isOpen} />
+      <Header
+        setIsOpen={setIsOpen}
+        isOpen={isOpen}
+        setIsOpenAuth={setIsOpenAuth}
+        setIsOpenRegistration={setIsOpenRegistration}
+      />
       <Background>
         <Routes>
           <Route path="/home" element={<Home />} />
@@ -30,8 +38,8 @@ const AppContainer = () => {
           <Route path="/xbox" element={<XBox />} />
           <Route path="/ps5" element={<Playstation />} />
         </Routes>
-        <SignUp />
-        <SignIn />
+        <SignUp isOpen={isOpenAuth} setIsOpen={setIsOpenAuth} />
+        <SignIn isOpen={isOpenRegistration} setIsOpen={setIsOpenRegistration} />
       </Background>
       <Footer />
     </Container>

@@ -18,13 +18,14 @@ const menuItems: MenuItemType[] = [
 
 const webSiteName: string = "Game Store";
 
-const Header: FC = () => {
+const Header: FC = ({
+  setIsOpenAuth,
+  setIsOpenRegistration,
+}: {
+  setIsOpenAuth: (val: boolean) => void;
+  setIsOpenRegistration: (val: boolean) => void;
+}) => {
   const [showDropDown, setShowDropDown] = useState(false);
-
-  // const toggleShowDropDown = useCallback(
-  //   () => () => setShowDropDown((isShow) => !isShow),
-  //   []
-  // );
   const [isAuth, setIsAuth] = useState(true);
 
   return (
@@ -73,13 +74,17 @@ const Header: FC = () => {
             <>
               {/* <StyledNavLink to={"/registration"}> */}
               <div style={{ height: "5vh", paddingBottom: 5 }}>
-                <StyleItem onClick={() => alert("Hell")}>Sign In</StyleItem>
+                <StyleItem onClick={() => setIsOpenAuth(true)}>
+                  Sign In
+                </StyleItem>
               </div>
 
               {/* </StyledNavLink>
               <StyledNavLink to={"/signUp"}> */}
               <div style={{ height: "5vh" }}>
-                <StyleItem onClick={() => alert("Hell")}>Sign Up</StyleItem>
+                <StyleItem onClick={() => setIsOpenRegistration(true)}>
+                  Sign Up
+                </StyleItem>
               </div>
               {/* </StyledNavLink> */}
             </>
@@ -121,8 +126,10 @@ const Header: FC = () => {
           </>
         ) : (
           <>
-            <StyleItem onClick={() => alert("Hell")}>Sign In</StyleItem>
-            <StyleItem onClick={() => alert("Hell")}>Sign Up</StyleItem>
+            <StyleItem onClick={() => setIsOpenAuth(true)}>Sign In</StyleItem>
+            <StyleItem onClick={() => setIsOpenRegistration(true)}>
+              Sign Up
+            </StyleItem>
           </>
         )}
       </Menu>

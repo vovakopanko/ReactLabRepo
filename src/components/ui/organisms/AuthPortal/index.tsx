@@ -16,9 +16,13 @@ type Props = { title: string; type: string; id: number };
 export default function AuthPortal({
   title,
   fields,
+  isOpen,
+  setIsOpen,
 }: {
   title: string;
   fields: Props[];
+  isOpen: boolean;
+  setIsOpen: (val: boolean) => void;
 }) {
   return ReactDOM.createPortal(
     <>
@@ -26,7 +30,11 @@ export default function AuthPortal({
       <AuthContainer>
         <HeaderStyle>
           <AuthTitle>{title}</AuthTitle>
-          <CloseBtnStyle onClick={() => {}}>
+          <CloseBtnStyle
+            onClick={() => {
+              setIsOpen(!isOpen);
+            }}
+          >
             <CloseOutlined style={{ color: colors.WHITE }} />
           </CloseBtnStyle>
         </HeaderStyle>

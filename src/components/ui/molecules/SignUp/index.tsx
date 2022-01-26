@@ -1,15 +1,21 @@
-import { useState } from "react";
 import AuthPortal from "../../organisms/AuthPortal";
+import { fieldData } from "./constant";
 
-const fieldData = [
-  { id: 0, title: "Login", type: "text" },
-  { id: 1, title: "Password", type: "password" },
-  { id: 2, title: "Repeat password", type: "password" },
-];
-
-export default function SignIn() {
-  const [isOpen, setIsOpen] = useState(false);
+export default function SignIn({
+  isOpen,
+  setIsOpen,
+}: {
+  isOpen: boolean;
+  setIsOpen: (val: boolean) => void;
+}) {
   if (!isOpen) return null;
 
-  return <AuthPortal title={"Registration"} fields={fieldData} />;
+  return (
+    <AuthPortal
+      title={"Registration"}
+      fields={fieldData}
+      setIsOpen={setIsOpen}
+      isOpen={isOpen}
+    />
+  );
 }
