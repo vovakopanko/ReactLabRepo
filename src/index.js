@@ -13,8 +13,8 @@ import { colors } from "./styles/palette";
 import { images } from "./constants/image";
 import styled from "styled-components";
 import { Footer, Header } from "./components/ui";
-import SignIn from "./components/ui/container/SignIn";
-import SignUp from "./components/ui/container/SignUp";
+import SignIn from "./components/ui/molecules/SignIn";
+import SignUp from "./components/ui/molecules/SignUp";
 
 const AppContainer = () => {
   const [isOpen, setIsOpen] = useState(true);
