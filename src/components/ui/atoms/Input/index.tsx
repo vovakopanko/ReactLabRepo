@@ -1,18 +1,8 @@
-import { searchAPI } from "@/api/SearchAPI";
-import { debounce } from "lodash";
-import { FC, useEffect, useState } from "react";
+import { debouncedFetchData } from "@/api/SearchAPI";
+import { FC, useCallback, useEffect, useState } from "react";
 import { TGameCard } from "../../organisms/GameList/types";
 import ConditionalRenderList from "./ConditionalRenderList";
 import { FinderContainer, StyleInput } from "./style";
-
-const fetchData = async (query: string, cb: (val: TGameCard[]) => void) => {
-  const res = await searchAPI.getGameCards(`&q=${query}`);
-  cb(res);
-};
-
-const debouncedFetchData = debounce((query, cb) => {
-  fetchData(query, cb);
-}, 300);
 
 const Input: FC = () => {
   const [searchData, setSearchData] = useState("");
@@ -23,6 +13,14 @@ const Input: FC = () => {
     debouncedFetchData(searchData, (res: TGameCard[]) => setFindArray(res));
   }, [searchData]);
 
+  const OnChangeData = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchData(e.target.value.trim());
+    setIsFocus(true);
+  };
+
+  const onFocus = useCallback(() => setIsFocus(true), []);
+  const onChange = useCallback((e) => OnChangeData(e), []);
+
   return (
     <FinderContainer>
       <StyleInput
@@ -30,12 +28,9 @@ const Input: FC = () => {
         name="searchTerm"
         autoComplete="off"
         onFocus={() => {
-          setIsFocus(true);
+          onFocus();
         }}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          setSearchData(e.target.value.trim());
-          setIsFocus(true);
-        }}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e)}
         value={searchData}
       />
       <ConditionalRenderList

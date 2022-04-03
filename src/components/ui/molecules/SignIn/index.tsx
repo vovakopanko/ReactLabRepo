@@ -8,14 +8,15 @@ export default function SignIn({
   isOpen: boolean;
   setIsOpen: (val: boolean) => void;
 }) {
-  if (!isOpen) return null;
-
   return (
-    <AuthPortal
-      title={"Authorization"}
-      fields={fieldData}
-      isOpen={isOpen}
-      setIsOpen={setIsOpen}
-    />
+    isOpen && (
+      <AuthPortal
+        modalForm={"authorization"}
+        title={"Authorization"}
+        fields={fieldData}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+      />
+    )
   );
 }

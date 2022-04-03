@@ -11,12 +11,7 @@ const ValueInputContainer = ({
   return (
     <InputContainer>
       <InputTitle>{title}</InputTitle>
-      <InputField
-        placeholder="..."
-        type={type}
-        name="login"
-        autoComplete="off"
-      />
+      <input placeholder="..." type={type} name={title} autoComplete="off" />
     </InputContainer>
   );
 };
@@ -84,5 +79,3 @@ export const InputTitle = styled.div`
   padding-bottom: 10px;
   padding-top: 10px;
 `;
-
-export const InputField = styled.input``;

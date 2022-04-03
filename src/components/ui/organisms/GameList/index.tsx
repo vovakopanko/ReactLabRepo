@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import GameCard from "../../molecules/GameCard";
 import { FlipContainer, Flipper, GamesBlock } from "./style";
-import { TCardItem, TGameCard } from "./types";
+import { amountFavoriteGame, TCardItem, TGameCard } from "./types";
 
 const CardItem: FC<TCardItem> = (props) => {
   const {
@@ -23,6 +23,7 @@ const CardItem: FC<TCardItem> = (props) => {
 
   const onMouseEnter = useCallback(() => setFocused(true), []);
   const onMouseLeave = useCallback(() => setFocused(false), []);
+
   return (
     <FlipContainer onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
       <Flipper focused={focused}>
@@ -47,16 +48,21 @@ const GameList: FC = () => {
   useEffect(() => {
     const query = async () => {
       const games = await searchAPI.getGameCards("");
-      setGamesCards(games);
+      if (games) {
+        setGamesCards(games);
+      }
     };
     query();
   }, []);
 
   return (
     <GamesBlock>
-      {gamesCards
-        .map((item) => <CardItem key={item.id} {...item} />)
-        .slice(0, 3)}
+      {gamesCards.map(
+        (item, index) =>
+          index + 1 <= amountFavoriteGame.STANDARTSHEME && (
+            <CardItem key={item.id} {...item} />
+          )
+      )}
     </GamesBlock>
   );
 };

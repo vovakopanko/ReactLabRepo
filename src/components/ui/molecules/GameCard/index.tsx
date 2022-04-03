@@ -28,10 +28,11 @@ const GameCard = ({
   description,
   age,
 }: CardItem) => {
-  const counter = [];
-  for (let i = 0; i < amountStars; i++) {
-    counter.push("star");
-  }
+  const starsCount = new Array(amountStars).fill("star");
+  // const counter = [];
+  // for (let i = 0; i < amountStars; i++) {
+  //   counter.push("star");
+  // }
   return (
     <>
       <CardBlock>
@@ -46,7 +47,7 @@ const GameCard = ({
           <Span>{prise}</Span>
         </PriseBlock>
         <StarContainer>
-          {counter.map((_, index) => {
+          {starsCount.map((_, index) => {
             return <StarTwoTone key={index} twoToneColor="#ffd802" />;
           })}
         </StarContainer>

@@ -21,4 +21,8 @@ export type TGameCard = {
   imagePlatforms: imagesPlatforms[];
 };
 
+export enum amountFavoriteGame {
+  STANDARTSHEME = 3,
+}
+
 export type imagesPlatforms = { id: number; src: string; alt: string };
