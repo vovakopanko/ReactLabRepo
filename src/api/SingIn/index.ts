@@ -1,12 +1,17 @@
-import { TCategory } from "../../pages/Home/components/CategoryList/types";
 import { instance } from "../Instance";
 import { AppUrls } from "../types";
 
-export const categoryAPI = {
-  getCategories() {
+type User = {
+  id: number;
+  email: string;
+  password: string;
+};
+
+export const signIn = {
+  getGameCards() {
     try {
       return instance
-        .get<TCategory[]>(AppUrls.CATEGORIES)
+        .post<User[]>(AppUrls.USERS)
         .then((Response) => Response.data);
     } catch (error) {
       console.error(error);

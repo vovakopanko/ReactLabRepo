@@ -1,10 +1,15 @@
 import { instance } from "../Instance";
+import { AppUrls } from "../types";
 import { logoGamesT } from "./../../components/ui/organisms/Footer/types";
 
 export const logoGamesAPI = {
   getLogoGames() {
-    return instance
-      .get<logoGamesT[]>(`logoGames`)
-      .then((Response) => Response.data);
+    try {
+      return instance
+        .get<logoGamesT[]>(AppUrls.LOGOGAMES)
+        .then((Response) => Response.data);
+    } catch (error) {
+      console.error(error);
+    }
   },
 };
