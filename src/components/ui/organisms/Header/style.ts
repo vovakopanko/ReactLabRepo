@@ -36,7 +36,7 @@ export const DropDownBlock = styled.div`
 
 export const Burger = styled.input`
   color: ${colors.WHITE};
-  background-color: ${colors.PURPURE};
+  background-color: ${colors.BLACK};
   padding: 10px;
   border: none;
   overflow: hidden;

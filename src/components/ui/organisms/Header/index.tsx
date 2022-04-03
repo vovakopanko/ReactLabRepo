@@ -21,13 +21,17 @@ const webSiteName: string = "Game Store";
 const Header: FC = ({
   setIsOpenAuth,
   setIsOpenRegistration,
+  isAuth,
+  setIsAuth,
+  nameUser,
 }: {
   setIsOpenAuth: (val: boolean) => void;
   setIsOpenRegistration: (val: boolean) => void;
+  isAuth: boolean;
+  setIsAuth: (isAuth: boolean) => void;
+  nameUser: string;
 }) => {
   const [showDropDown, setShowDropDown] = useState(false);
-  const [isAuth, setIsAuth] = useState(true);
-
   return (
     <HeaderContainer>
       <Logo>{webSiteName}</Logo>
@@ -51,7 +55,7 @@ const Header: FC = ({
               <StyledNavLink to={"/profile"}>
                 <StyleItem>
                   <UserOutlined />
-                  <span style={{ paddingLeft: 10 }}>User Name</span>
+                  <span style={{ paddingLeft: 10 }}>{nameUser}</span>
                 </StyleItem>
               </StyledNavLink>
               <StyledNavLink to={"/basket"}>
@@ -75,7 +79,7 @@ const Header: FC = ({
               {/* <StyledNavLink to={"/registration"}> */}
               <div style={{ height: "5vh", paddingBottom: 5 }}>
                 <StyleItem onClick={() => setIsOpenAuth(true)}>
-                  Sign In
+                  Registration
                 </StyleItem>
               </div>
 
@@ -105,7 +109,7 @@ const Header: FC = ({
             <StyledNavLink to={"/profile"}>
               <StyleItem>
                 <UserOutlined />
-                <span style={{ paddingLeft: 10 }}>User Name</span>
+                <span style={{ paddingLeft: 10 }}>{nameUser}</span>
               </StyleItem>
             </StyledNavLink>
             <StyledNavLink to={"/basket"}>
@@ -126,7 +130,9 @@ const Header: FC = ({
           </>
         ) : (
           <>
-            <StyleItem onClick={() => setIsOpenAuth(true)}>Sign In</StyleItem>
+            <StyleItem onClick={() => setIsOpenAuth(true)}>
+              Registration
+            </StyleItem>
             <StyleItem onClick={() => setIsOpenRegistration(true)}>
               Sign Up
             </StyleItem>

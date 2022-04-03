@@ -3,4 +3,7 @@ export enum AppUrls {
   LOGOGAMES = "logoGames",
   GAMECARD = "gameCards?_sort=amountStars&_order=desc",
   USERS = "users",
+  SIGN_UP = "signup",
+  SIGN_IN = "signin",
+  LOGOUT = "logout",
 }

@@ -19,6 +19,8 @@ const AppContainer = () => {
   const [isOpen, setIsOpen] = useState(true);
   const [isOpenAuth, setIsOpenAuth] = useState(false);
   const [isOpenRegistration, setIsOpenRegistration] = useState(false);
+  const [isAuth, setIsAuth] = useState(false);
+  const [nameUser, setNameUser] = useState("");
 
   return (
     <Container>
@@ -27,6 +29,9 @@ const AppContainer = () => {
         isOpen={isOpen}
         setIsOpenAuth={setIsOpenAuth}
         setIsOpenRegistration={setIsOpenRegistration}
+        isAuth={isAuth}
+        setIsAuth={setIsAuth}
+        nameUser={nameUser}
       />
       <Background>
         <Routes>
@@ -37,8 +42,18 @@ const AppContainer = () => {
           <Route path="/category/:xboxone" element={<XBox />} />
           <Route path="/category/:playstation5" element={<Playstation />} />
         </Routes>
-        <SignUp isOpen={isOpenAuth} setIsOpen={setIsOpenAuth} />
-        <SignIn isOpen={isOpenRegistration} setIsOpen={setIsOpenRegistration} />
+        <SignUp
+          isOpen={isOpenAuth}
+          setIsOpen={setIsOpenAuth}
+          setIsAuth={setIsAuth}
+          setNameUser={setNameUser}
+        />
+        <SignIn
+          isOpen={isOpenRegistration}
+          setIsOpen={setIsOpenRegistration}
+          setIsAuth={setIsAuth}
+          setNameUser={setNameUser}
+        />
       </Background>
       <Footer />
     </Container>

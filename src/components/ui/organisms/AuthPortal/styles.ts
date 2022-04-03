@@ -17,9 +17,10 @@ export const AuthContainer = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: ${colors.BLACK};
+  opacity: 0.85;
   padding: 30px;
   z-index: 1000;
-  width: 400px;
+  min-width: 340px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -44,4 +45,16 @@ export const AuthTitle = styled.span`
 
 export const CloseBtnStyle = styled.button`
   background-color: ${colors.LIGHT_GRAY};
+`;
+
+export const InputContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-self: flex-start;
+`;
+
+export const InputTitle = styled.span`
+  color: ${colors.RED};
+  min-width: 120px;
 `;

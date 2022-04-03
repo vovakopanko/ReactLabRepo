@@ -4,9 +4,13 @@ import { fieldData } from "./constant";
 export default function SignIn({
   isOpen,
   setIsOpen,
+  setIsAuth,
+  setNameUser,
 }: {
   isOpen: boolean;
   setIsOpen: (val: boolean) => void;
+  setIsAuth: (val: boolean) => void;
+  setNameUser: (val: string) => void;
 }) {
   return (
     isOpen && (
@@ -16,6 +20,8 @@ export default function SignIn({
         fields={fieldData}
         setIsOpen={setIsOpen}
         isOpen={isOpen}
+        setIsAuth={setIsAuth}
+        setNameUser={setNameUser}
       />
     )
   );
