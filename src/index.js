@@ -4,7 +4,6 @@ import { Route, Routes } from "react-router-dom";
 import About from "./pages/About";
 import Home from "./pages/Home";
 import Product from "./pages/Product";
-import Registration from "./pages/SignIn";
 
 import PC from "./pages/Product/PC";
 import XBox from "./pages/Product/XBox";
@@ -34,9 +33,9 @@ const AppContainer = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="*" element={<Home />} />
-          <Route path="/pc" element={<PC />} />
-          <Route path="/xbox" element={<XBox />} />
-          <Route path="/ps5" element={<Playstation />} />
+          <Route path="/category/:pc" element={<PC />} />
+          <Route path="/category/:xboxone" element={<XBox />} />
+          <Route path="/category/:playstation5" element={<Playstation />} />
         </Routes>
         <SignUp isOpen={isOpenAuth} setIsOpen={setIsOpenAuth} />
         <SignIn isOpen={isOpenRegistration} setIsOpen={setIsOpenRegistration} />
