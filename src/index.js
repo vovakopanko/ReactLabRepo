@@ -36,21 +36,13 @@ const AppContainer = () => {
       />
       <Background>
         <Routes>
-          {isAuth ? (
-            <>
-              <Route path="/home" element={<Home />} />
-              <Route path="*" element={<Home />} />
-            </>
-          ) : (
-            <>
-              <Route path="/home" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/category/:pc" element={<PC />} />
-              <Route path="/category/:xboxone" element={<XBox />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/category/:playstation5" element={<Playstation />} />
-            </>
-          )}
+          <Route path="/home" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/category/:pc" element={<PC />} />
+          <Route path="/category/:xboxone" element={<XBox />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="*" element={<Home />} />
+          <Route path="/category/:playstation5" element={<Playstation />} />
         </Routes>
         <SignUp
           isOpen={isOpenAuth}

@@ -1,4 +1,4 @@
-import { logoGamesAPI } from "@/api/LogoGames";
+import { contentAPI } from "@/api/ContentAPI";
 import { useState } from "react";
 import { FC, useEffect } from "react";
 import { StyleStoreGame, FooterContainer, StoreLogo } from "./style";
@@ -9,7 +9,7 @@ const Footer: FC = () => {
 
   useEffect(() => {
     const query = async () => {
-      const data = await logoGamesAPI.getLogoGames();
+      const data = await contentAPI.getLogoGames();
       data && setLogoGames(data);
     };
     query();

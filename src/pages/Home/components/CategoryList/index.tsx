@@ -3,15 +3,15 @@ import { FC } from "react";
 import Category from "../Category";
 import { BlockItem } from "./style";
 import { TCategory } from "./types";
-import { categoryAPI } from "@/api/CategoryAPI";
+import { contentAPI } from "@/api/ContentAPI";
 
 const CategoryList: FC = () => {
   const [categories, setCategories] = useState<TCategory[]>([]);
 
   useEffect(() => {
     const query = async () => {
-      const data = await categoryAPI.getCategories();
-      setCategories(data);
+      const data = await contentAPI.getCategories();
+      data && setCategories(data);
     };
     query();
   }, []);

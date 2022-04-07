@@ -12,8 +12,8 @@ import {
   ShoppingCartOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { initialState } from "@/redux/initialState";
 import { useCallback } from "react";
+import { initialState } from "./menu";
 
 const webSiteName: string = "Game Store";
 

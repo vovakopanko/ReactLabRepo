@@ -7,7 +7,7 @@ export const usersAPI = {
     try {
       return instanceMongoDB
         .get<TCategory[]>(AppUrls.GET_ALL_USERS)
-        .then((Response) => Response.data);
+        .then((response) => response.data);
     } catch (error) {
       console.error(error);
     }

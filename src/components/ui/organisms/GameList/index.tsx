@@ -1,4 +1,4 @@
-import { contentAPI } from "@/api/Content";
+import { contentAPI } from "@/api/ContentAPI";
 import { useCallback } from "react";
 import { FC } from "react";
 import { useEffect } from "react";

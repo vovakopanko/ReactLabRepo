@@ -7,8 +7,6 @@ const Profile: FC = () => {
     <div
       style={{
         justifyContent: "center",
-        // alignSelf: "center",
-        // alignItems: "center",
         fontSize: 25,
       }}
     >

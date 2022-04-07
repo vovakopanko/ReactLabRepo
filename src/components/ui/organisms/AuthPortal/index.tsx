@@ -11,7 +11,7 @@ import { CloseOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import { AuthProfileAPI } from "@/api/AuthAPI";
 import { useEffect } from "react";
-import { contentAPI } from "@/api/Content";
+import { contentAPI } from "@/api/ContentAPI";
 
 type Props = { title: string; type: string; id: number };
 
@@ -40,8 +40,8 @@ export default function AuthPortal({
 
   const onPressSignUp = () => {
     AuthProfileAPI.loginUser(userEmail.value, userPassword.value)
-      .then((Response) => {
-        if (Response?.data.accessToken !== null) {
+      .then((response) => {
+        if (response?.data.accessToken !== null) {
           setNameUser(userEmail.value.split("@", 1).toString());
           setIsAuth(true);
           setIsOpen(false);
@@ -54,8 +54,8 @@ export default function AuthPortal({
 
   const onPressSignIn = () => {
     AuthProfileAPI.registrationProfile(userEmail.value, userPassword.value)
-      .then((Response) => {
-        if (Response?.data.accessToken !== null) {
+      .then((response) => {
+        if (response?.data.accessToken !== null) {
           setNameUser(userEmail.value.split("@", 1).toString());
           setIsAuth(true);
           setIsOpen(false);
@@ -90,9 +90,9 @@ export default function AuthPortal({
           <InputContainer>
             <InputTitle>{upperCase(fields[0].title)}</InputTitle>
             <input
+              {...userEmail}
               name={fields[0].title}
               type={fields[0].type}
-              {...userEmail}
               placeholder="Enter your email ..."
               autoComplete="off"
             />
@@ -100,9 +100,9 @@ export default function AuthPortal({
           <InputContainer>
             <InputTitle>{upperCase(fields[1].title)}</InputTitle>
             <input
+              {...userPassword}
               name={fields[1].title}
               type={fields[1].type}
-              {...userPassword}
               placeholder="Enter your password ..."
               autoComplete="off"
             />
@@ -115,9 +115,9 @@ export default function AuthPortal({
               <InputContainer>
                 <InputTitle>{upperCase(fields[2].title)}</InputTitle>
                 <input
+                  {...userRepeatPassword}
                   name={fields[2].title}
                   type={fields[2].type}
-                  {...userRepeatPassword}
                   placeholder="Repeat your password ..."
                   autoComplete="off"
                 />
@@ -144,11 +144,9 @@ export default function AuthPortal({
             Submit
           </button>
         </StyledNavLink>
-        {true && (
-          <span style={{ color: "red", fontSize: 14, paddingTop: 10 }}>
-            {invalidValue}
-          </span>
-        )}
+        <span style={{ color: "red", fontSize: 14, paddingTop: 10 }}>
+          {invalidValue}
+        </span>
       </AuthContainer>
     </>,
     document.getElementById("portal")!

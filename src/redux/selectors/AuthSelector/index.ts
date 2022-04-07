@@ -1,9 +1,9 @@
 import { AppStateType } from "../../reduxStore";
 
-export const getEmailUser = (state: AppStateType) => {
+export const selectorEmailUser = (state: AppStateType) => {
   return state.authReducer.email;
 };
 
-export const getIsAuthUser = (state: AppStateType) => {
+export const selectorIsAuthUser = (state: AppStateType) => {
   return state.authReducer.isAuth;
 };

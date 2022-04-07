@@ -1,6 +1,6 @@
 export enum AppUrls {
   CATEGORIES = "categories",
-  LOGOGAMES = "logoGames",
+  LOGOGAMES = "logogames",
   GAMECARD = "gameCards?_sort=amountStars&_order=desc",
   USERS = "users",
   SIGN_UP = "signup",

@@ -1,14 +1,14 @@
 import { TGameCard } from "../../components/ui/organisms/GameList/types";
-import { instance } from "../Instance";
+import { instanceMongoDB } from "../Instance";
 import { AppUrls } from "../types";
 import { debounce } from "lodash";
 
 export const searchAPI = {
   getGameCards(filter: string) {
     try {
-      return instance
+      return instanceMongoDB
         .get<TGameCard[]>(AppUrls.GAMECARD + `${filter}`)
-        .then((Response) => Response.data);
+        .then((response) => response.data);
     } catch (error) {
       console.error(error);
     }

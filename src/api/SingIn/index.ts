@@ -12,7 +12,7 @@ export const signIn = {
     try {
       return instance
         .post<User[]>(AppUrls.USERS)
-        .then((Response) => Response.data);
+        .then((response) => response.data);
     } catch (error) {
       console.error(error);
     }
