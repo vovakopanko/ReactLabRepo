@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { HeaderContainer, Menu, Burger, MenuBurger } from "./style";
 import { MenuItem } from "../..";
 import Logo from "../../atoms/Logo";
@@ -13,6 +13,7 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import { initialState } from "@/redux/initialState";
+import { useCallback } from "react";
 
 const webSiteName: string = "Game Store";
 
@@ -30,16 +31,42 @@ const Header = ({
   nameUser: string;
 }) => {
   const [showDropDown, setShowDropDown] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside, true);
+    return () => {
+      document.removeEventListener("click", handleClickOutside, true);
+    };
+  }, []);
+
+  const toggleShow = useCallback(() => {
+    setShowDropDown((prev) => !prev);
+  }, []);
+
+  const onOpenAuth = useCallback(() => {
+    setIsOpenAuth(true);
+  }, []);
+
+  const onOpenRegistration = useCallback(() => {
+    setIsOpenRegistration(true);
+  }, []);
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (!event.target) {
+      return;
+    }
+    if (ref.current && !ref.current?.contains(event.target as Node)) {
+      setShowDropDown(false);
+    }
+  };
+
   return (
     <HeaderContainer>
       <Logo>{webSiteName}</Logo>
-      <Burger
-        type="button"
-        value="="
-        onClick={() => setShowDropDown(!showDropDown)}
-      />
+      <Burger type="button" value="=" onClick={toggleShow} />
       {showDropDown && (
-        <MenuBurger>
+        <MenuBurger ref={ref}>
           {isAuth &&
             initialState.menuItems.map(({ label, link, withDropdown }) => (
               <MenuItem
@@ -59,7 +86,7 @@ const Header = ({
               </StyledNavLink>
               <StyledNavLink to={"/basket"}>
                 <StyleItem>
-                  <ShoppingCartOutlined />{" "}
+                  <ShoppingCartOutlined />
                   <span style={{ paddingLeft: 10 }}>0</span>
                 </StyleItem>
               </StyledNavLink>
@@ -78,15 +105,11 @@ const Header = ({
           ) : (
             <>
               <div style={{ height: "5vh", paddingBottom: 5 }}>
-                <StyleItem onClick={() => setIsOpenAuth(true)}>
-                  Registration
-                </StyleItem>
+                <StyleItem onClick={onOpenAuth}>Registration</StyleItem>
               </div>
 
               <div style={{ height: "5vh" }}>
-                <StyleItem onClick={() => setIsOpenRegistration(true)}>
-                  Sign Up
-                </StyleItem>
+                <StyleItem onClick={onOpenRegistration}>Sign Up</StyleItem>
               </div>
             </>
           )}
@@ -130,12 +153,8 @@ const Header = ({
           </>
         ) : (
           <>
-            <StyleItem onClick={() => setIsOpenAuth(true)}>
-              Registration
-            </StyleItem>
-            <StyleItem onClick={() => setIsOpenRegistration(true)}>
-              Sign Up
-            </StyleItem>
+            <StyleItem onClick={onOpenAuth}>Registration</StyleItem>
+            <StyleItem onClick={onOpenRegistration}>Sign Up</StyleItem>
           </>
         )}
       </Menu>

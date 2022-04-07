@@ -7,7 +7,7 @@ export const categoryAPI = {
     try {
       return instanceMongoDB
         .get<TGameCard[]>(AppUrls.CATEGORIES)
-        .then((Response) => Response.data);
+        .then((response) => response.data);
     } catch (error) {
       console.error(error);
     }

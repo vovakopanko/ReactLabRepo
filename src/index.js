@@ -23,8 +23,6 @@ const AppContainer = () => {
   const [isAuth, setIsAuth] = useState(false);
   const [nameUser, setNameUser] = useState("");
 
-  useEffect(() => {}, [isAuth]);
-
   return (
     <Container>
       <Header
@@ -37,23 +35,23 @@ const AppContainer = () => {
         nameUser={nameUser}
       />
       <Background>
-        {isAuth ? (
-          <Routes>
-            <Route path="/home" element={<Home />} />
-            <Route path="*" element={<Home />} />
-          </Routes>
-        ) : (
-          <Routes>
-            <Route path="/home" element={<Home />} />
-
-            <Route path="/about" element={<About />} />
-            <Route path="/category/:pc" element={<PC />} />
-            <Route path="/category/:xboxone" element={<XBox />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/category/:playstation5" element={<Playstation />} />
-          </Routes>
-        )}
-
+        <Routes>
+          {isAuth ? (
+            <>
+              <Route path="/home" element={<Home />} />
+              <Route path="*" element={<Home />} />
+            </>
+          ) : (
+            <>
+              <Route path="/home" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/category/:pc" element={<PC />} />
+              <Route path="/category/:xboxone" element={<XBox />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/category/:playstation5" element={<Playstation />} />
+            </>
+          )}
+        </Routes>
         <SignUp
           isOpen={isOpenAuth}
           setIsOpen={setIsOpenAuth}
