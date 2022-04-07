@@ -1,4 +1,4 @@
-import { searchAPI } from "@/api/SearchAPI";
+import { contentAPI } from "@/api/Content";
 import { useCallback } from "react";
 import { FC } from "react";
 import { useEffect } from "react";
@@ -18,7 +18,6 @@ const CardItem: FC<TCardItem> = (props) => {
     age,
     imagePlatforms,
   } = props;
-
   const [focused, setFocused] = useState(false);
 
   const onMouseEnter = useCallback(() => setFocused(true), []);
@@ -47,7 +46,9 @@ const GameList: FC = () => {
 
   useEffect(() => {
     const query = async () => {
-      const games = await searchAPI.getGameCards("");
+      const games = await contentAPI
+        .getGameCards()
+        ?.then((response) => response);
       if (games) {
         setGamesCards(games);
       }
@@ -60,7 +61,7 @@ const GameList: FC = () => {
       {gamesCards.map(
         (item, index) =>
           index + 1 <= amountFavoriteGame.STANDARTSHEME && (
-            <CardItem key={item.id} {...item} />
+            <CardItem key={item.title} {...item} />
           )
       )}
     </GamesBlock>

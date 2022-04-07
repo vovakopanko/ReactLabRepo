@@ -1,7 +1,7 @@
-export const SIGN_IN = "SIGN_IN";
-
-export const SIGN_OUT = "SIGN_OUT";
-
-export const LOG_OUT = "TICKET_TYPES";
-
-export const ACTIVATED = "ACTIVATED";
+export const enum actions {
+  SIGN_IN = "SIGN_IN",
+  SIGN_OUT = "SIGN_OUT",
+  LOG_OUT = "TICKET_TYPES",
+  ACTIVATED = "ACTIVATED",
+  IS_AUTH = "IS_AUTH",
+}

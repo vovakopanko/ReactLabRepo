@@ -1,24 +1,22 @@
-import { FC, useState } from "react";
-import { MenuItem as MenuItemType } from "./types";
+import { useState } from "react";
 import { HeaderContainer, Menu, Burger, MenuBurger } from "./style";
 import { MenuItem } from "../..";
 import Logo from "../../atoms/Logo";
-import { StyledNavLink, StyleItem } from "../../molecules/MenuItem/styles";
+import {
+  StyledBtnLogOut,
+  StyledNavLink,
+  StyleItem,
+} from "../../molecules/MenuItem/styles";
 import {
   ExportOutlined,
   ShoppingCartOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-
-const menuItems: MenuItemType[] = [
-  { id: 0, label: "Home", link: "/home" },
-  { id: 1, label: "Product", link: "", withDropdown: true },
-  { id: 2, label: "About", link: "/about" },
-];
+import { initialState } from "@/redux/initialState";
 
 const webSiteName: string = "Game Store";
 
-const Header: FC = ({
+const Header = ({
   setIsOpenAuth,
   setIsOpenRegistration,
   isAuth,
@@ -42,14 +40,15 @@ const Header: FC = ({
       />
       {showDropDown && (
         <MenuBurger>
-          {menuItems.map(({ label, link, withDropdown }) => (
-            <MenuItem
-              key={label}
-              link={link}
-              label={label}
-              withDropdown={withDropdown}
-            />
-          ))}
+          {isAuth &&
+            initialState.menuItems.map(({ label, link, withDropdown }) => (
+              <MenuItem
+                key={label}
+                link={link}
+                label={label}
+                withDropdown={withDropdown}
+              />
+            ))}
           {isAuth ? (
             <>
               <StyledNavLink to={"/profile"}>
@@ -64,7 +63,9 @@ const Header: FC = ({
                   <span style={{ paddingLeft: 10 }}>0</span>
                 </StyleItem>
               </StyledNavLink>
-              <div
+
+              <StyledNavLink
+                to={"/home"}
                 onClick={() => {
                   setIsAuth(!isAuth);
                 }}
@@ -72,38 +73,35 @@ const Header: FC = ({
                 <StyleItem>
                   <ExportOutlined />
                 </StyleItem>
-              </div>
+              </StyledNavLink>
             </>
           ) : (
             <>
-              {/* <StyledNavLink to={"/registration"}> */}
               <div style={{ height: "5vh", paddingBottom: 5 }}>
                 <StyleItem onClick={() => setIsOpenAuth(true)}>
                   Registration
                 </StyleItem>
               </div>
 
-              {/* </StyledNavLink>
-              <StyledNavLink to={"/signUp"}> */}
               <div style={{ height: "5vh" }}>
                 <StyleItem onClick={() => setIsOpenRegistration(true)}>
                   Sign Up
                 </StyleItem>
               </div>
-              {/* </StyledNavLink> */}
             </>
           )}
         </MenuBurger>
       )}
       <Menu>
-        {menuItems.map(({ label, link, withDropdown }) => (
-          <MenuItem
-            key={label}
-            link={link}
-            label={label}
-            withDropdown={withDropdown}
-          />
-        ))}
+        {isAuth &&
+          initialState.menuItems.map(({ label, link, withDropdown }) => (
+            <MenuItem
+              key={label}
+              link={link}
+              label={label}
+              withDropdown={withDropdown}
+            />
+          ))}
         {isAuth ? (
           <>
             <StyledNavLink to={"/profile"}>
@@ -118,7 +116,9 @@ const Header: FC = ({
                 <span style={{ paddingLeft: 10 }}>0</span>
               </StyleItem>
             </StyledNavLink>
-            <div
+
+            <StyledBtnLogOut
+              to={"/home"}
               onClick={() => {
                 setIsAuth(!isAuth);
               }}
@@ -126,7 +126,7 @@ const Header: FC = ({
               <StyleItem>
                 <ExportOutlined />
               </StyleItem>
-            </div>
+            </StyledBtnLogOut>
           </>
         ) : (
           <>

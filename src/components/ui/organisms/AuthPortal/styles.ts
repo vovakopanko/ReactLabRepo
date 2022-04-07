@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import { colors } from "../../../../styles/palette/index";
 import styled from "styled-components";
 export const BackgroundContainer = styled.div`
@@ -57,4 +58,8 @@ export const InputContainer = styled.div`
 export const InputTitle = styled.span`
   color: ${colors.RED};
   min-width: 120px;
+`;
+
+export const StyledNavLink = styled(NavLink)`
+  margin-top: 20;
 `;

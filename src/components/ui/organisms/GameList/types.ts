@@ -10,7 +10,7 @@ export type TCardItem = {
 };
 
 export type TGameCard = {
-  id: number;
+  _id: number;
   title: string;
   prise: string;
   url: string;

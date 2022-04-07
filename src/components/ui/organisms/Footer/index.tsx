@@ -10,7 +10,7 @@ const Footer: FC = () => {
   useEffect(() => {
     const query = async () => {
       const data = await logoGamesAPI.getLogoGames();
-      setLogoGames(data);
+      data && setLogoGames(data);
     };
     query();
   }, []);

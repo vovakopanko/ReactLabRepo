@@ -24,6 +24,25 @@ export const StyledNavLink = styled(NavLink)`
   }
 `;
 
+export const StyledBtnLogOut = styled(NavLink)`
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  height: 5vh;
+  @media (max-width: 768px) {
+    padding-bottom: 5px;
+  }
+`;
+
+export const SubmitBtn = styled(NavLink)`
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  @media (max-width: 768px) {
+    padding-bottom: 5px;
+  }
+`;
+
 export const StyleItem = styled.ul`
   font-size: 18px;
   color: ${colors.WHITE};

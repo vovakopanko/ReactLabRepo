@@ -1,39 +1,47 @@
 import { useState, ChangeEvent } from "react";
 
-export default function useInput(inputValue: string) {
+export default function useInput(inputValue: string, type: string) {
   const [value, setValue] = useState(inputValue);
-  // const [passwordVisited, setPasswordVisited] = useState(false);
-  // const [repeatPasswordVisited, setRepeatPasswordVisited] = useState(false);
-  // const [userNameVisited, setUserNameVisited] = useState(false);
+  const [passworderror, setPasswordError] = useState("");
+  const [repeatpassworderror, setRepeatPasswordError] = useState("");
 
-  // const blurHandler = (e: React.FocusEvent<HTMLInputElement, Element>) => {
-  //   switch (e.target.name) {
-  //     case "email":
-  //       setUserNameVisited(true);
-  //       break;
-  //     case "password":
-  //       setPasswordVisited(true);
-  //       break;
-  //     case "repeat password":
-  //       setRepeatPasswordVisited(true);
-  //       break;
-  //   }
-  // };
-
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
+  const passwordHandler = (
+    e: ChangeEvent<HTMLInputElement>,
+    onHandler: any
+  ) => {
+    if (e.target.value.length < 7) {
+      onHandler(
+        `Incorrect length password, min value : 7 , your value ${e.target.value.length}`
+      );
+      if (!e.target.value) {
+        onHandler("Field password do not can empty...");
+      }
+    } else if (e.target.value.length > 40) {
+      onHandler(
+        `Incorrect length password, max value : 40 , your value ${e.target.value.length}`
+      );
+      if (!e.target.value) {
+        onHandler("Field password do not can empty...");
+      }
+      // } else if (value.search(/(?=.*[a-z])(?=.*[A-Z])/g) !== -1) {
+      //   onHandler("Your password must contain at least one letter");
+    } else onHandler("");
   };
 
-  // const onBlur = (e: React.FocusEvent<HTMLInputElement, Element>) => {
-  //   blurHandler(e);
-  // };
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (type === "password") {
+      passwordHandler(e, setPasswordError);
+      return setValue(e.target.value);
+    } else if (type === "repeatPassword") {
+      passwordHandler(e, setRepeatPasswordError);
+      return setValue(e.target.value);
+    } else return setValue(e.target.value);
+  };
 
   return {
     value,
     onChange,
-    // onBlur,
-    // passwordVisited,
-    // userNameVisited,
-    // repeatPasswordVisited,
+    passworderror,
+    repeatpassworderror,
   };
 }

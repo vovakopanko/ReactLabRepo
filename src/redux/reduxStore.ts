@@ -1,7 +1,10 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import thunkMiddleware from "redux-thunk";
+import authReducer from "./reducers/auth";
 
-let reducers = combineReducers({});
+let reducers = combineReducers({
+  authReducer,
+});
 
 type RootReducersType = typeof reducers;
 export type AppStateType = ReturnType<RootReducersType>;
