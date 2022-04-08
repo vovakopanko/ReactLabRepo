@@ -29,10 +29,7 @@ const GameCard = ({
   age,
 }: CardItem) => {
   const starsCount = new Array(amountStars).fill("star");
-  // const counter = [];
-  // for (let i = 0; i < amountStars; i++) {
-  //   counter.push("star");
-  // }
+
   return (
     <>
       <CardBlock>

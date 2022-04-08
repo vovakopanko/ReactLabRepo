@@ -53,6 +53,7 @@ export const InputContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   align-self: flex-start;
+  width: 100%;
 `;
 
 export const InputTitle = styled.span`
@@ -61,5 +62,85 @@ export const InputTitle = styled.span`
 `;
 
 export const StyledNavLink = styled(NavLink)`
+  margin-top: 20px;
+`;
+
+export const HeaderContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+`;
+
+export const HeaderName = styled.h1`
+  color: red;
+  width: 90%;
+  text-align: center;
+  justify-content: center;
+`;
+
+export const ErrorContainer = styled.div`
+  color: red;
+  padding: 10px;
+  font-size: 14;
+`;
+
+export const InputBlock = styled.div`
+  justify-content: center;
+`;
+
+export const ErrorMessage = styled.span`
+  color: red;
+  font-size: 14;
+  padding-top: 10px;
+`;
+
+export const MessageError = styled.span`
+  color: red;
+  width: 80%;
+  padding: 5;
+`;
+
+export const InputName = styled.label`
+  line-height: 2;
+  text-align: left;
+  display: block;
+  margin-bottom: 2px;
+  margin-top: 5px;
+  font-size: 14;
+  font-weight: 500;
+  color: ${colors.WHITE};
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+`;
+
+export const InputField = styled.input`
+  display: block;
+  width: 50%;
+  border-radius: 4px;
+  border: 1px solid white;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 14;
+`;
+
+export const AuthForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const BtnSubmit = styled.input`
   margin-top: 20;
+  text-transform: uppercase;
+  border-radius: 10px;
+  border: none;
+  padding: 7px;
+  font-size: 16;
+  letter-spacing: 5px;
+  padding-left: 15px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 `;

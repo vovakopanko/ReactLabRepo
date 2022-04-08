@@ -2,22 +2,30 @@ import ReactDOM from "react-dom";
 import {
   AuthContainer,
   BackgroundContainer,
-  InputContainer,
-  InputTitle,
-  StyledNavLink,
+  HeaderContainer,
+  HeaderName,
+  InputBlock,
+  ErrorMessage,
+  AuthForm,
+  BtnSubmit,
 } from "./styles";
-import useInput from "../../../../hook/userInput/index";
 import { CloseOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import { AuthProfileAPI } from "@/api/AuthAPI";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useEffect } from "react";
-import { contentAPI } from "@/api/ContentAPI";
+import { colors } from "@/styles/palette";
+import CustomInput from "./CustomInput";
+import FormMessageError from "./FormMessageError";
 
-type Props = { title: string; type: string; id: number };
+type Props = {
+  title: string;
+  type: string;
+  id: number;
+};
 
 export default function AuthPortal({
   title,
-  fields,
   modalForm,
   setIsOpen,
   setIsAuth,
@@ -32,121 +40,139 @@ export default function AuthPortal({
   setNameUser: (val: string) => void;
 }) {
   const [invalidValue, setInvalidValue] = useState("");
-  const userEmail = useInput("", "email");
-  const userPassword = useInput("", "password");
-  const userRepeatPassword = useInput("", "repeatPassword");
+  const {
+    register,
+    formState: { errors, isValid },
+    handleSubmit,
+    reset,
+  } = useForm({ mode: "onChange" });
 
-  let upperCase = (value: string) => value[0].toUpperCase() + value.slice(1);
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [repeatPassword, setRepeatPassword] = useState<string>("");
+  const isRegistrationModal = modalForm === "registration";
+
+  useEffect(() => {
+    if (email && password)
+      isRegistrationModal ? onPressSignIn() : onPressSignUp();
+  }, [email, password]);
 
   const onPressSignUp = () => {
-    AuthProfileAPI.loginUser(userEmail.value, userPassword.value)
+    AuthProfileAPI.loginUser(email, password)
       .then((response) => {
         if (response?.data.accessToken !== null) {
-          setNameUser(userEmail.value.split("@", 1).toString());
+          setNameUser(email.split("@", 1).toString());
           setIsAuth(true);
           setIsOpen(false);
         } else setIsAuth(false);
       })
-      .catch(() => {
-        setInvalidValue("Invalid password or login");
+      .catch((errors) => {
+        setInvalidValue(errors.message);
       });
   };
 
+  const onSubmit: SubmitHandler<FieldValues> = (dataForm) => {
+    setEmail(dataForm.email);
+    setPassword(dataForm.password);
+    setRepeatPassword(dataForm.duplicatePassword);
+    reset();
+  };
+
   const onPressSignIn = () => {
-    AuthProfileAPI.registrationProfile(userEmail.value, userPassword.value)
+    AuthProfileAPI.registrationProfile(email, password)
       .then((response) => {
         if (response?.data.accessToken !== null) {
-          setNameUser(userEmail.value.split("@", 1).toString());
+          setNameUser(email.split("@", 1).toString());
           setIsAuth(true);
           setIsOpen(false);
         } else setIsAuth(false);
       })
-      .catch(() => {
-        setInvalidValue("Error connection!");
+      .catch((errors) => {
+        setInvalidValue(errors.message);
       });
+  };
+
+  const AuthForms = () => {
+    return (
+      <InputBlock style={{ justifyContent: "flex-start" }}>
+        <AuthForm
+          onSubmit={handleSubmit(onSubmit)}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <CustomInput
+            register={register}
+            title={"Email"}
+            type={"text"}
+            uniqueType={"email"}
+            maxLength={25}
+            minLength={7}
+          />
+          {errors?.email && (
+            <FormMessageError errorMessage={errors?.email.message} />
+          )}
+          <CustomInput
+            register={register}
+            title={"Password"}
+            uniqueType={"password"}
+            type={"password"}
+            maxLength={30}
+            minLength={5}
+          />
+          {errors?.password && (
+            <FormMessageError errorMessage={errors?.password.message} />
+          )}
+          {isRegistrationModal && (
+            <>
+              <CustomInput
+                register={register}
+                title={"Repeat password"}
+                uniqueType={"duplicatePassword"}
+                type={"password"}
+                maxLength={30}
+                minLength={5}
+              />
+              {errors?.duplicatePassword && (
+                <FormMessageError
+                  errorMessage={errors?.duplicatePassword.message}
+                />
+              )}
+            </>
+          )}
+          <BtnSubmit
+            color={!isValid ? colors.GRAY : colors.RED}
+            type="submit"
+            value={isRegistrationModal ? "Sign In" : "Continue"}
+            disabled={
+              !isValid && isRegistrationModal && password !== repeatPassword
+            }
+            style={{
+              backgroundColor: !isValid ? colors.GRAY : colors.RED,
+              color: !isValid ? colors.BLACK : colors.WHITE,
+              opacity: !isValid ? 0.3 : 1,
+            }}
+          />
+        </AuthForm>
+      </InputBlock>
+    );
   };
 
   return ReactDOM.createPortal(
     <>
       <BackgroundContainer />
       <AuthContainer>
-        <div style={{ display: "flex", flexDirection: "row", width: "100%" }}>
-          <h1
-            style={{
-              color: "red",
-              width: "90%",
-              textAlign: "center",
-              justifyContent: "center",
-            }}
-          >
-            {title}
-          </h1>
-          <div onClick={() => setIsOpen(false)}>
+        <HeaderContainer>
+          <HeaderName>{title}</HeaderName>
+          <div style={{ textAlign: "center" }} onClick={() => setIsOpen(false)}>
             <CloseOutlined style={{ color: "red" }} />
           </div>
-        </div>
-
-        <div style={{ justifyContent: "center" }}>
-          <InputContainer>
-            <InputTitle>{upperCase(fields[0].title)}</InputTitle>
-            <input
-              {...userEmail}
-              name={fields[0].title}
-              type={fields[0].type}
-              placeholder="Enter your email ..."
-              autoComplete="off"
-            />
-          </InputContainer>
-          <InputContainer>
-            <InputTitle>{upperCase(fields[1].title)}</InputTitle>
-            <input
-              {...userPassword}
-              name={fields[1].title}
-              type={fields[1].type}
-              placeholder="Enter your password ..."
-              autoComplete="off"
-            />
-          </InputContainer>
-          <div style={{ color: "red", padding: 10, fontSize: 14 }}>
-            {userPassword.passworderror}
-          </div>
-          {modalForm === "registration" && (
-            <>
-              <InputContainer>
-                <InputTitle>{upperCase(fields[2].title)}</InputTitle>
-                <input
-                  {...userRepeatPassword}
-                  name={fields[2].title}
-                  type={fields[2].type}
-                  placeholder="Repeat your password ..."
-                  autoComplete="off"
-                />
-              </InputContainer>
-              <div style={{ color: "red", padding: 10, fontSize: 14 }}>
-                {userRepeatPassword.repeatpassworderror}
-              </div>
-            </>
-          )}
-        </div>
-        <StyledNavLink to={"/profile"}>
-          <button
-            type="submit"
-            onClick={() => {
-              return modalForm === "registration"
-                ? onPressSignIn()
-                : onPressSignUp();
-            }}
-            disabled={
-              modalForm === "registration" &&
-              userPassword.value !== userRepeatPassword.value
-            }
-          >
-            Submit
-          </button>
-        </StyledNavLink>
-        <span style={{ color: "red", fontSize: 14, paddingTop: 10 }}>
-          {invalidValue}
-        </span>
+        </HeaderContainer>
+        <AuthForms />
+        <ErrorMessage>{invalidValue}</ErrorMessage>
       </AuthContainer>
     </>,
     document.getElementById("portal")!

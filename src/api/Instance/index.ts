@@ -1,14 +1,13 @@
 import Axios from "axios";
 
-// [General example for API requests]
+// const API_URL = "http://localhost:3000/";
 
-const API_URL = "http://localhost:3000/";
+// export const instance = Axios.create({
+//   withCredentials: true,
+//   baseURL: API_URL,
+// });
+
 const API_MONGODB = "http://localhost:8000/api/auth/";
-
-export const instance = Axios.create({
-  withCredentials: true,
-  baseURL: API_URL,
-});
 
 export const instanceMongoDB = Axios.create({
   headers: {

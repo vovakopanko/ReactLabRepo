@@ -1,24 +1,31 @@
-import { colors } from "@/styles/palette";
-import { FC } from "react";
+import { PageContainerInfo } from "@/components/ui/molecules/PageInfo";
+import { Navigate } from "react-router-dom";
 import styled from "styled-components";
 
-const XBox: FC = () => {
+const XBox = ({
+  isAuth,
+  setIsOpenRegistration,
+}: {
+  isAuth: boolean;
+  setIsOpenRegistration: (val: boolean) => void;
+}) => {
+  const pageInfo = "Soon there will be content for Playstation";
+
+  if (!isAuth) {
+    setIsOpenRegistration(true);
+    return <Navigate to="/home" replace={true} />;
+  }
+
   return (
-    <Container>
-      <Title>Soon there will be content for XBox</Title>
-    </Container>
+    <PageContainer>
+      <PageContainerInfo pageInfo={pageInfo} />
+    </PageContainer>
   );
 };
 
-const Container = styled.div`
-  display: flex;
+export const PageContainer = styled.div`
   justify-content: center;
-  align-self: center;
-`;
-
-const Title = styled.span`
-  color: ${colors.WHITE};
-  text-align: center;
+  font-size: 25;
 `;
 
 export default XBox;

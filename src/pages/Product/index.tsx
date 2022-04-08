@@ -1,9 +1,31 @@
 import { PageContainerInfo } from "@/components/ui/molecules/PageInfo";
-import { FC } from "react";
+import { Navigate } from "react-router-dom";
+import styled from "styled-components";
 
-const Product: FC = () => {
+const Product = ({
+  isAuth,
+  setIsOpenRegistration,
+}: {
+  isAuth: boolean;
+  setIsOpenRegistration: (val: boolean) => void;
+}) => {
   const pageInfo = "Soon there will be content for Product";
-  return <PageContainerInfo pageInfo={pageInfo} />;
+
+  if (!isAuth) {
+    setIsOpenRegistration(true);
+    return <Navigate to="/home" replace={true} />;
+  }
+
+  return (
+    <PageContainer>
+      <PageContainerInfo pageInfo={pageInfo} />
+    </PageContainer>
+  );
 };
+
+export const PageContainer = styled.div`
+  justify-content: center;
+  font-size: 25;
+`;
 
 export default Product;

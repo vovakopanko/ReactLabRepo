@@ -1,5 +1,13 @@
 import { useEffect, useRef, useState } from "react";
-import { HeaderContainer, Menu, Burger, MenuBurger } from "./style";
+import {
+  HeaderContainer,
+  Menu,
+  Burger,
+  MenuBurger,
+  RegistrationContainer,
+  SignUpContainer,
+  TitleItem,
+} from "./style";
 import { MenuItem } from "../..";
 import Logo from "../../atoms/Logo";
 import {
@@ -81,13 +89,13 @@ const Header = ({
               <StyledNavLink to={"/profile"}>
                 <StyleItem>
                   <UserOutlined />
-                  <span style={{ paddingLeft: 10 }}>{nameUser}</span>
+                  <TitleItem>{nameUser}</TitleItem>
                 </StyleItem>
               </StyledNavLink>
               <StyledNavLink to={"/basket"}>
                 <StyleItem>
                   <ShoppingCartOutlined />
-                  <span style={{ paddingLeft: 10 }}>0</span>
+                  <TitleItem>0</TitleItem>
                 </StyleItem>
               </StyledNavLink>
 
@@ -104,13 +112,15 @@ const Header = ({
             </>
           ) : (
             <>
-              <div style={{ height: "5vh", paddingBottom: 5 }}>
+              <RegistrationContainer
+                style={{ height: "5vh", paddingBottom: 5 }}
+              >
                 <StyleItem onClick={onOpenAuth}>Registration</StyleItem>
-              </div>
+              </RegistrationContainer>
 
-              <div style={{ height: "5vh" }}>
+              <SignUpContainer style={{ height: "5vh" }}>
                 <StyleItem onClick={onOpenRegistration}>Sign Up</StyleItem>
-              </div>
+              </SignUpContainer>
             </>
           )}
         </MenuBurger>
@@ -130,13 +140,13 @@ const Header = ({
             <StyledNavLink to={"/profile"}>
               <StyleItem>
                 <UserOutlined />
-                <span style={{ paddingLeft: 10 }}>{nameUser}</span>
+                <TitleItem>{nameUser}</TitleItem>
               </StyleItem>
             </StyledNavLink>
             <StyledNavLink to={"/basket"}>
               <StyleItem>
-                <ShoppingCartOutlined />{" "}
-                <span style={{ paddingLeft: 10 }}>0</span>
+                <ShoppingCartOutlined />
+                <TitleItem>0</TitleItem>
               </StyleItem>
             </StyledNavLink>
 

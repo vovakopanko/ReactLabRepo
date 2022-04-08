@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { createContext, FC, useContext, useEffect, useState } from "react";
 import ReactDom from "react-dom";
 import { Route, Routes, Redirect } from "react-router-dom";
 import About from "./pages/About";
@@ -37,12 +37,52 @@ const AppContainer = () => {
       <Background>
         <Routes>
           <Route path="/home" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/category/:pc" element={<PC />} />
-          <Route path="/category/:xboxone" element={<XBox />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route
+            path="/about"
+            element={
+              <About
+                isAuth={isAuth}
+                setIsOpenRegistration={setIsOpenRegistration}
+              />
+            }
+          />
+          <Route
+            path="/category/:pc"
+            element={
+              <PC
+                isAuth={isAuth}
+                setIsOpenRegistration={setIsOpenRegistration}
+              />
+            }
+          />
+          <Route
+            path="/category/:xboxone"
+            element={
+              <XBox
+                isAuth={isAuth}
+                setIsOpenRegistration={setIsOpenRegistration}
+              />
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <Profile
+                isAuth={isAuth}
+                setIsOpenRegistration={setIsOpenRegistration}
+              />
+            }
+          />
           <Route path="*" element={<Home />} />
-          <Route path="/category/:playstation5" element={<Playstation />} />
+          <Route
+            path="/category/:playstation5"
+            element={
+              <Playstation
+                isAuth={isAuth}
+                setIsOpenRegistration={setIsOpenRegistration}
+              />
+            }
+          />
         </Routes>
         <SignUp
           isOpen={isOpenAuth}
