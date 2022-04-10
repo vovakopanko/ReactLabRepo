@@ -14,88 +14,28 @@ import { Footer, Header } from "./components/ui";
 import SignIn from "./components/ui/molecules/SignIn";
 import SignUp from "./components/ui/molecules/SignUp";
 import Profile from "./pages/Profile";
-import { getIsAuthUser } from "./redux/selectors/AuthSelector";
+import {
+  getIsAuthUser,
+  selectorIsAuthUser,
+} from "./redux/selectors/AuthSelector";
+import { useSelector } from "react-redux";
 
 const AppContainer = () => {
-  const [isOpen, setIsOpen] = useState(true);
-  const [isOpenAuth, setIsOpenAuth] = useState(false);
-  const [isOpenRegistration, setIsOpenRegistration] = useState(false);
-  const [isAuth, setIsAuth] = useState(false);
-  const [nameUser, setNameUser] = useState("");
-
   return (
     <Container>
-      <Header
-        setIsOpen={setIsOpen}
-        isOpen={isOpen}
-        setIsOpenAuth={setIsOpenAuth}
-        setIsOpenRegistration={setIsOpenRegistration}
-        isAuth={isAuth}
-        setIsAuth={setIsAuth}
-        nameUser={nameUser}
-      />
+      <Header />
       <Background>
         <Routes>
           <Route path="/home" element={<Home />} />
-          <Route
-            path="/about"
-            element={
-              <About
-                isAuth={isAuth}
-                setIsOpenRegistration={setIsOpenRegistration}
-              />
-            }
-          />
-          <Route
-            path="/category/:pc"
-            element={
-              <PC
-                isAuth={isAuth}
-                setIsOpenRegistration={setIsOpenRegistration}
-              />
-            }
-          />
-          <Route
-            path="/category/:xboxone"
-            element={
-              <XBox
-                isAuth={isAuth}
-                setIsOpenRegistration={setIsOpenRegistration}
-              />
-            }
-          />
-          <Route
-            path="/profile"
-            element={
-              <Profile
-                isAuth={isAuth}
-                setIsOpenRegistration={setIsOpenRegistration}
-              />
-            }
-          />
+          <Route path="/about" element={<About />} />
+          <Route path="/category/:pc" element={<PC />} />
+          <Route path="/category/:xboxone" element={<XBox />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/category/:playstation5" element={<Playstation />} />
           <Route path="*" element={<Home />} />
-          <Route
-            path="/category/:playstation5"
-            element={
-              <Playstation
-                isAuth={isAuth}
-                setIsOpenRegistration={setIsOpenRegistration}
-              />
-            }
-          />
         </Routes>
-        <SignUp
-          isOpen={isOpenAuth}
-          setIsOpen={setIsOpenAuth}
-          setIsAuth={setIsAuth}
-          setNameUser={setNameUser}
-        />
-        <SignIn
-          isOpen={isOpenRegistration}
-          setIsOpen={setIsOpenRegistration}
-          setIsAuth={setIsAuth}
-          setNameUser={setNameUser}
-        />
+        <SignUp />
+        <SignIn />
       </Background>
       <Footer />
     </Container>

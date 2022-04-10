@@ -1,18 +1,18 @@
 import { PageContainerInfo } from "@/components/ui/molecules/PageInfo";
+import { getStatusAuthWindow } from "@/redux/reducers/auth";
+import { selectorIsAuthUser } from "@/redux/selectors/AuthSelector";
+import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import styled from "styled-components";
 
-const PC = ({
-  isAuth,
-  setIsOpenRegistration,
-}: {
-  isAuth: boolean;
-  setIsOpenRegistration: (val: boolean) => void;
-}) => {
-  const pageInfo = "Soon there will be content for PC";
+const pageInfo = "Soon there will be content for PC";
+
+const PC = () => {
+  const dispatch = useDispatch();
+  const isAuth = useSelector(selectorIsAuthUser);
 
   if (!isAuth) {
-    setIsOpenRegistration(true);
+    dispatch(getStatusAuthWindow(true));
     return <Navigate to="/home" replace={true} />;
   }
 

@@ -22,23 +22,25 @@ import {
 } from "@ant-design/icons";
 import { useCallback } from "react";
 import { initialState } from "./menu";
+import {
+  getAuthCurrentUser,
+  getStatusAuthWindow,
+  getStatusRegistrationWindow,
+} from "@/redux/reducers/auth";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectorGetUserName,
+  selectorIsAuthUser,
+} from "@/redux/selectors/AuthSelector";
 
 const webSiteName: string = "Game Store";
 
-const Header = ({
-  setIsOpenAuth,
-  setIsOpenRegistration,
-  isAuth,
-  setIsAuth,
-  nameUser,
-}: {
-  setIsOpenAuth: (val: boolean) => void;
-  setIsOpenRegistration: (val: boolean) => void;
-  isAuth: boolean;
-  setIsAuth: (isAuth: boolean) => void;
-  nameUser: string;
-}) => {
+const Header = () => {
   const [showDropDown, setShowDropDown] = useState(false);
+  const isAuth = useSelector(selectorIsAuthUser);
+  const userName = useSelector(selectorGetUserName);
+  const dispatch = useDispatch();
+
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -53,11 +55,11 @@ const Header = ({
   }, []);
 
   const onOpenAuth = useCallback(() => {
-    setIsOpenAuth(true);
+    dispatch(getStatusAuthWindow(true));
   }, []);
 
   const onOpenRegistration = useCallback(() => {
-    setIsOpenRegistration(true);
+    dispatch(getStatusRegistrationWindow(true));
   }, []);
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -89,7 +91,7 @@ const Header = ({
               <StyledNavLink to={"/profile"}>
                 <StyleItem>
                   <UserOutlined />
-                  <TitleItem>{nameUser}</TitleItem>
+                  <TitleItem>{userName}</TitleItem>
                 </StyleItem>
               </StyledNavLink>
               <StyledNavLink to={"/basket"}>
@@ -102,7 +104,7 @@ const Header = ({
               <StyledNavLink
                 to={"/home"}
                 onClick={() => {
-                  setIsAuth(!isAuth);
+                  dispatch(getAuthCurrentUser(false));
                 }}
               >
                 <StyleItem>
@@ -115,11 +117,11 @@ const Header = ({
               <RegistrationContainer
                 style={{ height: "5vh", paddingBottom: 5 }}
               >
-                <StyleItem onClick={onOpenAuth}>Registration</StyleItem>
+                <StyleItem onClick={onOpenRegistration}>Registration</StyleItem>
               </RegistrationContainer>
 
               <SignUpContainer style={{ height: "5vh" }}>
-                <StyleItem onClick={onOpenRegistration}>Sign Up</StyleItem>
+                <StyleItem onClick={onOpenAuth}>Sign Up</StyleItem>
               </SignUpContainer>
             </>
           )}
@@ -140,7 +142,7 @@ const Header = ({
             <StyledNavLink to={"/profile"}>
               <StyleItem>
                 <UserOutlined />
-                <TitleItem>{nameUser}</TitleItem>
+                <TitleItem>{userName}</TitleItem>
               </StyleItem>
             </StyledNavLink>
             <StyledNavLink to={"/basket"}>
@@ -153,7 +155,7 @@ const Header = ({
             <StyledBtnLogOut
               to={"/home"}
               onClick={() => {
-                setIsAuth(!isAuth);
+                dispatch(getAuthCurrentUser(false));
               }}
             >
               <StyleItem>
@@ -163,8 +165,8 @@ const Header = ({
           </>
         ) : (
           <>
-            <StyleItem onClick={onOpenAuth}>Registration</StyleItem>
-            <StyleItem onClick={onOpenRegistration}>Sign Up</StyleItem>
+            <StyleItem onClick={onOpenRegistration}>Registration</StyleItem>
+            <StyleItem onClick={onOpenAuth}>Sign Up</StyleItem>
           </>
         )}
       </Menu>

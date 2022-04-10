@@ -1,50 +1,51 @@
-import { InfernActionsType } from "@/redux/reduxStore";
-import { actions } from "../../actions/index";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type TState = {
+  userName: string;
   email: string;
   password: string;
   isActivated: boolean;
   isAuth: boolean;
+  openAuthWindow: boolean;
+  openRegisterWindow: boolean;
 };
 
 const initialState: TState = {
+  userName: "",
   email: "",
   password: "",
   isActivated: false,
   isAuth: false,
+  openAuthWindow: false,
+  openRegisterWindow: false,
 };
 
-const authReducer = (state = initialState, action: ActionType) => {
-  switch (action.type) {
-    case actions.IS_AUTH:
-      return {
-        ...state,
-        isAuth: true,
-      };
-    case actions.LOG_OUT:
-      return {
-        ...state,
-        isAuth: false,
-        email: "",
-        password: "",
-      };
-    default:
-      return state;
-  }
-};
-
-type ActionType = InfernActionsType<typeof authActions>;
-
-const authActions = {
-  changeStatusAuth: () =>
-    <const>{
-      type: actions.IS_AUTH,
+const authSlice = createSlice({
+  name: "auth",
+  initialState,
+  reducers: {
+    getAuthCurrentUser: (state, actions: PayloadAction<boolean>) => {
+      state.isAuth = actions.payload;
     },
-  logOut: () =>
-    <const>{
-      type: actions.LOG_OUT,
+    getStatusAuthWindow: (state, actions: PayloadAction<boolean>) => {
+      state.openAuthWindow = actions.payload;
     },
-};
+    getStatusRegistrationWindow: (state, actions: PayloadAction<boolean>) => {
+      state.openRegisterWindow = actions.payload;
+    },
+    updateUserName: (state, actions: PayloadAction<string>) => {
+      state.userName = actions.payload;
+    },
+  },
+});
 
-export default authReducer;
+const { actions, reducer } = authSlice;
+
+export const {
+  getAuthCurrentUser,
+  getStatusAuthWindow,
+  getStatusRegistrationWindow,
+  updateUserName,
+} = actions;
+
+export default reducer;

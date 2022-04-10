@@ -1,27 +1,17 @@
+import { selectorStatusWindowRegistration } from "@/redux/selectors/AuthSelector";
+import { useSelector } from "react-redux";
 import AuthPortal from "../../organisms/AuthPortal";
 import { fieldData } from "./constant";
 
-export default function SignIn({
-  isOpen,
-  setIsOpen,
-  setIsAuth,
-  setNameUser,
-}: {
-  isOpen: boolean;
-  setIsOpen: (val: boolean) => void;
-  setIsAuth: (val: boolean) => void;
-  setNameUser: (val: string) => void;
-}) {
+export default function SignIn() {
+  const isOpen = useSelector(selectorStatusWindowRegistration);
   return (
     isOpen && (
       <AuthPortal
-        modalForm={"authorization"}
-        title={"Authorization"}
+        modalForm={"registration"}
+        title={"Registration"}
         fields={fieldData}
         isOpen={isOpen}
-        setIsOpen={setIsOpen}
-        setIsAuth={setIsAuth}
-        setNameUser={setNameUser}
       />
     )
   );

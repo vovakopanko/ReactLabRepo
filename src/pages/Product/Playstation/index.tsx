@@ -1,18 +1,18 @@
 import { PageContainerInfo } from "@/components/ui/molecules/PageInfo";
+import { getStatusAuthWindow } from "@/redux/reducers/auth";
+import { selectorIsAuthUser } from "@/redux/selectors/AuthSelector";
+import { useSelector, useDispatch } from "react-redux";
 import { Navigate } from "react-router-dom";
 import styled from "styled-components";
 
-const Playstation = ({
-  isAuth,
-  setIsOpenRegistration,
-}: {
-  isAuth: boolean;
-  setIsOpenRegistration: (val: boolean) => void;
-}) => {
-  const pageInfo = "Soon there will be content for Playstation";
+const pageInfo = "Soon there will be content for Playstation";
+
+const Playstation = () => {
+  const dispatch = useDispatch();
+  const isAuth = useSelector(selectorIsAuthUser);
 
   if (!isAuth) {
-    setIsOpenRegistration(true);
+    dispatch(getStatusAuthWindow(true));
     return <Navigate to="/home" replace={true} />;
   }
 

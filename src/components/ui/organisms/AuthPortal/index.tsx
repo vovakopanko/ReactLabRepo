@@ -17,6 +17,13 @@ import { useEffect } from "react";
 import { colors } from "@/styles/palette";
 import CustomInput from "./CustomInput";
 import FormMessageError from "./FormMessageError";
+import { useDispatch } from "react-redux";
+import {
+  getAuthCurrentUser,
+  getStatusAuthWindow,
+  getStatusRegistrationWindow,
+  updateUserName,
+} from "@/redux/reducers/auth";
 
 type Props = {
   title: string;
@@ -27,19 +34,15 @@ type Props = {
 export default function AuthPortal({
   title,
   modalForm,
-  setIsOpen,
-  setIsAuth,
-  setNameUser,
 }: {
   title: string;
   fields: Props[];
   isOpen: boolean;
-  setIsOpen: (value: boolean) => void;
   modalForm: string;
-  setIsAuth: (value: boolean) => void;
-  setNameUser: (val: string) => void;
 }) {
   const [invalidValue, setInvalidValue] = useState("");
+  const dispatch = useDispatch();
+
   const {
     register,
     formState: { errors, isValid },
@@ -61,10 +64,10 @@ export default function AuthPortal({
     AuthProfileAPI.loginUser(email, password)
       .then((response) => {
         if (response?.data.accessToken !== null) {
-          setNameUser(email.split("@", 1).toString());
-          setIsAuth(true);
-          setIsOpen(false);
-        } else setIsAuth(false);
+          dispatch(updateUserName(email.split("@", 1).toString()));
+          dispatch(getAuthCurrentUser(true));
+          dispatch(getStatusAuthWindow(false));
+        } else dispatch(getAuthCurrentUser(false));
       })
       .catch((errors) => {
         setInvalidValue(errors.message);
@@ -82,10 +85,10 @@ export default function AuthPortal({
     AuthProfileAPI.registrationProfile(email, password)
       .then((response) => {
         if (response?.data.accessToken !== null) {
-          setNameUser(email.split("@", 1).toString());
-          setIsAuth(true);
-          setIsOpen(false);
-        } else setIsAuth(false);
+          dispatch(updateUserName(email.split("@", 1).toString()));
+          dispatch(getAuthCurrentUser(true));
+          dispatch(getStatusRegistrationWindow(false));
+        } else dispatch(getAuthCurrentUser(false));
       })
       .catch((errors) => {
         setInvalidValue(errors.message);
@@ -167,7 +170,14 @@ export default function AuthPortal({
       <AuthContainer>
         <HeaderContainer>
           <HeaderName>{title}</HeaderName>
-          <div style={{ textAlign: "center" }} onClick={() => setIsOpen(false)}>
+          <div
+            style={{ textAlign: "center" }}
+            onClick={() => {
+              isRegistrationModal
+                ? dispatch(getStatusRegistrationWindow(false))
+                : dispatch(getStatusAuthWindow(false));
+            }}
+          >
             <CloseOutlined style={{ color: "red" }} />
           </div>
         </HeaderContainer>
