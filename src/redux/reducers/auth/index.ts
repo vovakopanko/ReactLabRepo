@@ -36,6 +36,9 @@ const authSlice = createSlice({
     updateUserName: (state, actions: PayloadAction<string>) => {
       state.userName = actions.payload;
     },
+    logOut: (state, actions: PayloadAction<boolean>) => {
+      state.isAuth = actions.payload;
+    },
   },
 });
 
@@ -46,6 +49,7 @@ export const {
   getStatusAuthWindow,
   getStatusRegistrationWindow,
   updateUserName,
+  logOut,
 } = actions;
 
 export default reducer;

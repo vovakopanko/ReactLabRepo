@@ -26,6 +26,7 @@ import {
   getAuthCurrentUser,
   getStatusAuthWindow,
   getStatusRegistrationWindow,
+  logOut,
 } from "@/redux/reducers/auth";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -104,7 +105,7 @@ const Header = () => {
               <StyledNavLink
                 to={"/home"}
                 onClick={() => {
-                  dispatch(getAuthCurrentUser(false));
+                  dispatch(logOut(false));
                 }}
               >
                 <StyleItem>
