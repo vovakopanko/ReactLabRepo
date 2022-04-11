@@ -1,11 +1,19 @@
-import { Navigate } from "react-router-dom";
+import { getStatusAuthWindow } from "@/redux/reducers/auth";
+import { selectorIsAuthUser } from "@/redux/selectors/AuthSelector";
+import { ReactElement } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Navigate, useLocation } from "react-router-dom";
 
-const AuthRedirect = (children: () => JSX.Element) => {
-  const isAuth = true;
+const AuthRedirect = ({ children }: { children: ReactElement<any, any> }) => {
+  const isAuth = useSelector(selectorIsAuthUser);
+  const dispatch = useDispatch();
+  const location = useLocation();
+
   if (!isAuth) {
-    return <Navigate to="/home" replace={true} />;
+    dispatch(getStatusAuthWindow(true));
+    return <Navigate to="/home" state={{ from: location }} />;
   }
-  return { children };
+  return children;
 };
 
 export default AuthRedirect;
