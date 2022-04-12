@@ -72,6 +72,10 @@ const Header = () => {
     }
   };
 
+  const onClick = useCallback(() => {
+    dispatch(logOut(false));
+  }, []);
+
   return (
     <HeaderContainer>
       <Logo>{webSiteName}</Logo>
@@ -101,14 +105,7 @@ const Header = () => {
                   <TitleItem>0</TitleItem>
                 </StyleItem>
               </StyledNavLink>
-              <StyledNavLink
-                to={"/home"}
-                onClick={() =>
-                  useCallback(() => {
-                    dispatch(logOut(false));
-                  }, [])
-                }
-              >
+              <StyledNavLink to={"/home"} onClick={() => onClick()}>
                 <StyleItem>
                   <ExportOutlined />
                 </StyleItem>
@@ -152,14 +149,7 @@ const Header = () => {
                 <TitleItem>0</TitleItem>
               </StyleItem>
             </StyledNavLink>
-            <StyledBtnLogOut
-              to={"/home"}
-              onClick={() =>
-                useCallback(() => {
-                  dispatch(setAuthCurrentUser(false));
-                }, [])
-              }
-            >
+            <StyledBtnLogOut to={"/home"} onClick={() => onClick()}>
               <StyleItem>
                 <ExportOutlined />
               </StyleItem>
