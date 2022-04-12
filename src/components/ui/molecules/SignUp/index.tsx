@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import AuthPortal from "../../organisms/AuthPortal";
 import { fieldData } from "./constant";
 
-export default function SignUp() {
+export default function SignIn() {
   const isOpen = useSelector(selectorStatusWindowAuth);
   return (
     <>

@@ -1,31 +1,15 @@
 import { PageContainerInfo } from "@/components/ui/molecules/PageInfo";
-import { Navigate } from "react-router-dom";
-import styled from "styled-components";
+import AuthRedirect from "@/hoc/withAuthRedirect";
+import { PageContainer } from "./styles";
 
-const Product = ({
-  isAuth,
-  setIsOpenRegistration,
-}: {
-  isAuth: boolean;
-  setIsOpenRegistration: (val: boolean) => void;
-}) => {
-  const pageInfo = "Soon there will be content for Product";
-
-  if (!isAuth) {
-    setIsOpenRegistration(true);
-    return <Navigate to="/home" replace={true} />;
-  }
-
+const Product = ({ pageInfo }: { pageInfo: string }) => {
   return (
-    <PageContainer>
-      <PageContainerInfo pageInfo={pageInfo} />
-    </PageContainer>
+    <AuthRedirect>
+      <PageContainer>
+        <PageContainerInfo pageInfo={pageInfo} />
+      </PageContainer>
+    </AuthRedirect>
   );
 };
-
-export const PageContainer = styled.div`
-  justify-content: center;
-  font-size: 25;
-`;
 
 export default Product;

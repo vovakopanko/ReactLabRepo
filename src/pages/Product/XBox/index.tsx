@@ -1,22 +1,12 @@
-import { PageContainerInfo } from "@/components/ui/molecules/PageInfo";
-import AuthRedirect from "@/hoc/withAuthRedirect";
-import styled from "styled-components";
+import { useLocation, useParams } from "react-router-dom";
+import Product from "..";
 
-const pageInfo = "Soon there will be content for Playstation";
+const pageInfo = "Soon there will be content for XBox";
 
 const XBox = () => {
-  return (
-    <AuthRedirect>
-      <PageContainer>
-        <PageContainerInfo pageInfo={pageInfo} />
-      </PageContainer>
-    </AuthRedirect>
-  );
+  const location = useParams();
+  console.log("location", location);
+  return <Product pageInfo={pageInfo} />;
 };
-
-export const PageContainer = styled.div`
-  justify-content: center;
-  font-size: 25;
-`;
 
 export default XBox;

@@ -19,7 +19,8 @@ export const StyledNavLink = styled(NavLink)`
     background-color: ${colors.LIGHT_GRAY};
     @media (max-width: 768px) {
       padding-bottom: 5px;
-      background-color: transparent;
+      background-color: ${colors.LIGHT_GRAY};
+      border-radius: 10px;
     }
   }
 `;

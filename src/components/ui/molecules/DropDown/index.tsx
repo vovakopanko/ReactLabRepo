@@ -9,9 +9,9 @@ import {
 import { dropDownItem, HeaderTitleName } from "./type";
 
 const dropDownItems: dropDownItem[] = [
-  { id: 0, title: "PC", link: "/category/:pc" },
-  { id: 1, title: "Xbox", link: "/category/:xboxone" },
-  { id: 2, title: "Playstation 5", link: "/category/:playstation5" },
+  { id: 0, title: "PC", link: "pc" },
+  { id: 1, title: "Xbox", link: "xboxone" },
+  { id: 2, title: "Playstation 5", link: "playstation5" },
 ];
 
 const DropDown: FC<HeaderTitleName> = ({ item }) => {
@@ -28,6 +28,7 @@ const DropDown: FC<HeaderTitleName> = ({ item }) => {
         <ContentDropDown>
           {dropDownItems.map(({ id, link, title }) => (
             <LinkItems key={id} to={link}>
+              {console.log("link", link)}
               {title}
             </LinkItems>
           ))}

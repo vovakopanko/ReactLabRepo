@@ -2,8 +2,8 @@ import { Outlet } from "react-router-dom";
 import { images } from "./constants/image";
 import styled from "styled-components";
 import { Footer, Header } from "./components/ui";
-import SignIn from "./components/ui/molecules/SignIn";
 import SignUp from "./components/ui/molecules/SignUp";
+import SignIn from "./components/ui/molecules/SignIn";
 
 const Layout = () => {
   return (
@@ -11,8 +11,8 @@ const Layout = () => {
       <Header />
       <Background>
         <Outlet />
-        <SignUp />
         <SignIn />
+        <SignUp />
       </Background>
       <Footer />
     </Container>

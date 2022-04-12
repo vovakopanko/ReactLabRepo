@@ -88,7 +88,7 @@ export default function AuthPortal({
       });
   };
 
-  const onPressSignIn = async ({
+  const onPressSignUp1 = async ({
     email,
     password,
   }: {
@@ -112,7 +112,7 @@ export default function AuthPortal({
     if (!isRegistrationModal) {
       await onPressSignUp({ email, password });
     } else {
-      await onPressSignIn({ email, password });
+      await onPressSignUp1({ email, password });
     }
     reset();
   };

@@ -23,7 +23,6 @@ import {
 import { useCallback } from "react";
 import { initialState } from "./menu";
 import {
-  setAuthCurrentUser,
   setStatusAuthWindow,
   setStatusRegistrationWindow,
   logOut,
@@ -45,11 +44,14 @@ const Header = () => {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    document.addEventListener("click", handleClickOutside, true);
-    return () => {
-      document.removeEventListener("click", handleClickOutside, true);
-    };
-  }, []);
+    if (showDropDown) {
+      console.log("showDropDown", showDropDown);
+      document.addEventListener("click", handleClickOutside, true);
+      return () => {
+        document.removeEventListener("click", handleClickOutside, true);
+      };
+    }
+  }, [showDropDown]);
 
   const toggleShow = useCallback(() => {
     setShowDropDown((prev) => !prev);
@@ -63,14 +65,18 @@ const Header = () => {
     dispatch(setStatusRegistrationWindow(true));
   }, []);
 
-  const handleClickOutside = (event: MouseEvent) => {
-    if (!event.target) {
-      return;
-    }
-    if (ref.current && !ref.current?.contains(event.target as Node)) {
-      setShowDropDown(false);
-    }
-  };
+  const handleClickOutside = useCallback(
+    (event: MouseEvent) => {
+      if (!event.target) {
+        return;
+      }
+      if (ref.current && !ref.current?.contains(event.target as Node)) {
+        // Change here .contains(event.target as Node)
+        setShowDropDown((prev) => !prev);
+      }
+    },
+    [showDropDown]
+  );
 
   const onClick = useCallback(() => {
     dispatch(logOut(false));
@@ -105,7 +111,7 @@ const Header = () => {
                   <TitleItem>0</TitleItem>
                 </StyleItem>
               </StyledNavLink>
-              <StyledNavLink to={"/home"} onClick={() => onClick()}>
+              <StyledNavLink to={"/"} onClick={onClick}>
                 <StyleItem>
                   <ExportOutlined />
                 </StyleItem>
@@ -119,7 +125,7 @@ const Header = () => {
                 <StyleItem onClick={onOpenRegistration}>Registration</StyleItem>
               </RegistrationContainer>
               <SignUpContainer style={{ height: "5vh" }}>
-                <StyleItem onClick={onOpenAuth}>Sign Up</StyleItem>
+                <StyleItem onClick={onOpenAuth}>Sign In</StyleItem>
               </SignUpContainer>
             </>
           )}
@@ -158,7 +164,7 @@ const Header = () => {
         ) : (
           <>
             <StyleItem onClick={onOpenRegistration}>Registration</StyleItem>
-            <StyleItem onClick={onOpenAuth}>Sign Up</StyleItem>
+            <StyleItem onClick={onOpenAuth}>Sign In</StyleItem>
           </>
         )}
       </Menu>

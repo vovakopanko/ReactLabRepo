@@ -53,7 +53,10 @@ export const LinkItems = styled(NavLink)`
   display: none;
   transition: 0.3 all;
   &.active {
-    color: ${colors.RED};
+    background-color: ${colors.LIGHT_GRAY};
+    color: ${colors.WHITE};
+    border-radius: 10px;
+    min-width: 50px;
   }
   &:hover {
     color: ${colors.RED};
