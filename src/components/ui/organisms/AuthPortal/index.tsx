@@ -87,7 +87,7 @@ export default function AuthPortal({
       });
   };
 
-  const onPressSignUp1 = async ({
+  const onPressSignIn = async ({
     email,
     password,
   }: {
@@ -111,7 +111,7 @@ export default function AuthPortal({
     if (!isRegistrationModal) {
       await onPressSignUp({ email, password });
     } else {
-      await onPressSignUp1({ email, password });
+      await onPressSignIn({ email, password });
     }
     reset();
   };
@@ -133,54 +133,48 @@ export default function AuthPortal({
             <CloseOutlined style={{ color: "red" }} />
           </div>
         </HeaderContainer>
-        {false ? (
-          <div>
-            <p style={{ color: colors.WHITE, fontSize: 25 }}>Loading....</p>
-          </div>
-        ) : (
-          <AuthForm onSubmit={handleSubmit(onSubmit)}>
+        <AuthForm onSubmit={handleSubmit(onSubmit)}>
+          <FormInput
+            control={control}
+            name={"email"}
+            title={"Email"}
+            type={"text"}
+            uniqueType={"email"}
+            maxLength={25}
+            minLength={7}
+          />
+          <FormInput
+            control={control}
+            name={"password"}
+            title={"Password"}
+            uniqueType={"password"}
+            type={"password"}
+            maxLength={30}
+            minLength={5}
+          />
+          {isRegistrationModal && (
             <FormInput
               control={control}
-              name={"email"}
-              title={"Email"}
-              type={"text"}
-              uniqueType={"email"}
-              maxLength={25}
-              minLength={7}
-            />
-            <FormInput
-              control={control}
-              name={"password"}
-              title={"Password"}
-              uniqueType={"password"}
+              name={"duplicatePassword"}
+              title={"Repeat password"}
+              uniqueType={"duplicatePassword"}
               type={"password"}
               maxLength={30}
               minLength={5}
             />
-            {isRegistrationModal && (
-              <FormInput
-                control={control}
-                name={"duplicatePassword"}
-                title={"Repeat password"}
-                uniqueType={"duplicatePassword"}
-                type={"password"}
-                maxLength={30}
-                minLength={5}
-              />
-            )}
-            <BtnSubmit
-              color={!isValid ? colors.GRAY : colors.RED}
-              type="submit"
-              value={isRegistrationModal ? "Sign In" : "Continue"}
-              disabled={!isValid && isRegistrationModal && isSubmitting}
-              style={{
-                backgroundColor: !isValid ? colors.GRAY : colors.RED,
-                color: !isValid ? colors.BLACK : colors.WHITE,
-                opacity: !isValid ? 0.3 : 1,
-              }}
-            />
-          </AuthForm>
-        )}
+          )}
+          <BtnSubmit
+            color={!isValid ? colors.GRAY : colors.RED}
+            type="submit"
+            value={isRegistrationModal ? "Sign In" : "Continue"}
+            disabled={!isValid && isRegistrationModal && isSubmitting}
+            style={{
+              backgroundColor: !isValid ? colors.GRAY : colors.RED,
+              color: !isValid ? colors.BLACK : colors.WHITE,
+              opacity: !isValid ? 0.3 : 1,
+            }}
+          />
+        </AuthForm>
         <ErrorMessage>{invalidValue}</ErrorMessage>
       </AuthContainer>
     </>,

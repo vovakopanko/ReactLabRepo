@@ -1,4 +1,4 @@
-import { selectorStatusWindowAuth } from "@/redux/selectors/AuthSelector";
+import { selectorStatusWindowAuth } from "@/redux/selectors/authSelector";
 import { useSelector } from "react-redux";
 import AuthPortal from "../../organisms/AuthPortal";
 import { fieldData } from "./constant";

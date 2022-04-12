@@ -1,5 +1,5 @@
 import { setStatusAuthWindow } from "@/redux/reducers/auth";
-import { selectorIsAuthUser } from "@/redux/selectors/AuthSelector";
+import { selectorIsAuthUser } from "@/redux/selectors/authSelector";
 import { ReactElement } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";

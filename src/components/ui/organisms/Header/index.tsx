@@ -31,7 +31,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   selectorUserName,
   selectorIsAuthUser,
-} from "@/redux/selectors/AuthSelector";
+} from "@/redux/selectors/authSelector";
 
 const webSiteName: string = "Game Store";
 
