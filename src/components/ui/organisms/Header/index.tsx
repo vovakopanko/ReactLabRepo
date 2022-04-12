@@ -70,7 +70,6 @@ const Header = () => {
         return;
       }
       if (ref.current && !ref.current?.contains(event.target as Node)) {
-        // Change here .contains(event.target as Node)
         setShowDropDown((prev) => !prev);
       }
     },

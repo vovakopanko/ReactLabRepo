@@ -54,12 +54,3 @@ export const StyleItem = styled.ul`
   }
   padding: 0 20px;
 `;
-
-// export const Item = styled.li`
-//   font-size: 18px;
-//   color: ${colors.WHITE};
-//   list-style-type: none;
-//   &:hover {
-//     color: ${colors.RED};
-//   }
-// `;
