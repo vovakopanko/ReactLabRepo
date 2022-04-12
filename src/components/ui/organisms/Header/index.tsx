@@ -7,6 +7,8 @@ import {
   RegistrationContainer,
   SignUpContainer,
   TitleItem,
+  CloseBurger,
+  CloseBtn,
 } from "./style";
 import { MenuItem } from "../..";
 import Logo from "../../atoms/Logo";
@@ -83,7 +85,13 @@ const Header = () => {
   return (
     <HeaderContainer>
       <Logo>{webSiteName}</Logo>
-      <Burger type="button" value="=" onClick={toggleShow} />
+      {!showDropDown ? (
+        <Burger type="button" value="=" onClick={toggleShow} />
+      ) : (
+        <CloseBurger>
+          <CloseBtn>x</CloseBtn>
+        </CloseBurger>
+      )}
       {showDropDown && (
         <MenuBurger ref={ref}>
           {isAuth &&
@@ -109,11 +117,11 @@ const Header = () => {
                   <TitleItem>0</TitleItem>
                 </StyleItem>
               </StyledNavLink>
-              <StyledNavLink to={"/"} onClick={onClick}>
+              <StyledBtnLogOut onClick={onClick}>
                 <StyleItem>
                   <ExportOutlined />
                 </StyleItem>
-              </StyledNavLink>
+              </StyledBtnLogOut>
             </>
           ) : (
             <>
@@ -153,7 +161,7 @@ const Header = () => {
                 <TitleItem>0</TitleItem>
               </StyleItem>
             </StyledNavLink>
-            <StyledBtnLogOut to={"/home"} onClick={() => onClick()}>
+            <StyledBtnLogOut onClick={() => onClick()}>
               <StyleItem>
                 <ExportOutlined />
               </StyleItem>

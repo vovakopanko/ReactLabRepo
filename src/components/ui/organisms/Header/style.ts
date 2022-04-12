@@ -41,10 +41,31 @@ export const Burger = styled.input`
   border: none;
   overflow: hidden;
   display: none;
-  height: 5vh;
   @media (max-width: 768px) {
     display: block;
   }
+`;
+
+export const CloseBurger = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${colors.BLACK};
+  align-items: center;
+  border: none;
+  overflow: hidden;
+  display: none;
+  @media (max-width: 768px) {
+    display: block;
+  }
+`;
+
+export const CloseBtn = styled.span`
+  padding: 10px;
+  padding-top: 20px;
+  /* text-align: center;
+  justify-content: center; */
+  color: ${colors.WHITE};
 `;
 
 export const MenuBurger = styled.div`

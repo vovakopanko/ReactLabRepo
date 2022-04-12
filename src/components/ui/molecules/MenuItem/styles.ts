@@ -25,7 +25,7 @@ export const StyledNavLink = styled(NavLink)`
   }
 `;
 
-export const StyledBtnLogOut = styled(NavLink)`
+export const StyledBtnLogOut = styled.div`
   text-decoration: none;
   display: flex;
   align-items: center;
