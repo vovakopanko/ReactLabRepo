@@ -31,6 +31,23 @@ type Props = {
   id: number;
 };
 
+const defaultButton = {
+  color: colors.RED,
+  style: {
+    backgroundColor: colors.RED,
+    color: colors.WHITE,
+  },
+};
+
+const disabledButton = {
+  color: colors.RED,
+  style: {
+    backgroundColor: colors.GRAY,
+    color: colors.BLACK,
+    opacity: 0.3,
+  },
+};
+
 export default function AuthPortal({
   title,
   modalForm,
@@ -116,6 +133,8 @@ export default function AuthPortal({
     reset();
   };
 
+  const buttonStyle = isValid ? defaultButton : disabledButton;
+
   return ReactDOM.createPortal(
     <>
       <BackgroundContainer />
@@ -164,15 +183,10 @@ export default function AuthPortal({
             />
           )}
           <BtnSubmit
-            color={!isValid ? colors.GRAY : colors.RED}
             type="submit"
             value={isRegistrationModal ? "Sign In" : "Continue"}
             disabled={!isValid && isRegistrationModal && isSubmitting}
-            style={{
-              backgroundColor: !isValid ? colors.GRAY : colors.RED,
-              color: !isValid ? colors.BLACK : colors.WHITE,
-              opacity: !isValid ? 0.3 : 1,
-            }}
+            {...buttonStyle}
           />
         </AuthForm>
         <ErrorMessage>{invalidValue}</ErrorMessage>
