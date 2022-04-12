@@ -1,16 +1,23 @@
-import { images } from "@/constants/image";
+import { useEffect, useState } from "react";
 import { FC } from "react";
 import Category from "../Category";
 import { BlockItem } from "./style";
 import { TCategory } from "./types";
-
-const categories: TCategory[] = [
-  { id: 0, alt: "windows", title: "PC", image: images.WINDOWS },
-  { id: 1, alt: "playstation", title: "Playstation 5", image: images.PS },
-  { id: 2, alt: "xbox", title: "Xbox One", image: images.XBOX_LOGO },
-];
+import { contentAPI } from "@/api/ContentAPI";
 
 const CategoryList: FC = () => {
+  const [categories, setCategories] = useState<TCategory[]>([]);
+
+  useEffect(() => {
+    const query = async () => {
+      const data = await contentAPI.getCategories();
+      if (data) {
+        setCategories(data);
+      }
+    };
+    query();
+  }, []);
+
   return (
     <BlockItem>
       {categories.map(({ alt, title, image, id }: TCategory) => (

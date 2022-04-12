@@ -1,9 +1,8 @@
-import { PageContainerInfo } from "@/components/ui/molecules/PageInfo";
-import { FC } from "react";
+import Product from "..";
 
-const PC: FC = () => {
+const PC = () => {
   const pageInfo = "Soon there will be content for PC";
-  return <PageContainerInfo pageInfo={pageInfo} />;
+  return <Product pageInfo={pageInfo} />;
 };
 
 export default PC;

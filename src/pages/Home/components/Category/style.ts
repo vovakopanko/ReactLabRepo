@@ -1,6 +1,8 @@
+import { NavLink } from "react-router-dom";
 import { colors } from "@/styles/palette";
 import styled from "styled-components";
-export const CategoryContainer = styled.div`
+
+export const CategoryContainer = styled(NavLink)`
   &:hover {
     transition: 0.3s;
     align-items: center;

@@ -1,9 +1,8 @@
-import { PageContainerInfo } from "@/components/ui/molecules/PageInfo";
-import { FC } from "react";
+import Product from "..";
 
-const Playstation: FC = () => {
+const Playstation = () => {
   const pageInfo = "Soon there will be content for Playstation";
-  return <PageContainerInfo pageInfo={pageInfo} />;
+  return <Product pageInfo={pageInfo} />;
 };
 
 export default Playstation;

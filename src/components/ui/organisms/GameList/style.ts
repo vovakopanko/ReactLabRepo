@@ -7,6 +7,7 @@ type Flipper = {
 
 export const GamesBlock = styled.div`
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-around;
   padding: 20px;
@@ -68,6 +69,7 @@ export const FlipContainer = styled.div`
   perspective: 1000px;
   height: 40vh;
   width: 30vh;
+  margin-bottom: 15px;
   @media (max-width: 1368px) {
   }
   @media (max-width: 1200px) {

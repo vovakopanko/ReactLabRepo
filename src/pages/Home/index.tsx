@@ -1,15 +1,11 @@
-import { GameList, SearchBar } from "@/components/ui";
-import { FC } from "react";
-import CategoryList from "./components/CategoryList";
+import { SearchBar } from "@/components/ui";
+import React from "react";
 import SectionList from "./components/SectionList";
+import { homeComponent } from "./constants";
 import { Container } from "./style";
+import { THomeComponent } from "./types";
 
-const homeComponent = [
-  { id: 0, name: "Categories", renderComponent: <CategoryList /> },
-  { id: 1, name: "New games", renderComponent: <GameList /> },
-];
-
-const Home: FC = () => {
+const Home: React.FC<THomeComponent> = () => {
   return (
     <>
       <Container>

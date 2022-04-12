@@ -1,37 +1,30 @@
-import { FC } from "react";
-import ReactDom from "react-dom";
 import { Route, Routes } from "react-router-dom";
 import About from "./pages/About";
 import Home from "./pages/Home";
-import Product from "./pages/Product";
-import Registration from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
-import PC from "./pages/Product/PC";
 import XBox from "./pages/Product/XBox";
 import Playstation from "./pages/Product/Playstation";
-import { colors } from "./styles/palette";
+import PC from "./pages/Product/PC";
 import { images } from "./constants/image";
 import styled from "styled-components";
 import { Footer, Header } from "./components/ui";
+import SignUp from "./components/ui/molecules/SignUp";
+import SignIn from "./components/ui/molecules/SignIn";
+import Profile from "./pages/Profile";
+import { Layout } from "./Layout.tsx";
 
 const AppContainer = () => {
   return (
-    <Container>
-      <Header />
-      <Background>
-        <Routes>
-          <Route path="/home" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/registration" element={<Registration />} />
-          <Route path="/signUp" element={<SignUp />} />
-          <Route path="*" element={<Home />} />
-          <Route path="/pc" element={<PC />} />
-          <Route path="/xbox" element={<XBox />} />
-          <Route path="/ps5" element={<Playstation />} />
-        </Routes>
-      </Background>
-      <Footer />
-    </Container>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="about" element={<About />} />
+        <Route exact path="xboxone" element={<XBox />} />
+        <Route exact path="playstation5" element={<Playstation />} />
+        <Route exact path="pc" element={<PC />} />
+        <Route path="profile" element={<Profile />} />
+        <Route path="*" element={<Home />} />
+      </Route>
+    </Routes>
   );
 };
 

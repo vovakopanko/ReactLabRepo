@@ -1,9 +1,15 @@
 import { PageContainerInfo } from "@/components/ui/molecules/PageInfo";
-import { FC } from "react";
+import AuthRedirect from "@/hoc/withAuthRedirect";
+import { PageContainer } from "./styles";
 
-const Product: FC = () => {
-  const pageInfo = "Soon there will be content for Product";
-  return <PageContainerInfo pageInfo={pageInfo} />;
+const Product = ({ pageInfo }: { pageInfo: string }) => {
+  return (
+    <AuthRedirect>
+      <PageContainer>
+        <PageContainerInfo pageInfo={pageInfo} />
+      </PageContainer>
+    </AuthRedirect>
+  );
 };
 
 export default Product;

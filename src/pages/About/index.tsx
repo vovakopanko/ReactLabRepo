@@ -1,18 +1,22 @@
 import { PageContainerInfo } from "@/components/ui/molecules/PageInfo";
-import { FC } from "react";
+import AuthRedirect from "@/hoc/withAuthRedirect";
+import styled from "styled-components";
 
-const About: FC = () => {
-  const pageInfo = "Soon there will be content for About";
+const pageInfo = "Soon there will be content for About";
+
+const About = () => {
   return (
-    <div
-      style={{
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <PageContainerInfo pageInfo={pageInfo} />
-    </div>
+    <AuthRedirect>
+      <PageContainer>
+        <PageContainerInfo pageInfo={pageInfo} />
+      </PageContainer>
+    </AuthRedirect>
   );
 };
+
+export const PageContainer = styled.div`
+  justify-content: center;
+  font-size: 25;
+`;
 
 export default About;

@@ -66,3 +66,10 @@ export const MenuBurger = styled.div`
     box-shadow: 0px 5px 5px 0px ${colors.LIGHT_GRAY};
   }
 `;
+
+export const TitleItem = styled.span`
+  padding-left: 10px;
+`;
+
+export const RegistrationContainer = styled.div``;
+export const SignUpContainer = styled.div``;
