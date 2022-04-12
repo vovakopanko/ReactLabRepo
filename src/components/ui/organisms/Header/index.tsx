@@ -45,7 +45,6 @@ const Header = () => {
 
   useEffect(() => {
     if (showDropDown) {
-      console.log("showDropDown", showDropDown);
       document.addEventListener("click", handleClickOutside, true);
       return () => {
         document.removeEventListener("click", handleClickOutside, true);

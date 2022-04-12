@@ -12,7 +12,6 @@ export default function SignUp() {
           modalForm={"registration"}
           title={"Registration"}
           fields={fieldData}
-          isOpen={isOpen}
         />
       )}
     </>

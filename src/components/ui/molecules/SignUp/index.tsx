@@ -12,7 +12,6 @@ export default function SignIn() {
           modalForm={"authorization"}
           title={"Authorization"}
           fields={fieldData}
-          isOpen={isOpen}
         />
       )}
     </>

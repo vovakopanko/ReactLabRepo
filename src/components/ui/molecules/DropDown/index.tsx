@@ -28,7 +28,6 @@ const DropDown: FC<HeaderTitleName> = ({ item }) => {
         <ContentDropDown>
           {dropDownItems.map(({ id, link, title }) => (
             <LinkItems key={id} to={link}>
-              {console.log("link", link)}
               {title}
             </LinkItems>
           ))}

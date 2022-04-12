@@ -37,7 +37,6 @@ export default function AuthPortal({
 }: {
   title: string;
   fields: Props[];
-  isOpen: boolean;
   modalForm: string;
 }) {
   const [invalidValue, setInvalidValue] = useState("");
