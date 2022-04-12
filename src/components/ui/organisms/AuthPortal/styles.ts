@@ -94,12 +94,6 @@ export const ErrorMessage = styled.span`
   padding-top: 10px;
 `;
 
-export const MessageError = styled.span`
-  color: red;
-  width: 80%;
-  padding: 5;
-`;
-
 export const InputName = styled.label`
   line-height: 2;
   text-align: left;

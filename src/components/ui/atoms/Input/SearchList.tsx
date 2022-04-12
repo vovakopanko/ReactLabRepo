@@ -9,13 +9,7 @@ type Props = {
   setToggle: (val: boolean) => void;
 };
 
-const ConditionalRenderList = ({
-  value,
-  list,
-  setValue,
-  toggle,
-  setToggle,
-}: Props) => {
+const SearchList = ({ value, list, setValue, toggle, setToggle }: Props) => {
   if (value) {
     const filteredList = list.filter((item) =>
       item.title.toString().toLowerCase().startsWith(value.toLowerCase())
@@ -52,4 +46,4 @@ const ConditionalRenderList = ({
   return null;
 };
 
-export default ConditionalRenderList;
+export default SearchList;

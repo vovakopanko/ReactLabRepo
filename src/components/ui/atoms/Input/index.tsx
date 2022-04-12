@@ -1,7 +1,7 @@
 import { debouncedFetchData } from "@/api/SearchAPI";
 import { FC, useCallback, useEffect, useState } from "react";
 import { TGameCard } from "../../organisms/GameList/types";
-import ConditionalRenderList from "./ConditionalRenderList";
+import ConditionalRenderList from "./SearchList";
 import { FinderContainer, StyleInput } from "./style";
 
 const Input: FC = () => {

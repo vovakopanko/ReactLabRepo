@@ -4,7 +4,6 @@ import {
   BackgroundContainer,
   HeaderContainer,
   HeaderName,
-  InputBlock,
   ErrorMessage,
   AuthForm,
   BtnSubmit,
@@ -12,11 +11,8 @@ import {
 import { CloseOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import { AuthProfileAPI } from "@/api/AuthAPI";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { useEffect } from "react";
+import { useForm } from "react-hook-form";
 import { colors } from "@/styles/palette";
-import CustomInput from "./CustomInput";
-import FormMessageError from "./FormMessageError";
 import { useDispatch } from "react-redux";
 import {
   getAuthCurrentUser,
@@ -24,6 +20,10 @@ import {
   getStatusRegistrationWindow,
   updateUserName,
 } from "@/redux/reducers/auth";
+import FormInput from "../../form/TextInput";
+import { getScheme, initialFormData, FormValues } from "./scheme";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useMemo } from "react";
 
 type Props = {
   title: string;
@@ -43,30 +43,43 @@ export default function AuthPortal({
   const [invalidValue, setInvalidValue] = useState("");
   const dispatch = useDispatch();
 
-  const {
-    register,
-    formState: { errors, isValid },
-    handleSubmit,
-    reset,
-  } = useForm({ mode: "onChange" });
-
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [repeatPassword, setRepeatPassword] = useState<string>("");
   const isRegistrationModal = modalForm === "registration";
 
-  useEffect(() => {
-    if (email && password)
-      isRegistrationModal ? onPressSignIn() : onPressSignUp();
-  }, [email, password]);
+  const scheme = useMemo(
+    () => getScheme(!isRegistrationModal),
+    [isRegistrationModal]
+  );
 
-  const onPressSignUp = () => {
-    AuthProfileAPI.loginUser(email, password)
+  const {
+    control,
+    formState: { isValid, isSubmitting },
+    handleSubmit,
+    reset,
+  } = useForm<FormValues>({
+    mode: "onChange",
+    defaultValues: initialFormData,
+    resolver: yupResolver(scheme),
+  });
+
+  const authenticate = (email: string) => {
+    dispatch(updateUserName(email.split("@", 1).toString()));
+    dispatch(getAuthCurrentUser(true));
+    if (isRegistrationModal) {
+      dispatch(getStatusRegistrationWindow(false));
+    } else dispatch(getStatusAuthWindow(false));
+  };
+
+  const onPressSignUp = async ({
+    email,
+    password,
+  }: {
+    email: string;
+    password: string;
+  }) => {
+    await AuthProfileAPI.loginUser(email, password)
       .then((response) => {
         if (response?.data.accessToken !== null) {
-          dispatch(updateUserName(email.split("@", 1).toString()));
-          dispatch(getAuthCurrentUser(true));
-          dispatch(getStatusAuthWindow(false));
+          authenticate(email);
         } else dispatch(getAuthCurrentUser(false));
       })
       .catch((errors) => {
@@ -74,99 +87,38 @@ export default function AuthPortal({
       });
   };
 
-  const onSubmit: SubmitHandler<FieldValues> = (dataForm) => {
-    setEmail(dataForm.email);
-    setPassword(dataForm.password);
-    setRepeatPassword(dataForm.duplicatePassword);
+  const onPressSignIn = async ({
+    email,
+    password,
+  }: {
+    email: string;
+    password: string;
+  }) => {
+    await AuthProfileAPI.registrationProfile(email, password)
+      .then((response) => {
+        if (response?.data.accessToken !== null) {
+          authenticate(email);
+        } else dispatch(getAuthCurrentUser(false));
+      })
+      .catch((errors) => {
+        setInvalidValue(errors.message);
+      });
+  };
+
+  const onSubmit = async (dataForm: FormValues) => {
+    const { email, password } = dataForm;
+    if (!isRegistrationModal) {
+      await onPressSignUp({ email, password });
+    } else {
+      await onPressSignIn({ email, password });
+    }
     reset();
-  };
-
-  const onPressSignIn = () => {
-    AuthProfileAPI.registrationProfile(email, password)
-      .then((response) => {
-        if (response?.data.accessToken !== null) {
-          dispatch(updateUserName(email.split("@", 1).toString()));
-          dispatch(getAuthCurrentUser(true));
-          dispatch(getStatusRegistrationWindow(false));
-        } else dispatch(getAuthCurrentUser(false));
-      })
-      .catch((errors) => {
-        setInvalidValue(errors.message);
-      });
-  };
-
-  const AuthForms = () => {
-    return (
-      <InputBlock style={{ justifyContent: "flex-start" }}>
-        <AuthForm
-          onSubmit={handleSubmit(onSubmit)}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <CustomInput
-            register={register}
-            title={"Email"}
-            type={"text"}
-            uniqueType={"email"}
-            maxLength={25}
-            minLength={7}
-          />
-          {errors?.email && (
-            <FormMessageError errorMessage={errors?.email.message} />
-          )}
-          <CustomInput
-            register={register}
-            title={"Password"}
-            uniqueType={"password"}
-            type={"password"}
-            maxLength={30}
-            minLength={5}
-          />
-          {errors?.password && (
-            <FormMessageError errorMessage={errors?.password.message} />
-          )}
-          {isRegistrationModal && (
-            <>
-              <CustomInput
-                register={register}
-                title={"Repeat password"}
-                uniqueType={"duplicatePassword"}
-                type={"password"}
-                maxLength={30}
-                minLength={5}
-              />
-              {errors?.duplicatePassword && (
-                <FormMessageError
-                  errorMessage={errors?.duplicatePassword.message}
-                />
-              )}
-            </>
-          )}
-          <BtnSubmit
-            color={!isValid ? colors.GRAY : colors.RED}
-            type="submit"
-            value={isRegistrationModal ? "Sign In" : "Continue"}
-            disabled={
-              !isValid && isRegistrationModal && password !== repeatPassword
-            }
-            style={{
-              backgroundColor: !isValid ? colors.GRAY : colors.RED,
-              color: !isValid ? colors.BLACK : colors.WHITE,
-              opacity: !isValid ? 0.3 : 1,
-            }}
-          />
-        </AuthForm>
-      </InputBlock>
-    );
   };
 
   return ReactDOM.createPortal(
     <>
       <BackgroundContainer />
+
       <AuthContainer>
         <HeaderContainer>
           <HeaderName>{title}</HeaderName>
@@ -181,7 +133,54 @@ export default function AuthPortal({
             <CloseOutlined style={{ color: "red" }} />
           </div>
         </HeaderContainer>
-        <AuthForms />
+        {false ? (
+          <div>
+            <p style={{ color: colors.WHITE, fontSize: 25 }}>Loading....</p>
+          </div>
+        ) : (
+          <AuthForm onSubmit={handleSubmit(onSubmit)}>
+            <FormInput
+              control={control}
+              name={"email"}
+              title={"Email"}
+              type={"text"}
+              uniqueType={"email"}
+              maxLength={25}
+              minLength={7}
+            />
+            <FormInput
+              control={control}
+              name={"password"}
+              title={"Password"}
+              uniqueType={"password"}
+              type={"password"}
+              maxLength={30}
+              minLength={5}
+            />
+            {isRegistrationModal && (
+              <FormInput
+                control={control}
+                name={"duplicatePassword"}
+                title={"Repeat password"}
+                uniqueType={"duplicatePassword"}
+                type={"password"}
+                maxLength={30}
+                minLength={5}
+              />
+            )}
+            <BtnSubmit
+              color={!isValid ? colors.GRAY : colors.RED}
+              type="submit"
+              value={isRegistrationModal ? "Sign In" : "Continue"}
+              disabled={!isValid && isRegistrationModal && isSubmitting}
+              style={{
+                backgroundColor: !isValid ? colors.GRAY : colors.RED,
+                color: !isValid ? colors.BLACK : colors.WHITE,
+                opacity: !isValid ? 0.3 : 1,
+              }}
+            />
+          </AuthForm>
+        )}
         <ErrorMessage>{invalidValue}</ErrorMessage>
       </AuthContainer>
     </>,

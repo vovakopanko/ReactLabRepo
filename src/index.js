@@ -14,19 +14,17 @@ import { Layout } from "./Layout.tsx";
 
 const AppContainer = () => {
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="about" element={<About />} />
-          <Route path="category/:pc" element={<PC />} />
-          <Route path="category/:xboxone" element={<XBox />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="category/:playstation5" element={<Playstation />} />
-          <Route path="*" element={<Home />} />
-        </Route>
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="about" element={<About />} />
+        <Route path="category/:pc" element={<PC />} />
+        <Route path="category/:xboxone" element={<XBox />} />
+        <Route path="profile" element={<Profile />} />
+        <Route path="category/:playstation5" element={<Playstation />} />
+        <Route path="*" element={<Home />} />
+      </Route>
+    </Routes>
   );
 };
 

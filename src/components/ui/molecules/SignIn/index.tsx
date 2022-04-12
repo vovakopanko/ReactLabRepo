@@ -6,13 +6,15 @@ import { fieldData } from "./constant";
 export default function SignIn() {
   const isOpen = useSelector(selectorStatusWindowRegistration);
   return (
-    isOpen && (
-      <AuthPortal
-        modalForm={"registration"}
-        title={"Registration"}
-        fields={fieldData}
-        isOpen={isOpen}
-      />
-    )
+    <>
+      {isOpen && (
+        <AuthPortal
+          modalForm={"registration"}
+          title={"Registration"}
+          fields={fieldData}
+          isOpen={isOpen}
+        />
+      )}
+    </>
   );
 }
