@@ -1,7 +1,7 @@
 import { debouncedFetchData } from "@/api/SearchAPI";
 import { FC, useCallback, useEffect, useState } from "react";
 import { TGameCard } from "../../organisms/GameList/types";
-import ConditionalRenderList from "./SearchList";
+import SearchList from "./SearchList";
 import { FinderContainer, StyleInput } from "./style";
 
 const Input: FC = () => {
@@ -33,7 +33,7 @@ const Input: FC = () => {
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e)}
         value={searchData}
       />
-      <ConditionalRenderList
+      <SearchList
         value={searchData}
         list={findArray}
         setValue={setSearchData}

@@ -35,19 +35,6 @@ export const FinderContainer = styled.div`
   }
 `;
 
-export const StyledList = styled.div`
-   {
-    z-index: 20;
-    position: absolute;
-    top: 105px;
-    width: 80%;
-    border: 1px solid none;
-    background: ${colors.BLACK};
-    border-radius: 15px;
-    padding: 15px 0px;
-  }
-`;
-
 export const StyledItem = styled.div`
   padding: 0.25;
   color: ${({ danger }: { danger: string }) => danger || "#fff"};

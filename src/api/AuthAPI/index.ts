@@ -2,7 +2,7 @@ import { AuthResponse } from "./types";
 import { instanceMongoDB } from "../Instance";
 import { AppUrls } from "../types";
 
-export const AuthProfileAPI = {
+export const registerUser = {
   async registrationProfile(userName: string, password: string) {
     try {
       return instanceMongoDB.post<AuthResponse>(AppUrls.SIGN_UP, {

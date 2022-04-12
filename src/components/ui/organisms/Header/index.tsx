@@ -23,14 +23,14 @@ import {
 import { useCallback } from "react";
 import { initialState } from "./menu";
 import {
-  getAuthCurrentUser,
-  getStatusAuthWindow,
-  getStatusRegistrationWindow,
+  setAuthCurrentUser,
+  setStatusAuthWindow,
+  setStatusRegistrationWindow,
   logOut,
 } from "@/redux/reducers/auth";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  selectorGetUserName,
+  selectorUserName,
   selectorIsAuthUser,
 } from "@/redux/selectors/AuthSelector";
 
@@ -39,7 +39,7 @@ const webSiteName: string = "Game Store";
 const Header = () => {
   const [showDropDown, setShowDropDown] = useState(false);
   const isAuth = useSelector(selectorIsAuthUser);
-  const userName = useSelector(selectorGetUserName);
+  const userName = useSelector(selectorUserName);
   const dispatch = useDispatch();
 
   const ref = useRef<HTMLDivElement>(null);
@@ -56,11 +56,11 @@ const Header = () => {
   }, []);
 
   const onOpenAuth = useCallback(() => {
-    dispatch(getStatusAuthWindow(true));
+    dispatch(setStatusAuthWindow(true));
   }, []);
 
   const onOpenRegistration = useCallback(() => {
-    dispatch(getStatusRegistrationWindow(true));
+    dispatch(setStatusRegistrationWindow(true));
   }, []);
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -101,12 +101,13 @@ const Header = () => {
                   <TitleItem>0</TitleItem>
                 </StyleItem>
               </StyledNavLink>
-
               <StyledNavLink
                 to={"/home"}
-                onClick={() => {
-                  dispatch(logOut(false));
-                }}
+                onClick={() =>
+                  useCallback(() => {
+                    dispatch(logOut(false));
+                  }, [])
+                }
               >
                 <StyleItem>
                   <ExportOutlined />
@@ -120,7 +121,6 @@ const Header = () => {
               >
                 <StyleItem onClick={onOpenRegistration}>Registration</StyleItem>
               </RegistrationContainer>
-
               <SignUpContainer style={{ height: "5vh" }}>
                 <StyleItem onClick={onOpenAuth}>Sign Up</StyleItem>
               </SignUpContainer>
@@ -152,12 +152,13 @@ const Header = () => {
                 <TitleItem>0</TitleItem>
               </StyleItem>
             </StyledNavLink>
-
             <StyledBtnLogOut
               to={"/home"}
-              onClick={() => {
-                dispatch(getAuthCurrentUser(false));
-              }}
+              onClick={() =>
+                useCallback(() => {
+                  dispatch(setAuthCurrentUser(false));
+                }, [])
+              }
             >
               <StyleItem>
                 <ExportOutlined />

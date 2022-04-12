@@ -11,7 +11,9 @@ const CategoryList: FC = () => {
   useEffect(() => {
     const query = async () => {
       const data = await contentAPI.getCategories();
-      data && setCategories(data);
+      if (data) {
+        setCategories(data);
+      }
     };
     query();
   }, []);

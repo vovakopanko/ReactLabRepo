@@ -1,5 +1,8 @@
+import { colors } from "@/styles/palette";
+import { useCallback } from "react";
+import styled from "styled-components";
 import { TGameCard } from "../../organisms/GameList/types";
-import { StyledItem, StyledList } from "./style";
+import { StyledItem } from "./style";
 
 type Props = {
   value: string;
@@ -16,34 +19,51 @@ const SearchList = ({ value, list, setValue, toggle, setToggle }: Props) => {
     );
 
     if (filteredList.length) {
+      const onClickHandler = useCallback((item) => {
+        setValue(item.title);
+        alert("got product" + " " + `${item.title}`);
+        setToggle(false);
+      }, []);
       return (
-        toggle && (
-          <StyledList>
-            {filteredList.map((item, index) => (
-              <StyledItem
-                key={index}
-                danger=""
-                onClick={() => {
-                  setValue(item.title);
-                  alert("got product" + " " + `${item.title}`);
-                  setToggle(false);
-                }}
-              >
-                {item.title}
-              </StyledItem>
-            ))}
-          </StyledList>
-        )
+        <StyledList toggle>
+          {filteredList.map((item, index) => (
+            <StyledItem
+              key={index}
+              danger=""
+              onClick={() => onClickHandler(item)}
+            >
+              {item.title}
+            </StyledItem>
+          ))}
+        </StyledList>
       );
     }
 
     return (
-      <StyledList>
+      <StyledList toggle>
         <StyledItem danger="orangered">Not Found</StyledItem>
       </StyledList>
     );
   }
   return null;
 };
+
+type PropsStyle = {
+  toggle: boolean;
+};
+
+const StyledList = styled.div<PropsStyle>`
+   {
+    display: ${(props: PropsStyle) => (props.toggle ? "inline" : "block")};
+    z-index: 20;
+    position: absolute;
+    top: 105px;
+    width: 80%;
+    border: 1px solid none;
+    background: ${colors.BLACK};
+    border-radius: 15px;
+    padding: 15px 0px;
+  }
+`;
 
 export default SearchList;

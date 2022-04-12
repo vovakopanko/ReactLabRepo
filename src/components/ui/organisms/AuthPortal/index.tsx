@@ -10,14 +10,14 @@ import {
 } from "./styles";
 import { CloseOutlined } from "@ant-design/icons";
 import { useState } from "react";
-import { AuthProfileAPI } from "@/api/AuthAPI";
+import { registerUser } from "@/api/AuthAPI";
 import { useForm } from "react-hook-form";
 import { colors } from "@/styles/palette";
 import { useDispatch } from "react-redux";
 import {
-  getAuthCurrentUser,
-  getStatusAuthWindow,
-  getStatusRegistrationWindow,
+  setAuthCurrentUser,
+  setStatusAuthWindow,
+  setStatusRegistrationWindow,
   updateUserName,
 } from "@/redux/reducers/auth";
 import FormInput from "../../form/TextInput";
@@ -63,10 +63,10 @@ export default function AuthPortal({
 
   const authenticate = (email: string) => {
     dispatch(updateUserName(email.split("@", 1).toString()));
-    dispatch(getAuthCurrentUser(true));
+    dispatch(setAuthCurrentUser(true));
     if (isRegistrationModal) {
-      dispatch(getStatusRegistrationWindow(false));
-    } else dispatch(getStatusAuthWindow(false));
+      dispatch(setStatusRegistrationWindow(false));
+    } else dispatch(setStatusAuthWindow(false));
   };
 
   const onPressSignUp = async ({
@@ -76,11 +76,12 @@ export default function AuthPortal({
     email: string;
     password: string;
   }) => {
-    await AuthProfileAPI.loginUser(email, password)
+    await registerUser
+      .loginUser(email, password)
       .then((response) => {
         if (response?.data.accessToken !== null) {
           authenticate(email);
-        } else dispatch(getAuthCurrentUser(false));
+        } else dispatch(setAuthCurrentUser(false));
       })
       .catch((errors) => {
         setInvalidValue(errors.message);
@@ -94,11 +95,12 @@ export default function AuthPortal({
     email: string;
     password: string;
   }) => {
-    await AuthProfileAPI.registrationProfile(email, password)
+    await registerUser
+      .registrationProfile(email, password)
       .then((response) => {
         if (response?.data.accessToken !== null) {
           authenticate(email);
-        } else dispatch(getAuthCurrentUser(false));
+        } else dispatch(setAuthCurrentUser(false));
       })
       .catch((errors) => {
         setInvalidValue(errors.message);
@@ -118,7 +120,6 @@ export default function AuthPortal({
   return ReactDOM.createPortal(
     <>
       <BackgroundContainer />
-
       <AuthContainer>
         <HeaderContainer>
           <HeaderName>{title}</HeaderName>
@@ -126,8 +127,8 @@ export default function AuthPortal({
             style={{ textAlign: "center" }}
             onClick={() => {
               isRegistrationModal
-                ? dispatch(getStatusRegistrationWindow(false))
-                : dispatch(getStatusAuthWindow(false));
+                ? dispatch(setStatusRegistrationWindow(false))
+                : dispatch(setStatusAuthWindow(false));
             }}
           >
             <CloseOutlined style={{ color: "red" }} />
