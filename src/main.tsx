@@ -5,10 +5,12 @@ import AppContainer from "./index";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import store, { persistor } from "./redux/reduxStore";
+import { createRoot } from "react-dom/client";
 
-const rootElement = document.getElementById("app");
 
-ReactDOM.render(
+const container = document.getElementById("app");
+const root = createRoot(container!);
+root.render(
   <ErrorBoundary>
     <Router>
       <Provider store={store}>
