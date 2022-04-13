@@ -12,7 +12,8 @@ import {
   StarContainer,
 } from "./style";
 import { StarTwoTone } from "@ant-design/icons";
-import Button from "../../atoms/Button";
+import Button from "../../atoms/NewButton";
+import { colors } from "@/styles/palette";
 
 const GamePlatform = ({ src, alt }: { src: string; alt: string }) => {
   return <ImagePlatform src={src} alt={alt} />;
@@ -52,7 +53,7 @@ const GameCard = ({
       <CardBackBlock>
         <GameDescription>{description}</GameDescription>
         <AgeRestrictions>{age}</AgeRestrictions>
-        <Button title={"Add to cart"} />
+        <Button title={"Add to cart"} color={colors.LIGHT_GRAY} width={"40%"} />
       </CardBackBlock>
     </>
   );

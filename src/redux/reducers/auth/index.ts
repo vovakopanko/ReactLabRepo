@@ -8,6 +8,7 @@ type TState = {
   isAuth: boolean;
   openAuthWindow: boolean;
   openRegisterWindow: boolean;
+  openChangePasswordWindow: boolean;
 };
 
 const initialState: TState = {
@@ -18,6 +19,7 @@ const initialState: TState = {
   isAuth: false,
   openAuthWindow: false,
   openRegisterWindow: false,
+  openChangePasswordWindow: false,
 };
 
 const authSlice = createSlice({
@@ -39,6 +41,9 @@ const authSlice = createSlice({
     logOut: (state, actions: PayloadAction<boolean>) => {
       state.isAuth = actions.payload;
     },
+    setStatusChangePasswordWindow: (state, actions: PayloadAction<boolean>) => {
+      state.openChangePasswordWindow = actions.payload;
+    },
   },
 });
 
@@ -50,6 +55,7 @@ export const {
   setStatusRegistrationWindow,
   updateUserName,
   logOut,
+  setStatusChangePasswordWindow,
 } = actions;
 
 export default reducer;

@@ -16,6 +16,10 @@ export const selectorStatusWindowRegistration = (state: AppStateType) => {
   return state.authReducer.openRegisterWindow;
 };
 
+export const selectorStatusWindowChangePassword = (state: AppStateType) => {
+  return state.authReducer.openChangePasswordWindow;
+};
+
 export const selectorUserName = (state: AppStateType) => {
   return state.authReducer.userName;
 };
