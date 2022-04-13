@@ -4,20 +4,21 @@ import {
   BackgroundContainer,
   HeaderContainer,
   HeaderName,
-  ErrorMessage,
   AuthForm,
   BtnSubmit,
+  ErrorMessage,
 } from "./styles";
 import { CloseOutlined } from "@ant-design/icons";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import FormInput from "../../form/TextInput";
 import { getScheme, initialFormData, FormValues } from "./scheme";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { colors } from "../../../../styles/palette";
-import { setStatusChangePasswordWindow } from "@/redux/reducers/auth";
+import { setStatusChangePasswordWindow } from "@/redux/reducers/profile";
+import { registerUser } from "@/api/AuthAPI";
+import { selectorEmailUser } from "@/redux/selectors/authSelector";
 
 type Props = {
   title: string;
@@ -52,6 +53,7 @@ export default function ChangePasswordPortal({
 }) {
   const [invalidValue, setInvalidValue] = useState("");
   const dispatch = useDispatch();
+  const emailUser = useSelector(selectorEmailUser);
   const isChangePassword = modalForm === "changePassword";
 
   const scheme = useMemo(
@@ -70,9 +72,21 @@ export default function ChangePasswordPortal({
     resolver: yupResolver(scheme),
   });
 
+  const changeUserPassword = async ({
+    emailUser,
+    password,
+  }: {
+    emailUser: string;
+    password: string;
+  }) => {
+    await registerUser.changePassword(emailUser, password).catch((errors) => {
+      setInvalidValue(errors.message);
+    });
+  };
+
   const onSubmit = async (dataForm: FormValues) => {
-    const { repeatPassword, password } = dataForm;
-    console.log("repeatPassword", repeatPassword, password, "password");
+    const { password } = dataForm;
+    changeUserPassword({ emailUser, password });
     await dispatch(setStatusChangePasswordWindow(false));
     reset();
   };
@@ -118,7 +132,7 @@ export default function ChangePasswordPortal({
 
           <BtnSubmit
             type="submit"
-            value={"Submit111"}
+            value={"Submit"}
             disabled={!isValid && isChangePassword && isSubmitting}
             {...buttonStyle}
           />

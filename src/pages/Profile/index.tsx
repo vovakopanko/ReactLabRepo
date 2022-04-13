@@ -1,6 +1,6 @@
 import Button from "@/components/ui/atoms/NewButton";
 import AuthRedirect from "@/hoc/withAuthRedirect";
-import { setStatusChangePasswordWindow } from "@/redux/reducers/auth";
+import { setStatusChangePasswordWindow } from "@/redux/reducers/profile";
 import { selectorUserName } from "@/redux/selectors/authSelector";
 import { colors } from "@/styles/palette";
 import { useDispatch, useSelector } from "react-redux";

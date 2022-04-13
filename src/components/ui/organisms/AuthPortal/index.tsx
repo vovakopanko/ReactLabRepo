@@ -18,6 +18,7 @@ import {
   setAuthCurrentUser,
   setStatusAuthWindow,
   setStatusRegistrationWindow,
+  updateEmailUser,
   updateUserName,
 } from "@/redux/reducers/auth";
 import FormInput from "../../form/TextInput";
@@ -78,6 +79,7 @@ export default function AuthPortal({
   });
 
   const authenticate = (email: string) => {
+    dispatch(updateEmailUser(email));
     dispatch(updateUserName(email.split("@", 1).toString()));
     dispatch(setAuthCurrentUser(true));
     if (isRegistrationModal) {
