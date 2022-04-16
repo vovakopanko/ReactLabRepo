@@ -18,7 +18,11 @@ import {
   setAuthCurrentUser,
   setStatusAuthWindow,
   setStatusRegistrationWindow,
+  updateAddress,
+  updateDescription,
   updateEmailUser,
+  updatePhone,
+  updatePhotoUser,
   updateUserName,
 } from "@/redux/reducers/auth";
 import FormInput from "../../form/TextInput";
@@ -32,20 +36,26 @@ type Props = {
   id: number;
 };
 
-const defaultButton = {
+export const defaultButton = {
   color: colors.RED,
   style: {
-    backgroundColor: colors.RED,
+    backgroundColor: colors.PURPURE,
     color: colors.WHITE,
+    paddingTop: 12,
+    paddingBottom: 12,
+    borderRadius: 15,
   },
 };
 
-const disabledButton = {
+export const disabledButton = {
   color: colors.RED,
   style: {
     backgroundColor: colors.GRAY,
     color: colors.BLACK,
     opacity: 0.3,
+    paddingTop: 12,
+    paddingBottom: 12,
+    borderRadius: 15,
   },
 };
 
@@ -78,10 +88,15 @@ export default function AuthPortal({
     resolver: yupResolver(scheme),
   });
 
-  const authenticate = (email: string) => {
+  const authenticate = (email: string, data: any) => {
     dispatch(updateEmailUser(email));
-    dispatch(updateUserName(email.split("@", 1).toString()));
+    dispatch(updateUserName(email));
     dispatch(setAuthCurrentUser(true));
+    dispatch(updatePhotoUser(data.photoUser));
+    dispatch(updateUserName(data.userName));
+    dispatch(updateAddress(data.address));
+    dispatch(updatePhone(data.phoneNumber));
+    dispatch(updateDescription(data.profileDescription));
     if (isRegistrationModal) {
       dispatch(setStatusRegistrationWindow(false));
     } else dispatch(setStatusAuthWindow(false));
@@ -98,7 +113,7 @@ export default function AuthPortal({
       .loginUser(email, password)
       .then((response) => {
         if (response?.data.accessToken !== null) {
-          authenticate(email);
+          authenticate(email, response?.data.user);
         } else dispatch(setAuthCurrentUser(false));
       })
       .catch((errors) => {
@@ -117,7 +132,7 @@ export default function AuthPortal({
       .registrationProfile(email, password)
       .then((response) => {
         if (response?.data.accessToken !== null) {
-          authenticate(email);
+          authenticate(email, response?.data.user);
         } else dispatch(setAuthCurrentUser(false));
       })
       .catch((errors) => {
@@ -144,7 +159,6 @@ export default function AuthPortal({
         <HeaderContainer>
           <HeaderName>{title}</HeaderName>
           <div
-            style={{ textAlign: "center" }}
             onClick={() => {
               isRegistrationModal
                 ? dispatch(setStatusRegistrationWindow(false))

@@ -4,6 +4,10 @@ type TState = {
   userName: string;
   email: string;
   password: string;
+  description: string;
+  address: string;
+  photoUser: string;
+  phoneNumber: number | string;
   isActivated: boolean;
   isAuth: boolean;
   openAuthWindow: boolean;
@@ -15,6 +19,10 @@ const initialState: TState = {
   userName: "",
   email: "",
   password: "",
+  description: "",
+  address: "",
+  photoUser: "",
+  phoneNumber: "",
   isActivated: false,
   isAuth: false,
   openAuthWindow: false,
@@ -41,6 +49,18 @@ const authSlice = createSlice({
     updateEmailUser: (state, actions: PayloadAction<string>) => {
       state.email = actions.payload;
     },
+    updateDescription: (state, actions: PayloadAction<string>) => {
+      state.description = actions.payload;
+    },
+    updateAddress: (state, actions: PayloadAction<string>) => {
+      state.address = actions.payload;
+    },
+    updatePhone: (state, actions: PayloadAction<number | string>) => {
+      state.phoneNumber = actions.payload;
+    },
+    updatePhotoUser: (state, actions: PayloadAction<string>) => {
+      state.photoUser = actions.payload;
+    },
     logOut: (state, actions: PayloadAction<boolean>) => {
       state.isAuth = actions.payload;
     },
@@ -55,6 +75,10 @@ export const {
   setStatusRegistrationWindow,
   updateUserName,
   updateEmailUser,
+  updateDescription,
+  updateAddress,
+  updatePhone,
+  updatePhotoUser,
   logOut,
 } = actions;
 

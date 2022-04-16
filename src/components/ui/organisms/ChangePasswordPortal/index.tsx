@@ -109,26 +109,24 @@ export default function ChangePasswordPortal({
           </div>
         </HeaderContainer>
         <AuthForm onSubmit={handleSubmit(onSubmit)}>
-          <>
-            <FormInput
-              control={control}
-              name={"password"}
-              title={"Password"}
-              uniqueType={"password"}
-              type={"password"}
-              maxLength={30}
-              minLength={5}
-            />
-            <FormInput
-              control={control}
-              name={"repeatPassword"}
-              title={"Repeat password"}
-              uniqueType={"repeatPassword"}
-              type={"password"}
-              maxLength={30}
-              minLength={5}
-            />
-          </>
+          <FormInput
+            control={control}
+            name={"password"}
+            title={"Password"}
+            uniqueType={"password"}
+            type={"password"}
+            maxLength={30}
+            minLength={5}
+          />
+          <FormInput
+            control={control}
+            name={"repeatPassword"}
+            title={"Repeat password"}
+            uniqueType={"repeatPassword"}
+            type={"password"}
+            maxLength={30}
+            minLength={5}
+          />
 
           <BtnSubmit
             type="submit"

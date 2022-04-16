@@ -44,6 +44,9 @@ export const Burger = styled.input`
   @media (max-width: 768px) {
     display: block;
   }
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const CloseBurger = styled.div`
@@ -66,6 +69,9 @@ export const CloseBtn = styled.span`
   /* text-align: center;
   justify-content: center; */
   color: ${colors.WHITE};
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const MenuBurger = styled.div`

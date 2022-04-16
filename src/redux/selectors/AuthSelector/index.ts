@@ -4,6 +4,10 @@ export const selectorEmailUser = (state: AppStateType) => {
   return state.authReducer.email;
 };
 
+export const selectorUpdateUserInfo = (state: AppStateType) => {
+  return state.authReducer;
+};
+
 export const selectorIsAuthUser = (state: AppStateType) => {
   return state.authReducer.isAuth;
 };

@@ -1,14 +1,111 @@
+import { profileAPI } from "@/api/ProfileAPI";
+import FieldContainer, {
+  FieldType,
+} from "@/components/ui/atoms/FieldContainer";
 import Button from "@/components/ui/atoms/NewButton";
+import FormInput from "@/components/ui/form/TextInputProfile";
+import {
+  AuthForm,
+  BtnSubmit,
+} from "@/components/ui/organisms/AuthPortal/styles";
 import AuthRedirect from "@/hoc/withAuthRedirect";
+import {
+  updateAddress,
+  updateDescription,
+  updateEmailUser,
+  updatePhone,
+  updatePhotoUser,
+  updateUserName,
+} from "@/redux/reducers/auth";
 import { setStatusChangePasswordWindow } from "@/redux/reducers/profile";
-import { selectorUserName } from "@/redux/selectors/authSelector";
+import { selectorUpdateUserInfo } from "@/redux/selectors/authSelector";
 import { colors } from "@/styles/palette";
+import { useMemo, useRef } from "react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components";
+import { FormValues } from "./types";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { getScheme, initialFormData } from "./scheme";
+import {
+  BottomLine,
+  ContentBlock,
+  ImageContainer,
+  InfoContainer,
+  InfoTitle,
+  PhotoInput,
+  PhotoInputContainer,
+  ProfileContainer,
+  ProfilePageContent,
+  ProfileTitle,
+  ImagePlatform,
+} from "./styles";
+import {
+  defaultButton,
+  disabledButton,
+} from "@/components/ui/organisms/AuthPortal";
 
 const Profile = () => {
-  const userName = useSelector(selectorUserName);
+  const { address, description, email, phoneNumber, photoUser, userName } =
+    useSelector(selectorUpdateUserInfo);
   const dispatch = useDispatch();
+  const [photoLink, setPhotoLink] = useState(true);
+  const [isOpen, setIsOpen] = useState(true);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const scheme = useMemo(() => getScheme(), [isOpen]);
+
+  const {
+    control,
+    formState: { isValid, isSubmitting },
+    handleSubmit,
+  } = useForm<any>({
+    mode: "onChange",
+    defaultValues: initialFormData,
+    resolver: yupResolver(scheme),
+  });
+
+  const fieldData: FieldType[] = [
+    { id: 0, title: email, titleName: "Email :" },
+    { id: 1, title: userName, titleName: "Nickname :" },
+    { id: 2, title: description, titleName: "Profile description :" },
+    { id: 3, title: address, titleName: "Address delivery :" },
+    { id: 4, title: phoneNumber, titleName: "Phone number :" },
+  ];
+
+  const onPressSaveProfile = async ({
+    email,
+    userName,
+    description,
+    address,
+    phoneNumber,
+  }: FormValues) => {
+    await profileAPI
+      .updateUserInfo(email, userName, description, address, phoneNumber)
+      ?.then((response) => {
+        dispatch(updateEmailUser(response.candidate.email));
+        dispatch(updateUserName(response.candidate.email));
+        dispatch(updateUserName(response.candidate.userName));
+        dispatch(updateAddress(response.candidate.address));
+        dispatch(updatePhone(response.candidate.phoneNumber));
+        dispatch(updateDescription(response.candidate.profileDescription));
+      });
+  };
+
+  const onSubmit = async (dataForm: FormValues) => {
+    const { email, userName, description, address, phoneNumber } = dataForm;
+    await onPressSaveProfile({
+      email,
+      userName,
+      description,
+      address,
+      phoneNumber,
+    });
+    setIsOpen(!isOpen);
+  };
+
+  const buttonStyle = isValid ? defaultButton : disabledButton;
+
   return (
     <AuthRedirect>
       <ProfileContainer>
@@ -19,135 +116,147 @@ const Profile = () => {
             <ImageContainer>
               <ImagePlatform
                 src={
-                  "https://icon-library.com/images/no-profile-picture-icon/no-profile-picture-icon-12.jpg"
+                  photoUser
+                    ? photoUser
+                    : "https://icon-library.com/images/no-profile-picture-icon/no-profile-picture-icon-12.jpg"
                 }
                 alt={"userPhoto"}
               />
             </ImageContainer>
-            <Button
-              title={"Change profile image"}
-              color={colors.PURPURE}
-              width={180}
-            />
+            <>
+              {!photoLink && (
+                <PhotoInputContainer>
+                  <PhotoInput
+                    type={"text"}
+                    ref={inputRef}
+                    placeholder={"add link here ..."}
+                  />
+                </PhotoInputContainer>
+              )}
+              {photoLink ? (
+                <Button
+                  func={() => setPhotoLink(!photoLink)}
+                  color={colors.PURPURE}
+                  width={180}
+                  title={"Change profile image"}
+                />
+              ) : (
+                <>
+                  <Button
+                    func={() => {
+                      setPhotoLink(!photoLink);
+                      dispatch(updatePhotoUser(inputRef.current!.value));
+                      profileAPI.updateUserAvatar(
+                        email,
+                        inputRef.current!.value
+                      );
+                    }}
+                    color={colors.PURPURE}
+                    width={180}
+                    title={"Upload new avatar"}
+                  />
+                  <Button
+                    func={() => setPhotoLink(!photoLink)}
+                    color={colors.RED}
+                    width={180}
+                    title={"Close"}
+                  />
+                </>
+              )}
+            </>
           </ContentBlock>
           <ContentBlock>
-            <InputContainer>
-              <InputName>UserName :</InputName>
-              <InputField
-                onChange={() => {}}
-                onBlur={() => {}}
-                autoComplete={"off"}
-                autoCapitalize={"off"}
-              />
-              <InputName>Profile description :</InputName>
-              <InputField
-                type={"placeholder"}
-                onChange={() => {}}
-                onBlur={() => {}}
-                autoComplete={"off"}
-                autoCapitalize={"off"}
-                style={{
-                  minHeight: 100,
-                }}
-              />
-              <InputName>Address Delivery:</InputName>
-              <InputField
-                onChange={() => {}}
-                onBlur={() => {}}
-                autoComplete={"off"}
-                autoCapitalize={"off"}
-              />
-              <InputName>Phone Number:</InputName>
-              <InputField
-                type={"number"}
-                onChange={() => {}}
-                onBlur={() => {}}
-                autoComplete={"off"}
-                autoCapitalize={"off"}
-              />
-            </InputContainer>
+            {isOpen ? (
+              <InfoContainer>
+                <InfoTitle>General: </InfoTitle>
+                {fieldData.map((data: FieldType, index) => (
+                  <FieldContainer
+                    key={data.id}
+                    title={data.title}
+                    titleName={data.titleName}
+                    index={index}
+                    lastIndex={fieldData.length - 1}
+                  />
+                ))}
+              </InfoContainer>
+            ) : (
+              <>
+                <AuthForm onSubmit={handleSubmit(onSubmit)}>
+                  <FormInput
+                    control={control}
+                    name={"userName"}
+                    title={"UserName"}
+                    type={"text"}
+                    uniqueType={"userName"}
+                    maxLength={25}
+                    minLength={7}
+                    placeholder={userName}
+                  />
+                  <FormInput
+                    control={control}
+                    name={"description"}
+                    title={"Profile description"}
+                    uniqueType={"description"}
+                    type={"textarea"}
+                    maxLength={30}
+                    minLength={5}
+                  />
+                  <FormInput
+                    control={control}
+                    name={"address"}
+                    title={"Address delivery"}
+                    uniqueType={"address"}
+                    type={"text"}
+                    maxLength={30}
+                    minLength={5}
+                    placeholder={address}
+                  />
+                  <FormInput
+                    control={control}
+                    name={"phoneNumber"}
+                    title={"Phone number"}
+                    uniqueType={"phoneNumber"}
+                    type={"number"}
+                    required
+                    maxLength={30}
+                    minLength={5}
+                  />
+                  <BtnSubmit
+                    type="submit"
+                    value={"Save Profile"}
+                    disabled={!isValid && isSubmitting}
+                    {...buttonStyle}
+                  />
+                </AuthForm>
+                <Button
+                  title={"Close"}
+                  color={colors.RED}
+                  width={180}
+                  func={() => setIsOpen(!isOpen)}
+                />
+              </>
+            )}
           </ContentBlock>
           <ContentBlock>
-            <Button title={"Save profile"} color={colors.PURPURE} width={160} />
             <Button
               title={"Change password"}
               color={colors.PURPURE}
-              width={160}
+              width={180}
               func={() => dispatch(setStatusChangePasswordWindow(true))}
             />
+            {isOpen && (
+              <Button
+                title={"Change data"}
+                color={colors.PURPURE}
+                width={180}
+                func={() => setIsOpen(!isOpen)}
+              />
+            )}
           </ContentBlock>
         </ProfilePageContent>
       </ProfileContainer>
     </AuthRedirect>
   );
 };
-
-// setStatusChangePasswordWindow
-
-export const ImageContainer = styled.div`
-  border-top-left-radius: 15px;
-`;
-
-export const ImagePlatform = styled.img`
-  width: 180px;
-  height: 220px;
-`;
-
-export const ProfileTitle = styled.h2`
-  font-weight: 300;
-  padding-left: 10px;
-  color: ${colors.WHITE};
-`;
-
-export const ProfileContainer = styled.div`
-  padding: 20px;
-`;
-
-export const BottomLine = styled.div`
-  border-bottom: 1px solid ${colors.WHITE}; ;
-`;
-
-export const ContentBlock = styled.div`
-  margin: 10px;
-`;
-
-export const ProfilePageContent = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  @media (max-width: 800px) {
-    flex-direction: column;
-    align-items: center;
-  }
-`;
-
-export const InputContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-self: flex-start;
-`;
-
-export const InputName = styled.label`
-  line-height: 2;
-  text-align: left;
-  margin-bottom: 2px;
-  margin-top: 5px;
-  font-size: 14;
-  font-weight: 300;
-  color: ${colors.WHITE};
-  justify-content: center;
-  align-items: center;
-`;
-
-export const InputField = styled.input`
-  width: 300px;
-  border-radius: 4px;
-  color: ${colors.WHITE};
-  border: 1px solid white;
-  padding: 10px;
-  font-size: 14;
-  background-color: transparent;
-`;
 
 export default Profile;
