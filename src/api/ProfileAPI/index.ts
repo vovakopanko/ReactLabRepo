@@ -8,7 +8,7 @@ type ProfileType = {
     userName: string;
     profileDescription: string;
     address: string;
-    phoneNumber: number | string;
+    phoneNumber: string;
   };
 };
 
@@ -18,7 +18,7 @@ export const profileAPI = {
     userName: string,
     description: string,
     address: string,
-    phoneNumber: number | string
+    phoneNumber: string
   ) {
     try {
       return instanceMongoDB

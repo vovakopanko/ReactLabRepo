@@ -3,14 +3,14 @@ export type FormValues = {
   userName: string;
   description: string;
   address: string;
-  phoneNumber: number | string;
+  phoneNumber: string;
 };
 
 export type Props = {
   userName: string;
   description: string;
   address: string;
-  phoneNumber: number | string;
+  phoneNumber: string;
 };
 
 export type PropRef = {

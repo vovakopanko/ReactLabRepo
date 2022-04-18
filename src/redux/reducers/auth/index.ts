@@ -7,7 +7,7 @@ type TState = {
   description: string;
   address: string;
   photoUser: string;
-  phoneNumber: number | string;
+  phoneNumber: string;
   isActivated: boolean;
   isAuth: boolean;
   openAuthWindow: boolean;
@@ -55,7 +55,7 @@ const authSlice = createSlice({
     updateAddress: (state, actions: PayloadAction<string>) => {
       state.address = actions.payload;
     },
-    updatePhone: (state, actions: PayloadAction<number | string>) => {
+    updatePhone: (state, actions: PayloadAction<string>) => {
       state.phoneNumber = actions.payload;
     },
     updatePhotoUser: (state, actions: PayloadAction<string>) => {
