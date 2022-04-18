@@ -7,7 +7,7 @@ import GameCard from "../../molecules/GameCard";
 import { FlipContainer, Flipper, GamesBlock } from "./style";
 import { amountFavoriteGame, TCardItem, TGameCard } from "./types";
 
-const CardItem: FC<TCardItem> = (props) => {
+export const CardItem: FC<TCardItem> = (props) => {
   const {
     title,
     prise,

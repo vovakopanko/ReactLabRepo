@@ -1,7 +1,7 @@
 import Product from "..";
 
 const PC = () => {
-  const pageInfo = "Soon there will be content for PC";
+  const pageInfo = "PC";
   return <Product pageInfo={pageInfo} />;
 };
 

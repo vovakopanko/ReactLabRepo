@@ -63,16 +63,12 @@ export const ImagePlatformContainer = styled.div`
 export const CardBlock = styled.div`
   z-index: 3;
   backface-visibility: hidden;
-
   transform: rotateY(0deg);
-
   top: 0;
   left: 0;
-
   border-radius: 15px;
   background-color: ${colors.BLACK};
   box-shadow: 0px 0px 10px 0px ${colors.RED};
-
   height: 40vh;
   width: 30vh;
   @media (max-width: 768px) {

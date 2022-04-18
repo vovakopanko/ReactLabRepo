@@ -1,6 +1,6 @@
 import Product from "..";
 
-const pageInfo = "Soon there will be content for XBox";
+const pageInfo = "XBox";
 
 const XBox = () => {
   return <Product pageInfo={pageInfo} />;

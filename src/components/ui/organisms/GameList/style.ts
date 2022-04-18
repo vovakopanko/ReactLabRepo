@@ -67,6 +67,7 @@ export const ImagePlatformContainer = styled.div`
 
 export const FlipContainer = styled.div`
   perspective: 1000px;
+  margin: 10px;
   height: 40vh;
   width: 30vh;
   margin-bottom: 15px;

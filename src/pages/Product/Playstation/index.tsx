@@ -1,7 +1,7 @@
 import Product from "..";
 
 const Playstation = () => {
-  const pageInfo = "Soon there will be content for Playstation";
+  const pageInfo = "Playstation";
   return <Product pageInfo={pageInfo} />;
 };
 
