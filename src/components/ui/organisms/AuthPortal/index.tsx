@@ -18,12 +18,8 @@ import {
   setAuthCurrentUser,
   setStatusAuthWindow,
   setStatusRegistrationWindow,
-  updateAddress,
-  updateDescription,
-  updateEmailUser,
-  updatePhone,
+  updateInfoUser,
   updatePhotoUser,
-  updateUserName,
 } from "@/redux/reducers/auth";
 import FormInput from "../../form/TextInput";
 import { getScheme, initialFormData, FormValues } from "./scheme";
@@ -88,15 +84,10 @@ export default function AuthPortal({
     resolver: yupResolver(scheme),
   });
 
-  const authenticate = (email: string, data: any) => {
-    dispatch(updateEmailUser(email));
-    dispatch(updateUserName(email));
+  const authenticate = (data: any) => {
+    dispatch(updateInfoUser(data));
     dispatch(setAuthCurrentUser(true));
     dispatch(updatePhotoUser(data.photoUser));
-    dispatch(updateUserName(data.userName));
-    dispatch(updateAddress(data.address));
-    dispatch(updatePhone(data.phoneNumber));
-    dispatch(updateDescription(data.profileDescription));
     if (isRegistrationModal) {
       dispatch(setStatusRegistrationWindow(false));
     } else dispatch(setStatusAuthWindow(false));
@@ -113,7 +104,7 @@ export default function AuthPortal({
       .loginUser(email, password)
       .then((response) => {
         if (response?.data.accessToken !== null) {
-          authenticate(email, response?.data.user);
+          authenticate(response?.data.user);
         } else dispatch(setAuthCurrentUser(false));
       })
       .catch((errors) => {
@@ -132,7 +123,7 @@ export default function AuthPortal({
       .registrationProfile(email, password)
       .then((response) => {
         if (response?.data.accessToken !== null) {
-          authenticate(email, response?.data.user);
+          authenticate(response?.data.user);
         } else dispatch(setAuthCurrentUser(false));
       })
       .catch((errors) => {

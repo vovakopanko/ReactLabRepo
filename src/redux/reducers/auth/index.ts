@@ -1,5 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+type Actions = {
+  email: string;
+  userName: string;
+  profileDescription: string;
+  address: string;
+  phoneNumber: string;
+};
+
 type TState = {
   userName: string;
   email: string;
@@ -64,6 +72,13 @@ const authSlice = createSlice({
     logOut: (state, actions: PayloadAction<boolean>) => {
       state.isAuth = actions.payload;
     },
+    updateInfoUser: (state, actions: PayloadAction<Actions>) => {
+      state.email = actions.payload.email;
+      state.userName = actions.payload.userName;
+      state.description = actions.payload.profileDescription;
+      state.address = actions.payload.address;
+      state.phoneNumber = actions.payload.phoneNumber;
+    },
   },
 });
 
@@ -80,6 +95,7 @@ export const {
   updatePhone,
   updatePhotoUser,
   logOut,
+  updateInfoUser,
 } = actions;
 
 export default reducer;
