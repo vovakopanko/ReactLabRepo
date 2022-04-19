@@ -32,14 +32,14 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectorUserName,
-  selectorIsAuthUser,
+  selectIsAuthUser,
 } from "@/redux/selectors/authSelector";
 
 const webSiteName: string = "Game Store";
 
 const Header = () => {
   const [showDropDown, setShowDropDown] = useState(false);
-  const isAuth = useSelector(selectorIsAuthUser);
+  const isAuth = useSelector(selectIsAuthUser);
   const userName = useSelector(selectorUserName);
   const dispatch = useDispatch();
 
@@ -78,7 +78,7 @@ const Header = () => {
     [showDropDown]
   );
 
-  const onClick = useCallback(() => {
+  const onLogOut = useCallback(() => {
     dispatch(logOut(false));
   }, []);
 
@@ -117,7 +117,7 @@ const Header = () => {
                   <TitleItem>0</TitleItem>
                 </StyleItem>
               </StyledNavLink>
-              <StyledBtnLogOut onClick={onClick}>
+              <StyledBtnLogOut onClick={onLogOut}>
                 <StyleItem>
                   <ExportOutlined />
                 </StyleItem>
@@ -161,7 +161,7 @@ const Header = () => {
                 <TitleItem>0</TitleItem>
               </StyleItem>
             </StyledNavLink>
-            <StyledBtnLogOut onClick={() => onClick()}>
+            <StyledBtnLogOut onClick={onLogOut}>
               <StyleItem>
                 <ExportOutlined />
               </StyleItem>

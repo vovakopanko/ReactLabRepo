@@ -2,24 +2,27 @@ import { profileAPI } from "@/api/ProfileAPI";
 import FieldContainer, {
   FieldType,
 } from "@/components/ui/atoms/FieldContainer";
-import Button from "@/components/ui/atoms/NewButton";
-import FormInput from "@/components/ui/form/TextInput";
+import OnClick from "@/components/ui/atoms/onClick";
 import {
   defaultButton,
   disabledButton,
-} from "@/components/ui/organisms/AuthPortal";
+} from "@/components/ui/atoms/onClick/constant";
+import FormTextArea from "@/components/ui/form/TextArea";
+import FormInput from "@/components/ui/form/TextInput";
 import {
-  AuthForm,
+  ProfileForm,
   BtnSubmit,
 } from "@/components/ui/organisms/AuthPortal/styles";
 import { updateInfoUser } from "@/redux/reducers/auth";
 import { colors } from "@/styles/palette";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { scheme } from "../../scheme";
 import { ContentBlock, InfoContainer, InfoTitle } from "../../styles";
 import { FormValues } from "../../types";
+import { Field } from "./constants";
 import { Props } from "./types";
 
 const Info = ({
@@ -45,10 +48,9 @@ const Info = ({
     },
     resolver: yupResolver(scheme),
   });
-
   const dispatch = useDispatch();
 
-  const fieldData: FieldType[] = [
+  const field: Field[] = [
     { id: 0, title: email, titleName: "Email :" },
     { id: 1, title: userName, titleName: "Nickname :" },
     { id: 2, title: description, titleName: "Profile description :" },
@@ -56,18 +58,16 @@ const Info = ({
     { id: 4, title: phoneNumber, titleName: "Phone number :" },
   ];
 
-  const onPressSaveProfile = async ({
-    userName,
-    description,
-    address,
-    phoneNumber,
-  }: FormValues) => {
-    await profileAPI
-      .updateUserInfo(email, userName, description, address, phoneNumber)
-      ?.then((response) => {
-        dispatch(updateInfoUser(response.candidate));
-      });
-  };
+  const onPressSaveProfile = useCallback(
+    async ({ userName, description, address, phoneNumber }: FormValues) => {
+      await profileAPI
+        .updateUserInfo(email, userName, description, address, phoneNumber)
+        ?.then((response) => {
+          dispatch(updateInfoUser(response.candidate));
+        });
+    },
+    []
+  );
 
   const onSubmit = async (dataForm: FormValues) => {
     const { userName, description, address, phoneNumber } = dataForm;
@@ -87,19 +87,19 @@ const Info = ({
       {isOpen ? (
         <InfoContainer>
           <InfoTitle>General: </InfoTitle>
-          {fieldData.map((data: FieldType, index: number) => (
+          {field.map((data: FieldType, index: number) => (
             <FieldContainer
               key={data.id}
               title={data.title}
               titleName={data.titleName}
               index={index}
-              lastIndex={fieldData.length - 1}
+              lastIndex={field.length - 1}
             />
           ))}
         </InfoContainer>
       ) : (
         <>
-          <AuthForm onSubmit={handleSubmit(onSubmit)}>
+          <ProfileForm onSubmit={handleSubmit(onSubmit)}>
             <FormInput
               control={control}
               name={"userName"}
@@ -108,7 +108,7 @@ const Info = ({
               uniqueType={"userName"}
               placeholder={userName}
             />
-            <FormInput
+            <FormTextArea
               control={control}
               name={"description"}
               title={"Profile description"}
@@ -120,7 +120,6 @@ const Info = ({
               name={"address"}
               title={"Address delivery"}
               uniqueType={"address"}
-              defaultValue={"abdbd"}
               type={"text"}
               placeholder={address}
             />
@@ -138,8 +137,8 @@ const Info = ({
               disabled={!isValid && isSubmitting}
               {...buttonStyle}
             />
-          </AuthForm>
-          <Button
+          </ProfileForm>
+          <OnClick
             title={"Close"}
             color={colors.RED}
             width={180}

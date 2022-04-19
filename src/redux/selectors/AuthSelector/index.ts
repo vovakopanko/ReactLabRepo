@@ -1,18 +1,14 @@
 import { AppStateType } from "../../reduxStore";
 
-export const selectorEmailUser = (state: AppStateType) => {
+export const selectEmailUser = (state: AppStateType) => {
   return state.authReducer.email;
 };
 
-export const selectorPasswordUser = (state: AppStateType) => {
-  return state.authReducer.password;
-};
-
-export const selectorUpdateUserInfo = (state: AppStateType) => {
+export const selectUserData = (state: AppStateType) => {
   return state.authReducer;
 };
 
-export const selectorIsAuthUser = (state: AppStateType) => {
+export const selectIsAuthUser = (state: AppStateType) => {
   return state.authReducer.isAuth;
 };
 
@@ -25,7 +21,7 @@ export const selectorStatusWindowRegistration = (state: AppStateType) => {
 };
 
 export const selectorStatusWindowChangePassword = (state: AppStateType) => {
-  return state.profileReducer.openChangePasswordWindow;
+  return state.profileReducer.isChangePassword;
 };
 
 export const selectorUserName = (state: AppStateType) => {

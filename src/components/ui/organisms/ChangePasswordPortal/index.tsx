@@ -4,7 +4,7 @@ import {
   BackgroundContainer,
   HeaderContainer,
   HeaderName,
-  AuthForm,
+  ProfileForm,
   BtnSubmit,
   ErrorMessage,
 } from "./styles";
@@ -15,14 +15,10 @@ import FormInput from "../../form/TextInput";
 import { initialFormData, FormValues, scheme } from "./scheme";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
-import { colors } from "../../../../styles/palette";
 import { setStatusChangePasswordWindow } from "@/redux/reducers/profile";
 import { registerUser } from "@/api/AuthAPI";
-import {
-  selectorEmailUser,
-  selectorPasswordUser,
-} from "@/redux/selectors/authSelector";
-import { response } from "express";
+import { selectEmailUser } from "@/redux/selectors/authSelector";
+import { defaultButton, disabledButton } from "../../atoms/onClick/constant";
 
 type Props = {
   title: string;
@@ -30,34 +26,15 @@ type Props = {
   id: number;
 };
 
-const defaultButton = {
-  color: colors.RED,
-  style: {
-    backgroundColor: colors.RED,
-    color: colors.WHITE,
-  },
-};
-
-const disabledButton = {
-  color: colors.RED,
-  style: {
-    backgroundColor: colors.GRAY,
-    color: colors.BLACK,
-    opacity: 0.3,
-  },
-};
-
 export default function ChangePasswordPortal({
   title,
 }: {
   title: string;
   fields: Props[];
-  modalForm: string;
 }) {
   const [invalidValue, setInvalidValue] = useState("");
   const dispatch = useDispatch();
-  const emailUser = useSelector(selectorEmailUser);
-  const userPassword = useSelector(selectorPasswordUser);
+  const emailUser = useSelector(selectEmailUser);
 
   const {
     control,
@@ -112,7 +89,7 @@ export default function ChangePasswordPortal({
             <CloseOutlined style={{ color: "red" }} />
           </div>
         </HeaderContainer>
-        <AuthForm onSubmit={handleSubmit(onSubmit)}>
+        <ProfileForm onSubmit={handleSubmit(onSubmit)}>
           <FormInput
             control={control}
             name={"currentPassword"}
@@ -134,14 +111,13 @@ export default function ChangePasswordPortal({
             uniqueType={"repeatPassword"}
             type={"password"}
           />
-
           <BtnSubmit
             type="submit"
             value={"Submit"}
             disabled={!isValid && isSubmitting}
             {...buttonStyle}
           />
-        </AuthForm>
+        </ProfileForm>
         <ErrorMessage>{invalidValue}</ErrorMessage>
       </AuthContainer>
     </>,

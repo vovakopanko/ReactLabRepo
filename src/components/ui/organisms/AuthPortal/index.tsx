@@ -5,14 +5,13 @@ import {
   HeaderContainer,
   HeaderName,
   ErrorMessage,
-  AuthForm,
+  ProfileForm,
   BtnSubmit,
 } from "./styles";
 import { CloseOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import { registerUser } from "@/api/AuthAPI";
 import { useForm } from "react-hook-form";
-import { colors } from "@/styles/palette";
 import { useDispatch } from "react-redux";
 import {
   setAuthCurrentUser,
@@ -25,34 +24,13 @@ import FormInput from "../../form/TextInput";
 import { getScheme, initialFormData, FormValues } from "./scheme";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useMemo } from "react";
+import { defaultButton, disabledButton } from "../../atoms/onClick/constant";
+import { Data } from "@/api/AuthAPI/types";
 
 type Props = {
   title: string;
   type: string;
   id: number;
-};
-
-export const defaultButton = {
-  color: colors.RED,
-  style: {
-    backgroundColor: colors.PURPURE,
-    color: colors.WHITE,
-    paddingTop: 12,
-    paddingBottom: 12,
-    borderRadius: 15,
-  },
-};
-
-export const disabledButton = {
-  color: colors.RED,
-  style: {
-    backgroundColor: colors.GRAY,
-    color: colors.BLACK,
-    opacity: 0.3,
-    paddingTop: 12,
-    paddingBottom: 12,
-    borderRadius: 15,
-  },
 };
 
 export default function AuthPortal({
@@ -84,7 +62,8 @@ export default function AuthPortal({
     resolver: yupResolver(scheme),
   });
 
-  const authenticate = (data: any) => {
+  const authenticate = (data: Data) => {
+    console.log("data", data);
     dispatch(updateInfoUser(data));
     dispatch(setAuthCurrentUser(true));
     dispatch(updatePhotoUser(data.photoUser));
@@ -104,7 +83,8 @@ export default function AuthPortal({
       .loginUser(email, password)
       .then((response) => {
         if (response?.data.accessToken !== null) {
-          authenticate(response?.data.user);
+          console.log("response", response);
+          authenticate(response?.data.user!);
         } else dispatch(setAuthCurrentUser(false));
       })
       .catch((errors) => {
@@ -123,7 +103,7 @@ export default function AuthPortal({
       .registrationProfile(email, password)
       .then((response) => {
         if (response?.data.accessToken !== null) {
-          authenticate(response?.data.user);
+          authenticate(response?.data.user!);
         } else dispatch(setAuthCurrentUser(false));
       })
       .catch((errors) => {
@@ -159,7 +139,7 @@ export default function AuthPortal({
             <CloseOutlined style={{ color: "red" }} />
           </div>
         </HeaderContainer>
-        <AuthForm onSubmit={handleSubmit(onSubmit)}>
+        <ProfileForm onSubmit={handleSubmit(onSubmit)}>
           <FormInput
             control={control}
             name={"email"}
@@ -195,7 +175,7 @@ export default function AuthPortal({
             disabled={!isValid && isRegistrationModal && isSubmitting}
             {...buttonStyle}
           />
-        </AuthForm>
+        </ProfileForm>
         <ErrorMessage>{invalidValue}</ErrorMessage>
       </AuthContainer>
     </>,

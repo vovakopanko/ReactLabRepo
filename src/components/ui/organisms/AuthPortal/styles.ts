@@ -118,7 +118,7 @@ export const InputField = styled.input`
   font-size: 14;
 `;
 
-export const AuthForm = styled.form`
+export const ProfileForm = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;

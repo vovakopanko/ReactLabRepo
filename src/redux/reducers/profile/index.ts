@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type TState = {
-  openChangePasswordWindow: boolean;
+  isChangePassword: boolean;
 };
 
 const initialState: TState = {
-  openChangePasswordWindow: false,
+  isChangePassword: false,
 };
 
 const profileSlice = createSlice({
@@ -13,7 +13,7 @@ const profileSlice = createSlice({
   initialState,
   reducers: {
     setStatusChangePasswordWindow: (state, actions: PayloadAction<boolean>) => {
-      state.openChangePasswordWindow = actions.payload;
+      state.isChangePassword = actions.payload;
     },
   },
 });

@@ -1,17 +1,14 @@
 import { colors } from "@/styles/palette";
 import styled from "styled-components";
 
-const Button = ({
-  title,
-  color,
-  width,
-  func,
-}: {
+type Props = {
   title: string;
   color: any;
   width: number | string;
   func?: any;
-}) => {
+};
+
+const OnClick = ({ title, color, width, func }: Props) => {
   return (
     <ButtonBlock>
       <ButtonContainer
@@ -45,4 +42,4 @@ export const ButtonContainer = styled.input`
   }
 `;
 
-export default Button;
+export default OnClick;

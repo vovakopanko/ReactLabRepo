@@ -51,21 +51,6 @@ const authSlice = createSlice({
     setStatusRegistrationWindow: (state, actions: PayloadAction<boolean>) => {
       state.openRegisterWindow = actions.payload;
     },
-    updateUserName: (state, actions: PayloadAction<string>) => {
-      state.userName = actions.payload;
-    },
-    updateEmailUser: (state, actions: PayloadAction<string>) => {
-      state.email = actions.payload;
-    },
-    updateDescription: (state, actions: PayloadAction<string>) => {
-      state.description = actions.payload;
-    },
-    updateAddress: (state, actions: PayloadAction<string>) => {
-      state.address = actions.payload;
-    },
-    updatePhone: (state, actions: PayloadAction<string>) => {
-      state.phoneNumber = actions.payload;
-    },
     updatePhotoUser: (state, actions: PayloadAction<string>) => {
       state.photoUser = actions.payload;
     },
@@ -88,11 +73,6 @@ export const {
   setAuthCurrentUser,
   setStatusAuthWindow,
   setStatusRegistrationWindow,
-  updateUserName,
-  updateEmailUser,
-  updateDescription,
-  updateAddress,
-  updatePhone,
   updatePhotoUser,
   logOut,
   updateInfoUser,

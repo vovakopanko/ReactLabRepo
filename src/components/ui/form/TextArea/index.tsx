@@ -15,7 +15,7 @@ type HookFormPropsBase<T> = {
   name: FieldPath<T>;
 };
 
-function FormInput<T>({ title, name, control, ...rest }: InputProps<T>) {
+function FormTextArea<T>({ title, name, control }: InputProps<T>) {
   const {
     field: { onChange, onBlur, value },
     fieldState: { error },
@@ -24,18 +24,7 @@ function FormInput<T>({ title, name, control, ...rest }: InputProps<T>) {
     <>
       <InputContainer>
         <InputName>{title} :</InputName>
-        {rest.type === "textarea" ? (
-          <TextAreaField value={value} onChange={onChange} onBlur={onBlur} />
-        ) : (
-          <InputField
-            {...rest}
-            value={value}
-            onChange={onChange}
-            onBlur={onBlur}
-            autoComplete={"off"}
-            autoCapitalize={"off"}
-          />
-        )}
+        <TextAreaField value={value} onChange={onChange} onBlur={onBlur} />)
       </InputContainer>
       <MessageError>{error?.message}</MessageError>
     </>
@@ -48,6 +37,18 @@ export const InputContainer = styled.div`
   justify-content: center;
   align-self: flex-start;
   width: 100%;
+`;
+
+export const TextAreaField = styled.textarea`
+  display: block;
+  width: 50%;
+  min-width: 150px;
+  height: 80px;
+  border-radius: 4px;
+  border: 1px solid white;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 14;
 `;
 
 export const InputName = styled.label`
@@ -64,32 +65,10 @@ export const InputName = styled.label`
   width: 50%;
 `;
 
-export const InputField = styled.input`
-  display: block;
-  width: 50%;
-  border-radius: 4px;
-  border: 1px solid white;
-  padding: 10px;
-  margin-bottom: 10px;
-  font-size: 14;
-`;
-
-export const TextAreaField = styled.textarea`
-  display: block;
-  width: 50%;
-  min-width: 150px;
-  height: 80px;
-  border-radius: 4px;
-  border: 1px solid white;
-  padding: 10px;
-  margin-bottom: 10px;
-  font-size: 14;
-`;
-
 export const MessageError = styled.span`
   color: red;
   width: 80%;
   padding: 5;
 `;
 
-export default FormInput;
+export default FormTextArea;

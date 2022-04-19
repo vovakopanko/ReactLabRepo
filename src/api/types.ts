@@ -12,3 +12,13 @@ export enum AppUrls {
   UPDATE_PROFILE_INFO = "update-profile-info",
   UPDATE_PROFILE_AVATAR = "update-profile-avatar",
 }
+
+export enum ModalForm {
+  REGISTRATION = "registration",
+  AUTHORIZATION = "authorization",
+}
+
+export enum AuthPortalName {
+  REGISTRATION = "Registration",
+  AUTHORIZATION = "Authorization",
+}
