@@ -12,13 +12,17 @@ import { CloseOutlined } from "@ant-design/icons";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import FormInput from "../../form/TextInput";
-import { getScheme, initialFormData, FormValues } from "./scheme";
+import { initialFormData, FormValues, scheme } from "./scheme";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { colors } from "../../../../styles/palette";
 import { setStatusChangePasswordWindow } from "@/redux/reducers/profile";
 import { registerUser } from "@/api/AuthAPI";
-import { selectorEmailUser } from "@/redux/selectors/authSelector";
+import {
+  selectorEmailUser,
+  selectorPasswordUser,
+} from "@/redux/selectors/authSelector";
+import { response } from "express";
 
 type Props = {
   title: string;
@@ -45,7 +49,6 @@ const disabledButton = {
 
 export default function ChangePasswordPortal({
   title,
-  modalForm,
 }: {
   title: string;
   fields: Props[];
@@ -54,12 +57,7 @@ export default function ChangePasswordPortal({
   const [invalidValue, setInvalidValue] = useState("");
   const dispatch = useDispatch();
   const emailUser = useSelector(selectorEmailUser);
-  const isChangePassword = modalForm === "changePassword";
-
-  const scheme = useMemo(
-    () => getScheme(!isChangePassword),
-    [isChangePassword]
-  );
+  const userPassword = useSelector(selectorPasswordUser);
 
   const {
     control,
@@ -72,23 +70,29 @@ export default function ChangePasswordPortal({
     resolver: yupResolver(scheme),
   });
 
+  const onSubmit = async (dataForm: FormValues) => {
+    const { password, currentPassword } = dataForm;
+    changeUserPassword({ emailUser, password, currentPassword });
+    // await dispatch(setStatusChangePasswordWindow(false));
+    reset();
+  };
+
   const changeUserPassword = async ({
     emailUser,
     password,
+    currentPassword,
   }: {
     emailUser: string;
     password: string;
+    currentPassword: string;
   }) => {
-    await registerUser.changePassword(emailUser, password).catch((errors) => {
-      setInvalidValue(errors.message);
-    });
-  };
-
-  const onSubmit = async (dataForm: FormValues) => {
-    const { password } = dataForm;
-    changeUserPassword({ emailUser, password });
-    await dispatch(setStatusChangePasswordWindow(false));
-    reset();
+    await registerUser
+      .changePassword(emailUser, password, currentPassword)
+      .then(() => dispatch(setStatusChangePasswordWindow(false)))
+      .catch(() => {
+        dispatch(setStatusChangePasswordWindow(true));
+        setInvalidValue("Invalid current password");
+      });
   };
 
   const buttonStyle = isValid ? defaultButton : disabledButton;
@@ -111,12 +115,17 @@ export default function ChangePasswordPortal({
         <AuthForm onSubmit={handleSubmit(onSubmit)}>
           <FormInput
             control={control}
+            name={"currentPassword"}
+            title={"Current Password"}
+            uniqueType={"currentPassword"}
+            type={"password"}
+          />
+          <FormInput
+            control={control}
             name={"password"}
             title={"Password"}
             uniqueType={"password"}
             type={"password"}
-            maxLength={30}
-            minLength={5}
           />
           <FormInput
             control={control}
@@ -124,14 +133,12 @@ export default function ChangePasswordPortal({
             title={"Repeat password"}
             uniqueType={"repeatPassword"}
             type={"password"}
-            maxLength={30}
-            minLength={5}
           />
 
           <BtnSubmit
             type="submit"
             value={"Submit"}
-            disabled={!isValid && isChangePassword && isSubmitting}
+            disabled={!isValid && isSubmitting}
             {...buttonStyle}
           />
         </AuthForm>
