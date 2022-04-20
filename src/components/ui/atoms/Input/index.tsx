@@ -10,7 +10,9 @@ const Input: FC = () => {
   const [isFocus, setIsFocus] = useState(false);
 
   useEffect(() => {
-    debouncedFetchData(searchData, (res: TGameCard[]) => setFindArray(res));
+    debouncedFetchData(searchData, (res: TGameCard[]) => {
+      setFindArray(res);
+    });
   }, [searchData]);
 
   const OnChangeData = (e: React.ChangeEvent<HTMLInputElement>) => {
