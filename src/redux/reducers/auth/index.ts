@@ -51,13 +51,13 @@ const authSlice = createSlice({
     setStatusRegistrationWindow: (state, actions: PayloadAction<boolean>) => {
       state.openRegisterWindow = actions.payload;
     },
-    updatePhotoUser: (state, actions: PayloadAction<string>) => {
+    updateUserPhoto: (state, actions: PayloadAction<string>) => {
       state.photoUser = actions.payload;
     },
     logOut: (state, actions: PayloadAction<boolean>) => {
       state.isAuth = actions.payload;
     },
-    updateInfoUser: (state, actions: PayloadAction<Actions>) => {
+    updateUserInfo: (state, actions: PayloadAction<Actions>) => {
       state.email = actions.payload.email;
       state.userName = actions.payload.userName;
       state.description = actions.payload.profileDescription;
@@ -73,9 +73,9 @@ export const {
   setAuthCurrentUser,
   setStatusAuthWindow,
   setStatusRegistrationWindow,
-  updatePhotoUser,
+  updateUserPhoto,
   logOut,
-  updateInfoUser,
+  updateUserInfo,
 } = actions;
 
 export default reducer;

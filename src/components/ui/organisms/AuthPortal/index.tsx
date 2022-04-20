@@ -17,14 +17,13 @@ import {
   setAuthCurrentUser,
   setStatusAuthWindow,
   setStatusRegistrationWindow,
-  updateInfoUser,
-  updatePhotoUser,
+  updateUserInfo,
+  updateUserPhoto,
 } from "@/redux/reducers/auth";
 import FormInput from "../../form/TextInput";
 import { getScheme, initialFormData, FormValues } from "./scheme";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useMemo } from "react";
-import { defaultButton, disabledButton } from "../../atoms/onClick/constant";
 import { Data } from "@/api/AuthAPI/types";
 
 type Props = {
@@ -63,10 +62,9 @@ export default function AuthPortal({
   });
 
   const authenticate = (data: Data) => {
-    console.log("data", data);
-    dispatch(updateInfoUser(data));
+    dispatch(updateUserInfo(data));
     dispatch(setAuthCurrentUser(true));
-    dispatch(updatePhotoUser(data.photoUser));
+    dispatch(updateUserPhoto(data.photoUser));
     if (isRegistrationModal) {
       dispatch(setStatusRegistrationWindow(false));
     } else dispatch(setStatusAuthWindow(false));
@@ -83,7 +81,6 @@ export default function AuthPortal({
       .loginUser(email, password)
       .then((response) => {
         if (response?.data.accessToken !== null) {
-          console.log("response", response);
           authenticate(response?.data.user!);
         } else dispatch(setAuthCurrentUser(false));
       })
@@ -120,8 +117,6 @@ export default function AuthPortal({
     }
     reset();
   };
-
-  const buttonStyle = isValid ? defaultButton : disabledButton;
 
   return ReactDOM.createPortal(
     <>
@@ -173,7 +168,7 @@ export default function AuthPortal({
             type="submit"
             value={isRegistrationModal ? "Sign In" : "Continue"}
             disabled={!isValid && isRegistrationModal && isSubmitting}
-            {...buttonStyle}
+            styleBtn={isValid}
           />
         </ProfileForm>
         <ErrorMessage>{invalidValue}</ErrorMessage>

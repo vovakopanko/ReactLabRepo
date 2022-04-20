@@ -1,19 +1,14 @@
 import { profileAPI } from "@/api/ProfileAPI";
-import FieldContainer, {
-  FieldType,
-} from "@/components/ui/atoms/FieldContainer";
+import FieldContainer from "@/components/ui/atoms/FieldContainer";
+import { FieldType } from "@/components/ui/atoms/FieldContainer/types";
 import OnClick from "@/components/ui/atoms/onClick";
-import {
-  defaultButton,
-  disabledButton,
-} from "@/components/ui/atoms/onClick/constant";
 import FormTextArea from "@/components/ui/form/TextArea";
 import FormInput from "@/components/ui/form/TextInput";
 import {
   ProfileForm,
   BtnSubmit,
 } from "@/components/ui/organisms/AuthPortal/styles";
-import { updateInfoUser } from "@/redux/reducers/auth";
+import { updateUserInfo } from "@/redux/reducers/auth";
 import { colors } from "@/styles/palette";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useCallback } from "react";
@@ -63,7 +58,7 @@ const Info = ({
       await profileAPI
         .updateUserInfo(email, userName, description, address, phoneNumber)
         ?.then((response) => {
-          dispatch(updateInfoUser(response.candidate));
+          dispatch(updateUserInfo(response.candidate));
         });
     },
     []
@@ -81,7 +76,6 @@ const Info = ({
     setIsOpen(!isOpen);
   };
 
-  const buttonStyle = isValid ? defaultButton : disabledButton;
   return (
     <ContentBlock>
       {isOpen ? (
@@ -135,7 +129,7 @@ const Info = ({
               type="submit"
               value={"Save Profile"}
               disabled={!isValid && isSubmitting}
-              {...buttonStyle}
+              styleBtn={isValid}
             />
           </ProfileForm>
           <OnClick

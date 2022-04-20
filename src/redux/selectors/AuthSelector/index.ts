@@ -20,7 +20,7 @@ export const selectorStatusWindowRegistration = (state: AppStateType) => {
   return state.authReducer.openRegisterWindow;
 };
 
-export const selectorStatusWindowChangePassword = (state: AppStateType) => {
+export const selectIsChangePassword = (state: AppStateType) => {
   return state.profileReducer.isChangePassword;
 };
 

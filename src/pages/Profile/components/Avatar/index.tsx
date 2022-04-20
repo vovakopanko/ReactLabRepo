@@ -8,7 +8,7 @@ import {
   ImagePlatform,
 } from "../../styles";
 import { profileAPI } from "@/api/ProfileAPI";
-import { updatePhotoUser } from "@/redux/reducers/auth";
+import { updateUserPhoto } from "@/redux/reducers/auth";
 import { useCallback, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { defaultPhoto } from "./constants";
@@ -20,8 +20,8 @@ const Avatar = ({ photoUser, email }: Props) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const onChangeAvatar = useCallback(() => {
-    setPhotoLink(!photoLink);
-    dispatch(updatePhotoUser(inputRef.current!.value));
+    setPhotoLink((prevState) => !prevState);
+    dispatch(updateUserPhoto(inputRef.current!.value));
     profileAPI.updateUserAvatar(email, inputRef.current!.value);
   }, [photoLink]);
 
@@ -33,7 +33,7 @@ const Avatar = ({ photoUser, email }: Props) => {
       <>
         {photoLink ? (
           <OnClick
-            func={() => setPhotoLink(!photoLink)}
+            func={() => setPhotoLink((prevState) => !prevState)}
             color={colors.PURPURE}
             width={180}
             title={"Change profile image"}

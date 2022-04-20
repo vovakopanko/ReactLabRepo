@@ -12,7 +12,7 @@ const profileSlice = createSlice({
   name: "profile",
   initialState,
   reducers: {
-    setStatusChangePasswordWindow: (state, actions: PayloadAction<boolean>) => {
+    onStatusPasswordChange: (state, actions: PayloadAction<boolean>) => {
       state.isChangePassword = actions.payload;
     },
   },
@@ -20,6 +20,6 @@ const profileSlice = createSlice({
 
 const { actions, reducer } = profileSlice;
 
-export const { setStatusChangePasswordWindow } = actions;
+export const { onStatusPasswordChange } = actions;
 
 export default reducer;

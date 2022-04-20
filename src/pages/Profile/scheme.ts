@@ -16,7 +16,7 @@ export const scheme = yup.object().shape({
     .string()
     .required(`Field 'UserName' is required `)
     .min(7, "Incorrect length UserName, min value : 7 symbols")
-    .max(40, `Incorrect length UserName, max value : 40 symbols`),
+    .max(24, `Incorrect length UserName, max value : 24 symbols`),
   description: yup
     .string()
     .required(`Field 'Description' is required `)
@@ -30,5 +30,6 @@ export const scheme = yup.object().shape({
   phoneNumber: yup
     .string()
     .required(`Field 'Phone number' is required `)
-    .matches(phoneRegExp, "Phone number is not valid"),
+    .matches(phoneRegExp, "Phone number is not valid")
+    .max(13, `Incorrect length Phone, max value : 13 numbers`),
 });

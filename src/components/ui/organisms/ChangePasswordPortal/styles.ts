@@ -84,6 +84,10 @@ export const ErrorContainer = styled.div`
   font-size: 14;
 `;
 
+export const CloseBtnContainer = styled.div`
+  text-align: center;
+`;
+
 export const InputBlock = styled.div`
   justify-content: center;
 `;
@@ -121,20 +125,6 @@ export const InputField = styled.input`
 export const ProfileForm = styled.form`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const BtnSubmit = styled.input`
-  margin-top: 20;
-  text-transform: uppercase;
-  border-radius: 10px;
-  border: none;
-  padding: 7px;
-  font-size: 16;
-  letter-spacing: 5px;
-  padding-left: 15px;
-  text-align: center;
   justify-content: center;
   align-items: center;
 `;

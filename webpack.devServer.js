@@ -27,7 +27,12 @@ module.exports = (env, argv) => {
       // proxy config will be remove if target is empty
       proxy: {
         // requires for ignoring CORS issues
-        "/api": { target: proxy, changeOrigin: true, withCredentials: true, secure: false },
+        "/api": {
+          target: proxy,
+          changeOrigin: true,
+          withCredentials: true,
+          secure: false,
+        },
       },
       hot: true,
       historyApiFallback: {
@@ -48,9 +53,6 @@ module.exports = (env, argv) => {
           tsConfigFileName: "tsconfig.json",
           before: (req, res, next) => {
             console.log(`Got request: ${req.method} ${req.url}`);
-            // res.once("finish", () => {
-            //   console.log(`Sent response: ${req.method} ${req.url}`);
-            // });
             next();
           },
         }),
@@ -63,7 +65,9 @@ module.exports = (env, argv) => {
 
   if (proxy) {
     delete extendedConfig.devServer.onBeforeSetupMiddleware;
-    console.log("<i> Proxy configured. webpack-mock-server is removed from config");
+    console.log(
+      "<i> Proxy configured. webpack-mock-server is removed from config"
+    );
   } else {
     delete extendedConfig.devServer.proxy;
   }

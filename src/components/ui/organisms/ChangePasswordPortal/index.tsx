@@ -5,8 +5,8 @@ import {
   HeaderContainer,
   HeaderName,
   ProfileForm,
-  BtnSubmit,
   ErrorMessage,
+  CloseBtnContainer,
 } from "./styles";
 import { CloseOutlined } from "@ant-design/icons";
 import { useForm } from "react-hook-form";
@@ -14,11 +14,11 @@ import { useDispatch, useSelector } from "react-redux";
 import FormInput from "../../form/TextInput";
 import { initialFormData, FormValues, scheme } from "./scheme";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
-import { setStatusChangePasswordWindow } from "@/redux/reducers/profile";
+import { useCallback, useState } from "react";
+import { onStatusPasswordChange } from "@/redux/reducers/profile";
 import { registerUser } from "@/api/AuthAPI";
 import { selectEmailUser } from "@/redux/selectors/authSelector";
-import { defaultButton, disabledButton } from "../../atoms/onClick/constant";
+import { BtnSubmit } from "../AuthPortal/styles";
 
 type Props = {
   title: string;
@@ -50,7 +50,6 @@ export default function ChangePasswordPortal({
   const onSubmit = async (dataForm: FormValues) => {
     const { password, currentPassword } = dataForm;
     changeUserPassword({ emailUser, password, currentPassword });
-    // await dispatch(setStatusChangePasswordWindow(false));
     reset();
   };
 
@@ -65,14 +64,16 @@ export default function ChangePasswordPortal({
   }) => {
     await registerUser
       .changePassword(emailUser, password, currentPassword)
-      .then(() => dispatch(setStatusChangePasswordWindow(false)))
+      .then(() => dispatch(onStatusPasswordChange(false)))
       .catch(() => {
-        dispatch(setStatusChangePasswordWindow(true));
+        dispatch(onStatusPasswordChange(true));
         setInvalidValue("Invalid current password");
       });
   };
 
-  const buttonStyle = isValid ? defaultButton : disabledButton;
+  const onSetStatusChangePassword = useCallback(() => {
+    dispatch(onStatusPasswordChange(false));
+  }, []);
 
   return ReactDOM.createPortal(
     <>
@@ -80,14 +81,9 @@ export default function ChangePasswordPortal({
       <AuthContainer>
         <HeaderContainer>
           <HeaderName>{title}</HeaderName>
-          <div
-            style={{ textAlign: "center" }}
-            onClick={() => {
-              dispatch(setStatusChangePasswordWindow(false));
-            }}
-          >
+          <CloseBtnContainer onClick={onSetStatusChangePassword}>
             <CloseOutlined style={{ color: "red" }} />
-          </div>
+          </CloseBtnContainer>
         </HeaderContainer>
         <ProfileForm onSubmit={handleSubmit(onSubmit)}>
           <FormInput
@@ -115,7 +111,7 @@ export default function ChangePasswordPortal({
             type="submit"
             value={"Submit"}
             disabled={!isValid && isSubmitting}
-            {...buttonStyle}
+            styleBtn={isValid}
           />
         </ProfileForm>
         <ErrorMessage>{invalidValue}</ErrorMessage>

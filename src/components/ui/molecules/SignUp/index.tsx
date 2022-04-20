@@ -1,4 +1,4 @@
-import { AuthPortalName, ModalForm } from "@/api/types";
+import { AuthPortalName, ModalForm } from "@/constants/types";
 import { selectorStatusWindowAuth } from "@/redux/selectors/authSelector";
 import { useSelector } from "react-redux";
 import AuthPortal from "../../organisms/AuthPortal";

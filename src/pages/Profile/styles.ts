@@ -10,6 +10,9 @@ export const InfoContainer = styled.div`
   padding-right: 10px;
   padding-bottom: 10px;
   opacity: 0.91;
+  @media (max-width: 768px) {
+    max-width: 300px;
+  }
 `;
 
 export const InfoTitle = styled.h2`

@@ -126,14 +126,18 @@ export const ProfileForm = styled.form`
 `;
 
 export const BtnSubmit = styled.input`
-  margin-top: 20;
-  text-transform: uppercase;
-  border-radius: 10px;
-  border: none;
-  padding: 7px;
-  font-size: 16;
+  background-color: ${(props: { styleBtn: boolean }) =>
+    props.styleBtn ? colors.PURPURE : colors.GRAY};
+  color: ${(props: { styleBtn: boolean }) =>
+    props.styleBtn ? colors.WHITE : colors.BLACK};
+  opacity: ${(props: { styleBtn: boolean }) => (props.styleBtn ? 1 : 0.3)};
+  padding-top: 15px;
+  padding-bottom: 12px;
+  border-radius: 15px;
   letter-spacing: 5px;
   padding-left: 15px;
+  border: none;
+  text-transform: uppercase;
   text-align: center;
   justify-content: center;
   align-items: center;
