@@ -95,7 +95,25 @@ export const MenuBurger = styled.div`
 `;
 
 export const TitleItem = styled.span`
-  padding-left: 10px;
+  padding-right: 10px;
+`;
+
+export const ProfileLogoImage = styled.img`
+  width: 25px;
+  height: 25px;
+  margin-left: -20px;
+  padding-right: 15px;
+`;
+
+export const BasketImage = styled.img`
+  width: 20px;
+  height: 20px;
+  padding-right: 10px;
+`;
+
+export const UserLogoImage = styled.img`
+  width: 20px;
+  height: 20px;
 `;
 
 export const RegistrationContainer = styled.div``;

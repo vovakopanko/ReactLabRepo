@@ -9,19 +9,17 @@ import {
   TitleItem,
   CloseBurger,
   CloseBtn,
+  BasketImage,
+  ProfileLogoImage,
 } from "./style";
 import { MenuItem } from "../..";
 import Logo from "../../atoms/Logo";
 import {
+  Outlined,
   StyledBtnLogOut,
   StyledNavLink,
   StyleItem,
 } from "../../molecules/MenuItem/styles";
-import {
-  ExportOutlined,
-  ShoppingCartOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
 import { useCallback } from "react";
 import { initialState } from "./menu";
 import {
@@ -34,6 +32,9 @@ import {
   selectorUserName,
   selectIsAuthUser,
 } from "@/redux/selectors/authSelector";
+import basketImage from "../../../../assets/svgIcon/basket.svg";
+import ExportOutlined from "../../../../assets/svgIcon/outlined.svg";
+import UserOutlined from "../../../../assets/svgIcon/logo.svg";
 
 const webSiteName: string = "Game Store";
 
@@ -107,19 +108,19 @@ const Header = () => {
             <>
               <StyledNavLink to={"/profile"}>
                 <StyleItem>
-                  <UserOutlined />
                   <TitleItem>{userName}</TitleItem>
                 </StyleItem>
+                <ProfileLogoImage src={UserOutlined} />
               </StyledNavLink>
               <StyledNavLink to={"/basket"}>
                 <StyleItem>
-                  <ShoppingCartOutlined />
+                  <BasketImage src={basketImage} />
                   <TitleItem>0</TitleItem>
                 </StyleItem>
               </StyledNavLink>
               <StyledBtnLogOut onClick={onLogOut}>
                 <StyleItem>
-                  <ExportOutlined />
+                  <Outlined src={ExportOutlined} />
                 </StyleItem>
               </StyledBtnLogOut>
             </>
@@ -151,19 +152,19 @@ const Header = () => {
           <>
             <StyledNavLink to={"/profile"}>
               <StyleItem>
-                <UserOutlined />
                 <TitleItem>{userName}</TitleItem>
               </StyleItem>
+              <ProfileLogoImage src={UserOutlined} />
             </StyledNavLink>
             <StyledNavLink to={"/basket"}>
               <StyleItem>
-                <ShoppingCartOutlined />
+                <BasketImage src={basketImage} />
                 <TitleItem>0</TitleItem>
               </StyleItem>
             </StyledNavLink>
             <StyledBtnLogOut onClick={onLogOut}>
               <StyleItem>
-                <ExportOutlined />
+                <Outlined src={ExportOutlined} />
               </StyleItem>
             </StyledBtnLogOut>
           </>

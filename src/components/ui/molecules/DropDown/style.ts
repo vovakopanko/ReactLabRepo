@@ -1,17 +1,10 @@
 import { colors } from "@/styles/palette";
-import { CaretDownOutlined } from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-export const StyleCaretDownOutlined = styled(CaretDownOutlined)`
-  color: ${colors.WHITE};
-  @media (max-width: 768px) {
-    display: none;
-  }
-`;
-
 export const StyleDropDown = styled.div`
-  min-width: 120px;
+  min-width: 100px;
+  align-items: "center";
   position: relative;
   &:hover > div > a {
     display: block;

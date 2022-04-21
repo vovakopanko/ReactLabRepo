@@ -1,6 +1,5 @@
 import Button from "@/components/ui/atoms/Button";
 import { onStatusPasswordChange } from "@/redux/reducers/profile";
-import { colors } from "@/styles/palette";
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { ContentBlock } from "../../styles";

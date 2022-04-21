@@ -7,9 +7,10 @@ import {
   ErrorMessage,
   ProfileForm,
   BtnSubmit,
+  CloseOutlined,
 } from "./styles";
-import { CloseOutlined } from "@ant-design/icons";
-import { useState } from "react";
+import image from "./../../../../assets/svgIcon/incorrect.svg";
+import { useCallback, useState } from "react";
 import { registerUser } from "@/api/AuthAPI";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
@@ -42,13 +43,22 @@ export default function AuthPortal({
 }) {
   const [invalidValue, setInvalidValue] = useState("");
   const dispatch = useDispatch();
-
+  const [isShowPassword, setIsShowPassword] = useState(false);
+  const [isShowRepeatPassword, setIsShowRepeatPassword] = useState(false);
   const isRegistrationModal = modalForm === "registration";
 
   const scheme = useMemo(
     () => getScheme(!isRegistrationModal),
     [isRegistrationModal]
   );
+
+  const onHandlerShowPassword = useCallback(() => {
+    setIsShowPassword(!isShowPassword);
+  }, [isShowPassword]);
+
+  const onHandlerShowRepeatPassword = useCallback(() => {
+    setIsShowRepeatPassword(!isShowRepeatPassword);
+  }, [isShowRepeatPassword]);
 
   const {
     control,
@@ -131,7 +141,7 @@ export default function AuthPortal({
                 : dispatch(setStatusAuthWindow(false));
             }}
           >
-            <CloseOutlined style={{ color: "red" }} />
+            <CloseOutlined src={image} />
           </div>
         </HeaderContainer>
         <ProfileForm onSubmit={handleSubmit(onSubmit)}>
@@ -149,9 +159,10 @@ export default function AuthPortal({
             name={"password"}
             title={"Password"}
             uniqueType={"password"}
-            type={"password"}
+            type={isShowPassword ? "text" : "password"}
             maxLength={30}
             minLength={5}
+            onHandler={onHandlerShowPassword}
           />
           {isRegistrationModal && (
             <FormInput
@@ -159,9 +170,10 @@ export default function AuthPortal({
               name={"duplicatePassword"}
               title={"Repeat password"}
               uniqueType={"duplicatePassword"}
-              type={"password"}
+              type={isShowRepeatPassword ? "text" : "password"}
               maxLength={30}
               minLength={5}
+              onHandler={onHandlerShowRepeatPassword}
             />
           )}
           <BtnSubmit

@@ -11,7 +11,12 @@ import { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { scheme } from "../../scheme";
-import { ContentBlock, InfoContainer, InfoTitle } from "../../styles";
+import {
+  BorderContainer,
+  ContentBlock,
+  InfoContainer,
+  InfoTitle,
+} from "../../styles";
 import { FormValues } from "../../types";
 import { Field } from "./constants";
 import { Props } from "./types";
@@ -89,7 +94,7 @@ const Info = ({
           ))}
         </InfoContainer>
       ) : (
-        <>
+        <BorderContainer>
           <ProfileForm>
             <FormInput
               control={control}
@@ -136,7 +141,7 @@ const Info = ({
             onClick={() => setIsOpen(!isOpen)}
             type="primary"
           />
-        </>
+        </BorderContainer>
       )}
     </ContentBlock>
   );

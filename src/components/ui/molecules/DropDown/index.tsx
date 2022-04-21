@@ -2,7 +2,6 @@ import { FC } from "react";
 import {
   StyleDropDown,
   DropDownTitle,
-  StyleCaretDownOutlined,
   ContentDropDown,
   LinkItems,
 } from "./style";
@@ -24,7 +23,6 @@ const DropDown: FC<HeaderTitleName> = ({ item }) => {
       ))}
       <StyleDropDown>
         <DropDownTitle>{item}</DropDownTitle>
-        <StyleCaretDownOutlined />
         <ContentDropDown>
           {dropDownItems.map(({ id, link, title }) => (
             <LinkItems key={id} to={link}>

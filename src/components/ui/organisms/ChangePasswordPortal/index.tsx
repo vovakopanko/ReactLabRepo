@@ -8,7 +8,6 @@ import {
   ErrorMessage,
   CloseBtnContainer,
 } from "./styles";
-import { CloseOutlined } from "@ant-design/icons";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import FormInput from "../../form/TextInput";
@@ -18,7 +17,8 @@ import { useCallback, useState } from "react";
 import { onStatusPasswordChange } from "@/redux/reducers/profile";
 import { registerUser } from "@/api/AuthAPI";
 import { selectEmailUser } from "@/redux/selectors/authSelector";
-import { BtnSubmit } from "../AuthPortal/styles";
+import { BtnSubmit, CloseOutlined } from "../AuthPortal/styles";
+import image from "./../../../../assets/svgIcon/incorrect.svg";
 
 export default function ChangePasswordPortal({ title }: { title: string }) {
   const [invalidValue, setInvalidValue] = useState("");
@@ -60,9 +60,25 @@ export default function ChangePasswordPortal({ title }: { title: string }) {
       });
   };
 
+  const [isShowPassword, setIsShowPassword] = useState(false);
+  const [isShowRepeatPassword, setIsShowRepeatPassword] = useState(false);
+  const [ShowCurrentPassword, setIsShowCurrentPassword] = useState(false);
+
   const onSetStatusChangePassword = useCallback(() => {
     dispatch(onStatusPasswordChange(false));
   }, []);
+
+  const onHandlerShowPassword = useCallback(() => {
+    setIsShowPassword(!isShowPassword);
+  }, [isShowPassword]);
+
+  const onHandlerShowRepeatPassword = useCallback(() => {
+    setIsShowRepeatPassword(!isShowRepeatPassword);
+  }, [isShowRepeatPassword]);
+
+  const onHandlerShowCurrentPassword = useCallback(() => {
+    setIsShowCurrentPassword(!ShowCurrentPassword);
+  }, [ShowCurrentPassword]);
 
   return ReactDOM.createPortal(
     <>
@@ -71,7 +87,7 @@ export default function ChangePasswordPortal({ title }: { title: string }) {
         <HeaderContainer>
           <HeaderName>{title}</HeaderName>
           <CloseBtnContainer onClick={onSetStatusChangePassword}>
-            <CloseOutlined style={{ color: "red" }} />
+            <CloseOutlined src={image} />
           </CloseBtnContainer>
         </HeaderContainer>
         <ProfileForm onSubmit={handleSubmit(onSubmit)}>
@@ -80,21 +96,24 @@ export default function ChangePasswordPortal({ title }: { title: string }) {
             name={"currentPassword"}
             title={"Current Password"}
             uniqueType={"currentPassword"}
-            type={"password"}
+            type={ShowCurrentPassword ? "text" : "password"}
+            onHandler={onHandlerShowCurrentPassword}
           />
           <FormInput
             control={control}
             name={"password"}
             title={"Password"}
             uniqueType={"password"}
-            type={"password"}
+            type={isShowPassword ? "text" : "password"}
+            onHandler={onHandlerShowPassword}
           />
           <FormInput
             control={control}
             name={"repeatPassword"}
             title={"Repeat password"}
             uniqueType={"repeatPassword"}
-            type={"password"}
+            type={isShowRepeatPassword ? "text" : "password"}
+            onHandler={onHandlerShowRepeatPassword}
           />
           <BtnSubmit
             type="submit"

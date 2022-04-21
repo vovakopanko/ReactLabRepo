@@ -71,6 +71,11 @@ export const HeaderContainer = styled.div`
   width: 100%;
 `;
 
+export const CloseOutlined = styled.img`
+  width: 20px;
+  height: 20px;
+`;
+
 export const HeaderName = styled.h1`
   color: red;
   width: 90%;

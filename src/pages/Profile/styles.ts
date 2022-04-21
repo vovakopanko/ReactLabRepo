@@ -15,6 +15,12 @@ export const InfoContainer = styled.div`
   }
 `;
 
+export const BorderContainer = styled.div`
+  padding: 10px;
+  border-radius: 15px;
+  border: 3px solid ${colors.PURPURE};
+`;
+
 export const InfoTitle = styled.h2`
   color: ${colors.WHITE};
 `;

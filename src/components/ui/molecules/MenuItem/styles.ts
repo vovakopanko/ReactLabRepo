@@ -35,6 +35,12 @@ export const StyledBtnLogOut = styled.div`
   }
 `;
 
+export const HeaderContainerMenu = styled.div`
+  min-width: 100px;
+  display: flex;
+  justify-content: center;
+`;
+
 export const SubmitBtn = styled(NavLink)`
   text-decoration: none;
   display: flex;
@@ -53,4 +59,9 @@ export const StyleItem = styled.ul`
     color: ${colors.RED};
   }
   padding: 0 20px;
+`;
+
+export const Outlined = styled.img`
+  width: 30px;
+  height: 30px;
 `;
