@@ -1,18 +1,25 @@
 import { ButtonBlock, ButtonContainer } from "./styles";
 import { Props } from "./types";
 
-const OnClick = ({ title, color, width, func }: Props) => {
+const Button = ({
+  title,
+  width,
+  onClick,
+  type = "primary",
+  disabled,
+}: Props) => {
   return (
     <ButtonBlock>
       <ButtonContainer
         type={"button"}
-        onClick={func}
+        onClick={onClick}
         value={title}
-        color={color}
         width={width + "px"}
+        buttonType={type}
+        disabled={disabled}
       />
     </ButtonBlock>
   );
 };
 
-export default OnClick;
+export default Button;

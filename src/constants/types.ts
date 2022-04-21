@@ -3,7 +3,7 @@ export enum ModalForm {
   AUTHORIZATION = "authorization",
 }
 
-export enum AuthPortalName {
+export enum PortalNames {
   REGISTRATION = "Registration",
   AUTHORIZATION = "Authorization",
 }

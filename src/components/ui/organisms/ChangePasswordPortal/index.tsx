@@ -20,18 +20,7 @@ import { registerUser } from "@/api/AuthAPI";
 import { selectEmailUser } from "@/redux/selectors/authSelector";
 import { BtnSubmit } from "../AuthPortal/styles";
 
-type Props = {
-  title: string;
-  type: string;
-  id: number;
-};
-
-export default function ChangePasswordPortal({
-  title,
-}: {
-  title: string;
-  fields: Props[];
-}) {
+export default function ChangePasswordPortal({ title }: { title: string }) {
   const [invalidValue, setInvalidValue] = useState("");
   const dispatch = useDispatch();
   const emailUser = useSelector(selectEmailUser);

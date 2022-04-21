@@ -5,9 +5,9 @@ import {
   MessageError,
   TextAreaField,
 } from "../styles";
-import { InputProps } from "../types";
+import { TextAreaProps } from "../types";
 
-function FormTextArea<T>({ title, name, control, ...rest }: InputProps<T>) {
+function FormTextArea<T>({ title, name, control, ...rest }: TextAreaProps<T>) {
   const {
     field: { onChange, onBlur, value },
     fieldState: { error },
@@ -18,7 +18,7 @@ function FormTextArea<T>({ title, name, control, ...rest }: InputProps<T>) {
         <InputName>{title} :</InputName>
         <TextAreaField
           {...rest}
-          value={value}
+          value={value as string}
           onChange={onChange}
           onBlur={onBlur}
         />

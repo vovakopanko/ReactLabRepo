@@ -1,4 +1,4 @@
-import OnClick from "@/components/ui/atoms/onClick";
+import Button from "@/components/ui/atoms/Button";
 import { colors } from "@/styles/palette";
 import {
   ContentBlock,
@@ -32,11 +32,11 @@ const Avatar = ({ photoUser, email }: Props) => {
       </ImageContainer>
       <>
         {photoLink ? (
-          <OnClick
-            func={() => setPhotoLink((prevState) => !prevState)}
-            color={colors.PURPURE}
+          <Button
+            onClick={() => setPhotoLink((prevState) => !prevState)}
             width={180}
             title={"Change profile image"}
+            type="secondary"
           />
         ) : (
           <>
@@ -47,17 +47,19 @@ const Avatar = ({ photoUser, email }: Props) => {
                 placeholder={"add link here ..."}
               />
             </PhotoInputContainer>
-            <OnClick
-              func={onChangeAvatar}
+            <Button
+              onClick={onChangeAvatar}
               color={colors.PURPURE}
               width={180}
               title={"Upload new avatar"}
+              type="secondary"
             />
-            <OnClick
-              func={() => setPhotoLink(!photoLink)}
+            <Button
+              onClick={() => setPhotoLink(!photoLink)}
               color={colors.RED}
               width={180}
               title={"Close"}
+              type={"primary"}
             />
           </>
         )}

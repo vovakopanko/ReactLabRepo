@@ -3,9 +3,16 @@ import { FieldPath, Control } from "react-hook-form";
 
 export type InputBaseProps = InputHTMLAttributes<HTMLInputElement>;
 
+type TextAreaBaseProps = InputHTMLAttributes<HTMLTextAreaElement>;
+
 export type InputProps<T> = {
   uniqueType: string;
 } & InputBaseProps &
+  HookFormPropsBase<T>;
+
+export type TextAreaProps<T> = {
+  uniqueType: string;
+} & TextAreaBaseProps &
   HookFormPropsBase<T>;
 
 export type HookFormPropsBase<T> = {

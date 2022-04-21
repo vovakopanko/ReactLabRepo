@@ -1,15 +1,11 @@
 import { profileAPI } from "@/api/ProfileAPI";
 import FieldContainer from "@/components/ui/atoms/FieldContainer";
 import { FieldType } from "@/components/ui/atoms/FieldContainer/types";
-import OnClick from "@/components/ui/atoms/onClick";
+import Button from "@/components/ui/atoms/Button";
 import FormTextArea from "@/components/ui/form/TextArea";
 import FormInput from "@/components/ui/form/TextInput";
-import {
-  ProfileForm,
-  BtnSubmit,
-} from "@/components/ui/organisms/AuthPortal/styles";
+import { ProfileForm } from "@/components/ui/organisms/AuthPortal/styles";
 import { updateUserInfo } from "@/redux/reducers/auth";
-import { colors } from "@/styles/palette";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
@@ -64,36 +60,37 @@ const Info = ({
     []
   );
 
-  const onSubmit = async (dataForm: FormValues) => {
-    const { userName, description, address, phoneNumber } = dataForm;
-    await onPressSaveProfile({
-      email,
-      userName,
-      description,
-      address,
-      phoneNumber,
-    });
-    setIsOpen(!isOpen);
-  };
+  const onSubmit = useCallback(
+    handleSubmit(async (dataForm: FormValues) => {
+      const { userName, description, address, phoneNumber } = dataForm;
+      await onPressSaveProfile({
+        email,
+        userName,
+        description,
+        address,
+        phoneNumber,
+      });
+      setIsOpen(!isOpen);
+    }),
+    [isOpen]
+  );
 
   return (
     <ContentBlock>
       {isOpen ? (
         <InfoContainer>
           <InfoTitle>General: </InfoTitle>
-          {field.map((data: FieldType, index: number) => (
+          {field.map((data: FieldType) => (
             <FieldContainer
               key={data.id}
               title={data.title}
               titleName={data.titleName}
-              index={index}
-              lastIndex={field.length - 1}
             />
           ))}
         </InfoContainer>
       ) : (
         <>
-          <ProfileForm onSubmit={handleSubmit(onSubmit)}>
+          <ProfileForm>
             <FormInput
               control={control}
               name={"userName"}
@@ -125,18 +122,19 @@ const Info = ({
               type={"number"}
               required
             />
-            <BtnSubmit
-              type="submit"
-              value={"Save Profile"}
-              disabled={!isValid && isSubmitting}
-              styleBtn={isValid}
-            />
           </ProfileForm>
-          <OnClick
-            title={"Close"}
-            color={colors.RED}
+          <Button
+            title={"Save Profile"}
             width={180}
-            func={() => setIsOpen(!isOpen)}
+            type="secondary"
+            disabled={!isValid || isSubmitting}
+            onClick={onSubmit}
+          />
+          <Button
+            title={"Close"}
+            width={180}
+            onClick={() => setIsOpen(!isOpen)}
+            type="primary"
           />
         </>
       )}

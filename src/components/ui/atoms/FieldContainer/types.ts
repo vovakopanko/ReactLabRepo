@@ -8,6 +8,4 @@ export type Props = {
   id?: number;
   title: string | number;
   titleName: string;
-  index: number;
-  lastIndex: number;
 };

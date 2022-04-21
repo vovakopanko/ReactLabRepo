@@ -1,9 +1,9 @@
 import { SettingInfoBlock, SettingLabel, SettingText } from "./styles";
 import { Props } from "./types";
 
-const FieldContainer = ({ title, titleName, index, lastIndex }: Props) => {
+const FieldContainer = ({ title, titleName }: Props) => {
   return (
-    <SettingInfoBlock lastIndex={lastIndex} index={index}>
+    <SettingInfoBlock>
       <SettingLabel>{titleName}</SettingLabel>
       <SettingText>{title && title}</SettingText>
     </SettingInfoBlock>

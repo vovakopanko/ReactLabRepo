@@ -1,4 +1,4 @@
-import OnClick from "@/components/ui/atoms/onClick";
+import Button from "@/components/ui/atoms/Button";
 import { onStatusPasswordChange } from "@/redux/reducers/profile";
 import { colors } from "@/styles/palette";
 import { useCallback } from "react";
@@ -15,18 +15,18 @@ const ChangePassword = ({ isOpen, setIsOpen }: Props) => {
 
   return (
     <ContentBlock>
-      <OnClick
+      <Button
         title={"Change password"}
-        color={colors.PURPURE}
         width={180}
-        func={changePasswordStatus}
+        onClick={changePasswordStatus}
+        type="secondary"
       />
       {isOpen && (
-        <OnClick
+        <Button
           title={"Change data"}
-          color={colors.PURPURE}
           width={180}
-          func={() => setIsOpen(!isOpen)}
+          onClick={() => setIsOpen(!isOpen)}
+          type="secondary"
         />
       )}
     </ContentBlock>

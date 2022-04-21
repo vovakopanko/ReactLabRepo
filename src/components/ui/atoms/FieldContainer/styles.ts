@@ -4,13 +4,10 @@ export const SettingInfoBlock = styled.div`
   display: flex;
   align-items: "center";
   flex-direction: "row";
-  border-bottom: ${({
-    lastIndex,
-    index,
-  }: {
-    lastIndex: number;
-    index: number;
-  }) => lastIndex !== index && `1px solid ${colors.BLACK}`};
+  border-bottom: 1px solid ${colors.BLACK};
+  &:last-child{
+    border-bottom: none };
+  }
 `;
 
 export const SettingLabel = styled.p`

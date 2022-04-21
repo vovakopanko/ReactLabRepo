@@ -13,7 +13,7 @@ function FormInput<T>({ title, name, control, ...rest }: InputProps<T>) {
         <InputName>{title} :</InputName>
         <InputField
           {...rest}
-          value={value}
+          value={value as string}
           onChange={onChange}
           onBlur={onBlur}
         />
