@@ -7,19 +7,19 @@ import {
   RegistrationContainer,
   SignUpContainer,
   TitleItem,
+  CloseBurger,
+  CloseBtn,
+  BasketImage,
+  ProfileLogoImage,
 } from "./style";
 import { MenuItem } from "../..";
 import Logo from "../../atoms/Logo";
 import {
+  Outlined,
   StyledBtnLogOut,
   StyledNavLink,
   StyleItem,
 } from "../../molecules/MenuItem/styles";
-import {
-  ExportOutlined,
-  ShoppingCartOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
 import { useCallback } from "react";
 import { initialState } from "./menu";
 import {
@@ -30,14 +30,17 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectorUserName,
-  selectorIsAuthUser,
+  selectIsAuthUser,
 } from "@/redux/selectors/authSelector";
+import basketImage from "../../../../assets/svgIcon/basket.svg";
+import ExportOutlined from "../../../../assets/svgIcon/outlined.svg";
+import UserOutlined from "../../../../assets/svgIcon/logo.svg";
 
 const webSiteName: string = "Game Store";
 
 const Header = () => {
   const [showDropDown, setShowDropDown] = useState(false);
-  const isAuth = useSelector(selectorIsAuthUser);
+  const isAuth = useSelector(selectIsAuthUser);
   const userName = useSelector(selectorUserName);
   const dispatch = useDispatch();
 
@@ -76,14 +79,20 @@ const Header = () => {
     [showDropDown]
   );
 
-  const onClick = useCallback(() => {
+  const onLogOut = useCallback(() => {
     dispatch(logOut(false));
   }, []);
 
   return (
     <HeaderContainer>
       <Logo>{webSiteName}</Logo>
-      <Burger type="button" value="=" onClick={toggleShow} />
+      {!showDropDown ? (
+        <Burger type="button" value="=" onClick={toggleShow} />
+      ) : (
+        <CloseBurger>
+          <CloseBtn>x</CloseBtn>
+        </CloseBurger>
+      )}
       {showDropDown && (
         <MenuBurger ref={ref}>
           {isAuth &&
@@ -99,21 +108,21 @@ const Header = () => {
             <>
               <StyledNavLink to={"/profile"}>
                 <StyleItem>
-                  <UserOutlined />
                   <TitleItem>{userName}</TitleItem>
                 </StyleItem>
+                <ProfileLogoImage src={UserOutlined} />
               </StyledNavLink>
               <StyledNavLink to={"/basket"}>
                 <StyleItem>
-                  <ShoppingCartOutlined />
+                  <BasketImage src={basketImage} />
                   <TitleItem>0</TitleItem>
                 </StyleItem>
               </StyledNavLink>
-              <StyledNavLink to={"/"} onClick={onClick}>
+              <StyledBtnLogOut onClick={onLogOut}>
                 <StyleItem>
-                  <ExportOutlined />
+                  <Outlined src={ExportOutlined} />
                 </StyleItem>
-              </StyledNavLink>
+              </StyledBtnLogOut>
             </>
           ) : (
             <>
@@ -143,19 +152,19 @@ const Header = () => {
           <>
             <StyledNavLink to={"/profile"}>
               <StyleItem>
-                <UserOutlined />
                 <TitleItem>{userName}</TitleItem>
               </StyleItem>
+              <ProfileLogoImage src={UserOutlined} />
             </StyledNavLink>
             <StyledNavLink to={"/basket"}>
               <StyleItem>
-                <ShoppingCartOutlined />
+                <BasketImage src={basketImage} />
                 <TitleItem>0</TitleItem>
               </StyleItem>
             </StyledNavLink>
-            <StyledBtnLogOut to={"/home"} onClick={() => onClick()}>
+            <StyledBtnLogOut onClick={onLogOut}>
               <StyleItem>
-                <ExportOutlined />
+                <Outlined src={ExportOutlined} />
               </StyleItem>
             </StyledBtnLogOut>
           </>

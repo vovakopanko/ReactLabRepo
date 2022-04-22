@@ -71,7 +71,7 @@ export const CardBlock = styled.div`
 
   border-radius: 15px;
   background-color: ${colors.BLACK};
-  box-shadow: 0px 0px 10px 0px ${colors.RED};
+  box-shadow: 0px 0px 10px 0px ${colors.PURPURE};
 
   height: 40vh;
   width: 30vh;
@@ -91,7 +91,7 @@ export const CardBackBlock = styled.div`
   flex-direction: column;
   border-radius: 15px;
   background-color: ${colors.BLACK};
-  box-shadow: 0px 0px 10px 0px ${colors.RED};
+  box-shadow: 0px 0px 10px 0px ${colors.PURPURE};
   height: 40vh;
   width: 30vh;
   @media (max-width: 768px) {
@@ -130,4 +130,10 @@ export const AgeRestrictions = styled.h2`
 
 export const StarContainer = styled.div`
   margin-left: 10px;
+`;
+
+export const StarImage = styled.img`
+  width: 20px;
+  height: 20px;
+  padding: 2px;
 `;

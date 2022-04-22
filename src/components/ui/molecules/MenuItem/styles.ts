@@ -25,7 +25,7 @@ export const StyledNavLink = styled(NavLink)`
   }
 `;
 
-export const StyledBtnLogOut = styled(NavLink)`
+export const StyledBtnLogOut = styled.div`
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -33,6 +33,12 @@ export const StyledBtnLogOut = styled(NavLink)`
   @media (max-width: 768px) {
     padding-bottom: 5px;
   }
+`;
+
+export const HeaderContainerMenu = styled.div`
+  min-width: 100px;
+  display: flex;
+  justify-content: center;
 `;
 
 export const SubmitBtn = styled(NavLink)`
@@ -53,4 +59,9 @@ export const StyleItem = styled.ul`
     color: ${colors.RED};
   }
   padding: 0 20px;
+`;
+
+export const Outlined = styled.img`
+  width: 30px;
+  height: 30px;
 `;

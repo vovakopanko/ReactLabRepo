@@ -71,6 +71,11 @@ export const HeaderContainer = styled.div`
   width: 100%;
 `;
 
+export const CloseOutlined = styled.img`
+  width: 20px;
+  height: 20px;
+`;
+
 export const HeaderName = styled.h1`
   color: red;
   width: 90%;
@@ -118,7 +123,7 @@ export const InputField = styled.input`
   font-size: 14;
 `;
 
-export const AuthForm = styled.form`
+export const ProfileForm = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -126,14 +131,18 @@ export const AuthForm = styled.form`
 `;
 
 export const BtnSubmit = styled.input`
-  margin-top: 20;
-  text-transform: uppercase;
-  border-radius: 10px;
-  border: none;
-  padding: 7px;
-  font-size: 16;
+  background-color: ${(props: { styleBtn: boolean }) =>
+    props.styleBtn ? colors.PURPURE : colors.GRAY};
+  color: ${(props: { styleBtn: boolean }) =>
+    props.styleBtn ? colors.WHITE : colors.BLACK};
+  opacity: ${(props: { styleBtn: boolean }) => (props.styleBtn ? 1 : 0.3)};
+  padding-top: 15px;
+  padding-bottom: 12px;
+  border-radius: 15px;
   letter-spacing: 5px;
   padding-left: 15px;
+  border: none;
+  text-transform: uppercase;
   text-align: center;
   justify-content: center;
   align-items: center;

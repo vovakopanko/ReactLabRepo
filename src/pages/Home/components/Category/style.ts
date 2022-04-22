@@ -7,7 +7,7 @@ export const CategoryContainer = styled(NavLink)`
     transition: 0.3s;
     align-items: center;
 
-    box-shadow: 0px 0px 20px 0px ${colors.RED};
+    box-shadow: 0px 0px 20px 0px ${colors.PURPURE};
     border-width: 5px 5px 10px 5px;
   }
   display: flex;

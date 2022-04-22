@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { Footer, Header } from "./components/ui";
 import SignUp from "./components/ui/molecules/SignUp";
 import SignIn from "./components/ui/molecules/SignIn";
+import ChangePassword from "./components/ui/molecules/ChangePassword";
 
 const Layout = () => {
   return (
@@ -13,6 +14,7 @@ const Layout = () => {
         <Outlet />
         <SignIn />
         <SignUp />
+        <ChangePassword />
       </Background>
       <Footer />
     </Container>

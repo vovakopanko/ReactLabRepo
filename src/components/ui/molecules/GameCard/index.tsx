@@ -10,8 +10,9 @@ import {
   PriseBlock,
   Span,
   StarContainer,
+  StarImage,
 } from "./style";
-import { StarTwoTone } from "@ant-design/icons";
+import image from "./../../../../assets/svgIcon/star.svg";
 import Button from "../../atoms/Button";
 
 const GamePlatform = ({ src, alt }: { src: string; alt: string }) => {
@@ -45,14 +46,14 @@ const GameCard = ({
         </PriseBlock>
         <StarContainer>
           {starsCount.map((_, index) => {
-            return <StarTwoTone key={index} twoToneColor="#ffd802" />;
+            return <StarImage src={image} key={index} />;
           })}
         </StarContainer>
       </CardBlock>
       <CardBackBlock>
         <GameDescription>{description}</GameDescription>
         <AgeRestrictions>{age}</AgeRestrictions>
-        <Button title={"Add to cart"} />
+        <Button title={"Add to cart"} width={"40%"} type="secondary" />
       </CardBackBlock>
     </>
   );

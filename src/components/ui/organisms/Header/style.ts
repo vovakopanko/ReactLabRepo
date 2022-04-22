@@ -41,9 +41,36 @@ export const Burger = styled.input`
   border: none;
   overflow: hidden;
   display: none;
-  height: 5vh;
   @media (max-width: 768px) {
     display: block;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+export const CloseBurger = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${colors.BLACK};
+  align-items: center;
+  border: none;
+  overflow: hidden;
+  display: none;
+  @media (max-width: 768px) {
+    display: block;
+  }
+`;
+
+export const CloseBtn = styled.span`
+  padding: 10px;
+  padding-top: 20px;
+  /* text-align: center;
+  justify-content: center; */
+  color: ${colors.WHITE};
+  &:hover {
+    cursor: pointer;
   }
 `;
 
@@ -68,7 +95,25 @@ export const MenuBurger = styled.div`
 `;
 
 export const TitleItem = styled.span`
-  padding-left: 10px;
+  padding-right: 10px;
+`;
+
+export const ProfileLogoImage = styled.img`
+  width: 25px;
+  height: 25px;
+  margin-left: -20px;
+  padding-right: 15px;
+`;
+
+export const BasketImage = styled.img`
+  width: 20px;
+  height: 20px;
+  padding-right: 10px;
+`;
+
+export const UserLogoImage = styled.img`
+  width: 20px;
+  height: 20px;
 `;
 
 export const RegistrationContainer = styled.div``;

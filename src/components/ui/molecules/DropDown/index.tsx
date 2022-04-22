@@ -2,9 +2,9 @@ import { FC } from "react";
 import {
   StyleDropDown,
   DropDownTitle,
-  StyleCaretDownOutlined,
   ContentDropDown,
   LinkItems,
+  DropDownContainer,
 } from "./style";
 import { dropDownItem, HeaderTitleName } from "./type";
 
@@ -16,7 +16,7 @@ const dropDownItems: dropDownItem[] = [
 
 const DropDown: FC<HeaderTitleName> = ({ item }) => {
   return (
-    <>
+    <DropDownContainer>
       {dropDownItems.map(({ id, link, title }) => (
         <LinkItems key={id} to={link}>
           {title}
@@ -24,7 +24,6 @@ const DropDown: FC<HeaderTitleName> = ({ item }) => {
       ))}
       <StyleDropDown>
         <DropDownTitle>{item}</DropDownTitle>
-        <StyleCaretDownOutlined />
         <ContentDropDown>
           {dropDownItems.map(({ id, link, title }) => (
             <LinkItems key={id} to={link}>
@@ -33,7 +32,7 @@ const DropDown: FC<HeaderTitleName> = ({ item }) => {
           ))}
         </ContentDropDown>
       </StyleDropDown>
-    </>
+    </DropDownContainer>
   );
 };
 
