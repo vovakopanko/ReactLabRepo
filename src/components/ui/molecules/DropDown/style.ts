@@ -37,10 +37,17 @@ export const ContentDropDown = styled.div`
   }
 `;
 
+export const DropDownContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+`;
+
 export const LinkItems = styled(NavLink)`
   padding: 8px 2px;
-  display: flex;
-  align-items: center;
+  /* display: flex;
+  align-items: center; */
   text-decoration: none;
   color: ${colors.WHITE};
   display: none;
