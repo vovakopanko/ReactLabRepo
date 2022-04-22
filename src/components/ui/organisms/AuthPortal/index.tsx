@@ -43,22 +43,12 @@ export default function AuthPortal({
 }) {
   const [invalidValue, setInvalidValue] = useState("");
   const dispatch = useDispatch();
-  const [isShowPassword, setIsShowPassword] = useState(false);
-  const [isShowRepeatPassword, setIsShowRepeatPassword] = useState(false);
   const isRegistrationModal = modalForm === "registration";
 
   const scheme = useMemo(
     () => getScheme(!isRegistrationModal),
     [isRegistrationModal]
   );
-
-  const onHandlerShowPassword = useCallback(() => {
-    setIsShowPassword(!isShowPassword);
-  }, [isShowPassword]);
-
-  const onHandlerShowRepeatPassword = useCallback(() => {
-    setIsShowRepeatPassword(!isShowRepeatPassword);
-  }, [isShowRepeatPassword]);
 
   const {
     control,
@@ -149,8 +139,8 @@ export default function AuthPortal({
             control={control}
             name={"email"}
             title={"Email"}
-            type={"text"}
             uniqueType={"email"}
+            type={"text"}
             maxLength={25}
             minLength={7}
           />
@@ -158,8 +148,8 @@ export default function AuthPortal({
             control={control}
             name={"password"}
             title={"Password"}
+            type={"password"}
             uniqueType={"password"}
-            type={isShowPassword ? "text" : "password"}
             maxLength={30}
             minLength={5}
             isDisplayEye={true}
@@ -170,7 +160,7 @@ export default function AuthPortal({
               name={"duplicatePassword"}
               title={"Repeat password"}
               uniqueType={"duplicatePassword"}
-              type={isShowRepeatPassword ? "text" : "password"}
+              type={"password"}
               maxLength={30}
               minLength={5}
               isDisplayEye={true}

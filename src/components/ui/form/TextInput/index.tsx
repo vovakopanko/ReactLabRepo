@@ -24,7 +24,6 @@ function FormInput<T>({
     field: { onChange, onBlur, value },
     fieldState: { error },
   } = useController({ name, control });
-
   const [isShowPassword, setIsShowPassword] = useState(false);
 
   const toggleIsShowPassword = useCallback(
@@ -42,15 +41,17 @@ function FormInput<T>({
             value={value as string}
             onChange={onChange}
             onBlur={onBlur}
-            type={isShowPassword ? "text" : "password"}
+            type={
+              rest.type === "text" || rest.type === "number"
+                ? rest.type
+                : isShowPassword
+                ? "text"
+                : "password"
+            }
           />
           {isDisplayEye && (
             <SecureContainer onClick={toggleIsShowPassword}>
-              {isShowPassword && (
-                <SecureImage
-                  src={isShowPassword ? hidePassword : showPassword}
-                />
-              )}
+              <SecureImage src={isShowPassword ? hidePassword : showPassword} />
             </SecureContainer>
           )}
         </FieldContainer>
