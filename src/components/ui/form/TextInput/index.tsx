@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useController } from "react-hook-form";
 import {
   InputContainer,
@@ -27,9 +27,10 @@ function FormInput<T>({
 
   const [isShowPassword, setIsShowPassword] = useState(false);
 
-  const toggleIsShowPassword = () => {
-    setIsShowPassword(!isShowPassword);
-  };
+  const toggleIsShowPassword = useCallback(
+    () => setIsShowPassword((prevState) => !prevState),
+    []
+  );
 
   return (
     <>
@@ -45,10 +46,10 @@ function FormInput<T>({
           />
           {isDisplayEye && (
             <SecureContainer onClick={toggleIsShowPassword}>
-              {isShowPassword ? (
-                <SecureImage src={hidePassword} />
-              ) : (
-                <SecureImage src={showPassword} />
+              {isShowPassword && (
+                <SecureImage
+                  src={isShowPassword ? hidePassword : showPassword}
+                />
               )}
             </SecureContainer>
           )}
