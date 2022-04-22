@@ -6,6 +6,7 @@ import {
   InputField,
   FieldContainer,
   SecureImage,
+  SecureContainer,
 } from "../styles";
 import { InputProps } from "../types";
 import image from "./../../../../assets/svgIcon/eyeIcon.svg";
@@ -33,9 +34,9 @@ function FormInput<T>({
             onBlur={onBlur}
           />
           {onHandler && (
-            <div onClick={onHandler}>
+            <SecureContainer onClick={onHandler}>
               <SecureImage src={image} />
-            </div>
+            </SecureContainer>
           )}
         </FieldContainer>
       </InputContainer>

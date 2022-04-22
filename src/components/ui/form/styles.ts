@@ -42,7 +42,7 @@ export const FieldContainer = styled.div`
 export const MessageError = styled.span`
   color: red;
   width: 80%;
-  padding: 5;
+  padding: 5px;
 `;
 
 export const InputField = styled.input`
@@ -58,8 +58,12 @@ export const InputField = styled.input`
 
 export const SecureImage = styled.img`
   position: "absolute";
-  margin-top: -40px;
-  margin-left: 160px;
   width: 20px;
   height: 20px;
+`;
+
+export const SecureContainer = styled.div`
+  margin-top: -40px;
+  margin-left: 160px;
+  padding-bottom: 15px;
 `;
