@@ -162,7 +162,7 @@ export default function AuthPortal({
             type={isShowPassword ? "text" : "password"}
             maxLength={30}
             minLength={5}
-            onHandler={onHandlerShowPassword}
+            isDisplayEye={true}
           />
           {isRegistrationModal && (
             <FormInput
@@ -173,7 +173,7 @@ export default function AuthPortal({
               type={isShowRepeatPassword ? "text" : "password"}
               maxLength={30}
               minLength={5}
-              onHandler={onHandlerShowRepeatPassword}
+              isDisplayEye={true}
             />
           )}
           <BtnSubmit

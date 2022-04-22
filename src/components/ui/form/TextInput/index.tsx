@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useController } from "react-hook-form";
 import {
   InputContainer,
@@ -9,19 +10,27 @@ import {
   SecureContainer,
 } from "../styles";
 import { InputProps } from "../types";
-import image from "./../../../../assets/svgIcon/eyeIcon.svg";
+import showPassword from "./../../../../assets/svgIcon/showPassword.svg";
+import hidePassword from "./../../../../assets/svgIcon/hidePassword.svg";
 
 function FormInput<T>({
   title,
   name,
   control,
-  onHandler,
+  isDisplayEye,
   ...rest
 }: InputProps<T>) {
   const {
     field: { onChange, onBlur, value },
     fieldState: { error },
   } = useController({ name, control });
+
+  const [isShowPassword, setIsShowPassword] = useState(false);
+
+  const toggleIsShowPassword = () => {
+    setIsShowPassword(!isShowPassword);
+  };
+
   return (
     <>
       <InputContainer>
@@ -32,10 +41,15 @@ function FormInput<T>({
             value={value as string}
             onChange={onChange}
             onBlur={onBlur}
+            type={isShowPassword ? "text" : "password"}
           />
-          {onHandler && (
-            <SecureContainer onClick={onHandler}>
-              <SecureImage src={image} />
+          {isDisplayEye && (
+            <SecureContainer onClick={toggleIsShowPassword}>
+              {isShowPassword ? (
+                <SecureImage src={hidePassword} />
+              ) : (
+                <SecureImage src={showPassword} />
+              )}
             </SecureContainer>
           )}
         </FieldContainer>

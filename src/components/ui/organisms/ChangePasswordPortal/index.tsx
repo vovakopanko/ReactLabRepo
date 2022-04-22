@@ -97,7 +97,7 @@ export default function ChangePasswordPortal({ title }: { title: string }) {
             title={"Current Password"}
             uniqueType={"currentPassword"}
             type={ShowCurrentPassword ? "text" : "password"}
-            onHandler={onHandlerShowCurrentPassword}
+            isDisplayEye={true}
           />
           <FormInput
             control={control}
@@ -105,7 +105,7 @@ export default function ChangePasswordPortal({ title }: { title: string }) {
             title={"Password"}
             uniqueType={"password"}
             type={isShowPassword ? "text" : "password"}
-            onHandler={onHandlerShowPassword}
+            isDisplayEye={true}
           />
           <FormInput
             control={control}
@@ -113,7 +113,7 @@ export default function ChangePasswordPortal({ title }: { title: string }) {
             title={"Repeat password"}
             uniqueType={"repeatPassword"}
             type={isShowRepeatPassword ? "text" : "password"}
-            onHandler={onHandlerShowRepeatPassword}
+            isDisplayEye={true}
           />
           <BtnSubmit
             type="submit"

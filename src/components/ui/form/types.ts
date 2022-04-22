@@ -7,7 +7,7 @@ type TextAreaBaseProps = InputHTMLAttributes<HTMLTextAreaElement>;
 
 export type InputProps<T> = {
   uniqueType: string;
-  onHandler?: () => void;
+  isDisplayEye?: boolean;
 } & InputBaseProps &
   HookFormPropsBase<T>;
 
