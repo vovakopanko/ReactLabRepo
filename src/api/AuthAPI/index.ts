@@ -32,4 +32,20 @@ export const registerUser = {
       console.error(error);
     }
   },
+
+  async changePassword(
+    userName: string,
+    password: string,
+    currentPassword: string
+  ) {
+    try {
+      return instanceMongoDB.post<AuthResponse>(AppUrls.CHANGE_PASSWORD, {
+        email: userName,
+        password: password,
+        currentPassword: currentPassword,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  },
 };

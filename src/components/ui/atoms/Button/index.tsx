@@ -1,10 +1,24 @@
-import { ButtonContainer, Title } from "./style";
+import { ButtonBlock, ButtonContainer } from "./styles";
+import { Props } from "./types";
 
-const Button = ({ title }: { title: string }) => {
+const Button = ({
+  title,
+  width,
+  onClick,
+  type = "primary",
+  disabled,
+}: Props) => {
   return (
-    <ButtonContainer>
-      <Title>{title}</Title>
-    </ButtonContainer>
+    <ButtonBlock>
+      <ButtonContainer
+        type={"button"}
+        onClick={onClick}
+        value={title}
+        width={width + "px"}
+        buttonType={type}
+        disabled={disabled}
+      />
+    </ButtonBlock>
   );
 };
 

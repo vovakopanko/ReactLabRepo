@@ -1,3 +1,4 @@
+import { PortalNames, ModalForm } from "@/constants/types";
 import { selectorStatusWindowRegistration } from "@/redux/selectors/authSelector";
 import { useSelector } from "react-redux";
 import AuthPortal from "../../organisms/AuthPortal";
@@ -9,8 +10,8 @@ export default function SignUp() {
     <>
       {isOpen && (
         <AuthPortal
-          modalForm={"registration"}
-          title={"Registration"}
+          modalForm={ModalForm.REGISTRATION}
+          title={PortalNames.REGISTRATION}
           fields={fieldData}
         />
       )}

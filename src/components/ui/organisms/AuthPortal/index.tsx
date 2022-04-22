@@ -5,47 +5,32 @@ import {
   HeaderContainer,
   HeaderName,
   ErrorMessage,
-  AuthForm,
+  ProfileForm,
   BtnSubmit,
+  CloseOutlined,
 } from "./styles";
-import { CloseOutlined } from "@ant-design/icons";
-import { useState } from "react";
+import image from "./../../../../assets/svgIcon/incorrect.svg";
+import { useCallback, useState } from "react";
 import { registerUser } from "@/api/AuthAPI";
 import { useForm } from "react-hook-form";
-import { colors } from "@/styles/palette";
 import { useDispatch } from "react-redux";
 import {
   setAuthCurrentUser,
   setStatusAuthWindow,
   setStatusRegistrationWindow,
-  updateUserName,
+  updateUserInfo,
+  updateUserPhoto,
 } from "@/redux/reducers/auth";
 import FormInput from "../../form/TextInput";
 import { getScheme, initialFormData, FormValues } from "./scheme";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useMemo } from "react";
+import { Data } from "@/api/AuthAPI/types";
 
 type Props = {
   title: string;
   type: string;
   id: number;
-};
-
-const defaultButton = {
-  color: colors.RED,
-  style: {
-    backgroundColor: colors.RED,
-    color: colors.WHITE,
-  },
-};
-
-const disabledButton = {
-  color: colors.RED,
-  style: {
-    backgroundColor: colors.GRAY,
-    color: colors.BLACK,
-    opacity: 0.3,
-  },
 };
 
 export default function AuthPortal({
@@ -58,7 +43,6 @@ export default function AuthPortal({
 }) {
   const [invalidValue, setInvalidValue] = useState("");
   const dispatch = useDispatch();
-
   const isRegistrationModal = modalForm === "registration";
 
   const scheme = useMemo(
@@ -77,9 +61,10 @@ export default function AuthPortal({
     resolver: yupResolver(scheme),
   });
 
-  const authenticate = (email: string) => {
-    dispatch(updateUserName(email.split("@", 1).toString()));
+  const authenticate = (data: Data) => {
+    dispatch(updateUserInfo(data));
     dispatch(setAuthCurrentUser(true));
+    dispatch(updateUserPhoto(data.photoUser));
     if (isRegistrationModal) {
       dispatch(setStatusRegistrationWindow(false));
     } else dispatch(setStatusAuthWindow(false));
@@ -96,7 +81,7 @@ export default function AuthPortal({
       .loginUser(email, password)
       .then((response) => {
         if (response?.data.accessToken !== null) {
-          authenticate(email);
+          authenticate(response?.data.user!);
         } else dispatch(setAuthCurrentUser(false));
       })
       .catch((errors) => {
@@ -115,7 +100,7 @@ export default function AuthPortal({
       .registrationProfile(email, password)
       .then((response) => {
         if (response?.data.accessToken !== null) {
-          authenticate(email);
+          authenticate(response?.data.user!);
         } else dispatch(setAuthCurrentUser(false));
       })
       .catch((errors) => {
@@ -133,8 +118,6 @@ export default function AuthPortal({
     reset();
   };
 
-  const buttonStyle = isValid ? defaultButton : disabledButton;
-
   return ReactDOM.createPortal(
     <>
       <BackgroundContainer />
@@ -142,23 +125,22 @@ export default function AuthPortal({
         <HeaderContainer>
           <HeaderName>{title}</HeaderName>
           <div
-            style={{ textAlign: "center" }}
             onClick={() => {
               isRegistrationModal
                 ? dispatch(setStatusRegistrationWindow(false))
                 : dispatch(setStatusAuthWindow(false));
             }}
           >
-            <CloseOutlined style={{ color: "red" }} />
+            <CloseOutlined src={image} />
           </div>
         </HeaderContainer>
-        <AuthForm onSubmit={handleSubmit(onSubmit)}>
+        <ProfileForm onSubmit={handleSubmit(onSubmit)}>
           <FormInput
             control={control}
             name={"email"}
             title={"Email"}
-            type={"text"}
             uniqueType={"email"}
+            type={"text"}
             maxLength={25}
             minLength={7}
           />
@@ -166,10 +148,11 @@ export default function AuthPortal({
             control={control}
             name={"password"}
             title={"Password"}
-            uniqueType={"password"}
             type={"password"}
+            uniqueType={"password"}
             maxLength={30}
             minLength={5}
+            isDisplayEye={true}
           />
           {isRegistrationModal && (
             <FormInput
@@ -180,15 +163,16 @@ export default function AuthPortal({
               type={"password"}
               maxLength={30}
               minLength={5}
+              isDisplayEye={true}
             />
           )}
           <BtnSubmit
             type="submit"
             value={isRegistrationModal ? "Sign In" : "Continue"}
             disabled={!isValid && isRegistrationModal && isSubmitting}
-            {...buttonStyle}
+            styleBtn={isValid}
           />
-        </AuthForm>
+        </ProfileForm>
         <ErrorMessage>{invalidValue}</ErrorMessage>
       </AuthContainer>
     </>,

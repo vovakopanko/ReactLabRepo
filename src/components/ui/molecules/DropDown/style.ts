@@ -1,17 +1,10 @@
 import { colors } from "@/styles/palette";
-import { CaretDownOutlined } from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-export const StyleCaretDownOutlined = styled(CaretDownOutlined)`
-  color: ${colors.WHITE};
-  @media (max-width: 768px) {
-    display: none;
-  }
-`;
-
 export const StyleDropDown = styled.div`
-  min-width: 120px;
+  min-width: 100px;
+  align-items: "center";
   position: relative;
   &:hover > div > a {
     display: block;
@@ -44,10 +37,17 @@ export const ContentDropDown = styled.div`
   }
 `;
 
+export const DropDownContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+`;
+
 export const LinkItems = styled(NavLink)`
   padding: 8px 2px;
-  display: flex;
-  align-items: center;
+  /* display: flex;
+  align-items: center; */
   text-decoration: none;
   color: ${colors.WHITE};
   display: none;
