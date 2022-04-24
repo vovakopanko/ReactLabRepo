@@ -9,6 +9,9 @@ export const Title = styled.h2`
 `;
 
 export const Container = styled.div`
+  width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
+  min-width: 420px;
 `;

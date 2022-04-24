@@ -2,17 +2,21 @@ import { colors } from "@/styles/palette";
 import { useCallback } from "react";
 import styled from "styled-components";
 import { TGameCard } from "../../organisms/GameList/types";
-import { StyledItem } from "./style";
+import { StyledItem } from "./styles";
 
 type Props = {
   value: string;
   list: TGameCard[];
   setValue: (val: string) => void;
-  toggle: any;
   setToggle: (val: boolean) => void;
+  width: number | string;
 };
 
-const SearchList = ({ value, list, setValue, toggle, setToggle }: Props) => {
+type StyledProps = {
+  width: number | string;
+};
+
+const SearchList = ({ value, list, setValue, setToggle, width }: Props) => {
   if (value) {
     const filteredList = list.filter((item) =>
       item.title.toString().toLowerCase().startsWith(value.toLowerCase())
@@ -25,7 +29,7 @@ const SearchList = ({ value, list, setValue, toggle, setToggle }: Props) => {
         setToggle(false);
       }, []);
       return (
-        <StyledList toggle>
+        <StyledList width={width}>
           {filteredList.map((item, index) => (
             <StyledItem
               key={index}
@@ -40,7 +44,7 @@ const SearchList = ({ value, list, setValue, toggle, setToggle }: Props) => {
     }
 
     return (
-      <StyledList toggle>
+      <StyledList width={width}>
         <StyledItem danger="orangered">Not Found</StyledItem>
       </StyledList>
     );
@@ -48,19 +52,14 @@ const SearchList = ({ value, list, setValue, toggle, setToggle }: Props) => {
   return null;
 };
 
-type PropsStyle = {
-  toggle: boolean;
-};
-
-const StyledList = styled.div<PropsStyle>`
+const StyledList = styled.div<StyledProps>`
    {
-    display: ${(props: PropsStyle) => (props.toggle ? "inline" : "block")};
-    z-index: 20;
+    width: ${(props) => props.width};
+    z-index: 2;
     position: absolute;
-    top: 105px;
-    width: 80%;
+    margin-top: 38px;
     border: 1px solid none;
-    background: ${colors.BLACK};
+    background: ${colors.LIGHT_GRAY};
     border-radius: 15px;
     padding: 15px 0px;
   }

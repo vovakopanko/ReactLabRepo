@@ -74,7 +74,7 @@ export const CardBlock = styled.div`
   width: 30vh;
   @media (max-width: 768px) {
     height: 50vh;
-    width: 30vh;
+    width: 25vh;
   }
 `;
 
@@ -93,7 +93,7 @@ export const CardBackBlock = styled.div`
   width: 30vh;
   @media (max-width: 768px) {
     height: 50vh;
-    width: 30vh;
+    width: 25vh;
   }
 `;
 

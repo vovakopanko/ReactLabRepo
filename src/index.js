@@ -11,6 +11,7 @@ import SignUp from "./components/ui/molecules/SignUp";
 import SignIn from "./components/ui/molecules/SignIn";
 import Profile from "./pages/Profile";
 import { Layout } from "./Layout.tsx";
+import Product from "./pages/Product";
 
 const AppContainer = () => {
   return (
@@ -18,6 +19,7 @@ const AppContainer = () => {
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
+        <Route exact path="product/:pc" element={<Product />} />
         <Route exact path="xboxone" element={<XBox />} />
         <Route exact path="playstation5" element={<Playstation />} />
         <Route exact path="pc" element={<PC />} />
@@ -30,8 +32,8 @@ const AppContainer = () => {
 
 const Background = styled.div`
   background-image: url(${images.BACKGROUND});
-  min-height: 90vh;
   height: 100%;
+  min-height: 90vh;
   background-size: cover;
 `;
 

@@ -1,13 +1,12 @@
+import { BottomLine } from "@/pages/Product/styles";
 import { FC } from "react";
-import { Title, LineContainer, StyleLine } from "./style";
+import { Title } from "./style";
 
 const SectionHeader: FC<{ name: string }> = ({ name }) => {
   return (
     <>
       <Title>{name}</Title>
-      <LineContainer>
-        <StyleLine />
-      </LineContainer>
+      <BottomLine />
     </>
   );
 };

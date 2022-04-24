@@ -1,11 +1,11 @@
 export type CardItem = {
   title: string;
-  prise: string;
+  prise: number;
   url: string;
   alt: string;
   amountStars: number;
   description: string;
-  age: string;
+  age: number;
   imagePlatforms: imagesPlatforms[];
 };
 

@@ -42,7 +42,7 @@ const GameCard = ({
         <Image src={url} alt={alt} />
         <PriseBlock>
           <Span>{title}</Span>
-          <Span>{prise}</Span>
+          <Span>{prise}$</Span>
         </PriseBlock>
         <StarContainer>
           {starsCount.map((_, index) => {
@@ -52,7 +52,7 @@ const GameCard = ({
       </CardBlock>
       <CardBackBlock>
         <GameDescription>{description}</GameDescription>
-        <AgeRestrictions>{age}</AgeRestrictions>
+        <AgeRestrictions>{age}+</AgeRestrictions>
         <Button title={"Add to cart"} width={"40%"} type="secondary" />
       </CardBackBlock>
     </>

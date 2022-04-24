@@ -1,11 +1,6 @@
 import { colors } from "./../../styles/palette/index";
 import styled from "styled-components";
 
-export const PageContainer = styled.div`
-  justify-content: center;
-  font-size: 25;
-`;
-
 export const GamesBlock = styled.div`
   display: flex;
   flex-direction: row;
@@ -25,13 +20,27 @@ export const GamesBlock = styled.div`
   }
 `;
 
-export const GenresContainer = styled.div`
+export const FlexContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
 export const FilterContainer = styled.div`
-  width: 280px;
+  min-width: 368px;
+  @media (max-width: 1550px) {
+    min-width: 300px;
+  }
+  @media (max-width: 1200px) {
+    min-width: 300px;
+  }
+  @media (max-width: 768px) {
+    min-width: 368px;
+    justify-content: center;
+    align-self: center;
+  }
+`;
+
+export const FilterBlock = styled.div`
   border: 1px solid grey;
   border-radius: 25px;
   padding: 10px;
@@ -41,10 +50,25 @@ export const FilterContainer = styled.div`
 `;
 
 export const ProductContainer = styled.div`
+  font-size: 25;
   display: flex;
   flex-direction: row;
   justify-content: center;
   width: 100%;
+  @media (max-width: 1550px) {
+    flex-direction: row;
+    justify-content: center;
+  }
+  @media (max-width: 1200px) {
+    flex-direction: row;
+    justify-content: center;
+  }
+  @media (max-width: 768px) {
+    min-width: 360px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 export const ProductName = styled.h3`
@@ -56,7 +80,7 @@ export const ProductName = styled.h3`
 `;
 
 export const BottomLine = styled.div`
-  border-bottom: 1px solid ${colors.WHITE};
+  border-bottom: 1px solid ${colors.LIGHT_GRAY};
   margin-left: 10px;
   margin-right: 10px;
   margin-bottom: 10px;
@@ -112,32 +136,35 @@ export const RadioFieldTitle = styled.span`
 
 export const ProductMediaContainer = styled.div`
   width: 70%;
-  margin: 10px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  margin-left: 20px;
+  @media (max-width: 768px) {
+    min-width: 360px;
+  }
 `;
 
 export const SearchBarContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  /* display: flex;
+  justify-content: center; */
 `;
 
 export const ProductListContainer = styled.div`
-  margin: 20px;
   border-radius: 25px;
   border: 1px solid ${colors.GRAY};
   background-color: ${colors.BLACK};
   opacity: 0.8;
+  @media (max-width: 768px) {
+    min-width: 368px;
+  }
 `;
 
 export const ProductList = styled.div`
   justify-content: center;
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  min-height: 300px;
+  align-self: center;
+  min-height: 360px;
 `;
 
 export const EmptyList = styled.span`
   color: ${colors.WHITE};
-  align-self: center;
 `;

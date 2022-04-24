@@ -3,10 +3,7 @@ import styled from "styled-components";
 
 export const StyleInput = styled.input`
   color: ${colors.WHITE};
-  display: flex;
   position: relative;
-  flex-direction: column;
-  align-items: center;
   height: 30px;
   background-color: ${colors.BLACK};
   opacity: 0.8;
@@ -36,6 +33,7 @@ export const FinderContainer = styled.div`
 `;
 
 export const StyledItem = styled.div`
+  width: 70%;
   padding: 0.25;
   color: ${({ danger }: { danger: string }) => danger || "#fff"};
   font-size: 14px;
@@ -43,7 +41,6 @@ export const StyledItem = styled.div`
   border-radius: 15px;
   padding-left: 10px;
   margin: 2px;
-
   &:hover {
     background: ${({ danger }) => (danger ? "transparent" : colors.RED)};
     cursor: ${({ danger }) => danger || "pointer"};

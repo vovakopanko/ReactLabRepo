@@ -68,8 +68,6 @@ export const ImagePlatformContainer = styled.div`
 export const FlipContainer = styled.div`
   perspective: 1000px;
   margin: 10px;
-  height: 40vh;
-  width: 30vh;
   margin-bottom: 15px;
   @media (max-width: 1368px) {
   }
@@ -77,9 +75,8 @@ export const FlipContainer = styled.div`
     padding: 10px 0px;
   }
   @media (max-width: 768px) {
-    padding: 10px 0px;
-    height: 50vh;
-    width: 30vh;
+    padding-bottom: 20px;
+    margin: 0px;
   }
 `;
 

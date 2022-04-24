@@ -1,24 +1,26 @@
 export type TCardItem = {
   title: string;
-  prise: string;
+  prise: number;
   url: string;
   alt: string;
   amountStars: number;
   description: string;
-  age: string;
+  age: number;
   imagePlatforms: imagesPlatforms[];
+  genres: string;
 };
 
 export type TGameCard = {
   _id: number;
   title: string;
-  prise: string;
+  prise: number;
   url: string;
   alt: string;
   amountStars: number;
-  age: string;
+  age: number;
   description: string;
   imagePlatforms: imagesPlatforms[];
+  genres: string;
 };
 
 export enum amountFavoriteGame {

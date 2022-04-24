@@ -1,10 +1,10 @@
 import { debouncedFetchData } from "@/api/SearchAPI";
-import { FC, useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { TGameCard } from "../../organisms/GameList/types";
 import SearchList from "./SearchList";
-import { FinderContainer, StyleInput } from "./style";
+import { FinderContainer, StyleInput } from "./styles";
 
-const Input: FC = () => {
+const Input = ({ width = "80%" }: { width?: number | string }) => {
   const [searchData, setSearchData] = useState("");
   const [findArray, setFindArray] = useState<TGameCard[]>([]);
   const [isFocus, setIsFocus] = useState(false);
@@ -17,7 +17,6 @@ const Input: FC = () => {
 
   const OnChangeData = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchData(e.target.value.trim());
-    setIsFocus(true);
   };
 
   const onFocus = useCallback(() => setIsFocus(true), []);
@@ -36,10 +35,10 @@ const Input: FC = () => {
         value={searchData}
       />
       <SearchList
+        width={width}
         value={searchData}
         list={findArray}
         setValue={setSearchData}
-        toggle={isFocus}
         setToggle={setIsFocus}
       />
     </FinderContainer>

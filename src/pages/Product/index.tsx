@@ -1,189 +1,69 @@
-import { contentAPI } from "@/api/ContentAPI";
-import { SearchBar } from "@/components/ui";
-import { CardItem } from "@/components/ui/organisms/GameList";
-import { TGameCard } from "@/components/ui/organisms/GameList/types";
+import { SectionHeader } from "@/components/ui";
 import AuthRedirect from "@/hoc/withAuthRedirect";
-import { colors } from "@/styles/palette";
-import { useEffect, useState } from "react";
-import { Container } from "../Home/style";
+import ProductsList from "./components/ProductsList";
 import {
-  BottomLine,
-  EmptyList,
-  FilterCategory,
-  FilterContainer,
-  GamesBlock,
-  GenresContainer,
-  NameCategory,
-  PageContainer,
   ProductContainer,
-  ProductList,
   ProductListContainer,
   ProductMediaContainer,
-  ProductName,
-  RadioField,
-  RadioFieldTitle,
-  SearchBarContainer,
-  SelectedContainer,
-  SelectionRadioFields,
-  SortContainer,
-  SortTitle,
 } from "./styles";
+import Filter from "../../components/ui/organisms/Filter";
+import { Props } from "./types";
+import { useCallback, useState } from "react";
+import styled from "styled-components";
+import { colors } from "@/styles/palette";
 
-const Product = ({ pageInfo }: { pageInfo: string }) => {
-  const [gamesCards, setGamesCards] = useState<TGameCard[]>([]);
-
-  useEffect(() => {
-    const query = async () => {
-      const games = await contentAPI
-        .getGameCards()
-        ?.then((response) => response);
-      if (games) {
-        const array: TGameCard[] = [];
-        const getPlatforms = games.map((e) =>
-          e.imagePlatforms.map((a) => a.alt)
-        );
-        const getCardForCurrenPlatform = getPlatforms.map((a) =>
-          a.includes(pageInfo)
-        );
-        const getCardsWithCurrentPlatform = () =>
-          getCardForCurrenPlatform.filter((a, index) => {
-            if (a === true) return array.push(games[index]);
-          });
-
-        getCardsWithCurrentPlatform();
-        setGamesCards(array);
-      }
-    };
-    query();
-  }, []);
+const Product = ({ pageInfo = "big dick" }: Props) => {
+  const [searchData, setSearchData] = useState("");
+  const OnChangeData = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchData(e.target.value.trim());
+  };
+  const onChange = useCallback((e) => OnChangeData(e), []);
 
   return (
     <AuthRedirect>
-      <PageContainer>
-        <ProductContainer>
-          <FilterContainer>
-            <ProductName>{pageInfo.toLocaleUpperCase()}</ProductName>
-            <BottomLine />
-            <FilterCategory>
-              <NameCategory>Sort</NameCategory>
-            </FilterCategory>
-            <BottomLine />
-            <div>
-              <SortContainer>
-                <SortTitle>Criteria</SortTitle>
-                <SelectedContainer defaultValue={""}>
-                  <option value="" disabled>
-                    Choose a ...
-                  </option>
-                  <option value="name">Name</option>
-                  <option value="stars">Stars</option>
-                  <option value="price">Price</option>
-                </SelectedContainer>
-              </SortContainer>
-              <SortContainer>
-                <SortTitle>Type</SortTitle>
-                <SelectedContainer defaultValue={""}>
-                  <option value="" disabled>
-                    Choose a ...
-                  </option>
-                  <option value="ascending">Ascending</option>
-                  <option value="decreasing">Decreasing</option>
-                </SelectedContainer>
-              </SortContainer>
-            </div>
-            <FilterCategory>
-              <NameCategory>Genres</NameCategory>
-            </FilterCategory>
-            <BottomLine />
-            <SelectionRadioFields>
-              <RadioField>
-                <input type={"radio"} value={"A"} />
-                <RadioFieldTitle>All genres</RadioFieldTitle>
-              </RadioField>
-              <RadioField>
-                <input type={"radio"} value={"B"} />
-                <RadioFieldTitle>Shooter</RadioFieldTitle>
-              </RadioField>
-              <RadioField>
-                <input type={"radio"} value={"C"} />
-                <RadioFieldTitle>Arcade</RadioFieldTitle>
-              </RadioField>
-              <RadioField>
-                <input type={"radio"} value={"D"} />
-                <RadioFieldTitle>Strategy</RadioFieldTitle>
-              </RadioField>
-              <RadioField>
-                <input type={"radio"} value={"E"} />
-                <RadioFieldTitle>Survive</RadioFieldTitle>
-              </RadioField>
-              <RadioField>
-                <input type={"radio"} value={"F"} />
-                <RadioFieldTitle>Fighting</RadioFieldTitle>
-              </RadioField>
-            </SelectionRadioFields>
-            <GenresContainer
-              style={{ display: "flex", flexDirection: "column" }}
-            >
-              <FilterCategory>
-                <NameCategory>Age</NameCategory>
-              </FilterCategory>
-              <BottomLine />
-              <RadioField>
-                <input type={"radio"} value={"A"} />
-                <RadioFieldTitle>All ages</RadioFieldTitle>
-              </RadioField>
-              <RadioField>
-                <input type={"radio"} value={"B"} />
-                <RadioFieldTitle>3+</RadioFieldTitle>
-              </RadioField>
-              <RadioField>
-                <input type={"radio"} value={"C"} />
-                <RadioFieldTitle>6+</RadioFieldTitle>
-              </RadioField>
-              <RadioField>
-                <input type={"radio"} value={"D"} />
-                <RadioFieldTitle>12+</RadioFieldTitle>
-              </RadioField>
-              <RadioField>
-                <input type={"radio"} value={"F"} />
-                <RadioFieldTitle>18+</RadioFieldTitle>
-              </RadioField>
-            </GenresContainer>
-          </FilterContainer>
-          <ProductMediaContainer>
-            <SearchBarContainer>
-              <Container>
-                <SearchBar />
-              </Container>
-            </SearchBarContainer>
-            <ProductListContainer>
-              <FilterCategory>
-                <NameCategory>Products</NameCategory>
-              </FilterCategory>
-              <BottomLine />
-              <ProductList>
-                {!gamesCards.length && (
-                  <EmptyList
-                    style={{
-                      color: colors.WHITE,
-                      alignSelf: "center",
-                    }}
-                  >
-                    Nothing found!
-                  </EmptyList>
-                )}
-                <GamesBlock>
-                  {gamesCards.map((item) => (
-                    <CardItem key={item.title} {...item} />
-                  ))}
-                </GamesBlock>
-              </ProductList>
-            </ProductListContainer>
-          </ProductMediaContainer>
-        </ProductContainer>
-      </PageContainer>
+      <ProductContainer>
+        <Filter pageInfo={pageInfo} />
+        <ProductMediaContainer>
+          <InputContainer>
+            <StyleInput
+              type="text"
+              placeholder="Search..."
+              autoComplete="off"
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e)}
+              value={searchData}
+            />
+          </InputContainer>
+          <ProductListContainer>
+            <SectionHeader name="Products" />
+            <ProductsList pageInfo={pageInfo} searchData={searchData} />
+          </ProductListContainer>
+        </ProductMediaContainer>
+      </ProductContainer>
     </AuthRedirect>
   );
 };
+const InputContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
+const StyleInput = styled.input`
+  width: 80%;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding-left: 10px;
+  border: 2px solid ${colors.WHITE};
+  height: 40px;
+  background-color: ${colors.BLACK};
+  opacity: 0.91;
+  border-radius: 15px;
+  font-size: 19px;
+  font-weight: 300;
+  color: ${colors.WHITE};
+  @media (max-width: 768px) {
+    min-width: 328px;
+  }
+`;
 
 export default Product;
