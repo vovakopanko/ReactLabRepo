@@ -1,4 +1,5 @@
 import { debouncedFetchData } from "@/api/SearchAPI";
+import Spinner from "@/components/ui/atoms/Spinner";
 import { CardItem } from "@/components/ui/organisms/GameList";
 import { TGameCard } from "@/components/ui/organisms/GameList/types";
 import { useEffect, useState } from "react";
@@ -11,8 +12,10 @@ type Props = {
 
 const ProductsList = ({ pageInfo, searchData }: Props) => {
   const [gamesCards, setGamesCards] = useState<TGameCard[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     debouncedFetchData(searchData, (res: TGameCard[]) => {
       const array: TGameCard[] = [];
       res
@@ -32,17 +35,23 @@ const ProductsList = ({ pageInfo, searchData }: Props) => {
         // .filter((a) => a.age === "12")
       );
     });
+    let timerId = setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
+
+    return () => {
+      clearTimeout(timerId);
+    };
   }, [searchData]);
 
-  if (!gamesCards)
-    <div>
-      <p style={{ color: "white", fontSize: 24 }}>Loading</p>
-    </div>;
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <ProductList>
-      {!gamesCards.length && <EmptyList>Nothing found!</EmptyList>}
       <GamesBlock>
+        {!gamesCards.length && <EmptyList>Nothing found!</EmptyList>}
         {gamesCards.map((item) => (
           <CardItem key={item.title} {...item} />
         ))}

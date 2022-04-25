@@ -167,4 +167,5 @@ export const ProductList = styled.div`
 
 export const EmptyList = styled.span`
   color: ${colors.WHITE};
+  font-size: 25px;
 `;
