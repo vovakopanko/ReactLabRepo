@@ -7,22 +7,37 @@ import {
   ProductMediaContainer,
 } from "./styles";
 import Filter from "../../components/ui/organisms/Filter";
-import { Props } from "./types";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import { colors } from "@/styles/palette";
+import { useNavigate, useParams } from "react-router-dom";
+import { Platform, platformNames } from "./constants";
 
-const Product = ({ pageInfo = "big dick" }: Props) => {
+type NavigationParam = {
+  platform: Platform;
+};
+
+const Product = () => {
   const [searchData, setSearchData] = useState("");
+  const navigation = useNavigate();
   const OnChangeData = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchData(e.target.value.trim());
   };
   const onChange = useCallback((e) => OnChangeData(e), []);
+  const { platform = Platform.PC } = useParams<NavigationParam>();
+
+  const pageName = platformNames[platform] || "";
+
+  useEffect(() => {
+    if (!pageName) {
+      navigation("/home");
+    }
+  }, [pageName]);
 
   return (
     <AuthRedirect>
       <ProductContainer>
-        <Filter pageInfo={pageInfo} />
+        <Filter pageInfo={pageName} />
         <ProductMediaContainer>
           <InputContainer>
             <StyleInput
@@ -35,7 +50,7 @@ const Product = ({ pageInfo = "big dick" }: Props) => {
           </InputContainer>
           <ProductListContainer>
             <SectionHeader name="Products" />
-            <ProductsList pageInfo={pageInfo} searchData={searchData} />
+            <ProductsList pageInfo={pageName} searchData={searchData} />
           </ProductListContainer>
         </ProductMediaContainer>
       </ProductContainer>

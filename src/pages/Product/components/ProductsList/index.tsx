@@ -42,7 +42,7 @@ const ProductsList = ({ pageInfo, searchData }: Props) => {
     return () => {
       clearTimeout(timerId);
     };
-  }, [searchData]);
+  }, [searchData, pageInfo]);
 
   if (isLoading) {
     return <Spinner />;

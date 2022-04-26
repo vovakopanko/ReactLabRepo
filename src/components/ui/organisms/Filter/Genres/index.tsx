@@ -1,5 +1,8 @@
 import { SectionHeader } from "@/components/ui";
+import { setGenresFilter } from "@/redux/reducers/product";
 import { ChangeEvent, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useSearchParams } from "react-router-dom";
 import {
   FlexContainer,
   RadioField,
@@ -9,9 +12,12 @@ import {
 
 export default function Genres() {
   const [value, setValue] = useState("All genres");
-
+  const [searchParams, setSearchParams] = useSearchParams();
+  const dispatch = useDispatch();
   function changeValue(event: ChangeEvent<HTMLInputElement>) {
     setValue(event.target.value);
+    setSearchParams({ genres: event.target.value });
+    dispatch(setGenresFilter(event.target.value));
   }
   return (
     <FlexContainer>
@@ -20,9 +26,9 @@ export default function Genres() {
         <RadioField>
           <input
             type={"radio"}
-            value={"All genres"}
+            value={"All"}
             onChange={changeValue}
-            checked={value == "All genres" ? true : false}
+            checked={value == "All" ? true : false}
           />
           <RadioFieldTitle>All genres</RadioFieldTitle>
         </RadioField>

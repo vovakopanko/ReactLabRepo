@@ -1,6 +1,9 @@
 import { SectionHeader } from "@/components/ui";
 import { Props } from "@/pages/Product/types";
+import { setCriteriaFilter, setTypeFilter } from "@/redux/reducers/product";
+import { selectFilters } from "@/redux/selectors/authSelector";
 import { ChangeEvent, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   ProductName,
   FlexContainer,
@@ -12,11 +15,14 @@ import {
 const Sort = ({ pageInfo }: Props) => {
   const [criteria, setCriteria] = useState("");
   const [type, setType] = useState("");
+  const dispatch = useDispatch();
   function handleChangeCriteria(event: ChangeEvent<HTMLSelectElement>) {
     setCriteria(event.target.value);
+    dispatch(setCriteriaFilter(event.target.value));
   }
   function handleChangeType(event: ChangeEvent<HTMLSelectElement>) {
     setType(event.target.value);
+    dispatch(setTypeFilter(event.target.value));
   }
 
   return (
