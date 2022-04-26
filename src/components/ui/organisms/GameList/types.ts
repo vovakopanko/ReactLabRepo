@@ -5,7 +5,7 @@ export type TCardItem = {
   alt: string;
   amountStars: number;
   description: string;
-  age: string;
+  age: number;
   imagePlatforms: imagesPlatforms[];
   genres: string;
 };
@@ -17,7 +17,7 @@ export type TGameCard = {
   url: string;
   alt: string;
   amountStars: number;
-  age: string;
+  age: number;
   description: string;
   imagePlatforms: imagesPlatforms[];
   genres: string;

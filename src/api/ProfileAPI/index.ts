@@ -1,5 +1,4 @@
 import { instanceMongoDB } from "./../Instance/index";
-import { TCategory } from "../../pages/Home/components/CategoryList/types";
 import { AppUrls } from "../types";
 
 type ProfileType = {

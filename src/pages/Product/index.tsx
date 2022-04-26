@@ -4,7 +4,6 @@ import ProductsList from "./components/ProductsList";
 import {
   FilterBlock,
   FilterContainer,
-  FlexContainer,
   ProductContainer,
   ProductListContainer,
   ProductMediaContainer,

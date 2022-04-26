@@ -8,7 +8,7 @@ type Props = {
   searchData: string;
   age: string;
   genres: string;
-  criteria: string;
+  criteria: string | number;
   type: string;
 };
 
@@ -38,7 +38,8 @@ const useSearchGameCards = ({
           .filter((item) => {
             const findByGenres =
               genres === "All" ? true : item.genres === genres;
-            const findByAge = age === "All" ? true : item.age === age;
+            const findByAge =
+              age === "All" ? true : item.age.toString() === age;
             const findByTitle = item.title
               .toString()
               .toLowerCase()
