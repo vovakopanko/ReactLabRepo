@@ -100,6 +100,7 @@ export const NameCategory = styled.span`
 export const SortContainer = styled.div`
   display: flex;
   padding-bottom: 10px;
+  padding-right: 10px;
 `;
 
 export const SortTitle = styled.span`
