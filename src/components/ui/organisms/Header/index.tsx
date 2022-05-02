@@ -31,6 +31,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   selectorUserName,
   selectIsAuthUser,
+  selectorCartList,
+  selectRoleUser,
 } from "@/redux/selectors/authSelector";
 import basketImage from "../../../../assets/svgIcon/basket.svg";
 import ExportOutlined from "../../../../assets/svgIcon/outlined.svg";
@@ -41,9 +43,10 @@ const webSiteName: string = "Game Store";
 const Header = () => {
   const [showDropDown, setShowDropDown] = useState(false);
   const isAuth = useSelector(selectIsAuthUser);
+  const Role = useSelector(selectRoleUser);
   const userName = useSelector(selectorUserName);
+  const counterGames = useSelector(selectorCartList);
   const dispatch = useDispatch();
-
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -115,7 +118,7 @@ const Header = () => {
               <StyledNavLink to={"/basket"}>
                 <StyleItem>
                   <BasketImage src={basketImage} />
-                  <TitleItem>0</TitleItem>
+                  <TitleItem>{counterGames.length}</TitleItem>
                 </StyleItem>
               </StyledNavLink>
               <StyledBtnLogOut onClick={onLogOut}>
@@ -159,7 +162,7 @@ const Header = () => {
             <StyledNavLink to={"/basket"}>
               <StyleItem>
                 <BasketImage src={basketImage} />
-                <TitleItem>0</TitleItem>
+                <TitleItem>{counterGames.length}</TitleItem>
               </StyleItem>
             </StyledNavLink>
             <StyledBtnLogOut onClick={onLogOut}>

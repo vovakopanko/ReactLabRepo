@@ -12,6 +12,10 @@ export const selectIsAuthUser = (state: AppStateType) => {
   return state.authReducer.isAuth;
 };
 
+export const selectRoleUser = (state: AppStateType) => {
+  return state.authReducer.role;
+};
+
 export const selectorStatusWindowAuth = (state: AppStateType) => {
   return state.authReducer.openAuthWindow;
 };
@@ -26,4 +30,8 @@ export const selectIsChangePassword = (state: AppStateType) => {
 
 export const selectorUserName = (state: AppStateType) => {
   return state.authReducer.userName;
+};
+
+export const selectorCartList = (state: AppStateType) => {
+  return state.cartReducer.cartList;
 };
