@@ -3,10 +3,10 @@ import { colors } from "@/styles/palette";
 import styled from "styled-components";
 
 export const CategoryContainer = styled(NavLink)`
+  text-decoration: none;
   &:hover {
     transition: 0.3s;
     align-items: center;
-
     box-shadow: 0px 0px 20px 0px ${colors.PURPURE};
     border-width: 5px 5px 10px 5px;
   }
@@ -48,9 +48,10 @@ export const GameLogo = styled.div`
   justify-content: center;
 `;
 
-export const Subtitle = styled.h3`
+export const Subtitle = styled.span`
   font-size: 18px;
   text-align: center;
+  text-decoration: none;
   color: ${colors.LIGHT_GRAY};
   @media (max-width: 1368px) {
   }

@@ -7,10 +7,10 @@ import GameCard from "../../molecules/GameCard";
 import { FlipContainer, Flipper, GamesBlock } from "./style";
 import { amountFavoriteGame, TCardItem, TGameCard } from "./types";
 
-const CardItem: FC<TCardItem> = (props) => {
+export const CardItem: FC<TCardItem> = (props) => {
   const {
     title,
-    prise,
+    price,
     url,
     alt,
     amountStars,
@@ -28,7 +28,7 @@ const CardItem: FC<TCardItem> = (props) => {
       <Flipper focused={focused}>
         <GameCard
           title={title}
-          prise={prise}
+          price={price}
           url={url}
           alt={alt}
           amountStars={amountStars}

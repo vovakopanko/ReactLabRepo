@@ -16,7 +16,7 @@ export const searchAPI = {
 };
 
 const fetchData = async (query: string, cb: (val: TGameCard[]) => void) => {
-  const res = await searchAPI.getGameCards(`&q=${query}`);
+  const res = await searchAPI.getGameCards(`&q=${query} `);
   if (res) {
     cb(res);
   }

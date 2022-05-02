@@ -49,14 +49,12 @@ const Avatar = ({ photoUser, email }: Props) => {
             </PhotoInputContainer>
             <Button
               onClick={onChangeAvatar}
-              color={colors.PURPURE}
               width={180}
               title={"Upload new avatar"}
               type="secondary"
             />
             <Button
               onClick={() => setPhotoLink(!photoLink)}
-              color={colors.RED}
               width={180}
               title={"Close"}
               type={"primary"}

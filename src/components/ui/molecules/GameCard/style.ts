@@ -25,7 +25,7 @@ export const Span = styled.span`
   padding-bottom: 5px;
 `;
 
-export const PriseBlock = styled.div`
+export const PriceBlock = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -63,12 +63,9 @@ export const ImagePlatformContainer = styled.div`
 export const CardBlock = styled.div`
   z-index: 3;
   backface-visibility: hidden;
-
   transform: rotateY(0deg);
-
   top: 0;
   left: 0;
-
   border-radius: 15px;
   background-color: ${colors.BLACK};
   box-shadow: 0px 0px 10px 0px ${colors.PURPURE};
@@ -77,7 +74,7 @@ export const CardBlock = styled.div`
   width: 30vh;
   @media (max-width: 768px) {
     height: 50vh;
-    width: 30vh;
+    width: 25vh;
   }
 `;
 
@@ -96,7 +93,7 @@ export const CardBackBlock = styled.div`
   width: 30vh;
   @media (max-width: 768px) {
     height: 50vh;
-    width: 30vh;
+    width: 25vh;
   }
 `;
 

@@ -1,3 +1,4 @@
+import { Platform } from "@/pages/Product/constants";
 import { FC } from "react";
 import {
   StyleDropDown,
@@ -9,9 +10,9 @@ import {
 import { dropDownItem, HeaderTitleName } from "./type";
 
 const dropDownItems: dropDownItem[] = [
-  { id: 0, title: "PC", link: "pc" },
-  { id: 1, title: "Xbox", link: "xboxone" },
-  { id: 2, title: "Playstation 5", link: "playstation5" },
+  { id: 0, title: "PC", link: `product/${Platform.PC}` },
+  { id: 1, title: "Xbox", link: `product/${Platform.XBOX}` },
+  { id: 2, title: "Playstation 5", link: `product/${Platform.PLAYSTATION5}` },
 ];
 
 const DropDown: FC<HeaderTitleName> = ({ item }) => {
