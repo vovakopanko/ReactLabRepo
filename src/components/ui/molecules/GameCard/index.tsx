@@ -7,7 +7,7 @@ import {
   Image,
   ImagePlatform,
   ImagePlatformContainer,
-  PriseBlock,
+  PriceBlock,
   Span,
   StarContainer,
   StarImage,
@@ -24,7 +24,7 @@ const GameCard = ({
   url,
   alt,
   title,
-  prise,
+  price,
   amountStars,
   description,
   age,
@@ -40,10 +40,10 @@ const GameCard = ({
           ))}
         </ImagePlatformContainer>
         <Image src={url} alt={alt} />
-        <PriseBlock>
+        <PriceBlock>
           <Span>{title}</Span>
-          <Span>{prise}$</Span>
-        </PriseBlock>
+          <Span>{price}$</Span>
+        </PriceBlock>
         <StarContainer>
           {starsCount.map((_, index) => {
             return <StarImage src={image} key={index} />;

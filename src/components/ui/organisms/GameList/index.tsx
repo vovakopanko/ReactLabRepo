@@ -10,7 +10,7 @@ import { amountFavoriteGame, TCardItem, TGameCard } from "./types";
 export const CardItem: FC<TCardItem> = (props) => {
   const {
     title,
-    prise,
+    price,
     url,
     alt,
     amountStars,
@@ -28,7 +28,7 @@ export const CardItem: FC<TCardItem> = (props) => {
       <Flipper focused={focused}>
         <GameCard
           title={title}
-          prise={prise}
+          price={price}
           url={url}
           alt={alt}
           amountStars={amountStars}

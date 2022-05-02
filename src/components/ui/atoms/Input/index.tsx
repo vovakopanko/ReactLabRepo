@@ -4,7 +4,7 @@ import { TGameCard } from "../../organisms/GameList/types";
 import SearchList from "./SearchList";
 import { FinderContainer, StyleInput } from "./styles";
 
-const Input = ({ width = "80%" }: { width?: number | string }) => {
+const SearchBar = ({ width = "80%" }: { width?: number | string }) => {
   const [searchData, setSearchData] = useState("");
   const [findArray, setFindArray] = useState<TGameCard[]>([]);
   const [isFocus, setIsFocus] = useState(false);
@@ -15,12 +15,12 @@ const Input = ({ width = "80%" }: { width?: number | string }) => {
     });
   }, [searchData]);
 
-  const OnChangeData = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeData = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchData(e.target.value.trim());
   };
 
   const onFocus = useCallback(() => setIsFocus(true), []);
-  const onChange = useCallback((e) => OnChangeData(e), []);
+  const onChange = useCallback((e) => onChangeData(e), []);
 
   return (
     <FinderContainer>
@@ -45,4 +45,4 @@ const Input = ({ width = "80%" }: { width?: number | string }) => {
   );
 };
 
-export default Input;
+export default SearchBar;

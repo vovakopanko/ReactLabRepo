@@ -1,14 +1,7 @@
 import styled from "styled-components";
 
 const Spinner = () => (
-  <div
-    style={{
-      display: "flex",
-      justifyContent: "center",
-      minHeight: 200,
-      alignItems: "center",
-    }}
-  >
+  <StyledSpinnerWrapper>
     <StyledSpinner viewBox="0 0 50 50">
       <circle
         className="path"
@@ -19,7 +12,7 @@ const Spinner = () => (
         strokeWidth="4"
       />
     </StyledSpinner>
-  </div>
+  </StyledSpinnerWrapper>
 );
 
 const StyledSpinner = styled.svg`
@@ -53,6 +46,13 @@ const StyledSpinner = styled.svg`
       stroke-dashoffset: -124;
     }
   }
+`;
+
+const StyledSpinnerWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  min-height: 200px;
+  align-items: center;
 `;
 
 export default Spinner;

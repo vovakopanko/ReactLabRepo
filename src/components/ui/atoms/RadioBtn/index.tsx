@@ -1,6 +1,5 @@
-import { colors } from "@/styles/palette";
 import { ChangeEvent, FC } from "react";
-import styled from "styled-components";
+import { RadioField, RadioFieldTitle } from "./styles";
 
 type Props = {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
@@ -22,21 +21,5 @@ const RadioBtn: FC<Props> = ({ onChange, value, checked, title }) => {
     </RadioField>
   );
 };
-
-export const RadioFieldTitle = styled.span`
-  color: ${colors.WHITE};
-  font-size: 20px;
-  padding-left: 5px;
-`;
-
-export const SelectionRadioFields = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-export const RadioField = styled.div`
-  padding-left: 10px;
-  padding-bottom: 5px;
-`;
 
 export default RadioBtn;

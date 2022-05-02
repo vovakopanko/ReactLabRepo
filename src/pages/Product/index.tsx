@@ -24,6 +24,7 @@ import {
 import useSearchGameCards from "@/hooks/handlers/useSearchGameCards";
 import RadioBtnGroup from "./components/Filter/RadioBtnGroup";
 import SelectedBtnGroup from "./components/Filter/SelectedBtnGroup";
+import { Criteria } from "./types";
 
 type NavigationParam = {
   platform: Platform;
@@ -33,17 +34,17 @@ const Product = () => {
   const [searchData, setSearchData] = useState("");
   const [ageFilter, setAgeFilter] = useState("All");
   const [genresFilter, setGenresFilter] = useState("All");
-  const [criteria, setCriteria] = useState("");
+  const [criteria, setCriteria] = useState<Criteria>("default");
   const [type, setType] = useState("");
   const navigation = useNavigate();
 
-  const OnChangeData = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeData = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchData(e.target.value.trim());
   };
-  const onChange = useCallback((e) => OnChangeData(e), []);
+  const onChange = useCallback((e) => onChangeData(e), []);
   const { platform = Platform.PC } = useParams<NavigationParam>();
   const handleChangeCriteria = (event: ChangeEvent<HTMLSelectElement>) => {
-    setCriteria(event.target.value);
+    setCriteria(event.target.value as Criteria);
   };
   const handleChangeType = (event: ChangeEvent<HTMLSelectElement>) => {
     setType(event.target.value);

@@ -28,14 +28,14 @@ export const genresRadioButtons = [
 ];
 
 export const arrayCriteria = [
-  { value: "", titleName: " Choose a ..." },
+  { value: "default", titleName: " Choose a ..." },
   { value: "price", titleName: "Price" },
-  { value: "name", titleName: "Name" },
+  { value: "title", titleName: "Name" },
   { value: "age", titleName: "Age" },
 ];
 
 export const arrayType = [
-  { value: "", titleName: " Choose a ..." },
+  { value: "default", titleName: " Choose a ..." },
   { value: "ascending", titleName: "Ascending" },
   { value: "decreasing", titleName: "Decreasing" },
 ];

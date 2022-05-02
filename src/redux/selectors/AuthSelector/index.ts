@@ -12,10 +12,6 @@ export const selectIsAuthUser = (state: AppStateType) => {
   return state.authReducer.isAuth;
 };
 
-export const selectFilters = (state: AppStateType) => {
-  return state.productReducer;
-};
-
 export const selectorStatusWindowAuth = (state: AppStateType) => {
   return state.authReducer.openAuthWindow;
 };

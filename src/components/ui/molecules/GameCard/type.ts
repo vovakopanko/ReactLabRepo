@@ -1,6 +1,6 @@
 export type CardItem = {
   title: string;
-  prise: number;
+  price: number;
   url: string;
   alt: string;
   amountStars: number;

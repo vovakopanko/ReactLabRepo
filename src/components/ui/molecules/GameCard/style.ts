@@ -25,7 +25,7 @@ export const Span = styled.span`
   padding-bottom: 5px;
 `;
 
-export const PriseBlock = styled.div`
+export const PriceBlock = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;

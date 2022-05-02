@@ -16,10 +16,11 @@ const ProductsList = ({ gamesCards, isLoading }: Props) => {
   return (
     <ProductList>
       <GamesBlock>
-        {!gamesCards.length && <EmptyList>Nothing found!</EmptyList>}
-        {gamesCards.map((item) => (
-          <CardItem key={item.title} {...item} />
-        ))}
+        {gamesCards.length ? (
+          gamesCards.map((item) => <CardItem key={item.title} {...item} />)
+        ) : (
+          <EmptyList>Nothing found!</EmptyList>
+        )}
       </GamesBlock>
     </ProductList>
   );

@@ -1,6 +1,6 @@
 export type TCardItem = {
   title: string;
-  prise: number;
+  price: number;
   url: string;
   alt: string;
   amountStars: number;
@@ -10,18 +10,7 @@ export type TCardItem = {
   genres: string;
 };
 
-export type TGameCard = {
-  _id: number;
-  title: string;
-  prise: number;
-  url: string;
-  alt: string;
-  amountStars: number;
-  age: number;
-  description: string;
-  imagePlatforms: imagesPlatforms[];
-  genres: string;
-};
+export type TGameCard = { _id: number } & TCardItem;
 
 export enum amountFavoriteGame {
   STANDARTSHEME = 3,
