@@ -2,14 +2,14 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type TState = {
   genres: string;
-  age: string;
+  age: number;
   criteria: string;
   type: string;
 };
 
 const initialState: TState = {
   genres: "",
-  age: "",
+  age: 0,
   criteria: "",
   type: "",
 };
@@ -21,7 +21,7 @@ const productSlice = createSlice({
     setGenresFilter: (state, actions: PayloadAction<string>) => {
       state.genres = actions.payload;
     },
-    setAgeFilter: (state, actions: PayloadAction<string>) => {
+    setAgeFilter: (state, actions: PayloadAction<number>) => {
       state.age = actions.payload;
     },
     setCriteriaFilter: (state, actions: PayloadAction<string>) => {

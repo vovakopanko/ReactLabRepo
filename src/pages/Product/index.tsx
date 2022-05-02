@@ -24,6 +24,9 @@ import {
 import useSearchGameCards from "@/hooks/handlers/useSearchGameCards";
 import RadioBtnGroup from "./components/Filter/RadioBtnGroup";
 import SelectedBtnGroup from "./components/Filter/SelectedBtnGroup";
+import Button from "@/components/ui/atoms/Button";
+import { useSelector } from "react-redux";
+import { selectRoleUser } from "@/redux/selectors/authSelector";
 
 type NavigationParam = {
   platform: Platform;
@@ -35,6 +38,7 @@ const Product = () => {
   const [genresFilter, setGenresFilter] = useState("All");
   const [criteria, setCriteria] = useState("");
   const [type, setType] = useState("");
+  const isAdmin = useSelector(selectRoleUser) === "ADMIN";
   const navigation = useNavigate();
 
   const OnChangeData = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -70,6 +74,7 @@ const Product = () => {
     (e) => setGenresFilter(e.target.value),
     []
   );
+
   return (
     <AuthRedirect>
       <ProductContainer>
@@ -112,6 +117,16 @@ const Product = () => {
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e)}
               value={searchData}
             />
+            {isAdmin && (
+              <div style={{ marginTop: 2.5, marginLeft: 5, marginBottom: 20 }}>
+                <Button
+                  title={"Create card"}
+                  width={100}
+                  type="secondary"
+                  onClick={() => console.log("Create")}
+                />
+              </div>
+            )}
           </InputContainer>
           <ProductListContainer>
             <SectionHeader name="Products" />
@@ -127,6 +142,9 @@ const InputContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  @media (max-width: 768px) {
+    max-width: 340px;
+  }
 `;
 
 const StyleInput = styled.input`

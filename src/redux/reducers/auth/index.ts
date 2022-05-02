@@ -21,6 +21,7 @@ type TState = {
   openAuthWindow: boolean;
   openRegisterWindow: boolean;
   openChangePasswordWindow: boolean;
+  role: string;
 };
 
 const initialState: TState = {
@@ -28,6 +29,7 @@ const initialState: TState = {
   email: "",
   password: "",
   description: "",
+  role: "",
   address: "",
   photoUser: "",
   phoneNumber: "",
@@ -44,6 +46,9 @@ const authSlice = createSlice({
   reducers: {
     setAuthCurrentUser: (state, actions: PayloadAction<boolean>) => {
       state.isAuth = actions.payload;
+    },
+    setRoleCurrentUser: (state, actions: PayloadAction<string>) => {
+      state.role = actions.payload;
     },
     setStatusAuthWindow: (state, actions: PayloadAction<boolean>) => {
       state.openAuthWindow = actions.payload;
@@ -76,6 +81,7 @@ export const {
   updateUserPhoto,
   logOut,
   updateUserInfo,
+  setRoleCurrentUser,
 } = actions;
 
 export default reducer;

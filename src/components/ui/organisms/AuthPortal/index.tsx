@@ -16,6 +16,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import {
   setAuthCurrentUser,
+  setRoleCurrentUser,
   setStatusAuthWindow,
   setStatusRegistrationWindow,
   updateUserInfo,
@@ -64,6 +65,7 @@ export default function AuthPortal({
   const authenticate = (data: Data) => {
     dispatch(updateUserInfo(data));
     dispatch(setAuthCurrentUser(true));
+    dispatch(setRoleCurrentUser(data.role));
     dispatch(updateUserPhoto(data.photoUser));
     if (isRegistrationModal) {
       dispatch(setStatusRegistrationWindow(false));
