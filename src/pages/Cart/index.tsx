@@ -37,7 +37,6 @@ const CartPage = () => {
   const dispatch = useDispatch();
   const getUnselectedPosition = cardArray.filter((a) => a.checked === false);
   const isDisabledBtnRemove = cardArray.map((a) => a.checked).includes(true);
-
   return (
     <AuthRedirect>
       <CartComponent data={cardArray.length}>
@@ -64,7 +63,7 @@ const CartPage = () => {
             amount={a.amount}
             name={a.name}
             orderDate={a.orderDate}
-            prise={a.prise}
+            price={a.price}
             platforms={a.platforms}
             checked={a.checked}
           />
@@ -93,7 +92,7 @@ const CartPage = () => {
                   <TotalCoastTitle>Games cost:</TotalCoastTitle>
                   <TotalCoastSubTitle>
                     {cardArray
-                      .map((a) => a.prise * (a.checked ? a.amount : 0))
+                      .map((a) => a.price * (a.checked ? a.amount : 0))
                       .reduce(
                         (previousValue, currentValue) =>
                           previousValue + currentValue,

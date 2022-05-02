@@ -21,6 +21,7 @@ export const GamesBlock = styled.div`
 `;
 
 export const FlexContainer = styled.div`
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
 `;
@@ -104,8 +105,8 @@ export const NameCategory = styled.span`
 `;
 
 export const SortContainer = styled.div`
+  margin-top: 10px;
   display: flex;
-  padding-bottom: 10px;
   padding-right: 10px;
 `;
 

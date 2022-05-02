@@ -50,7 +50,7 @@ const GameCard = ({
       orderDate:
         now.getDate() + "/" + (now.getMonth() + 1) + "/" + now.getFullYear(),
       amount: 1,
-      prise: prise,
+      price: price,
       checked: true,
     },
   ];

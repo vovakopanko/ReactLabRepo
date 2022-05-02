@@ -95,18 +95,22 @@ const Product = () => {
               array={arrayType}
               handleChange={handleChangeType}
             />
-            <RadioBtnGroup
-              radioButtons={genresRadioButtons}
-              currentValue={genresFilter}
-              onChange={onGenresFilterPress}
-              name={"Genres"}
-            />
-            <RadioBtnGroup
-              radioButtons={ageRadioButtons}
-              currentValue={ageFilter}
-              onChange={onAgeFilterPress}
-              name={"Age"}
-            />
+            <>
+              <SectionHeader name={"Genres"} />
+              <RadioBtnGroup
+                radioButtons={genresRadioButtons}
+                currentValue={genresFilter}
+                onChange={onGenresFilterPress}
+              />
+            </>
+            <>
+              <SectionHeader name={"Age"} />
+              <RadioBtnGroup
+                radioButtons={ageRadioButtons}
+                currentValue={ageFilter}
+                onChange={onAgeFilterPress}
+              />
+            </>
           </FilterBlock>
         </FilterContainer>
         <ProductMediaContainer>

@@ -7,7 +7,7 @@ type cartList = {
   platforms: imagesPlatforms[];
   orderDate: string;
   amount: number;
-  prise: number;
+  price: number;
   checked: boolean;
 };
 

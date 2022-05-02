@@ -37,6 +37,7 @@ import {
 import basketImage from "../../../../assets/svgIcon/basket.svg";
 import ExportOutlined from "../../../../assets/svgIcon/outlined.svg";
 import UserOutlined from "../../../../assets/svgIcon/logo.svg";
+import { clearCartList } from "@/redux/reducers/cart";
 
 const webSiteName: string = "Game Store";
 
@@ -84,6 +85,7 @@ const Header = () => {
 
   const onLogOut = useCallback(() => {
     dispatch(logOut(false));
+    dispatch(clearCartList());
   }, []);
 
   return (

@@ -17,7 +17,7 @@ type GameInfo = {
   platforms: any;
   orderDate: string;
   amount: number;
-  prise: number;
+  price: number;
   checked: boolean;
 };
 
@@ -25,7 +25,7 @@ const GameCartInfo = ({
   name,
   orderDate,
   amount,
-  prise,
+  price,
   checked,
   platforms,
 }: GameInfo) => {
@@ -61,7 +61,7 @@ const GameCartInfo = ({
         </ItemName>
         <AmountCounter counter={counter} name={name} setCounter={setCounter} />
         <ItemName width={"10%"}>
-          <TitleStyle>{prise} $</TitleStyle>
+          <TitleStyle>{price} $</TitleStyle>
         </ItemName>
         <CheckBoxContainer>
           <CheckBox

@@ -14,7 +14,7 @@ export type GameInfo = {
   platforms: imagesPlatforms[];
   orderDate: string;
   amount: number;
-  prise: number;
+  price: number;
   checked: boolean;
 };
 
