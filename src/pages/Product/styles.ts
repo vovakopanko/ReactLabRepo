@@ -170,3 +170,27 @@ export const EmptyList = styled.span`
   color: ${colors.WHITE};
   font-size: 25px;
 `;
+
+export const InputContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
+export const StyleInput = styled.input`
+  width: 80%;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding-left: 10px;
+  border: 2px solid ${colors.WHITE};
+  height: 40px;
+  background-color: ${colors.BLACK};
+  opacity: 0.91;
+  border-radius: 15px;
+  font-size: 19px;
+  font-weight: 300;
+  color: ${colors.WHITE};
+  @media (max-width: 768px) {
+    min-width: 328px;
+  }
+`;
