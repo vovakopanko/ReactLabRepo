@@ -33,18 +33,20 @@ type ArraySubTitle = {
 };
 
 const CartPage = () => {
-  const cardArray = useSelector(selectorCartList);
+  const selectedGames = useSelector(selectorCartList);
   const dispatch = useDispatch();
-  const getUnselectedPosition = cardArray.filter((a) => a.checked === false);
-  const isDisabledBtnRemove = cardArray.map((a) => a.checked).includes(true);
+  const unselectedPositions = selectedGames.filter((a) => a.checked === false);
+  const isButtonRemoveDisabled = selectedGames
+    .map((a) => a.checked)
+    .includes(true);
   return (
     <AuthRedirect>
-      <CartComponent data={cardArray.length}>
+      <CartComponent data={selectedGames.length}>
         <PageTitleBlock>
           <PageTitle>Cart page</PageTitle>
           <BottomTitleLine />
         </PageTitleBlock>
-        {cardArray.length && (
+        {selectedGames.length && (
           <MobileBlock>
             <SubTitleBlock>
               {arraySubTitle.map((subtitle: ArraySubTitle) => (
@@ -57,33 +59,33 @@ const CartPage = () => {
             <BottomLine />
           </MobileBlock>
         )}
-        {cardArray.map((a) => (
+        {selectedGames.map((selectedGame) => (
           <GameCartInfo
-            key={a.name}
-            amount={a.amount}
-            name={a.name}
-            orderDate={a.orderDate}
-            price={a.price}
-            platforms={a.platforms}
-            checked={a.checked}
+            key={selectedGame.name}
+            amount={selectedGame.amount}
+            name={selectedGame.name}
+            orderDate={selectedGame.orderDate}
+            price={selectedGame.price}
+            platforms={selectedGame.platforms}
+            checked={selectedGame.checked}
           />
         ))}
         <RemoveBtnBlock>
-          {cardArray.length && (
+          {selectedGames.length && (
             <BtnWrapper>
               <Button
-                disabled={!isDisabledBtnRemove}
+                disabled={!isButtonRemoveDisabled}
                 title={"Remove"}
                 width={100}
                 onClick={() =>
-                  dispatch(removeCurrentGames(getUnselectedPosition))
+                  dispatch(removeCurrentGames(unselectedPositions))
                 }
                 type="secondary"
               />
             </BtnWrapper>
           )}
         </RemoveBtnBlock>
-        {cardArray.length && (
+        {selectedGames.length && (
           <>
             <BottomLine />
             <TotalCoast>
@@ -91,8 +93,12 @@ const CartPage = () => {
                 <TotalCoastContainer>
                   <TotalCoastTitle>Games cost:</TotalCoastTitle>
                   <TotalCoastSubTitle>
-                    {cardArray
-                      .map((a) => a.price * (a.checked ? a.amount : 0))
+                    {selectedGames
+                      .map(
+                        (selectedGame) =>
+                          selectedGame.price *
+                          (selectedGame.checked ? selectedGame.amount : 0)
+                      )
                       .reduce(
                         (previousValue, currentValue) =>
                           previousValue + currentValue,
@@ -109,11 +115,11 @@ const CartPage = () => {
               </CoastContainer>
               <ButtonBuyContainer>
                 <Button
-                  disabled={!isDisabledBtnRemove}
+                  disabled={!isButtonRemoveDisabled}
                   title={"Buy"}
                   width={100}
                   onClick={() => {
-                    dispatch(removeCurrentGames(getUnselectedPosition));
+                    dispatch(removeCurrentGames(unselectedPositions));
                     alert("Wait couple minutes our specialist call with you!");
                   }}
                   type="secondary"
@@ -122,7 +128,7 @@ const CartPage = () => {
             </TotalCoast>
           </>
         )}
-        {!cardArray.length && (
+        {!selectedGames.length && (
           <EmptyContainer>
             <TotalCoastTitle>Your shopping cart is empty</TotalCoastTitle>
           </EmptyContainer>

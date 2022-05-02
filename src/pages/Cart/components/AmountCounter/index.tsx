@@ -37,9 +37,8 @@ const AmountCounter = ({ counter, name, setCounter }: Props) => {
   return (
     <AmountBlock>
       <LeftIcon onClick={handleDown}>
-        <Image disabled={counter >= 2} src={iconMinus} />
+        <Image disabled={counter <= 1} src={iconMinus} />
       </LeftIcon>
-
       <AmountValue>{counter}</AmountValue>
       <RightIcon onClick={handleUp}>
         <Image disabled={counter >= 10} src={iconPlus} />

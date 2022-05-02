@@ -25,17 +25,14 @@ const SearchBar = ({ width = "80%" }: { width?: number | string }) => {
     }
   }, [isFocus]);
 
-  const handleClickOutside = useCallback(
-    (event: MouseEvent) => {
-      if (!event.target) {
-        return;
-      }
-      if (ref.current && !ref.current?.contains(event.target as Node)) {
-        setIsFocus((prev) => !prev);
-      }
-    },
-    [isFocus]
-  );
+  const handleClickOutside = useCallback((event: MouseEvent) => {
+    if (!event.target) {
+      return;
+    }
+    if (ref.current && !ref.current?.contains(event.target as Node)) {
+      setIsFocus((prev) => !prev);
+    }
+  }, []);
 
   const onChangeData = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchData(e.target.value.trim());

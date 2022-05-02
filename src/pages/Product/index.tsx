@@ -2,6 +2,7 @@ import { SectionHeader } from "@/components/ui";
 import AuthRedirect from "@/hoc/withAuthRedirect";
 import ProductsList from "./components/ProductsList";
 import {
+  CreateButtonContainer,
   FilterBlock,
   FilterContainer,
   InputContainer,
@@ -27,7 +28,7 @@ import SelectedBtnGroup from "./components/Filter/SelectedBtnGroup";
 import { Criteria } from "./types";
 import Button from "@/components/ui/atoms/Button";
 import { useSelector } from "react-redux";
-import { selectRoleUser } from "@/redux/selectors/authSelector";
+import { selectIsAdmin } from "@/redux/selectors/authSelector";
 
 type NavigationParam = {
   platform: Platform;
@@ -39,7 +40,7 @@ const Product = () => {
   const [genresFilter, setGenresFilter] = useState("All");
   const [criteria, setCriteria] = useState<Criteria>("default");
   const [type, setType] = useState("");
-  const isAdmin = useSelector(selectRoleUser) === "ADMIN";
+  const isAdmin = useSelector(selectIsAdmin);
   const navigation = useNavigate();
 
   const onChangeData = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -123,14 +124,14 @@ const Product = () => {
               value={searchData}
             />
             {isAdmin && (
-              <div style={{ marginTop: 2.5, marginLeft: 5, marginBottom: 20 }}>
+              <CreateButtonContainer>
                 <Button
                   title={"Create card"}
                   width={100}
                   type="secondary"
                   onClick={() => console.log("Create")}
                 />
-              </div>
+              </CreateButtonContainer>
             )}
           </InputContainer>
           <ProductListContainer>

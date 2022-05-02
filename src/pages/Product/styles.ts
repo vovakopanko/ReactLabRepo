@@ -188,6 +188,12 @@ export const InputContainer = styled.div`
   justify-content: center;
 `;
 
+export const CreateButtonContainer = styled.div`
+  margin-top: 2.5px;
+  margin-left: 5px;
+  margin-bottom: 20px;
+`;
+
 export const StyleInput = styled.input`
   width: 80%;
   margin-top: 10px;

@@ -1,6 +1,8 @@
-import { CardItem, GameInfo, imagesPlatforms } from "./types";
+import { CardItem, imagesPlatforms } from "./types";
 import {
   AgeRestrictions,
+  ButtonPosition,
+  ButtonsContainer,
   CardBackBlock,
   CardBlock,
   GameDescription,
@@ -17,10 +19,11 @@ import Button from "../../atoms/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { setCartList } from "@/redux/reducers/cart";
 import {
+  selectIsAdmin,
   selectIsAuthUser,
   selectorCartList,
-  selectRoleUser,
 } from "@/redux/selectors/authSelector";
+import { useCallback } from "react";
 
 const GamePlatform = ({ src, alt }: { src: string; alt: string }) => {
   return <ImagePlatform src={src} alt={alt} />;
@@ -37,23 +40,27 @@ const GameCard = ({
   age,
 }: CardItem) => {
   const starsCount = new Array(amountStars).fill("star");
-  const arr = useSelector(selectorCartList);
+  const cardList = useSelector(selectorCartList);
   const isAuth = useSelector(selectIsAuthUser);
-  const isRole = useSelector(selectRoleUser) === "ADMIN";
+  const isRole = useSelector(selectIsAdmin);
   const dispatch = useDispatch();
-  let now = new Date();
+  const now = new Date();
 
-  const setGameCard: GameInfo[] = [
-    {
-      name: title,
-      platforms: imagePlatforms,
-      orderDate:
-        now.getDate() + "/" + (now.getMonth() + 1) + "/" + now.getFullYear(),
-      amount: 1,
-      price: price,
-      checked: true,
-    },
-  ];
+  const setGameCard = useCallback(() => {
+    const game = [
+      {
+        name: title,
+        platforms: imagePlatforms,
+        orderDate:
+          now.getDate() + "/" + (now.getMonth() + 1) + "/" + now.getFullYear(),
+        amount: 1,
+        price: price,
+        checked: true,
+      },
+    ];
+
+    dispatch(setCartList(game));
+  }, []);
 
   return (
     <>
@@ -77,36 +84,29 @@ const GameCard = ({
       <CardBackBlock>
         <GameDescription>{description}</GameDescription>
         <AgeRestrictions>{age}+</AgeRestrictions>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
-          }}
-        >
-          <div style={{ width: "50%" }}>
+        <ButtonsContainer>
+          <ButtonPosition>
             {isAuth && (
               <Button
                 title={"Add to cart"}
                 width={100}
                 type="secondary"
-                disabled={arr.some((a) => a.name === title)}
-                onClick={() => dispatch(setCartList(setGameCard))}
+                disabled={cardList.some((a) => a.name === title)}
+                onClick={setGameCard}
               />
             )}
-          </div>
-
+          </ButtonPosition>
           {isAuth && isRole && (
-            <div style={{ width: "50%" }}>
+            <ButtonPosition>
               <Button
                 title={"Edit"}
                 width={100}
                 type="secondary"
                 onClick={() => console.log("EDIT")}
               />
-            </div>
+            </ButtonPosition>
           )}
-        </div>
+        </ButtonsContainer>
       </CardBackBlock>
     </>
   );
