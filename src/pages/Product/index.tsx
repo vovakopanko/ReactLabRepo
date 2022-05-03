@@ -2,6 +2,7 @@ import { SectionHeader } from "@/components/ui";
 import AuthRedirect from "@/hoc/withAuthRedirect";
 import ProductsList from "./components/ProductsList";
 import {
+  CreateButtonContainer,
   FilterBlock,
   FilterContainer,
   InputContainer,
@@ -25,6 +26,9 @@ import useSearchGameCards from "@/hooks/handlers/useSearchGameCards";
 import RadioBtnGroup from "./components/Filter/RadioBtnGroup";
 import SelectedBtnGroup from "./components/Filter/SelectedBtnGroup";
 import { Criteria } from "./types";
+import Button from "@/components/ui/atoms/Button";
+import { useSelector } from "react-redux";
+import { selectIsAdmin } from "@/redux/selectors/authSelector";
 
 type NavigationParam = {
   platform: Platform;
@@ -36,6 +40,7 @@ const Product = () => {
   const [genresFilter, setGenresFilter] = useState("All");
   const [criteria, setCriteria] = useState<Criteria>("default");
   const [type, setType] = useState("");
+  const isAdmin = useSelector(selectIsAdmin);
   const navigation = useNavigate();
 
   const onChangeData = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -71,6 +76,7 @@ const Product = () => {
     (e) => setGenresFilter(e.target.value),
     []
   );
+
   return (
     <AuthRedirect>
       <ProductContainer>
@@ -90,18 +96,22 @@ const Product = () => {
               array={arrayType}
               handleChange={handleChangeType}
             />
-            <RadioBtnGroup
-              radioButtons={genresRadioButtons}
-              currentValue={genresFilter}
-              onChange={onGenresFilterPress}
-              name={"Genres"}
-            />
-            <RadioBtnGroup
-              radioButtons={ageRadioButtons}
-              currentValue={ageFilter}
-              onChange={onAgeFilterPress}
-              name={"Age"}
-            />
+            <>
+              <SectionHeader name={"Genres"} />
+              <RadioBtnGroup
+                radioButtons={genresRadioButtons}
+                currentValue={genresFilter}
+                onChange={onGenresFilterPress}
+              />
+            </>
+            <>
+              <SectionHeader name={"Age"} />
+              <RadioBtnGroup
+                radioButtons={ageRadioButtons}
+                currentValue={ageFilter}
+                onChange={onAgeFilterPress}
+              />
+            </>
           </FilterBlock>
         </FilterContainer>
         <ProductMediaContainer>
@@ -113,6 +123,16 @@ const Product = () => {
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e)}
               value={searchData}
             />
+            {isAdmin && (
+              <CreateButtonContainer>
+                <Button
+                  title={"Create card"}
+                  width={100}
+                  type="secondary"
+                  onClick={() => console.log("Create")}
+                />
+              </CreateButtonContainer>
+            )}
           </InputContainer>
           <ProductListContainer>
             <SectionHeader name="Products" />

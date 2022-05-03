@@ -7,3 +7,8 @@ export enum PortalNames {
   REGISTRATION = "Registration",
   AUTHORIZATION = "Authorization",
 }
+
+export enum Roles {
+  ADMIN = "ADMIN",
+  PLAYER = "PLAYER",
+}

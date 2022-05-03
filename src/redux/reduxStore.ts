@@ -2,12 +2,14 @@ import { applyMiddleware, combineReducers, createStore } from "redux";
 import thunkMiddleware from "redux-thunk";
 import authReducer from "./reducers/auth";
 import profileReducer from "./reducers/profile";
+import cartReducer from "./reducers/cart";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 const rootReducer = combineReducers({
   authReducer,
   profileReducer,
+  cartReducer,
 });
 
 const persistConfig = {

@@ -1,4 +1,4 @@
-import { colors } from "@/styles/palette";
+import { colors } from "./../../../../styles/palette/index";
 import styled from "styled-components";
 
 export const StyleInput = styled.input`
@@ -38,11 +38,17 @@ export const StyledItem = styled.div`
   color: ${({ danger }: { danger: string }) => danger || "#fff"};
   font-size: 14px;
   font-weight: 700;
-  border-radius: 15px;
+  border-radius: 10px;
   padding-left: 10px;
-  margin: 2px;
+  margin: 15px;
   &:hover {
-    background: ${({ danger }) => (danger ? "transparent" : colors.RED)};
+    width: 95%;
+    padding-top: ${({ danger }) => (danger ? `0px` : `3px`)};
+    padding-bottom: ${({ danger }) => (danger ? `0px` : `3px`)};
+    box-shadow: ${({ danger }) =>
+      danger
+        ? `0px 0px 10px 0px transparent`
+        : `0px 0px 10px 0px ${colors.PURPURE}`};
     cursor: ${({ danger }) => danger || "pointer"};
   }
 `;

@@ -43,6 +43,7 @@ export const Burger = styled.input`
   display: none;
   @media (max-width: 768px) {
     display: block;
+    margin-right: 10px;
   }
   &:hover {
     cursor: pointer;
@@ -60,14 +61,13 @@ export const CloseBurger = styled.div`
   display: none;
   @media (max-width: 768px) {
     display: block;
+    padding-right: 10px;
   }
 `;
 
 export const CloseBtn = styled.span`
   padding: 10px;
   padding-top: 20px;
-  /* text-align: center;
-  justify-content: center; */
   color: ${colors.WHITE};
   &:hover {
     cursor: pointer;

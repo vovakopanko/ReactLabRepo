@@ -3,15 +3,11 @@ import { selectUserData } from "@/redux/selectors/authSelector";
 import { memo } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import {
-  BottomLine,
-  ProfileContainer,
-  ProfilePageContent,
-  ProfileTitle,
-} from "./styles";
+import { ProfileContainer, ProfilePageContent } from "./styles";
 import Info from "./components/Info";
 import Avatar from "./components/Avatar";
-import ChangePassword from "./components/ChagePassword";
+import ChangePassword from "./components/ChangePassword";
+import { SectionHeader } from "@/components/ui";
 
 const Profile = () => {
   const { address, description, email, phoneNumber, photoUser, userName } =
@@ -21,8 +17,7 @@ const Profile = () => {
   return (
     <AuthRedirect>
       <ProfileContainer>
-        <ProfileTitle>Profile Page : {userName}</ProfileTitle>
-        <BottomLine />
+        <SectionHeader name={`Profile Page : ${userName}`} />
         <ProfilePageContent>
           <Avatar photoUser={photoUser} email={email} />
           <Info

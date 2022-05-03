@@ -1,3 +1,4 @@
+import { Roles } from "@/constants/types";
 import { AppStateType } from "../../reduxStore";
 
 export const selectEmailUser = (state: AppStateType) => {
@@ -10,6 +11,14 @@ export const selectUserData = (state: AppStateType) => {
 
 export const selectIsAuthUser = (state: AppStateType) => {
   return state.authReducer.isAuth;
+};
+
+export const selectIsAdmin = (state: AppStateType) => {
+  return state.authReducer.role === Roles.ADMIN;
+};
+
+export const selectRoleUser = (state: AppStateType) => {
+  return state.authReducer.role;
 };
 
 export const selectorStatusWindowAuth = (state: AppStateType) => {
@@ -26,4 +35,8 @@ export const selectIsChangePassword = (state: AppStateType) => {
 
 export const selectorUserName = (state: AppStateType) => {
   return state.authReducer.userName;
+};
+
+export const selectorCartList = (state: AppStateType) => {
+  return state.cartReducer.cartList;
 };

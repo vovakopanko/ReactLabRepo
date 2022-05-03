@@ -13,5 +13,5 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 420px;
+  min-width: 360px;
 `;

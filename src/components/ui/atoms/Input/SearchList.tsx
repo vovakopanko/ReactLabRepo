@@ -27,7 +27,9 @@ const SearchList = ({ value, list, setValue, setToggle, width }: Props) => {
         setValue(item.title);
         alert("got product" + " " + `${item.title}`);
         setToggle(false);
+        setValue("");
       }, []);
+
       return (
         <StyledList width={width}>
           {filteredList.map((item, index) => (
@@ -55,11 +57,11 @@ const SearchList = ({ value, list, setValue, setToggle, width }: Props) => {
 const StyledList = styled.div<StyledProps>`
    {
     width: ${(props) => props.width};
+    backdrop-filter: blur(10px) grayscale(0.5);
     z-index: 2;
     position: absolute;
     margin-top: 38px;
     border: 1px solid none;
-    background: ${colors.LIGHT_GRAY};
     border-radius: 15px;
     padding: 15px 0px;
   }

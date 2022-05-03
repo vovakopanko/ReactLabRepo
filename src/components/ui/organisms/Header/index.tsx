@@ -31,10 +31,12 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   selectorUserName,
   selectIsAuthUser,
+  selectorCartList,
 } from "@/redux/selectors/authSelector";
 import basketImage from "../../../../assets/svgIcon/basket.svg";
 import ExportOutlined from "../../../../assets/svgIcon/outlined.svg";
 import UserOutlined from "../../../../assets/svgIcon/logo.svg";
+import { clearCartList } from "@/redux/reducers/cart";
 
 const webSiteName: string = "Game Store";
 
@@ -42,8 +44,8 @@ const Header = () => {
   const [showDropDown, setShowDropDown] = useState(false);
   const isAuth = useSelector(selectIsAuthUser);
   const userName = useSelector(selectorUserName);
+  const cardsList = useSelector(selectorCartList);
   const dispatch = useDispatch();
-
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -81,7 +83,10 @@ const Header = () => {
 
   const onLogOut = useCallback(() => {
     dispatch(logOut(false));
+    dispatch(clearCartList());
   }, []);
+
+  const cardsListLength = cardsList.length;
 
   return (
     <HeaderContainer>
@@ -115,7 +120,7 @@ const Header = () => {
               <StyledNavLink to={"/basket"}>
                 <StyleItem>
                   <BasketImage src={basketImage} />
-                  <TitleItem>0</TitleItem>
+                  <TitleItem>{cardsListLength}</TitleItem>
                 </StyleItem>
               </StyledNavLink>
               <StyledBtnLogOut onClick={onLogOut}>
@@ -159,7 +164,7 @@ const Header = () => {
             <StyledNavLink to={"/basket"}>
               <StyleItem>
                 <BasketImage src={basketImage} />
-                <TitleItem>0</TitleItem>
+                <TitleItem>{cardsListLength}</TitleItem>
               </StyleItem>
             </StyledNavLink>
             <StyledBtnLogOut onClick={onLogOut}>

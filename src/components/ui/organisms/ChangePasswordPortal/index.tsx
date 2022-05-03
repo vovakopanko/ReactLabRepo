@@ -60,25 +60,9 @@ export default function ChangePasswordPortal({ title }: { title: string }) {
       });
   };
 
-  const [isShowPassword, setIsShowPassword] = useState(false);
-  const [isShowRepeatPassword, setIsShowRepeatPassword] = useState(false);
-  const [ShowCurrentPassword, setIsShowCurrentPassword] = useState(false);
-
   const onSetStatusChangePassword = useCallback(() => {
     dispatch(onStatusPasswordChange(false));
   }, []);
-
-  const onHandlerShowPassword = useCallback(() => {
-    setIsShowPassword(!isShowPassword);
-  }, [isShowPassword]);
-
-  const onHandlerShowRepeatPassword = useCallback(() => {
-    setIsShowRepeatPassword(!isShowRepeatPassword);
-  }, [isShowRepeatPassword]);
-
-  const onHandlerShowCurrentPassword = useCallback(() => {
-    setIsShowCurrentPassword(!ShowCurrentPassword);
-  }, [ShowCurrentPassword]);
 
   return ReactDOM.createPortal(
     <>
@@ -96,7 +80,7 @@ export default function ChangePasswordPortal({ title }: { title: string }) {
             name={"currentPassword"}
             title={"Current Password"}
             uniqueType={"currentPassword"}
-            type={ShowCurrentPassword ? "text" : "password"}
+            type="password"
             isDisplayEye={true}
           />
           <FormInput
@@ -104,7 +88,7 @@ export default function ChangePasswordPortal({ title }: { title: string }) {
             name={"password"}
             title={"Password"}
             uniqueType={"password"}
-            type={isShowPassword ? "text" : "password"}
+            type="password"
             isDisplayEye={true}
           />
           <FormInput
@@ -112,7 +96,7 @@ export default function ChangePasswordPortal({ title }: { title: string }) {
             name={"repeatPassword"}
             title={"Repeat password"}
             uniqueType={"repeatPassword"}
-            type={isShowRepeatPassword ? "text" : "password"}
+            type="password"
             isDisplayEye={true}
           />
           <BtnSubmit

@@ -21,6 +21,7 @@ export const GamesBlock = styled.div`
 `;
 
 export const FlexContainer = styled.div`
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
 `;
@@ -83,6 +84,12 @@ export const BottomLine = styled.div`
   border-bottom: 1px solid ${colors.LIGHT_GRAY};
   margin-left: 10px;
   margin-right: 10px;
+`;
+
+export const BottomTitleLine = styled.div`
+  border-bottom: 2px solid ${colors.WHITE};
+  margin-left: 20px;
+  margin-right: 20px;
   margin-bottom: 10px;
 `;
 
@@ -98,8 +105,8 @@ export const NameCategory = styled.span`
 `;
 
 export const SortContainer = styled.div`
+  margin-top: 10px;
   display: flex;
-  padding-bottom: 10px;
   padding-right: 10px;
 `;
 
@@ -141,7 +148,10 @@ export const ProductMediaContainer = styled.div`
   margin-right: 20px;
   margin-left: 20px;
   @media (max-width: 768px) {
-    min-width: 360px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 `;
 
@@ -156,14 +166,15 @@ export const ProductListContainer = styled.div`
   background-color: ${colors.BLACK};
   opacity: 0.8;
   @media (max-width: 768px) {
-    min-width: 368px;
+    width: 100%;
+    min-width: 340px;
   }
 `;
 
 export const ProductList = styled.div`
   justify-content: center;
   align-self: center;
-  min-height: 360px;
+  min-height: 340px;
 `;
 
 export const EmptyList = styled.span`
@@ -175,6 +186,12 @@ export const InputContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+`;
+
+export const CreateButtonContainer = styled.div`
+  margin-top: 2.5px;
+  margin-left: 5px;
+  margin-bottom: 20px;
 `;
 
 export const StyleInput = styled.input`

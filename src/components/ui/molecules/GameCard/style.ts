@@ -125,6 +125,16 @@ export const AgeRestrictions = styled.h2`
   }
 `;
 
+export const ButtonsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
+
+export const ButtonPosition = styled.div`
+  width: 50%;
+`;
+
 export const StarContainer = styled.div`
   margin-left: 10px;
 `;

@@ -51,7 +51,7 @@ function FormInput<T>({
           />
           {isDisplayEye && (
             <SecureContainer onClick={toggleIsShowPassword}>
-              <SecureImage src={isShowPassword ? hidePassword : showPassword} />
+              <SecureImage src={isShowPassword ? showPassword : hidePassword} />
             </SecureContainer>
           )}
         </FieldContainer>

@@ -7,6 +7,7 @@ export type Data = {
   photoUser: string;
   profileDescription: string;
   userName: string;
+  role: string;
 };
 
 export interface AuthResponse {
