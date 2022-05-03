@@ -1,7 +1,5 @@
 import { BottomLine } from "@/pages/Product/styles";
-import { updateAmountCard, updateCheckBoxGame } from "@/redux/reducers/cart";
-import { ChangeEvent, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { ChangeEvent, useCallback, useState } from "react";
 import {
   CheckBox,
   CheckBoxContainer,
@@ -11,6 +9,8 @@ import {
 } from "../../styles";
 import PlatformSelected from "./PlatformSelected";
 import AmountCounter from "../AmountCounter";
+import { useDispatch } from "react-redux";
+import { toggleChecked } from "@/redux/reducers/cart";
 
 type GameInfo = {
   name: string;
@@ -29,21 +29,15 @@ const GameCartInfo = ({
   checked,
   platforms,
 }: GameInfo) => {
-  const [counter, setCounter] = useState(amount);
   const [platform, setPlatform] = useState("PC");
-  const [select, setSelect] = useState(checked);
   const dispatch = useDispatch();
   const handleChangeType = (event: ChangeEvent<HTMLSelectElement>) => {
     setPlatform(event.target.value);
   };
 
-  useEffect(() => {
-    dispatch(updateAmountCard({ name: name, amount: counter }));
-  }, [counter]);
-
-  useEffect(() => {
-    dispatch(updateCheckBoxGame({ name: name, checked: select }));
-  }, [select]);
+  const onToggleCheckBox = useCallback(() => {
+    dispatch(toggleChecked({ name }));
+  }, []);
 
   return (
     <>
@@ -59,15 +53,15 @@ const GameCartInfo = ({
         <ItemName width={"15%"}>
           <TitleStyle>{orderDate}</TitleStyle>
         </ItemName>
-        <AmountCounter counter={counter} name={name} setCounter={setCounter} />
+        <AmountCounter counter={amount} name={name} />
         <ItemName width={"10%"}>
           <TitleStyle>{price} $</TitleStyle>
         </ItemName>
         <CheckBoxContainer>
           <CheckBox
             type="checkbox"
-            checked={select}
-            onChange={() => setSelect(!select)}
+            checked={checked}
+            onChange={onToggleCheckBox}
           />
         </CheckBoxContainer>
       </SubTitleBlock>

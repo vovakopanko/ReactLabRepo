@@ -62,7 +62,6 @@ const StyledList = styled.div<StyledProps>`
     position: absolute;
     margin-top: 38px;
     border: 1px solid none;
-    // background: ${colors.LIGHT_GRAY};
     border-radius: 15px;
     padding: 15px 0px;
   }

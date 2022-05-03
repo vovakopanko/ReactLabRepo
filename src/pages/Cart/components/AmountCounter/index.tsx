@@ -1,36 +1,33 @@
 import styled from "styled-components";
 import iconPlus from "../../../../assets/svgIcon/iconPlus.svg";
 import iconMinus from "../../../../assets/svgIcon/iconMinus.svg";
-import { useCallback, useEffect } from "react";
-import { updateAmountCard } from "@/redux/reducers/cart";
+import { useCallback } from "react";
+import { decreaseAmount, increaseAmount } from "@/redux/reducers/cart";
 import { useDispatch } from "react-redux";
 import { AmountBlock, AmountValue, LeftIcon, RightIcon } from "./styles";
 
 type Props = {
   counter: number;
   name: string;
-  setCounter: Function;
+  setCounter?: Function;
 };
 
 type Data = {
   disabled: boolean;
 };
 
-const AmountCounter = ({ counter, name, setCounter }: Props) => {
+const AmountCounter = ({ counter, name }: Props) => {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(updateAmountCard({ name: name, amount: counter }));
-  }, [counter]);
 
   const handleDown = useCallback(() => {
     if (counter >= 2) {
-      setCounter((prev: number) => prev - 1);
+      dispatch(decreaseAmount({ name: name }));
     }
   }, [counter]);
 
   const handleUp = useCallback(() => {
     if (counter <= 9) {
-      setCounter((prev: number) => prev + 1);
+      dispatch(increaseAmount({ name: name }));
     }
   }, [counter]);
 

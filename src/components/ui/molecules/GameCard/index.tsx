@@ -40,13 +40,13 @@ const GameCard = ({
   age,
 }: CardItem) => {
   const starsCount = new Array(amountStars).fill("star");
-  const cardList = useSelector(selectorCartList);
+  const cardsList = useSelector(selectorCartList);
   const isAuth = useSelector(selectIsAuthUser);
-  const isRole = useSelector(selectIsAdmin);
+  const isAdmin = useSelector(selectIsAdmin);
   const dispatch = useDispatch();
-  const now = new Date();
 
   const setGameCard = useCallback(() => {
+    const now = new Date();
     const game = [
       {
         name: title,
@@ -91,12 +91,12 @@ const GameCard = ({
                 title={"Add to cart"}
                 width={100}
                 type="secondary"
-                disabled={cardList.some((a) => a.name === title)}
+                disabled={cardsList.some((cardList) => cardList.name === title)}
                 onClick={setGameCard}
               />
             )}
           </ButtonPosition>
-          {isAuth && isRole && (
+          {isAuth && isAdmin && (
             <ButtonPosition>
               <Button
                 title={"Edit"}

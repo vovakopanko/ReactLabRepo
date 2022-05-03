@@ -2,6 +2,7 @@ import Button from "@/components/ui/atoms/Button";
 import AuthRedirect from "@/hoc/withAuthRedirect";
 import { removeCurrentGames } from "@/redux/reducers/cart";
 import { selectorCartList } from "@/redux/selectors/authSelector";
+import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BottomLine, BottomTitleLine } from "../Product/styles";
 import GameCartInfo from "./components/GameCartInfo";
@@ -34,19 +35,44 @@ type ArraySubTitle = {
 
 const CartPage = () => {
   const selectedGames = useSelector(selectorCartList);
+
   const dispatch = useDispatch();
-  const unselectedPositions = selectedGames.filter((a) => a.checked === false);
-  const isButtonRemoveDisabled = selectedGames
-    .map((a) => a.checked)
-    .includes(true);
+
+  const onRemoveUnSelectedCards = useCallback(() => {
+    dispatch(
+      removeCurrentGames(
+        selectedGames.filter((selectedGame) => selectedGame.checked === false)
+      )
+    );
+  }, [selectedGames]);
+
+  const onBuyPress = useCallback(() => {
+    onRemoveUnSelectedCards();
+    alert("Wait couple minutes our specialist call with you!");
+  }, [onRemoveUnSelectedCards]);
+
+  const selectedGamesLength = selectedGames.length;
+  const isButtonRemoveDisabled = selectedGames.some(
+    (selectedGame) => selectedGame.checked
+  );
+
+  const totalAmount = selectedGames
+    .reduce((prev, cardItem) => {
+      if (cardItem.checked) {
+        return prev + cardItem.price * cardItem.amount;
+      }
+      return prev;
+    }, 0)
+    .toFixed(2);
+
   return (
     <AuthRedirect>
-      <CartComponent data={selectedGames.length}>
+      <CartComponent data={selectedGamesLength}>
         <PageTitleBlock>
           <PageTitle>Cart page</PageTitle>
           <BottomTitleLine />
         </PageTitleBlock>
-        {selectedGames.length && (
+        {selectedGamesLength && (
           <MobileBlock>
             <SubTitleBlock>
               {arraySubTitle.map((subtitle: ArraySubTitle) => (
@@ -71,42 +97,26 @@ const CartPage = () => {
           />
         ))}
         <RemoveBtnBlock>
-          {selectedGames.length && (
+          {selectedGamesLength && (
             <BtnWrapper>
               <Button
                 disabled={!isButtonRemoveDisabled}
                 title={"Remove"}
                 width={100}
-                onClick={() =>
-                  dispatch(removeCurrentGames(unselectedPositions))
-                }
+                onClick={onRemoveUnSelectedCards}
                 type="secondary"
               />
             </BtnWrapper>
           )}
         </RemoveBtnBlock>
-        {selectedGames.length && (
+        {selectedGamesLength ? (
           <>
             <BottomLine />
             <TotalCoast>
               <CoastContainer>
                 <TotalCoastContainer>
                   <TotalCoastTitle>Games cost:</TotalCoastTitle>
-                  <TotalCoastSubTitle>
-                    {selectedGames
-                      .map(
-                        (selectedGame) =>
-                          selectedGame.price *
-                          (selectedGame.checked ? selectedGame.amount : 0)
-                      )
-                      .reduce(
-                        (previousValue, currentValue) =>
-                          previousValue + currentValue,
-                        0
-                      )
-                      .toFixed(2)}
-                    $
-                  </TotalCoastSubTitle>
+                  <TotalCoastSubTitle>{totalAmount}$</TotalCoastSubTitle>
                 </TotalCoastContainer>
                 <TotalCoastContainer>
                   <TotalCoastTitle>Your balance:</TotalCoastTitle>
@@ -118,17 +128,13 @@ const CartPage = () => {
                   disabled={!isButtonRemoveDisabled}
                   title={"Buy"}
                   width={100}
-                  onClick={() => {
-                    dispatch(removeCurrentGames(unselectedPositions));
-                    alert("Wait couple minutes our specialist call with you!");
-                  }}
+                  onClick={onBuyPress}
                   type="secondary"
                 />
               </ButtonBuyContainer>
             </TotalCoast>
           </>
-        )}
-        {!selectedGames.length && (
+        ) : (
           <EmptyContainer>
             <TotalCoastTitle>Your shopping cart is empty</TotalCoastTitle>
           </EmptyContainer>

@@ -17,12 +17,10 @@ type TState = {
 
 type Amount = {
   name: string;
-  amount: number;
 };
 
 type CheckBox = {
   name: string;
-  checked: boolean;
 };
 
 const initialState: TState = {
@@ -42,18 +40,25 @@ const cartSlice = createSlice({
     removeCurrentGames: (state, actions: PayloadAction<cartList[]>) => {
       return { ...state, cartList: actions.payload };
     },
-    updateAmountCard: (state, actions: PayloadAction<Amount>) => {
-      const index = state.cartList
-        .map((el) => el.name)
-        .indexOf(actions.payload.name);
+    decreaseAmount: (state, actions: PayloadAction<Amount>) => {
+      const index = state.cartList.findIndex(
+        (el) => el.name === actions.payload.name
+      );
 
-      state.cartList[index].amount = Number(actions.payload.amount);
+      state.cartList[index].amount = state.cartList[index].amount - 1;
     },
-    updateCheckBoxGame: (state, actions: PayloadAction<CheckBox>) => {
-      const index = state.cartList
-        .map((el) => el.name)
-        .indexOf(actions.payload.name);
-      state.cartList[index].checked = actions.payload.checked;
+    increaseAmount: (state, actions: PayloadAction<Amount>) => {
+      const index = state.cartList.findIndex(
+        (el) => el.name === actions.payload.name
+      );
+
+      state.cartList[index].amount = state.cartList[index].amount + 1;
+    },
+    toggleChecked: (state, actions: PayloadAction<CheckBox>) => {
+      const index = state.cartList.findIndex(
+        (el) => el.name === actions.payload.name
+      );
+      state.cartList[index].checked = !state.cartList[index].checked;
     },
   },
 });
@@ -63,8 +68,9 @@ const { actions, reducer } = cartSlice;
 export const {
   setCartList,
   clearCartList,
-  updateAmountCard,
-  updateCheckBoxGame,
+  increaseAmount,
+  decreaseAmount,
+  toggleChecked,
   removeCurrentGames,
 } = actions;
 
