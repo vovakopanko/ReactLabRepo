@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { colors } from "@/styles/palette";
 import styled from "styled-components";
 
@@ -143,4 +144,8 @@ export const StarImage = styled.img`
   width: 20px;
   height: 20px;
   padding: 2px;
+`;
+
+export const ModalLink = styled(Link)`
+  text-decoration: none;
 `;

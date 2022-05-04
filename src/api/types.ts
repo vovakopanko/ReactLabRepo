@@ -10,5 +10,6 @@ export enum AppUrls {
   GET_GAME_CARDS = "gameCards",
   CHANGE_PASSWORD = "change-password",
   UPDATE_PROFILE_INFO = "update-profile-info",
+  UPDATE_CARD_INFO = "/update-card-info",
   UPDATE_PROFILE_AVATAR = "update-profile-avatar",
 }

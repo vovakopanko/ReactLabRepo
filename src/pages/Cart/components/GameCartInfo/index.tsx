@@ -11,10 +11,11 @@ import PlatformSelected from "./PlatformSelected";
 import AmountCounter from "../AmountCounter";
 import { useDispatch } from "react-redux";
 import { toggleChecked } from "@/redux/reducers/cart";
+import { imagesPlatforms } from "@/components/ui/organisms/GameList/types";
 
 type GameInfo = {
   name: string;
-  platforms: any;
+  platforms: imagesPlatforms[];
   orderDate: string;
   amount: number;
   price: number;
