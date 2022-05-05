@@ -17,7 +17,7 @@ export const AuthContainer = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: ${colors.BLACK};
+  background-color: ${colors.GRAY};
   opacity: 0.85;
   padding: 30px;
   z-index: 1000;
@@ -72,14 +72,14 @@ export const HeaderContainer = styled.div`
 `;
 
 export const HeaderName = styled.h1`
-  color: red;
+  color: ${colors.PURPURE};
   width: 90%;
   text-align: center;
   justify-content: center;
 `;
 
 export const ErrorContainer = styled.div`
-  color: red;
+  color: ${colors.PURPURE};
   padding: 10px;
   font-size: 14;
 `;
@@ -93,7 +93,7 @@ export const InputBlock = styled.div`
 `;
 
 export const ErrorMessage = styled.span`
-  color: red;
+  color: ${colors.PURPURE};
   font-size: 14;
   padding-top: 10px;
 `;

@@ -44,3 +44,7 @@ export const selectorCartList = (state: AppStateType) => {
 export const selectCurrentCard = (state: AppStateType) => {
   return state.productReducer.card;
 };
+
+export const selectIsShowNotification = (state: AppStateType) => {
+  return state.productReducer.isShowNotification;
+};

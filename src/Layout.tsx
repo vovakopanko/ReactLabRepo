@@ -5,6 +5,7 @@ import { Footer, Header } from "./components/ui";
 import SignUp from "./components/ui/molecules/SignUp";
 import SignIn from "./components/ui/molecules/SignIn";
 import ChangePassword from "./components/ui/molecules/ChangePassword";
+import Notification from "./components/ui/molecules/Notification";
 
 const Layout = () => {
   return (
@@ -15,6 +16,7 @@ const Layout = () => {
         <SignIn />
         <SignUp />
         <ChangePassword />
+        <Notification />
       </Background>
       <Footer />
     </Container>

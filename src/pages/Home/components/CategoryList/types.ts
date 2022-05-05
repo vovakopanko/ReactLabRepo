@@ -20,3 +20,7 @@ export type CardInfo = {
   age: number;
   imagePlatforms: ImagePlatforms[];
 };
+
+export type CardId = {
+  _id: string;
+};

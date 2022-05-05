@@ -9,7 +9,7 @@ export const BackgroundContainer = styled.div`
   bottom: 0px;
   background-color: ${colors.LIGHT_GRAY};
   opacity: 0.6;
-  z-index: 1000;
+  z-index: 10;
 `;
 
 export const AuthContainer = styled.div`
@@ -77,14 +77,14 @@ export const CloseOutlined = styled.img`
 `;
 
 export const HeaderName = styled.h1`
-  color: red;
+  color: ${colors.PURPURE};
   width: 90%;
   text-align: center;
   justify-content: center;
 `;
 
 export const ErrorContainer = styled.div`
-  color: red;
+  color: ${colors.PURPURE};
   padding: 10px;
   font-size: 14;
 `;
@@ -94,7 +94,7 @@ export const InputBlock = styled.div`
 `;
 
 export const ErrorMessage = styled.span`
-  color: red;
+  color: ${colors.PURPURE};
   font-size: 14;
   padding-top: 10px;
 `;
@@ -132,7 +132,7 @@ export const ProfileForm = styled.form`
 
 export const BtnSubmit = styled.input`
   background-color: ${(props: { styleBtn: boolean }) =>
-    props.styleBtn ? colors.PURPURE : colors.GRAY};
+    props.styleBtn ? colors.PURPURE : colors.LIGHT_GRAY};
   color: ${(props: { styleBtn: boolean }) =>
     props.styleBtn ? colors.WHITE : colors.BLACK};
   opacity: ${(props: { styleBtn: boolean }) => (props.styleBtn ? 1 : 0.3)};

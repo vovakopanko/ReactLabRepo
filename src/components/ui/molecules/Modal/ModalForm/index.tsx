@@ -4,13 +4,15 @@ import CheckedForm from "@/components/ui/form/CheckedForm";
 import FormSelected from "@/components/ui/form/SelectedForm";
 import FormTextArea from "@/components/ui/form/TextArea";
 import FormInput from "@/components/ui/form/TextInput";
-import { updateCurrentState } from "@/redux/reducers/product";
+import {
+  isShowDeleteNotification,
+  updateCurrentState,
+} from "@/redux/reducers/product";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ChangeEvent, useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
 import { arrayAge, arrayPlatform } from "..";
 import { imagesPlatforms } from "../../GameCard/types";
 import { FormValue, scheme } from "../scheme";
@@ -31,6 +33,7 @@ type Props = {
   age: number;
   ageUser?: number;
   imagePlatforms: ImagePlatforms[];
+  idCard: string;
 };
 
 export type TState = {
@@ -46,6 +49,7 @@ export type TState = {
 };
 
 const ModalForm = ({
+  idCard,
   gameName,
   description,
   image,
@@ -85,6 +89,13 @@ const ModalForm = ({
     },
     resolver: yupResolver(scheme),
   });
+
+  const deleteCard = () => {
+    // contentAPI.deleteGameCard(idCard)?.then((response: any) => {
+    //   dispatch(updateCurrentState(response));
+    // });
+    dispatch(isShowDeleteNotification(true));
+  };
 
   const onSubmit = useCallback(
     handleSubmit(async (dataForm: FormValue) => {
@@ -190,7 +201,7 @@ const ModalForm = ({
             title={"Delete card"}
             width={100}
             type="secondary"
-            onClick={() => console.log("EDIT")}
+            onClick={deleteCard}
           />
         </ButtonWrapper>
       </CardFormContainer>

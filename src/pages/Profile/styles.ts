@@ -19,6 +19,8 @@ export const BorderContainer = styled.div`
   padding: 10px;
   border-radius: 15px;
   border: 3px solid ${colors.PURPURE};
+  background-color: ${colors.LIGHT_GRAY};
+  opacity: 0.91;
 `;
 
 export const InfoTitle = styled.h2`

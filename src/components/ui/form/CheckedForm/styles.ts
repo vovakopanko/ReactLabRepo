@@ -17,7 +17,7 @@ export const CheckedTitle = styled.span`
   font-size: 14;
   line-height: 2;
   font-weight: 700;
-  color: ${colors.WHITE};
+  color: ${colors.BLACK};
   width: 50%;
 `;
 
@@ -26,7 +26,7 @@ export const CheckedContent = styled.div`
 `;
 
 export const CheckBoxTitle = styled.span`
-  color: ${colors.WHITE};
+  color: ${colors.BLACK};
   font-size: 18px;
 `;
 

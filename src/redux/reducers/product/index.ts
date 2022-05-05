@@ -15,10 +15,12 @@ export type TState = {
 
 type CurrentState = {
   card: TState[];
+  isShowNotification: boolean;
 };
 
 const initialState: CurrentState = {
   card: [],
+  isShowNotification: false,
 };
 
 const productSlice = createSlice({
@@ -28,11 +30,14 @@ const productSlice = createSlice({
     updateCurrentState: (state, actions: PayloadAction<TState[]>) => {
       state.card = actions.payload;
     },
+    isShowDeleteNotification: (state, actions: PayloadAction<boolean>) => {
+      state.isShowNotification = actions.payload;
+    },
   },
 });
 
 const { actions, reducer } = productSlice;
 
-export const { updateCurrentState } = actions;
+export const { updateCurrentState, isShowDeleteNotification } = actions;
 
 export default reducer;

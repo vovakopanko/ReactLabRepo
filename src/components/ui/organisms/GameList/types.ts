@@ -10,7 +10,7 @@ export type TCardItem = {
   genres: string;
 };
 
-export type TGameCard = { _id: number } & TCardItem;
+export type TGameCard = { _id: string } & TCardItem;
 
 export enum amountFavoriteGame {
   STANDARTSHEME = 3,

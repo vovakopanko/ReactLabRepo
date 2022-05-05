@@ -56,7 +56,7 @@ export const StyleItem = styled.ul`
   list-style-type: none;
   cursor: pointer;
   &:hover {
-    color: ${colors.RED};
+    color: ${colors.PURPURE};
   }
   padding: 0 20px;
 `;

@@ -6,6 +6,7 @@ import {
   ImagePlatforms,
   TCategory,
   CardInfo,
+  CardId,
 } from "@/pages/Home/components/CategoryList/types";
 
 export const contentAPI = {
@@ -14,6 +15,15 @@ export const contentAPI = {
       return instanceMongoDB
         .get<TGameCard[]>(AppUrls.GET_GAME_CARDS)
         .then((response) => response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  },
+  deleteGameCard(_id: string) {
+    try {
+      return instanceMongoDB.delete<CardId>(AppUrls.DELETE_CARD, {
+        _id,
+      });
     } catch (error) {
       console.error(error);
     }

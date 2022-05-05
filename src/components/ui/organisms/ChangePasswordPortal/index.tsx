@@ -18,7 +18,7 @@ import { onStatusPasswordChange } from "@/redux/reducers/profile";
 import { registerUser } from "@/api/AuthAPI";
 import { selectEmailUser } from "@/redux/selectors/authSelector";
 import { BtnSubmit, CloseOutlined } from "../AuthPortal/styles";
-import image from "./../../../../assets/svgIcon/incorrect.svg";
+import image from "./../../../../assets/svgIcon/closeBtn.svg";
 
 export default function ChangePasswordPortal({ title }: { title: string }) {
   const [invalidValue, setInvalidValue] = useState("");

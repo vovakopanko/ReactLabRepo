@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { contentAPI } from "@/api/ContentAPI";
 import { TGameCard } from "../../organisms/GameList/types";
 import ModalForm from "./ModalForm";
+import { BackgroundContainer } from "../../organisms/AuthPortal/styles";
 
 export const arrayPlatform = [
   { value: "PC", titleName: "PC" },
@@ -46,6 +47,7 @@ export function Modal() {
 
   return (
     <EditCardContainer>
+      <BackgroundContainer />
       <Blur>
         <TitleContainer>
           <Title>Edit card</Title>
@@ -61,6 +63,7 @@ export function Modal() {
           <InfoContainer>
             <InfoTitle>Information</InfoTitle>
             <ModalForm
+              idCard={selectedGame._id}
               gameName={selectedGame.title}
               description={selectedGame.description}
               image={selectedGame.url}
@@ -77,9 +80,17 @@ export function Modal() {
 }
 
 const Blur = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: ${colors.GRAY};
+  width: 30%;
+  min-width: 360px;
+  box-shadow: 0px 0px 20px 0px ${colors.PURPURE};
+  z-index: 11;
   border-radius: 25px;
   padding: 20px;
-  backdrop-filter: blur(8px);
 `;
 
 const CloseOutlined = styled.img`
@@ -107,7 +118,7 @@ const TitleContainer = styled.div`
 
 const Title = styled.div`
   font-size: 29px;
-  color: ${colors.WHITE};
+  color: ${colors.BLACK};
   padding: 20px;
   width: 95%;
 `;
@@ -132,7 +143,7 @@ const ImageContainer = styled.div`
 `;
 
 const ImageTitle = styled.span`
-  color: ${colors.WHITE};
+  color: ${colors.BLACK};
   font-size: 21px;
   padding-bottom: 20px;
   padding-top: 10px;
@@ -151,24 +162,8 @@ const InfoContainer = styled.div`
 `;
 
 const InfoTitle = styled.div`
-  color: ${colors.WHITE};
+  color: ${colors.BLACK};
   font-size: 21px;
   padding-bottom: 10px;
   padding-top: 10px;
 `;
-
-// const EditCardForm = styled.form`
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-// `;
-
-// title
-// alt
-// amountStars
-// age
-// description
-// imagePlatforms
-// genres
-// price

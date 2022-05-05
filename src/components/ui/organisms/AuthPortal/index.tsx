@@ -9,8 +9,8 @@ import {
   BtnSubmit,
   CloseOutlined,
 } from "./styles";
-import image from "./../../../../assets/svgIcon/incorrect.svg";
-import { useCallback, useState } from "react";
+import image from "./../../../../assets/svgIcon/closeBtn.svg";
+import { useState } from "react";
 import { registerUser } from "@/api/AuthAPI";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";

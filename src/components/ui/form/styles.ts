@@ -29,7 +29,7 @@ export const InputName = styled.label`
   margin-top: 5px;
   font-size: 14;
   font-weight: 700;
-  color: ${colors.WHITE};
+  color: ${colors.BLACK};
   justify-content: center;
   align-items: center;
   width: 50%;
@@ -40,7 +40,7 @@ export const FieldContainer = styled.div`
 `;
 
 export const MessageError = styled.span`
-  color: red;
+  color: ${colors.PURPURE};
   width: 80%;
   padding: 5px;
 `;

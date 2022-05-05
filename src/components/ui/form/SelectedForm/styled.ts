@@ -11,7 +11,7 @@ export const SortTitle = styled.span`
   font-size: 14;
   line-height: 2;
   font-weight: 700;
-  color: ${colors.WHITE};
+  color: ${colors.BLACK};
   width: 50%;
 `;
 

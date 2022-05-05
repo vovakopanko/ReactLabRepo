@@ -59,7 +59,7 @@ export const LinkItems = styled(NavLink)`
     min-width: 50px;
   }
   &:hover {
-    color: ${colors.RED};
+    color: ${colors.PURPURE};
   }
   @media (max-width: 768px) {
     display: block;
