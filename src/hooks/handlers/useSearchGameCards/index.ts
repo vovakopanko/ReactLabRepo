@@ -1,3 +1,5 @@
+import { selectCurrentCard } from "./../../../redux/selectors/authSelector/index";
+import { useSelector } from "react-redux";
 import { debouncedFetchData } from "@/api/SearchAPI";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -24,6 +26,7 @@ const useSearchGameCards = ({
 }: Props) => {
   const [gamesCards, setGamesCards] = useState<TGameCard[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const updateCard = useSelector(selectCurrentCard);
 
   useEffect(() => {
     setIsLoading(true);
@@ -52,7 +55,7 @@ const useSearchGameCards = ({
     return () => {
       clearTimeout(timerId);
     };
-  }, [searchData, pageInfo, age, genres, type, criteria]);
+  }, [searchData, pageInfo, age, genres, type, criteria, updateCard]);
   return {
     isLoading,
     gamesCards,

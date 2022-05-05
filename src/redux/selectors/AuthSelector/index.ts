@@ -40,3 +40,7 @@ export const selectorUserName = (state: AppStateType) => {
 export const selectorCartList = (state: AppStateType) => {
   return state.cartReducer.cartList;
 };
+
+export const selectCurrentCard = (state: AppStateType) => {
+  return state.productReducer.card;
+};

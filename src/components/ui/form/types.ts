@@ -1,4 +1,4 @@
-import { InputHTMLAttributes } from "react";
+import { ChangeEvent, InputHTMLAttributes } from "react";
 import { FieldPath, Control } from "react-hook-form";
 
 export type InputBaseProps = InputHTMLAttributes<HTMLInputElement>;
@@ -16,7 +16,27 @@ export type TextAreaProps<T> = {
 } & TextAreaBaseProps &
   HookFormPropsBase<T>;
 
+export type SelectedProps<T> = {
+  uniqueType: string;
+  array: { titleName: string; value: string }[];
+  handleChange: (event: ChangeEvent<HTMLSelectElement>) => void;
+} & TextAreaBaseProps &
+  HookFormPropsBase<T>;
+
+export type CheckedFormProps<T> = {
+  imagePlatforms: {
+    alt: string;
+    id: number;
+    src: string;
+  }[];
+
+  uniqueType: string;
+  array: { titleName: string; value: string }[];
+  handleChange: (event: ChangeEvent<HTMLSelectElement>) => void;
+} & TextAreaBaseProps &
+  HookFormPropsBase<T>;
+
 export type HookFormPropsBase<T> = {
-  control: Control<T>;
+  control?: Control<T>;
   name: FieldPath<T>;
 };
