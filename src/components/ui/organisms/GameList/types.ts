@@ -10,10 +10,14 @@ export type TCardItem = {
   genres: string;
 };
 
-export type TGameCard = { _id: string } & TCardItem;
+export type TGameCard = { uniqueId: string } & TCardItem;
 
 export enum amountFavoriteGame {
   STANDARTSHEME = 3,
 }
 
 export type imagesPlatforms = { id: number; src: string; alt: string };
+
+export type FocusCard = {
+  focused: boolean;
+};

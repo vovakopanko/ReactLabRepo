@@ -1,5 +1,6 @@
 export enum AppUrls {
   CATEGORIES = "categories",
+  CREATE_NEW_CARD = "create-game-card",
   LOGOGAMES = "logogames",
   GAMECARD = "gameCards?_sort=amountStars&_order=desc",
   USERS = "users",

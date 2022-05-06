@@ -48,3 +48,7 @@ export const selectCurrentCard = (state: AppStateType) => {
 export const selectIsShowNotification = (state: AppStateType) => {
   return state.productReducer.isShowNotification;
 };
+
+export const selectUniqueIdCard = (state: AppStateType) => {
+  return state.productReducer.uniqueCardId;
+};

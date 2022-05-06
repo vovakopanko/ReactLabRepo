@@ -8,6 +8,8 @@ import {
   CardInfo,
   CardId,
 } from "@/pages/Home/components/CategoryList/types";
+import uuid from "react-native-uuid";
+import { TState } from "@/components/ui/molecules/CreateGameCard/ModalForm";
 
 export const contentAPI = {
   getGameCards() {
@@ -19,11 +21,43 @@ export const contentAPI = {
       console.error(error);
     }
   },
-  deleteGameCard(_id: string) {
+  deleteGameCard(uniqueId: string) {
     try {
-      return instanceMongoDB.delete<CardId>(AppUrls.DELETE_CARD, {
-        _id,
-      });
+      return instanceMongoDB
+        .delete<CardId>(AppUrls.DELETE_CARD, {
+          data: {
+            uniqueId,
+          },
+        })
+        .then((response) => response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  },
+  createNewCard(
+    gameName: string,
+    description: string,
+    image: string,
+    price: number,
+    genres: string,
+    ageUser: number,
+    imagePlatforms: ImagePlatforms[]
+  ) {
+    try {
+      return instanceMongoDB
+        .post<TState[]>(AppUrls.CREATE_NEW_CARD, {
+          title: gameName,
+          alt: gameName,
+          description,
+          url: image,
+          amountStars: 4,
+          price,
+          genres,
+          age: ageUser,
+          imagePlatforms,
+          uniqueId: uuid.v4(),
+        })
+        .then((response) => response.data);
     } catch (error) {
       console.error(error);
     }
@@ -35,7 +69,8 @@ export const contentAPI = {
     price: number,
     genres: string,
     ageUser: number,
-    imagePlatforms: ImagePlatforms[]
+    imagePlatforms: ImagePlatforms[],
+    idCard: string
   ) {
     try {
       return instanceMongoDB
@@ -49,6 +84,7 @@ export const contentAPI = {
           genres,
           age: ageUser,
           imagePlatforms,
+          uniqueId: idCard,
         })
         .then((response) => response.data);
     } catch (error) {

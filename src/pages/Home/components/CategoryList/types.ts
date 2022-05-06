@@ -19,8 +19,9 @@ export type CardInfo = {
   genres: string;
   age: number;
   imagePlatforms: ImagePlatforms[];
+  idCard: string;
 };
 
 export type CardId = {
-  _id: string;
+  uniqueId: string;
 };

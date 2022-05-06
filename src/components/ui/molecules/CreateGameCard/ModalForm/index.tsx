@@ -4,68 +4,32 @@ import CheckedForm from "@/components/ui/form/CheckedForm";
 import FormSelected from "@/components/ui/form/SelectedForm";
 import FormTextArea from "@/components/ui/form/TextArea";
 import FormInput from "@/components/ui/form/TextInput";
-import {
-  isShowDeleteNotification,
-  setUniqueIdCurrentCard,
-  updateCurrentState,
-} from "@/redux/reducers/product";
+import { updateCurrentState } from "@/redux/reducers/product";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ChangeEvent, useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { arrayAge, arrayPlatform } from "./constants";
-import { imagesPlatforms } from "../../GameCard/types";
+import { arrayAge, arrayPlatform } from "../../Modal/ModalForm/constants";
 import { FormValue, scheme } from "../scheme";
 import { ButtonWrapper, CardFormContainer, EditCardForm } from "./styles";
+import { arrayStars, imagePlatforms } from "./constants";
+import { ImagePlatforms } from "@/pages/Home/components/CategoryList/types";
 
-type ImagePlatforms = {
-  alt: string;
-  id: number;
-  src: string;
-};
-
-type Props = {
-  gameName: string;
-  description: string;
-  image: string;
-  price: number;
-  genres: string;
-  age: number;
-  ageUser?: number;
-  imagePlatforms: ImagePlatforms[];
-  idCard: string;
-};
-
-export type TState = {
-  title: string;
-  age: string;
-  alt: string;
-  amountStars: number;
-  description: string;
-  url: string;
-  price: number;
-  genres: string;
-  imagePlatforms: imagesPlatforms[];
-};
-
-const ModalForm = ({
-  idCard,
-  gameName,
-  description,
-  image,
-  price,
-  genres,
-  age,
-  imagePlatforms,
-}: Props) => {
-  const [ageUser, setAgeUser] = useState<number>(age);
+const ModalForm = () => {
+  const [ageUser, setAgeUser] = useState<number>(0);
+  const [stars, setStarsUser] = useState<number>(0);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleChangeCriteria = (event: ChangeEvent<any>) => {
+  const handleChangeAgeUser = (event: ChangeEvent<any>) => {
     setAgeUser(event.target.value as number);
   };
+
+  const handleChangeStars = (event: ChangeEvent<any>) => {
+    setStarsUser(event.target.value as number);
+  };
+
   const [checkedArray, setCheckedArray] =
     useState<ImagePlatforms[]>(imagePlatforms);
   const handleChangeCheckedArray = (event: ChangeEvent<any>) => {
@@ -79,21 +43,17 @@ const ModalForm = ({
   } = useForm<FormValue>({
     mode: "onChange",
     defaultValues: {
-      gameName,
-      description,
-      image,
-      price,
-      genres,
+      gameName: "",
+      genres: "",
+      image: "",
+      price: 0,
+      description: "",
       ageUser,
       imagePlatforms,
+      stars,
     },
     resolver: yupResolver(scheme),
   });
-
-  const onDeleteCard = () => {
-    dispatch(setUniqueIdCurrentCard(idCard));
-    dispatch(isShowDeleteNotification(true));
-  };
 
   const onSubmit = useCallback(
     handleSubmit(async (dataForm: FormValue) => {
@@ -107,17 +67,16 @@ const ModalForm = ({
         imagePlatforms,
       } = dataForm;
       contentAPI
-        .updateCardInfo(
+        .createNewCard(
           gameName,
           description,
           image,
           price,
           genres,
-          ageUser!,
-          imagePlatforms,
-          idCard
+          ageUser,
+          imagePlatforms
         )
-        ?.then((response: any) => {
+        ?.then((response) => {
           dispatch(updateCurrentState(response));
         });
       navigate(-1);
@@ -134,7 +93,7 @@ const ModalForm = ({
           title={"Game Name"}
           type={"text"}
           uniqueType={"gameName"}
-          placeholder={gameName}
+          placeholder={"Write name..."}
         />
         <FormInput
           control={control}
@@ -142,7 +101,7 @@ const ModalForm = ({
           title={"Genres"}
           type={"text"}
           uniqueType={"genres"}
-          placeholder={genres}
+          placeholder={"Write genres..."}
         />
         <FormInput
           control={control}
@@ -150,6 +109,7 @@ const ModalForm = ({
           title={"Price"}
           type={"number"}
           uniqueType={"price"}
+          placeholder={"Add price..."}
           required
         />
         <FormInput
@@ -158,7 +118,7 @@ const ModalForm = ({
           title={"Image URL"}
           type={"text"}
           uniqueType={"image"}
-          placeholder={image}
+          placeholder={"Write url..."}
         />
         <FormTextArea
           control={control}
@@ -166,6 +126,7 @@ const ModalForm = ({
           title={"Description"}
           type={"textarea"}
           uniqueType={"description"}
+          placeholder={"Write description game..."}
         />
         <FormSelected
           control={control}
@@ -173,7 +134,15 @@ const ModalForm = ({
           name={"ageUser"}
           uniqueType={"ageUser"}
           array={arrayAge}
-          handleChange={handleChangeCriteria}
+          handleChange={handleChangeAgeUser}
+        />
+        <FormSelected
+          control={control}
+          title={"Stars"}
+          name={"stars"}
+          uniqueType={"stars"}
+          array={arrayStars}
+          handleChange={handleChangeStars}
         />
         <CheckedForm
           imagePlatforms={checkedArray}
@@ -188,19 +157,11 @@ const ModalForm = ({
       <CardFormContainer>
         <ButtonWrapper>
           <Button
-            title={"Submit"}
+            title={"Create"}
             width={100}
             type="secondary"
             disabled={!isValid || isSubmitting}
             onClick={onSubmit}
-          />
-        </ButtonWrapper>
-        <ButtonWrapper>
-          <Button
-            title={"Delete card"}
-            width={100}
-            type="secondary"
-            onClick={onDeleteCard}
           />
         </ButtonWrapper>
       </CardFormContainer>

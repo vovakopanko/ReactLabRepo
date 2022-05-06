@@ -11,6 +11,7 @@ export type FormValue = {
   ageUser: number;
   imagePlatforms: ImagePlatforms[];
   idCard: string;
+  stars: number;
 };
 
 type ImagePlatforms = {

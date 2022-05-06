@@ -8,6 +8,7 @@ import { Layout } from "./Layout.tsx";
 import Product from "./pages/Product";
 import CartPage from "./pages/Cart";
 import { Modal } from "./components/ui/molecules/Modal";
+import { CreateNewCardModal } from "./components/ui/molecules/CreateGameCard";
 
 const AppContainer = () => {
   let location = useLocation();
@@ -28,6 +29,7 @@ const AppContainer = () => {
       {state?.backgroundLocation && (
         <Routes>
           <Route path="games/:name" element={<Modal />} />
+          <Route path="/createCard" element={<CreateNewCardModal />} />
         </Routes>
       )}
     </div>

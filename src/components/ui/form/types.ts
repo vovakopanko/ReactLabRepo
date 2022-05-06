@@ -18,7 +18,7 @@ export type TextAreaProps<T> = {
 
 export type SelectedProps<T> = {
   uniqueType: string;
-  array: { titleName: string; value: string }[];
+  array: { titleName: string; value: string | number }[];
   handleChange: (event: ChangeEvent<HTMLSelectElement>) => void;
 } & TextAreaBaseProps &
   HookFormPropsBase<T>;

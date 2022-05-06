@@ -155,16 +155,11 @@ export const ProductMediaContainer = styled.div`
   }
 `;
 
-export const SearchBarContainer = styled.div`
-  /* display: flex;
-  justify-content: center; */
-`;
-
 export const ProductListContainer = styled.div`
   border-radius: 25px;
   border: 1px solid ${colors.GRAY};
   background-color: ${colors.BLACK};
-  opacity: 0.8;
+  opacity: 0.96;
   @media (max-width: 768px) {
     width: 100%;
     min-width: 340px;

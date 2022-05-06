@@ -8,19 +8,6 @@ import { TGameCard } from "../../organisms/GameList/types";
 import ModalForm from "./ModalForm";
 import { BackgroundContainer } from "../../organisms/AuthPortal/styles";
 
-export const arrayPlatform = [
-  { value: "PC", titleName: "PC" },
-  { value: "Xbox", titleName: "Xbox One" },
-  { value: "Playstation 5", titleName: "Playstation 5" },
-];
-
-export const arrayAge = [
-  { value: "3", titleName: "3+" },
-  { value: "6", titleName: "6+" },
-  { value: "14", titleName: "14+" },
-  { value: "16", titleName: "16+" },
-];
-
 export function Modal() {
   const [games, setGames] = useState<TGameCard[]>([]);
   const { name } = useParams<"name">();
@@ -32,6 +19,7 @@ export function Modal() {
         .getGameCards()
         ?.then((response: TGameCard[]) => response);
       if (gamesList) {
+        console.log(gamesList);
         setGames(gamesList);
       }
     };
@@ -63,7 +51,7 @@ export function Modal() {
           <InfoContainer>
             <InfoTitle>Information</InfoTitle>
             <ModalForm
-              idCard={selectedGame._id}
+              idCard={selectedGame.uniqueId}
               gameName={selectedGame.title}
               description={selectedGame.description}
               image={selectedGame.url}

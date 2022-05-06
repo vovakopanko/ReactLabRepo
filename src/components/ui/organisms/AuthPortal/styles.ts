@@ -17,7 +17,7 @@ export const AuthContainer = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: ${colors.BLACK};
+  background-color: ${colors.LIGHT_GRAY};
   opacity: 0.85;
   padding: 30px;
   z-index: 1000;

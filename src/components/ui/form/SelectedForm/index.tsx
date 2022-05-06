@@ -11,7 +11,7 @@ function FormSelected<T>({ title, name, array, control }: SelectedProps<T>) {
   return (
     <>
       <SortContainer>
-        <SortTitle>{title}</SortTitle>
+        <SortTitle>{title}:</SortTitle>
         <SelectedContainer
           value={value as number}
           onChange={onChange}

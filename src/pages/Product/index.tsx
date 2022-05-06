@@ -13,7 +13,7 @@ import {
   StyleInput,
 } from "./styles";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import {
   ageRadioButtons,
   arrayCriteria,
@@ -29,6 +29,7 @@ import { Criteria } from "./types";
 import Button from "@/components/ui/atoms/Button";
 import { useSelector } from "react-redux";
 import { selectIsAdmin } from "@/redux/selectors/authSelector";
+import { ModalLink } from "@/components/ui/molecules/GameCard/style";
 
 type NavigationParam = {
   platform: Platform;
@@ -42,6 +43,7 @@ const Product = () => {
   const [type, setType] = useState("");
   const isAdmin = useSelector(selectIsAdmin);
   const navigation = useNavigate();
+  const location = useLocation();
 
   const onChangeData = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchData(e.target.value.trim());
@@ -125,12 +127,12 @@ const Product = () => {
             />
             {isAdmin && (
               <CreateButtonContainer>
-                <Button
-                  title={"Create card"}
-                  width={100}
-                  type="secondary"
-                  onClick={() => console.log("Create")}
-                />
+                <ModalLink
+                  to={`/createCard`}
+                  state={{ backgroundLocation: location }}
+                >
+                  <Button title={"Create card"} width={100} type="secondary" />
+                </ModalLink>
               </CreateButtonContainer>
             )}
           </InputContainer>
