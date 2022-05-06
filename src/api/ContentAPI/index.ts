@@ -1,3 +1,4 @@
+import { TState } from "./../../components/ui/molecules/Modal/ModalForm/index";
 import { instanceMongoDB } from "../Instance/index";
 import { AppUrls } from "../types";
 import { TGameCard } from "@/components/ui/organisms/GameList/types";
@@ -9,7 +10,6 @@ import {
   CardId,
 } from "@/pages/Home/components/CategoryList/types";
 import uuid from "react-native-uuid";
-import { TState } from "@/components/ui/molecules/CreateGameCard/ModalForm";
 
 export const contentAPI = {
   getGameCards() {
@@ -41,7 +41,8 @@ export const contentAPI = {
     price: number,
     genres: string,
     ageUser: number,
-    imagePlatforms: ImagePlatforms[]
+    imagePlatforms: ImagePlatforms[],
+    stars: number
   ) {
     try {
       return instanceMongoDB
@@ -50,7 +51,7 @@ export const contentAPI = {
           alt: gameName,
           description,
           url: image,
-          amountStars: 4,
+          amountStars: stars,
           price,
           genres,
           age: ageUser,

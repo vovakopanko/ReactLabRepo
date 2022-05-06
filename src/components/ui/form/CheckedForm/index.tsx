@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useController } from "react-hook-form";
 import { MessageError } from "../styles";
 import { CheckedFormProps } from "../types";
@@ -17,8 +18,10 @@ function CheckedForm<T>({
   imagePlatforms,
 }: CheckedFormProps<T>) {
   const {
+    field: { onChange, onBlur },
     fieldState: { error },
   } = useController({ name, control });
+  const [platform, setPlatform] = useState(imagePlatforms);
   return (
     <>
       <CheckedContainer>
@@ -28,8 +31,12 @@ function CheckedForm<T>({
         <CheckedContent>
           {array.map((checkbox, index) => (
             <InputCheckBox
+              onChange={onChange}
+              onBlur={onBlur}
               key={index}
               checkbox={checkbox}
+              platform={platform}
+              setPlatform={setPlatform}
               isChecked={imagePlatforms.some(
                 (platform) => platform.alt === checkbox.value
               )}

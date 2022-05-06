@@ -65,6 +65,7 @@ const ModalForm = () => {
         description,
         ageUser,
         imagePlatforms,
+        stars,
       } = dataForm;
       contentAPI
         .createNewCard(
@@ -74,7 +75,8 @@ const ModalForm = () => {
           price,
           genres,
           ageUser,
-          imagePlatforms
+          imagePlatforms,
+          stars
         )
         ?.then((response) => {
           dispatch(updateCurrentState(response));

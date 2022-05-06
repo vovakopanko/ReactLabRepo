@@ -19,7 +19,6 @@ export function Modal() {
         .getGameCards()
         ?.then((response: TGameCard[]) => response);
       if (gamesList) {
-        console.log(gamesList);
         setGames(gamesList);
       }
     };
