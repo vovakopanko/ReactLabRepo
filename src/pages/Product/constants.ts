@@ -4,6 +4,12 @@ export enum Platform {
   PLAYSTATION5 = "playstation5",
 }
 
+export enum PlatformImage {
+  PC = "pc",
+  XBOX = "xbox",
+  PLAYSTATION5 = "playstation 5",
+}
+
 export const platformNames = {
   [Platform.PC]: "PC",
   [Platform.XBOX]: "Xbox",

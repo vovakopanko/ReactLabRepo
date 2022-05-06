@@ -1,4 +1,4 @@
-import { TState } from "./../../components/ui/molecules/Modal/ModalForm/index";
+import { TState } from "../../components/ui/modal/EditCardModal/ModalForm/index";
 import { instanceMongoDB } from "../Instance/index";
 import { AppUrls } from "../types";
 import { TGameCard } from "@/components/ui/organisms/GameList/types";

@@ -22,7 +22,7 @@ export const StoreLogo = styled.img`
 
 export const FooterContainer = styled.footer`
   height: 3vh;
-  background-color: ${colors.LIGHT_GRAY};
+  background-color: ${colors.GRAY};
   padding: 5px 0px;
   display: flex;
   justify-content: space-around;

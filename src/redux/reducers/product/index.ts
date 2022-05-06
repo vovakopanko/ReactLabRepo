@@ -17,12 +17,14 @@ type CurrentState = {
   card: TState[];
   isShowNotification: boolean;
   uniqueCardId: string;
+  nameSelectedCard: string;
 };
 
 const initialState: CurrentState = {
   card: [],
   isShowNotification: false,
   uniqueCardId: "",
+  nameSelectedCard: "",
 };
 
 const productSlice = createSlice({
@@ -38,6 +40,9 @@ const productSlice = createSlice({
     setUniqueIdCurrentCard: (state, actions: PayloadAction<string>) => {
       state.uniqueCardId = actions.payload;
     },
+    setSelectedNameCard: (state, actions: PayloadAction<string>) => {
+      state.nameSelectedCard = actions.payload;
+    },
   },
 });
 
@@ -47,6 +52,7 @@ export const {
   updateCurrentState,
   isShowDeleteNotification,
   setUniqueIdCurrentCard,
+  setSelectedNameCard,
 } = actions;
 
 export default reducer;

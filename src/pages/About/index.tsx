@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { PageContainerInfo } from "@/components/ui/molecules/PageInfo";
 
 const About = () => {
-  const pageInfo = "Empty";
+  const pageInfo = "";
   return (
     <AuthRedirect>
       <PageContainer>

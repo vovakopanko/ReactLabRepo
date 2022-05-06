@@ -1,11 +1,14 @@
 import { Outlet } from "react-router-dom";
 import { images } from "./constants/image";
 import styled from "styled-components";
-import { Footer, Header } from "./components/ui";
-import SignUp from "./components/ui/molecules/SignUp";
-import SignIn from "./components/ui/molecules/SignIn";
-import ChangePassword from "./components/ui/molecules/ChangePassword";
-import Notification from "./components/ui/molecules/Notification";
+import {
+  ChangePassword,
+  Footer,
+  Header,
+  Notification,
+  SignIn,
+  SignUp,
+} from "./components/ui";
 
 const Layout = () => {
   return (
@@ -26,7 +29,7 @@ const Layout = () => {
 const Background = styled.div`
   background-image: url(${images.BACKGROUND});
   min-height: 90vh;
-  height: 100%;
+  height: 100;
   background-size: cover;
 `;
 

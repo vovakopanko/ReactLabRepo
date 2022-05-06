@@ -131,7 +131,7 @@ const Product = () => {
                   to={`/createCard`}
                   state={{ backgroundLocation: location }}
                 >
-                  <Button title={"Create card"} width={100} type="secondary" />
+                  <Button title={"Create card"} width={120} type="secondary" />
                 </ModalLink>
               </CreateButtonContainer>
             )}

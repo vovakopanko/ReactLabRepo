@@ -52,3 +52,7 @@ export const selectIsShowNotification = (state: AppStateType) => {
 export const selectUniqueIdCard = (state: AppStateType) => {
   return state.productReducer.uniqueCardId;
 };
+
+export const selectDeleteCrdName = (state: AppStateType) => {
+  return state.productReducer.nameSelectedCard;
+};

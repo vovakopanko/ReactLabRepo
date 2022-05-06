@@ -1,14 +1,11 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import About from "./pages/About";
 import Home from "./pages/Home";
-import SignUp from "./components/ui/molecules/SignUp";
-import SignIn from "./components/ui/molecules/SignIn";
 import Profile from "./pages/Profile";
 import { Layout } from "./Layout.tsx";
 import Product from "./pages/Product";
 import CartPage from "./pages/Cart";
-import { Modal } from "./components/ui/molecules/Modal";
-import { CreateNewCardModal } from "./components/ui/molecules/CreateGameCard";
+import { CreateCardModal, EditCardModal } from "./components/ui";
 
 const AppContainer = () => {
   let location = useLocation();
@@ -28,8 +25,8 @@ const AppContainer = () => {
       </Routes>
       {state?.backgroundLocation && (
         <Routes>
-          <Route path="games/:name" element={<Modal />} />
-          <Route path="/createCard" element={<CreateNewCardModal />} />
+          <Route path="games/:name" element={<EditCardModal />} />
+          <Route path="/createCard" element={<CreateCardModal />} />
         </Routes>
       )}
     </div>

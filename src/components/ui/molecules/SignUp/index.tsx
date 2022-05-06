@@ -1,7 +1,7 @@
 import { PortalNames, ModalForm } from "@/constants/types";
 import { selectorStatusWindowAuth } from "@/redux/selectors/authSelector";
 import { useSelector } from "react-redux";
-import AuthPortal from "../../organisms/AuthPortal";
+import AuthPortal from "../../portals/AuthPortal";
 import { fieldData } from "./constant";
 
 export default function SignIn() {

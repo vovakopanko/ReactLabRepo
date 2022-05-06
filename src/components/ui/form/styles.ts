@@ -11,7 +11,7 @@ export const InputContainer = styled.div`
 
 export const TextAreaField = styled.textarea`
   display: block;
-  width: 50%;
+  width: 35%;
   min-width: 160px;
   height: 80px;
   border-radius: 4px;
@@ -19,9 +19,13 @@ export const TextAreaField = styled.textarea`
   padding: 10px;
   margin-bottom: 10px;
   font-size: 14;
+  @media (max-width: 768px) {
+    min-width: 120px;
+  }
 `;
 
 export const InputName = styled.label`
+  text-align: center;
   line-height: 2;
   text-align: left;
   display: block;
@@ -33,10 +37,16 @@ export const InputName = styled.label`
   justify-content: center;
   align-items: center;
   width: 50%;
+  @media (max-width: 768px) {
+    min-width: 100px;
+    font-size: 16px;
+  }
 `;
 
 export const FieldContainer = styled.div`
-  position: "relative";
+  position: relative;
+  justify-content: center;
+  align-self: center;
 `;
 
 export const MessageError = styled.span`
@@ -54,6 +64,9 @@ export const InputField = styled.input`
   padding: 10px;
   margin-bottom: 10px;
   font-size: 14;
+  @media (max-width: 768px) {
+    min-width: 120px;
+  }
 `;
 
 export const SecureImage = styled.img`
