@@ -51,9 +51,18 @@ module.exports = function (env, argv) {
     },
     optimization: {
       // config is taken from vue-cli
+
       splitChunks: {
         // for avoiding duplicated dependencies across modules
+        // chunks: "async",
+        // minSize: 30000,
+        // maxSize: 0,
         minChunks: 1, // Minimum number of chunks that must share a module before splitting.
+        // maxAsyncRequests: 5,
+        // maxInitialRequests: 3,
+        // automaticNameDelimiter: "~",
+        // automaticNameMaxLength: 30,
+        // name: true,
         cacheGroups: {
           defaultVendors: {
             name: "chunk-vendors", // move js-files from node_modules into splitted file [chunk-vendors].js
@@ -68,6 +77,10 @@ module.exports = function (env, argv) {
             chunks: "initial",
             reuseExistingChunk: true, // If the current chunk contains modules already split out from the main bundle, it will be reused instead of a new one being generated. This can impact the resulting file name of the chunk
           },
+          // vendors: {
+          //   test: /[\\/]node_modules[\\/]/,
+          //   priority: -10,
+          // },
         },
       },
     },

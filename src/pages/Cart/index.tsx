@@ -2,7 +2,7 @@ import Button from "@/components/ui/atoms/Button";
 import AuthRedirect from "@/hoc/withAuthRedirect";
 import { removeCurrentGames } from "@/redux/reducers/cart";
 import { selectorCartList } from "@/redux/selectors/authSelector";
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BottomLine, BottomTitleLine } from "../Product/styles";
 import GameCartInfo from "./components/GameCartInfo";
@@ -51,18 +51,23 @@ const CartPage = () => {
   }, [onRemoveUnSelectedCards]);
 
   const selectedGamesLength = selectedGames.length;
+  const isEmptyCart = selectedGames.length !== 0;
   const isButtonRemoveDisabled = selectedGames.some(
     (selectedGame) => selectedGame.checked
   );
 
-  const totalAmount = selectedGames
-    .reduce((prev, cardItem) => {
-      if (cardItem.checked) {
-        return prev + cardItem.price * cardItem.amount;
-      }
-      return prev;
-    }, 0)
-    .toFixed(2);
+  const totalAmount = useMemo(
+    () =>
+      selectedGames
+        .reduce((prev, cardItem) => {
+          if (cardItem.checked) {
+            return prev + cardItem.price * cardItem.amount;
+          }
+          return prev;
+        }, 0)
+        .toFixed(2),
+    []
+  );
 
   return (
     <AuthRedirect>
@@ -71,7 +76,7 @@ const CartPage = () => {
           <PageTitle>Cart page</PageTitle>
           <BottomTitleLine />
         </PageTitleBlock>
-        {selectedGamesLength && (
+        {isEmptyCart && (
           <MobileBlock>
             <SubTitleBlock>
               {arraySubTitle.map((subtitle: ArraySubTitle) => (
@@ -96,7 +101,7 @@ const CartPage = () => {
           />
         ))}
         <RemoveBtnBlock>
-          {selectedGamesLength && (
+          {isEmptyCart && (
             <BtnWrapper>
               <Button
                 disabled={!isButtonRemoveDisabled}
@@ -108,7 +113,7 @@ const CartPage = () => {
             </BtnWrapper>
           )}
         </RemoveBtnBlock>
-        {selectedGamesLength ? (
+        {isEmptyCart ? (
           <>
             <BottomLine />
             <TotalCoast>

@@ -1,10 +1,10 @@
-export enum Platform {
+export const enum Platform {
   PC = "pc",
   XBOX = "xboxone",
   PLAYSTATION5 = "playstation5",
 }
 
-export enum PlatformImage {
+export const enum PlatformImage {
   PC = "pc",
   XBOX = "xbox",
   PLAYSTATION5 = "playstation 5",

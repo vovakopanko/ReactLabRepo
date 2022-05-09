@@ -1,5 +1,4 @@
 import { SectionHeader } from "@/components/ui";
-import AuthRedirect from "@/hoc/withAuthRedirect";
 import ProductsList from "./components/ProductsList";
 import {
   CreateButtonContainer,
@@ -25,15 +24,12 @@ import {
 import useSearchGameCards from "@/hooks/handlers/useSearchGameCards";
 import RadioBtnGroup from "./components/Filter/RadioBtnGroup";
 import SelectedBtnGroup from "./components/Filter/SelectedBtnGroup";
-import { Criteria } from "./types";
+import { Criteria, NavigationParam } from "./types";
 import Button from "@/components/ui/atoms/Button";
 import { useSelector } from "react-redux";
 import { selectIsAdmin } from "@/redux/selectors/authSelector";
 import { ModalLink } from "@/components/ui/molecules/GameCard/style";
-
-type NavigationParam = {
-  platform: Platform;
-};
+import AuthRedirect from "@/hoc/withAuthRedirect";
 
 const Product = () => {
   const [searchData, setSearchData] = useState("");
@@ -45,24 +41,34 @@ const Product = () => {
   const navigation = useNavigate();
   const location = useLocation();
 
-  const onChangeData = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeData = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchData(e.target.value.trim());
-  };
-  const onChange = useCallback((e) => onChangeData(e), []);
-  const { platform = Platform.PC } = useParams<NavigationParam>();
-  const handleChangeCriteria = (event: ChangeEvent<HTMLSelectElement>) => {
-    setCriteria(event.target.value as Criteria);
-  };
-  const handleChangeType = (event: ChangeEvent<HTMLSelectElement>) => {
-    setType(event.target.value);
-  };
-  const pageName = platformNames[platform] || "";
+  }, []);
 
-  useEffect(() => {
-    if (!pageName) {
-      navigation("/home");
-    }
-  }, [pageName]);
+  const onChange = useCallback((e) => onChangeData(e), []);
+
+  const handleChangeCriteria = useCallback(
+    (event: ChangeEvent<HTMLSelectElement>) => {
+      setCriteria(event.target.value as Criteria);
+    },
+    []
+  );
+
+  const handleChangeType = useCallback(
+    (event: ChangeEvent<HTMLSelectElement>) => {
+      setType(event.target.value);
+    },
+    []
+  );
+  const onAgeFilterPress = useCallback((e) => setAgeFilter(e.target.value), []);
+
+  const onGenresFilterPress = useCallback(
+    (e) => setGenresFilter(e.target.value),
+    []
+  );
+
+  const { platform = Platform.PC } = useParams<NavigationParam>();
+  const pageName = platformNames[platform] || "";
 
   const { isLoading, gamesCards } = useSearchGameCards({
     searchData,
@@ -73,11 +79,11 @@ const Product = () => {
     type: type,
   });
 
-  const onAgeFilterPress = useCallback((e) => setAgeFilter(e.target.value), []);
-  const onGenresFilterPress = useCallback(
-    (e) => setGenresFilter(e.target.value),
-    []
-  );
+  useEffect(() => {
+    if (!pageName) {
+      navigation("/home");
+    }
+  }, [pageName]);
 
   return (
     <AuthRedirect>

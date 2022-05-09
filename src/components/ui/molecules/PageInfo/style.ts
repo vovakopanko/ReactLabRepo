@@ -1,4 +1,4 @@
-import { colors } from "@/styles/palette";
+// import { colors } from "@/styles/palette";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -8,6 +8,6 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.span`
-  color: ${colors.WHITE};
+  color: "white";
   text-align: center;
 `;

@@ -1,11 +1,14 @@
 import { Route, Routes, useLocation } from "react-router-dom";
-import About from "./pages/About";
 import Home from "./pages/Home";
-import Profile from "./pages/Profile";
 import { Layout } from "./Layout.tsx";
-import Product from "./pages/Product";
-import CartPage from "./pages/Cart";
 import { CreateCardModal, EditCardModal } from "./components/ui";
+import { withSuspense } from "./hoc/withSuspense";
+import React from "react";
+
+const ProfileContainer = React.lazy(() => import("./pages/Profile"));
+const ProductContainer = React.lazy(() => import("./pages/Product"));
+const CartContainer = React.lazy(() => import("./pages/Cart"));
+const AboutContainer = React.lazy(() => import("./pages/About"));
 
 const AppContainer = () => {
   let location = useLocation();
@@ -16,10 +19,13 @@ const AppContainer = () => {
       <Routes location={state?.backgroundLocation || location}>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="about" element={<About />} />
-          <Route exact path="product/:platform" element={<Product />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="basket" element={<CartPage />} />
+          <Route path="about" element={withSuspense(AboutContainer)} />
+          <Route
+            path="product/:platform"
+            element={withSuspense(ProductContainer)}
+          />
+          <Route path="profile" element={withSuspense(ProfileContainer)} />
+          <Route path="basket" element={withSuspense(CartContainer)} />
           <Route path="*" element={<Home />} />
         </Route>
       </Routes>

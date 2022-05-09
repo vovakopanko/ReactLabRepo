@@ -22,11 +22,18 @@
   "engines": {
     "node": ">=12.20.0 <13 || >=14.13.1 <17"
   },
-  "engineStrict": true,
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Yegorich555/webpack-must-have.git"
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
+  "lint-staged":{
+    "*.{ts,tsx,js,json,css,md,html": [
+      "prettier --single-quote --write",
+      "git add"    
+    ]
+  },
+  "engineStrict": true,
   "keywords": [
     "React",
     "Webpack",
@@ -34,7 +41,6 @@
     "webpack-must-have",
     "mock"
   ],
-  "author": "Yegor.Golubchik",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Yegorich555/webpack-must-have/issues"
@@ -48,8 +54,10 @@
     "@babel/preset-react": "^7.16.0",
     "@babel/preset-typescript": "^7.16.0",
     "@types/express": "^4.17.13",
+    "@types/jest": "^27.5.0",
     "@types/react": "^17.0.43",
     "@types/react-dom": "^17.0.14",
+    "@types/react-test-renderer": "^18.0.0",
     "@types/styled-components": "^5.1.18",
     "@types/webpack-dev-server": "^4.5.0",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
@@ -75,6 +83,8 @@
     "eslint-plugin-unused-imports": "^2.0.0",
     "html-webpack-plugin": "^5.5.0",
     "husky": "^7.0.4",
+    "jest": "^28.1.0",
+    "jest-puppeteer": "^6.1.0",
     "lint-staged": "^12.1.2",
     "markdownlint": "^0.24.0",
     "markdownlint-cli": "^0.30.0",
@@ -90,6 +100,7 @@
     "preload-webpack-plugin": "^3.0.0-beta.4",
     "prettier": "^2.4.1",
     "prettier-eslint": "^13.0.0",
+    "react-test-renderer": "^18.1.0",
     "sass-loader": "^12.3.0",
     "script-ext-html-webpack-plugin": "^2.1.5",
     "shx": "^0.3.3",
@@ -104,10 +115,12 @@
     "stylelint-processor-styled-components": "^1.10.0",
     "stylelint-scss": "^4.0.0",
     "terser-webpack-plugin": "^5.2.5",
+    "ts-jest": "^28.0.2",
     "ts-loader": "^9.2.6",
     "tsconfig-paths-webpack-plugin": "^3.5.2",
     "typescript": "^4.5.2",
     "webpack": "^5.64.2",
+    "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.6.0",
     "webpack-merge": "^5.8.0",
@@ -118,12 +131,14 @@
     "@hookform/resolvers": "^2.8.8",
     "@reach/dialog": "^0.17.0",
     "@reduxjs/toolkit": "^1.7.2",
+    "@testing-library/react": "^13.2.0",
     "@types/lodash": "^4.14.178",
     "@types/react-redux": "^7.1.22",
     "@types/react-router-dom": "^5.3.3",
     "axios": "^0.25.0",
     "history": "^5.2.0",
     "lodash": "^4.17.21",
+    "pretty": "^2.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-hook-form": "^7.29.0",
