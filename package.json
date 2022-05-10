@@ -4,13 +4,14 @@
   "description": "Must-have config for Webpack 5",
   "main": "main.tsx",
   "scripts": {
-    "test": "exit 0",
+    "test": "jest",
     "start": "npm run serve",
+    "build-dev": ".\\node_modules\\.bin\\webpack --mode development --config webpack.dev.js",
+    "stats": "webpack --json build-stats.json",
     "serve": ".\\node_modules\\.bin\\webpack serve --open --config webpack.devServer.js",
     "serve-proxy": "npm run serve -- --env=proxy=https://localhost:44360/",
     "build-prod": ".\\node_modules\\.bin\\webpack --mode production --config webpack.prod.js",
     "build-prod-withMap": "npm run build-prod -- --sourceMap",
-    "build-dev": ".\\node_modules\\.bin\\webpack --mode development --config webpack.dev.js",
     "lint": "npm run lint-es && npm run lint-styles && npm run lint-ts && npm run lint-md",
     "lint:css": "npm run stylelint './components/**/*.ts'",
     "lint-ts": ".\\node_modules\\.bin\\tsc --skipLibCheck --incremental --noEmit",
@@ -27,10 +28,10 @@
       "pre-commit": "lint-staged"
     }
   },
-  "lint-staged":{
+  "lint-staged": {
     "*.{ts,tsx,js,json,css,md,html": [
       "prettier --single-quote --write",
-      "git add"    
+      "git add"
     ]
   },
   "engineStrict": true,

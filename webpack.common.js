@@ -18,6 +18,8 @@ const srcPath = path.resolve(__dirname, "./src/");
 const destPath = path.resolve(__dirname, "./build/"); // ('../Api/wwwroot')
 const assetsPath = "./public";
 const filesThreshold = 8196; // (bytes) threshold for compression, url-loader plugins
+const BundleAnalyzerPlugin =
+  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 /* eslint-disable func-names */
 module.exports = function (env, argv) {
@@ -221,6 +223,7 @@ module.exports = function (env, argv) {
       ],
     },
     plugins: [
+      new BundleAnalyzerPlugin(),
       new webpack.WatchIgnorePlugin({ paths: [/\.d\.ts$/] }), // ignore d.ts files in --watch mode
       new webpack.IgnorePlugin({
         resourceRegExp: /^\.\/locale$/,
