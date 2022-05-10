@@ -25,7 +25,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "npm run lint-ts"
     }
   },
   "lint-staged": {
@@ -50,6 +50,7 @@
   "devDependencies": {
     "@babel/core": "^7.16.0",
     "@babel/plugin-proposal-class-properties": "^7.16.0",
+    "@babel/plugin-transform-react-jsx": "^7.17.3",
     "@babel/plugin-transform-runtime": "^7.16.8",
     "@babel/preset-env": "^7.16.4",
     "@babel/preset-react": "^7.16.0",
@@ -138,6 +139,7 @@
     "@types/react-router-dom": "^5.3.3",
     "axios": "^0.25.0",
     "history": "^5.2.0",
+    "jest-styled-components": "^7.0.8",
     "lodash": "^4.17.21",
     "pretty": "^2.0.0",
     "react": "^18.0.0",
@@ -150,5 +152,10 @@
     "redux-thunk": "^2.4.1",
     "styled-components": "^5.3.3",
     "yup": "^0.32.11"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "./setup-jest.js"
+    ]
   }
 }

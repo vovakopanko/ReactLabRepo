@@ -1,5 +1,4 @@
-import { StyleItem } from "../../molecules/MenuItem/styles";
-import { TitleItem } from "../../organisms/Header/style";
+import styled from "styled-components";
 
 type Props = {
   userName: string;
@@ -14,3 +13,18 @@ const UserName = ({ userName }: Props) => {
 };
 
 export default UserName;
+
+const StyleItem = styled.ul`
+  font-size: 18px;
+  color: "white";
+  list-style-type: none;
+  cursor: pointer;
+  &:hover {
+    color: "red";
+  }
+  padding: 0 20px;
+`;
+
+const TitleItem = styled.span`
+  padding-right: 10px;
+`;

@@ -1,5 +1,4 @@
-import { applyMiddleware, combineReducers, createStore } from "redux";
-import thunkMiddleware from "redux-thunk";
+import { combineReducers, createStore } from "redux";
 import authReducer from "./reducers/auth";
 import profileReducer from "./reducers/profile";
 import productReducer from "./reducers/product";
@@ -26,10 +25,7 @@ export type AppStateType = ReturnType<RootReducersType>;
 
 // @ts-ignore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(
-  persistedReducer,
-  composeEnhancers(applyMiddleware(thunkMiddleware))
-);
+const store = createStore(persistedReducer);
 type PropertiesTypes<T> = T extends { [key: string]: infer U } ? U : never;
 
 export type InfernActionsType<

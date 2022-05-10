@@ -8,5 +8,11 @@ module.exports = {
     "@babel/plugin-proposal-class-properties", // transforms static class properties as well as properties declared with the property initializer syntax
     "jsx-classnames-advanced", // optional: react: this resolves className={object}
     "@babel/plugin-transform-runtime",
+    [
+      "@babel/plugin-transform-react-jsx",
+      {
+        runtime: "automatic",
+      },
+    ],
   ],
 };

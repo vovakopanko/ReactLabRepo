@@ -48,18 +48,17 @@ const selectedGames = [
   },
 ];
 
-describe("Test how work amount counter", () => {
-  test("Test counter work correct", () => {
+describe("totalAmount unit test", () => {
+  it("Test counter work correct", () => {
     expect(totalAmount(selectedGames)).toBe(14.89);
   });
-  test("Test how work amount counter", () => {
+  it("Test how work amount counter", () => {
     expect(totalAmount(selectedGame)).toBe(4.87);
   });
-  test("The test counter is not working properly", () => {
+  it("The test counter is not working properly", () => {
     expect(totalAmount(selectedGames)).not.toBe(14.88);
   });
-  test("The test counter is not working properly", () => {
+  it("The test counter is not working properly", () => {
     expect(totalAmount(selectedGame)).not.toBe(4.89);
-    expect(totalAmount(selectedGame)).toMatchSnapshot();
   });
 });

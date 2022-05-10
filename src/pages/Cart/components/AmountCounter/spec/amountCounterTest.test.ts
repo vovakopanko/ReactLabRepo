@@ -1,4 +1,4 @@
-import { amountCounterTest } from "./amountCounterTest";
+import { amountCounterTest } from "../amountCounterTest";
 
 describe("Test how work amount counter", () => {
   test("Test correct work counter", () => {
