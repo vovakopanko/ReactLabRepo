@@ -11,8 +11,8 @@ const CartContainer = React.lazy(() => import("./pages/Cart"));
 const AboutContainer = React.lazy(() => import("./pages/About"));
 
 const AppContainer = () => {
-  let location = useLocation();
-  let state = location.state;
+  const location = useLocation();
+  const state = location.state;
 
   return (
     <div>
