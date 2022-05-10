@@ -25,13 +25,13 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint-ts",
+      "pre-commit": "lint-staged",
       "pre-push": "npm run lint-ts"
     }
   },
   "lint-staged": {
     "*.{ts,tsx,js,json,css,md,html": [
-      "prettier --single-quote --write",
+      "npm run lint-ts",
       "git add"
     ]
   },
