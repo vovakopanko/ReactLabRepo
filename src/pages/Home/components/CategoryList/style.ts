@@ -11,4 +11,6 @@ export const BlockItem = styled.div`
     align-items: center;
     justify-content: center;
   }
+  @media (max-width: 460px) {
+  }
 `;

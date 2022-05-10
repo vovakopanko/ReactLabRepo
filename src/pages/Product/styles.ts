@@ -35,7 +35,8 @@ export const FilterContainer = styled.div`
     min-width: 300px;
   }
   @media (max-width: 768px) {
-    min-width: 368px;
+    width: 60%;
+    min-width: 320px;
     justify-content: center;
     align-self: center;
   }
@@ -65,7 +66,7 @@ export const ProductContainer = styled.div`
     justify-content: center;
   }
   @media (max-width: 768px) {
-    min-width: 360px;
+    min-width: 320px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -148,6 +149,7 @@ export const ProductMediaContainer = styled.div`
   margin-right: 20px;
   margin-left: 20px;
   @media (max-width: 768px) {
+    width: 55%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -155,19 +157,14 @@ export const ProductMediaContainer = styled.div`
   }
 `;
 
-export const SearchBarContainer = styled.div`
-  /* display: flex;
-  justify-content: center; */
-`;
-
 export const ProductListContainer = styled.div`
   border-radius: 25px;
   border: 1px solid ${colors.GRAY};
   background-color: ${colors.BLACK};
-  opacity: 0.8;
+  opacity: 0.96;
   @media (max-width: 768px) {
     width: 100%;
-    min-width: 340px;
+    min-width: 300px;
   }
 `;
 
@@ -178,6 +175,9 @@ export const ProductList = styled.div`
 `;
 
 export const EmptyList = styled.span`
+  display: flex;
+  justify-content: center;
+  align-self: center;
   color: ${colors.WHITE};
   font-size: 25px;
 `;
@@ -186,12 +186,17 @@ export const InputContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
+  @media (max-width: 768px) {
+    min-width: 320px;
+    flex-direction: column;
+  }
 `;
 
 export const CreateButtonContainer = styled.div`
   margin-top: 2.5px;
   margin-left: 5px;
-  margin-bottom: 20px;
+  margin-bottom: 22.5px;
 `;
 
 export const StyleInput = styled.input`
@@ -199,7 +204,7 @@ export const StyleInput = styled.input`
   margin-top: 10px;
   margin-bottom: 20px;
   padding-left: 10px;
-  border: 2px solid ${colors.WHITE};
+  border: 1px solid ${colors.WHITE};
   height: 40px;
   background-color: ${colors.BLACK};
   opacity: 0.91;
@@ -208,6 +213,7 @@ export const StyleInput = styled.input`
   font-weight: 300;
   color: ${colors.WHITE};
   @media (max-width: 768px) {
-    min-width: 328px;
+    min-width: 280px;
+    margin-bottom: 10px;
   }
 `;

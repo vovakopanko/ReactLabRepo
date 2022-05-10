@@ -29,7 +29,7 @@ export const DropDownTitle = styled.span`
 
 export const ContentDropDown = styled.div`
   position: absolute;
-  min-width: 100px;
+  min-width: 80px;
   z-index: 3;
   background-color: ${colors.BLACK};
   @media (max-width: 768px) {
@@ -45,7 +45,7 @@ export const DropDownContainer = styled.div`
 `;
 
 export const LinkItems = styled(NavLink)`
-  padding: 8px 2px;
+  padding: 12px 2px;
   /* display: flex;
   align-items: center; */
   text-decoration: none;
@@ -59,7 +59,7 @@ export const LinkItems = styled(NavLink)`
     min-width: 50px;
   }
   &:hover {
-    color: ${colors.RED};
+    color: ${colors.PURPURE};
   }
   @media (max-width: 768px) {
     display: block;

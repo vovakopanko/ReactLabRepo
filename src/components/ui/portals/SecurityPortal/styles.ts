@@ -17,8 +17,8 @@ export const AuthContainer = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: ${colors.BLACK};
-  opacity: 0.85;
+  background-color: ${colors.GRAY};
+  opacity: 0.95;
   padding: 30px;
   z-index: 1000;
   min-width: 340px;
@@ -71,22 +71,21 @@ export const HeaderContainer = styled.div`
   width: 100%;
 `;
 
-export const CloseOutlined = styled.img`
-  width: 20px;
-  height: 20px;
-`;
-
 export const HeaderName = styled.h1`
-  color: red;
+  color: ${colors.PURPURE};
   width: 90%;
   text-align: center;
   justify-content: center;
 `;
 
 export const ErrorContainer = styled.div`
-  color: red;
+  color: ${colors.PURPURE};
   padding: 10px;
   font-size: 14;
+`;
+
+export const CloseBtnContainer = styled.div`
+  text-align: center;
 `;
 
 export const InputBlock = styled.div`
@@ -94,7 +93,7 @@ export const InputBlock = styled.div`
 `;
 
 export const ErrorMessage = styled.span`
-  color: red;
+  color: ${colors.PURPURE};
   font-size: 14;
   padding-top: 10px;
 `;
@@ -126,24 +125,6 @@ export const InputField = styled.input`
 export const ProfileForm = styled.form`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const BtnSubmit = styled.input`
-  background-color: ${(props: { styleBtn: boolean }) =>
-    props.styleBtn ? colors.PURPURE : colors.GRAY};
-  color: ${(props: { styleBtn: boolean }) =>
-    props.styleBtn ? colors.WHITE : colors.BLACK};
-  opacity: ${(props: { styleBtn: boolean }) => (props.styleBtn ? 1 : 0.3)};
-  padding-top: 15px;
-  padding-bottom: 12px;
-  border-radius: 15px;
-  letter-spacing: 5px;
-  padding-left: 15px;
-  border: none;
-  text-transform: uppercase;
-  text-align: center;
   justify-content: center;
   align-items: center;
 `;

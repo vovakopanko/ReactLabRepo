@@ -1,9 +1,6 @@
 import { colors } from "@/styles/palette";
 import styled from "styled-components";
-
-type Flipper = {
-  focused: boolean;
-};
+import { FocusCard } from "./types";
 
 export const GamesBlock = styled.div`
   display: flex;
@@ -80,11 +77,10 @@ export const FlipContainer = styled.div`
   }
 `;
 
-export const Flipper = styled.div<Flipper>`
+export const Flipper = styled.div<FocusCard>`
   transform: ${({ focused }) => (focused ? "rotateY(180deg)" : "none")};
   transition: 0.6s;
   transform-style: preserve-3d;
-
   position: relative;
 `;
 

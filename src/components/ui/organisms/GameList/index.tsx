@@ -1,8 +1,10 @@
 import { contentAPI } from "@/api/ContentAPI";
+import { selectCurrentCard } from "@/redux/selectors/authSelector";
 import { useCallback } from "react";
 import { FC } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import GameCard from "../../molecules/GameCard";
 import { FlipContainer, Flipper, GamesBlock } from "./style";
 import { amountFavoriteGame, TCardItem, TGameCard } from "./types";
@@ -43,7 +45,7 @@ export const CardItem: FC<TCardItem> = (props) => {
 
 const GameList: FC = () => {
   const [gamesCards, setGamesCards] = useState<TGameCard[]>([]);
-
+  const updateCard = useSelector(selectCurrentCard);
   useEffect(() => {
     const query = async () => {
       const games = await contentAPI
@@ -54,7 +56,7 @@ const GameList: FC = () => {
       }
     };
     query();
-  }, []);
+  }, [updateCard]);
 
   return (
     <GamesBlock>

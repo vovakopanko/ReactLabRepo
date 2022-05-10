@@ -19,6 +19,8 @@ export const BorderContainer = styled.div`
   padding: 10px;
   border-radius: 15px;
   border: 3px solid ${colors.PURPURE};
+  background-color: ${colors.LIGHT_GRAY};
+  opacity: 0.97;
 `;
 
 export const InfoTitle = styled.h2`
@@ -73,6 +75,7 @@ export const ProfilePageContent = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
   @media (max-width: 800px) {
     flex-direction: column;
     align-items: center;

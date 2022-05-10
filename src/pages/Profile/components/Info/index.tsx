@@ -4,7 +4,7 @@ import { FieldType } from "@/components/ui/atoms/FieldContainer/types";
 import Button from "@/components/ui/atoms/Button";
 import FormTextArea from "@/components/ui/form/TextArea";
 import FormInput from "@/components/ui/form/TextInput";
-import { ProfileForm } from "@/components/ui/organisms/AuthPortal/styles";
+import { ProfileForm } from "@/components/ui/portals/AuthPortal/styles";
 import { updateUserInfo } from "@/redux/reducers/auth";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useCallback } from "react";

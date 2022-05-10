@@ -40,3 +40,19 @@ export const selectorUserName = (state: AppStateType) => {
 export const selectorCartList = (state: AppStateType) => {
   return state.cartReducer.cartList;
 };
+
+export const selectCurrentCard = (state: AppStateType) => {
+  return state.productReducer.card;
+};
+
+export const selectIsShowNotification = (state: AppStateType) => {
+  return state.productReducer.isShowNotification;
+};
+
+export const selectUniqueIdCard = (state: AppStateType) => {
+  return state.productReducer.uniqueCardId;
+};
+
+export const selectDeleteCrdName = (state: AppStateType) => {
+  return state.productReducer.nameSelectedCard;
+};

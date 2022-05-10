@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { colors } from "@/styles/palette";
 import styled from "styled-components";
 
@@ -36,10 +37,6 @@ export const Image = styled.img`
   height: 80%;
   border-top-right-radius: 15px;
   border-top-left-radius: 15px;
-  @media (max-width: 1368px) {
-  }
-  @media (max-width: 768px) {
-  }
 `;
 
 export const ImagePlatform = styled.img`
@@ -69,13 +66,8 @@ export const CardBlock = styled.div`
   border-radius: 15px;
   background-color: ${colors.BLACK};
   box-shadow: 0px 0px 10px 0px ${colors.PURPURE};
-
-  height: 40vh;
-  width: 30vh;
-  @media (max-width: 768px) {
-    height: 50vh;
-    width: 25vh;
-  }
+  height: 380px;
+  width: 260px;
 `;
 
 export const CardBackBlock = styled.div`
@@ -89,12 +81,8 @@ export const CardBackBlock = styled.div`
   border-radius: 15px;
   background-color: ${colors.BLACK};
   box-shadow: 0px 0px 10px 0px ${colors.PURPURE};
-  height: 40vh;
-  width: 30vh;
-  @media (max-width: 768px) {
-    height: 50vh;
-    width: 25vh;
-  }
+  height: 380px;
+  width: 260px;
 `;
 
 export const GameDescription = styled.div`
@@ -104,6 +92,7 @@ export const GameDescription = styled.div`
   color: ${colors.WHITE};
   align-items: center;
   text-align: center;
+  align-self: center;
   height: 60%;
   @media (max-width: 768px) {
     font-size: 16px;
@@ -143,4 +132,8 @@ export const StarImage = styled.img`
   width: 20px;
   height: 20px;
   padding: 2px;
+`;
+
+export const ModalLink = styled(Link)`
+  text-decoration: none;
 `;

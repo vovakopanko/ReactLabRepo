@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const SearchBlock = styled.div`
   width: 80%;
-  padding: 20px;
+  margin-top: 20px;
   justify-content: center;
   display: flex;
 `;
@@ -16,5 +16,5 @@ export const SearchPanel = styled.input`
   opacity: 0.8;
   border-radius: 15px;
   border: 2px solid ${colors.WHITE};
-  padding-left: 10px;
+  padding-left: -10px;
 `;

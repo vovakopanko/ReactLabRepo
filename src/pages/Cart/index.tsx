@@ -39,11 +39,10 @@ const CartPage = () => {
   const dispatch = useDispatch();
 
   const onRemoveUnSelectedCards = useCallback(() => {
-    dispatch(
-      removeCurrentGames(
-        selectedGames.filter((selectedGame) => selectedGame.checked === false)
-      )
+    const deselectedGames = selectedGames.filter(
+      (selectedGame) => selectedGame.checked === false
     );
+    dispatch(removeCurrentGames(deselectedGames));
   }, [selectedGames]);
 
   const onBuyPress = useCallback(() => {

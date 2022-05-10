@@ -116,6 +116,7 @@
   "dependencies": {
     "@babel/runtime": "^7.16.7",
     "@hookform/resolvers": "^2.8.8",
+    "@reach/dialog": "^0.17.0",
     "@reduxjs/toolkit": "^1.7.2",
     "@types/lodash": "^4.14.178",
     "@types/react-redux": "^7.1.22",
@@ -126,6 +127,7 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-hook-form": "^7.29.0",
+    "react-native-uuid": "^2.0.1",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.1",
     "redux-persist": "^6.0.0",

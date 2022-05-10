@@ -9,6 +9,7 @@ import {
   Image,
   ImagePlatform,
   ImagePlatformContainer,
+  ModalLink,
   PriceBlock,
   Span,
   StarContainer,
@@ -24,6 +25,8 @@ import {
   selectorCartList,
 } from "@/redux/selectors/authSelector";
 import { useCallback } from "react";
+import { useLocation } from "react-router-dom";
+import no_image from "../../../../assets/images/no_image.png";
 
 const GamePlatform = ({ src, alt }: { src: string; alt: string }) => {
   return <ImagePlatform src={src} alt={alt} />;
@@ -44,6 +47,10 @@ const GameCard = ({
   const isAuth = useSelector(selectIsAuthUser);
   const isAdmin = useSelector(selectIsAdmin);
   const dispatch = useDispatch();
+  const location = useLocation();
+
+  const length = description.length < 150 ? " " : "...";
+  const toShow = description.substring(0, 150) + length;
 
   const setGameCard = useCallback(() => {
     const now = new Date();
@@ -70,7 +77,14 @@ const GameCard = ({
             <GamePlatform key={index} {...platform} />
           ))}
         </ImagePlatformContainer>
-        <Image src={url} alt={alt} />
+        <Image
+          src={url}
+          onError={({ currentTarget }) => {
+            currentTarget.onerror = null;
+            currentTarget.src = no_image;
+          }}
+          alt={alt}
+        />
         <PriceBlock>
           <Span>{title}</Span>
           <Span>{price}$</Span>
@@ -82,7 +96,7 @@ const GameCard = ({
         </StarContainer>
       </CardBlock>
       <CardBackBlock>
-        <GameDescription>{description}</GameDescription>
+        <GameDescription>{toShow}</GameDescription>
         <AgeRestrictions>{age}+</AgeRestrictions>
         <ButtonsContainer>
           <ButtonPosition>
@@ -98,12 +112,12 @@ const GameCard = ({
           </ButtonPosition>
           {isAuth && isAdmin && (
             <ButtonPosition>
-              <Button
-                title={"Edit"}
-                width={100}
-                type="secondary"
-                onClick={() => console.log("EDIT")}
-              />
+              <ModalLink
+                to={`/games/${title}`}
+                state={{ backgroundLocation: location }}
+              >
+                <Button title={"Edit"} width={100} type="secondary" />
+              </ModalLink>
             </ButtonPosition>
           )}
         </ButtonsContainer>

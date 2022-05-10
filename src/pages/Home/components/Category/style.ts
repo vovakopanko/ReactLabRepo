@@ -16,16 +16,20 @@ export const CategoryContainer = styled(NavLink)`
   flex-direction: column;
 
   margin-top: 20px;
-  width: 17vw;
-  height: 20vh;
+  width: 240px;
+  height: 210px;
 
   border-radius: 20px;
   box-shadow: 0px 5px 20px 0px ${colors.LIGHT_GRAY};
   border-width: 5px 5px 10px 5px;
   background-color: ${colors.BLACK};
   @media (max-width: 768px) {
-    width: 60vw;
-    height: 20vh;
+    width: 240px;
+    height: 180px;
+  }
+  @media (max-width: 1224px) {
+    width: 200px;
+    height: 180px;
   }
 `;
 

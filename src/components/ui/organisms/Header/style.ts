@@ -5,6 +5,7 @@ export const HeaderContainer = styled.header`
   height: 5vh;
   justify-content: space-between;
   background-color: ${colors.BLACK};
+  border-bottom: 2px solid ${colors.LIGHT_GRAY};
   display: flex;
   align-items: center;
   &:hover > input {
@@ -37,7 +38,7 @@ export const DropDownBlock = styled.div`
 export const Burger = styled.input`
   color: ${colors.WHITE};
   background-color: ${colors.BLACK};
-  padding: 10px;
+  margin: 10px;
   border: none;
   overflow: hidden;
   display: none;
