@@ -160,6 +160,33 @@
   "jest": {
     "setupFilesAfterEnv": [
       "./setup-jest.js"
+    ],
+    "collectCoverage": true,
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/assets/",
+      "\\.spec\\.js$",
+      "/TasLib/",
+      "/gestures/"
+    ],
+    "coverageReporters": [
+      "json-summary",
+      "text",
+      "clover",
+      "json",
+      "lcov",
+      "cobertura"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx}"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json",
+      "jsx",
+      "node"
     ]
   }
 }
