@@ -4,6 +4,7 @@ export type Props = {
   onClick?: () => void;
   type?: ButtonType;
   disabled?: boolean;
+  id?: string;
 };
 
 export type StyledProps = {

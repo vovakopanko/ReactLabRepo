@@ -1,7 +1,7 @@
 import { TGameCard } from "../../components/ui/organisms/GameList/types";
 import { instanceMongoDB } from "../Instance";
 import { AppUrls } from "../types";
-import { debounce } from "lodash";
+import debounce from "lodash/debounce";
 
 export const searchAPI = {
   getGameCards(filter: string) {
