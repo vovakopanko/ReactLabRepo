@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { AmountBlock, AmountValue, LeftIcon, RightIcon } from "./styles";
 
 type Props = {
-  counter: number;
+  counter: boolean;
   name: string;
   setCounter?: Function;
 };
