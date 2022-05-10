@@ -37,6 +37,7 @@ import basketImage from "../../../../assets/svgIcon/basket.svg";
 import ExportOutlined from "../../../../assets/svgIcon/outlined.svg";
 import UserOutlined from "../../../../assets/svgIcon/logo.svg";
 import { clearCartList } from "@/redux/reducers/cart";
+import UserName from "../../atoms/UserName";
 
 const webSiteName: string = "Game Store";
 
@@ -112,9 +113,7 @@ const Header = () => {
           {isAuth ? (
             <>
               <StyledNavLink to={"/profile"}>
-                <StyleItem>
-                  <TitleItem>{userName}</TitleItem>
-                </StyleItem>
+                <UserName userName={userName} />
                 <ProfileLogoImage src={UserOutlined} />
               </StyledNavLink>
               <StyledNavLink to={"/basket"}>
@@ -156,9 +155,7 @@ const Header = () => {
         {isAuth ? (
           <>
             <StyledNavLink to={"/profile"}>
-              <StyleItem>
-                <TitleItem>{userName}</TitleItem>
-              </StyleItem>
+              <UserName userName={userName} />
               <ProfileLogoImage src={UserOutlined} />
             </StyledNavLink>
             <StyledNavLink to={"/basket"}>
