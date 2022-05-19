@@ -1,7 +1,9 @@
 import renderer from "react-test-renderer";
 import Blur from "..";
 
-it("render ", () => {
-  const tree = renderer.create(<Blur />).toJSON();
-  expect(tree).toMatchSnapshot();
+describe("render snapShot", () => {
+  it("should return Blur layout component", () => {
+    const tree = renderer.create(<Blur />).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
 });

@@ -49,16 +49,25 @@ const selectedGames = [
 ];
 
 describe("totalAmount unit test", () => {
-  it("Test counter work correct", () => {
-    expect(totalAmount(selectedGames)).toBe(14.89);
+  it("should return correct value", () => {
+    const prevState = selectedGames;
+    const expectedState = 14.89;
+
+    expect(totalAmount(prevState)).toBe(expectedState);
   });
-  it("Test how work amount counter", () => {
-    expect(totalAmount(selectedGame)).toBe(4.87);
+  it("should return correct value", () => {
+    const prevState = selectedGame;
+    const expectedState = 4.87;
+    expect(totalAmount(prevState)).toBe(expectedState);
   });
-  it("The test counter is not working properly", () => {
-    expect(totalAmount(selectedGames)).not.toBe(14.88);
+  it("should return invalid value", () => {
+    const prevState = selectedGames;
+    const expectedState = 14.88;
+    expect(totalAmount(prevState)).not.toBe(expectedState);
   });
-  it("The test counter is not working properly", () => {
-    expect(totalAmount(selectedGame)).not.toBe(4.89);
+  it("should return invalid value", () => {
+    const prevState = selectedGame;
+    const expectedState = 4.89;
+    expect(totalAmount(prevState)).not.toBe(expectedState);
   });
 });

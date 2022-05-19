@@ -1,27 +1,40 @@
 import reducer, { onStatusPasswordChange } from ".";
 
-test("should return the initial state", () => {
-  expect(reducer(undefined, { type: null })).toEqual({
-    isChangePassword: false,
+describe("profileReducer unit test", () => {
+  it("should return the initial state", () => {
+    const expectedState = {
+      isChangePassword: false,
+    };
+
+    const result = reducer(undefined, { type: null });
+    expect(result).toEqual(expectedState);
   });
-});
 
-test("should show modal window for change password current user", () => {
-  const prevState = {
-    isChangePassword: false,
-  };
+  it("should show modal window for change password current user", () => {
+    const prevState = {
+      isChangePassword: false,
+    };
 
-  expect(reducer(prevState, onStatusPasswordChange(true))).toEqual({
-    isChangePassword: true,
+    const expectedState = {
+      isChangePassword: true,
+    };
+
+    const result = reducer(prevState, onStatusPasswordChange(true));
+
+    expect(result).toEqual(expectedState);
   });
-});
 
-test("should hide modal window for change password current user", () => {
-  const prevState = {
-    isChangePassword: true,
-  };
+  it("should hide modal window for change password current user", () => {
+    const prevState = {
+      isChangePassword: true,
+    };
 
-  expect(reducer(prevState, onStatusPasswordChange(false))).toEqual({
-    isChangePassword: false,
+    const expectedState = {
+      isChangePassword: false,
+    };
+
+    const result = reducer(prevState, onStatusPasswordChange(false));
+
+    expect(result).toEqual(expectedState);
   });
 });

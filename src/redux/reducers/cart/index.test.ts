@@ -8,11 +8,13 @@ import reducer, {
 } from ".";
 
 describe("cartReducer unit test", () => {
-  test("should return the initial state", () => {
-    expect(reducer(undefined, { type: null })).toEqual({ cartList: [] });
+  it("should return the initial state", () => {
+    const expectedState = { cartList: [] };
+    const result = reducer(undefined, { type: null });
+    expect(result).toEqual(expectedState);
   });
 
-  test("should return increase value", () => {
+  it("should return increase value", () => {
     const prevState = {
       cartList: [
         {
@@ -34,7 +36,7 @@ describe("cartReducer unit test", () => {
       ],
     };
 
-    expect(reducer(prevState, increaseAmount({ name: "Terraria" }))).toEqual({
+    const expectedState = {
       cartList: [
         {
           amount: 3,
@@ -53,10 +55,14 @@ describe("cartReducer unit test", () => {
           price: 4.87,
         },
       ],
-    });
+    };
+
+    const result = reducer(prevState, increaseAmount({ name: "Terraria" }));
+
+    expect(result).toEqual(expectedState);
   });
 
-  test("should clear all state", () => {
+  it("should clear all state", () => {
     const prevState = {
       cartList: [
         {
@@ -86,12 +92,16 @@ describe("cartReducer unit test", () => {
       ],
     };
 
-    expect(reducer(prevState, clearCartList)).toEqual({
+    const expectedState = {
       cartList: [],
-    });
+    };
+
+    const result = reducer(prevState, clearCartList);
+
+    expect(result).toEqual(expectedState);
   });
 
-  test("should return decrease value", () => {
+  it("should return decrease value", () => {
     const prevState = {
       cartList: [
         {
@@ -105,7 +115,7 @@ describe("cartReducer unit test", () => {
       ],
     };
 
-    expect(reducer(prevState, decreaseAmount({ name: "Terraria" }))).toEqual({
+    const expectedState = {
       cartList: [
         {
           amount: 1,
@@ -116,7 +126,11 @@ describe("cartReducer unit test", () => {
           price: 4.87,
         },
       ],
-    });
+    };
+
+    const result = reducer(prevState, decreaseAmount({ name: "Terraria" }));
+
+    expect(result).toEqual(expectedState);
   });
 
   it("should be added new card in array cart", () => {
@@ -171,7 +185,7 @@ describe("cartReducer unit test", () => {
     expect(result).toEqual(expectedState);
   });
 
-  test("should be removed card from array cart", () => {
+  it("should be removed card from array cart", () => {
     const prevState = {
       cartList: [
         {
@@ -193,29 +207,7 @@ describe("cartReducer unit test", () => {
       ],
     };
 
-    expect(
-      reducer(
-        prevState,
-        removeCurrentGames([
-          {
-            amount: 1,
-            checked: false,
-            name: "Terraria",
-            orderDate: "18/5/2022",
-            platforms: [],
-            price: 4.87,
-          },
-          {
-            amount: 1,
-            checked: true,
-            name: "SIMS",
-            orderDate: "11/5/2022",
-            platforms: [],
-            price: 24.11,
-          },
-        ])
-      )
-    ).toEqual({
+    const expectedState = {
       cartList: [
         {
           amount: 1,
@@ -226,10 +218,34 @@ describe("cartReducer unit test", () => {
           price: 4.87,
         },
       ],
-    });
+    };
+
+    const result = reducer(
+      prevState,
+      removeCurrentGames([
+        {
+          amount: 1,
+          checked: false,
+          name: "Terraria",
+          orderDate: "18/5/2022",
+          platforms: [],
+          price: 4.87,
+        },
+        {
+          amount: 1,
+          checked: true,
+          name: "SIMS",
+          orderDate: "11/5/2022",
+          platforms: [],
+          price: 24.11,
+        },
+      ])
+    );
+
+    expect(result).toEqual(expectedState);
   });
 
-  test("should be added checkbox for selected card in basket user", () => {
+  it("should be added checkbox for selected card in basket user", () => {
     const prevState = {
       cartList: [
         {
@@ -243,7 +259,7 @@ describe("cartReducer unit test", () => {
       ],
     };
 
-    expect(reducer(prevState, toggleChecked({ name: "Terraria" }))).toEqual({
+    const expectedState = {
       cartList: [
         {
           amount: 1,
@@ -254,6 +270,10 @@ describe("cartReducer unit test", () => {
           price: 4.87,
         },
       ],
-    });
+    };
+
+    const result = reducer(prevState, toggleChecked({ name: "Terraria" }));
+
+    expect(result).toEqual(expectedState);
   });
 });
