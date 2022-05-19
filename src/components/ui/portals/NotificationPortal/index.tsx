@@ -20,7 +20,7 @@ import {
   HeaderContainer,
 } from "../AuthPortal/styles";
 import { CloseBtnContainer } from "../SecurityPortal/styles";
-import closeImage from "./../../../../assets/svgIcon/closeBtn.svg";
+import closeImage from "@/assets/svgIcon/closeBtn.svg";
 import {
   ButtonsContainer,
   HeaderName,

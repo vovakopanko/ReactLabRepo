@@ -3,9 +3,8 @@ import React from "react";
 import SectionList from "./components/SectionList";
 import { homeComponent } from "./constants";
 import { Container } from "./style";
-import { THomeComponent } from "./types";
 
-const Home: React.FC<THomeComponent> = () => {
+const Home: React.FC = () => {
   return (
     <>
       <Container>

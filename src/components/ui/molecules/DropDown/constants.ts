@@ -1,4 +1,4 @@
-import { Platform } from "@/pages/Product/constants";
+import { Platform } from "../../../../pages/Product/constants";
 import { dropDownItem } from "./type";
 
 export const dropDownItems: dropDownItem[] = [

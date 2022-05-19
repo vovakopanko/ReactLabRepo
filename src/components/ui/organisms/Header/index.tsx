@@ -33,9 +33,9 @@ import {
   selectIsAuthUser,
   selectorCartList,
 } from "@/redux/selectors/authSelector";
-import basketImage from "../../../../assets/svgIcon/basket.svg";
-import ExportOutlined from "../../../../assets/svgIcon/outlined.svg";
-import UserOutlined from "../../../../assets/svgIcon/logo.svg";
+import basketImage from "@/assets/svgIcon/basket.svg";
+import ExportOutlined from "@/assets/svgIcon/outlined.svg";
+import UserOutlined from "@/assets/svgIcon/logo.svg";
 import { clearCartList } from "@/redux/reducers/cart";
 import UserName from "../../atoms/UserName";
 

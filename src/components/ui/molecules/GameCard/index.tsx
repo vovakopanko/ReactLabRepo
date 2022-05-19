@@ -15,7 +15,7 @@ import {
   StarContainer,
   StarImage,
 } from "./style";
-import image from "./../../../../assets/svgIcon/star.svg";
+import image from "@/assets/svgIcon/star.svg";
 import Button from "../../atoms/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { setCartList } from "@/redux/reducers/cart";
@@ -26,7 +26,7 @@ import {
 } from "@/redux/selectors/authSelector";
 import { useCallback } from "react";
 import { useLocation } from "react-router-dom";
-import no_image from "../../../../assets/images/no_image.png";
+import no_image from "@/assets/images/no_image.png";
 
 const GamePlatform = ({ src, alt }: { src: string; alt: string }) => {
   return <ImagePlatform src={src} alt={alt} />;

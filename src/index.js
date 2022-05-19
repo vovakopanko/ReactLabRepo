@@ -1,6 +1,6 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
-import { Layout } from "./Layout.tsx";
+import { Layout } from "./Layout";
 import { CreateCardModal, EditCardModal } from "./components/ui";
 import { withSuspense } from "./hoc/withSuspense";
 import React from "react";

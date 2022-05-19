@@ -1,3 +1,4 @@
+import { colors } from "../../../../styles/palette";
 import styled from "styled-components";
 
 type Props = {
@@ -16,11 +17,11 @@ export default UserName;
 
 const StyleItem = styled.ul`
   font-size: 18px;
-  color: "white";
+  color: ${colors.WHITE};
   list-style-type: none;
   cursor: pointer;
   &:hover {
-    color: "red";
+    color: ${colors.PURPURE};
   }
   padding: 0 20px;
 `;

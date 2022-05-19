@@ -29,7 +29,6 @@ export const StyledBtnLogOut = styled.div`
   text-decoration: none;
   display: flex;
   align-items: center;
-  height: 5vh;
   @media (max-width: 768px) {
     padding-bottom: 5px;
   }

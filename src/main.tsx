@@ -12,7 +12,7 @@ root.render(
   <ErrorBoundary>
     <Router>
       <Provider store={store}>
-        <PersistGate loading={null} persister={persistor}>
+        <PersistGate loading={null} persistor={persistor}>
           <AppContainer />
         </PersistGate>
       </Provider>

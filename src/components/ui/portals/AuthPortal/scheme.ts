@@ -23,7 +23,7 @@ export const getScheme = (isRegistration: boolean) =>
       .string()
       .required(`Field 'Password' is required `)
       .min(5, "Incorrect length password, min value : 5 symbols")
-      .max(40, `Incorrect length password, max value : 40 symbols`),
+      .max(25, `Incorrect length password, max value : 25 symbols`),
     duplicatePassword: yup.string().when("password", (_, field) =>
       isRegistration
         ? field

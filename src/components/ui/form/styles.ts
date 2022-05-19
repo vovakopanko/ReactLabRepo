@@ -1,6 +1,10 @@
 import { colors } from "../../../styles/palette/index";
 import styled from "styled-components";
 
+type StyledProps = {
+  isDisplayEye: boolean;
+};
+
 export const InputContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -57,15 +61,17 @@ export const MessageError = styled.span`
 
 export const InputField = styled.input`
   width: 50%;
-  min-width: 160px;
+  min-width: 138px;
   margin-left: 10px;
   border-radius: 4px;
   border: 1px solid white;
   padding: 10px;
+  padding-right: 30px;
   margin-bottom: 10px;
   font-size: 14;
   @media (max-width: 768px) {
-    min-width: 120px;
+    min-width: 118px;
+    padding-right: 36px;
   }
 `;
 
@@ -75,8 +81,12 @@ export const SecureImage = styled.img`
   height: 20px;
 `;
 
-export const SecureContainer = styled.div`
+export const SecureContainer = styled.div<StyledProps>`
   margin-top: -40px;
-  margin-left: 160px;
+  margin-left: 162px;
   padding-bottom: 15px;
+  visibility: ${(props) => (props.isDisplayEye ? "visible" : "hidden")};
+  @media (max-width: 768px) {
+    margin-left: 150px;
+  }
 `;

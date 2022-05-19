@@ -65,12 +65,19 @@ module.exports = function (env, argv) {
         // automaticNameDelimiter: "~",
         // automaticNameMaxLength: 30,
         // name: true,
+        chunks: "async",
+        minSize: 20000,
+        minRemainingSize: 0,
+        maxAsyncRequests: 30,
+        maxInitialRequests: 30,
+        enforceSizeThreshold: 50000,
         cacheGroups: {
           defaultVendors: {
             name: "chunk-vendors", // move js-files from node_modules into splitted file [chunk-vendors].js
             test: /[\\/]node_modules[\\/]/, // filtering files that should be included
             priority: -10, // a module can belong to multiple cache groups. The optimization will prefer the cache group with a higher priority
             chunks: "initial", // type of optimization: [initial | async | all]
+            reuseExistingChunk: true,
           },
           common: {
             name: "chunk-common", // move reusable nested js-files into splitted file [chunk-common].js
@@ -79,10 +86,15 @@ module.exports = function (env, argv) {
             chunks: "initial",
             reuseExistingChunk: true, // If the current chunk contains modules already split out from the main bundle, it will be reused instead of a new one being generated. This can impact the resulting file name of the chunk
           },
-          // vendors: {
-          //   test: /[\\/]node_modules[\\/]/,
-          //   priority: -10,
-          // },
+          default: {
+            minChunks: 2,
+            priority: -20,
+            reuseExistingChunk: true,
+          },
+          vendors: {
+            test: /[\\/]node_modules[\\/]/,
+            priority: -10,
+          },
         },
       },
     },

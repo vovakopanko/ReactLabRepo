@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import closeImage from "../../../../assets/svgIcon/closeBtn.svg";
+import closeImage from "@/assets/svgIcon/closeBtn.svg";
 import ModalForm from "./ModalForm";
 import { BackgroundContainer } from "../../portals/AuthPortal/styles";
 import {

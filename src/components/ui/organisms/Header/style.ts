@@ -96,7 +96,7 @@ export const MenuBurger = styled.div`
 `;
 
 export const TitleItem = styled.span`
-  padding-right: 10px;
+  padding-right: 0px;
 `;
 
 export const ProfileLogoImage = styled.img`
