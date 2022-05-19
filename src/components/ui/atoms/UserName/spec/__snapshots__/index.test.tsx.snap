@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`render snapShot should return UserName layout component 1`] = `
+exports[`UserName snapshot test should match to snapshot 1`] = `
 <ul
   className="sc-bdvvtL cAezNv"
 >
