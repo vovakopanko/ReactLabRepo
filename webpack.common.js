@@ -55,16 +55,7 @@ module.exports = function (env, argv) {
       // config is taken from vue-cli
 
       splitChunks: {
-        // for avoiding duplicated dependencies across modules
-        // chunks: "async",
-        // minSize: 30000,
-        // maxSize: 0,
         minChunks: 1, // Minimum number of chunks that must share a module before splitting.
-        // maxAsyncRequests: 5,
-        // maxInitialRequests: 3,
-        // automaticNameDelimiter: "~",
-        // automaticNameMaxLength: 30,
-        // name: true,
         chunks: "async",
         minSize: 20000,
         minRemainingSize: 0,

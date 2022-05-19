@@ -1,8 +1,8 @@
 import renderer from "react-test-renderer";
 import UserName from "../index";
 
-describe("render snapShot", () => {
-  it("should return UserName layout component", () => {
+describe("UserName snapshot test", () => {
+  it("should match to snapshot", () => {
     const tree = renderer.create(<UserName userName={"Test User"} />).toJSON();
     expect(tree).toMatchSnapshot();
   });
