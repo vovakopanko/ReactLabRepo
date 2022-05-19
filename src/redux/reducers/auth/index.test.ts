@@ -1,4 +1,4 @@
-import reducer from ".";
+import reducer from "./index";
 
 describe("autReducer unit test", () => {
   it("should return the initial state", () => {

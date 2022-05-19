@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`render snapShot should return Blur layout component 1`] = `
+exports[`Blur component unit test should return Blur layout component 1`] = `
 <div
   className="sc-bdvvtL eLBDUL"
 />

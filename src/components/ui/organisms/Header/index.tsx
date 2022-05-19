@@ -6,7 +6,6 @@ import {
   MenuBurger,
   RegistrationContainer,
   SignUpContainer,
-  TitleItem,
   CloseBurger,
   CloseBtn,
   BasketImage,
@@ -119,7 +118,7 @@ const Header = () => {
               <StyledNavLink to={"/basket"}>
                 <StyleItem>
                   <BasketImage src={basketImage} />
-                  <TitleItem>{cardsListLength}</TitleItem>
+                  <span>{cardsListLength}</span>
                 </StyleItem>
               </StyledNavLink>
               <StyledBtnLogOut onClick={onLogOut}>
@@ -161,7 +160,7 @@ const Header = () => {
             <StyledNavLink to={"/basket"}>
               <StyleItem>
                 <BasketImage src={basketImage} />
-                <TitleItem>{cardsListLength}</TitleItem>
+                <span>{cardsListLength}</span>
               </StyleItem>
             </StyledNavLink>
             <StyledBtnLogOut onClick={onLogOut}>

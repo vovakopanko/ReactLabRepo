@@ -49,7 +49,7 @@ const selectedGames = [
 ];
 
 describe("totalAmount unit test", () => {
-  it("should return correct value", () => {
+  it("should return the cost of all games in the basket current user", () => {
     const prevState = selectedGames;
     const expectedState = 14.89;
 

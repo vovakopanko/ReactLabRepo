@@ -1,7 +1,7 @@
 import renderer from "react-test-renderer";
-import Blur from "..";
+import Blur from "../index";
 
-describe("render snapShot", () => {
+describe("Blur component unit test", () => {
   it("should return Blur layout component", () => {
     const tree = renderer.create(<Blur />).toJSON();
     expect(tree).toMatchSnapshot();

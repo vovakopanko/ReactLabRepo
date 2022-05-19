@@ -95,10 +95,6 @@ export const MenuBurger = styled.div`
   }
 `;
 
-export const TitleItem = styled.span`
-  padding-right: 0px;
-`;
-
 export const ProfileLogoImage = styled.img`
   width: 25px;
   height: 25px;
