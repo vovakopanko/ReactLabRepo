@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserName snapshot test should match to snapshot 1`] = `
+<ul
+  className="sc-bdvvtL cAezNv"
+>
+  <span
+    className="sc-gsDKAQ igZSXo"
+  >
+    Test User
+  </span>
+</ul>
+`;

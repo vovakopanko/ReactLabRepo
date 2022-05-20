@@ -1,14 +1,14 @@
-export enum ModalForm {
+export const enum ModalForm {
   REGISTRATION = "registration",
   AUTHORIZATION = "authorization",
 }
 
-export enum PortalNames {
+export const enum PortalNames {
   REGISTRATION = "Registration",
   AUTHORIZATION = "Authorization",
 }
 
-export enum Roles {
+export const enum Roles {
   ADMIN = "ADMIN",
   PLAYER = "PLAYER",
 }

@@ -8,6 +8,7 @@ import {
   selectDeleteCrdName,
   selectUniqueIdCard,
 } from "@/redux/selectors/authSelector";
+import { useCallback } from "react";
 import ReactDOM from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -19,7 +20,7 @@ import {
   HeaderContainer,
 } from "../AuthPortal/styles";
 import { CloseBtnContainer } from "../SecurityPortal/styles";
-import closeImage from "./../../../../assets/svgIcon/closeBtn.svg";
+import closeImage from "@/assets/svgIcon/closeBtn.svg";
 import {
   ButtonsContainer,
   HeaderName,
@@ -33,23 +34,24 @@ export default function NotificationPortal() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const onClick = () => {
+  const onClick = useCallback(() => {
     contentAPI.deleteGameCard(idCard)?.then((response: any) => {
       dispatch(updateCurrentState(response));
     });
     dispatch(setSelectedNameCard(""));
     dispatch(isShowDeleteNotification(false));
     navigate(-1);
-  };
+  }, [idCard]);
 
-  const onHandlerClick = () => {
+  const onHandlerClick = useCallback(() => {
     dispatch(isShowDeleteNotification(false));
     navigate(-1);
-  };
+  }, []);
 
-  const closeNotificationWindow = () => {
+  const closeNotificationWindow = useCallback(() => {
     dispatch(isShowDeleteNotification(false));
-  };
+  }, []);
+
   return ReactDOM.createPortal(
     <>
       <BackgroundContainer />

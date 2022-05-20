@@ -6,8 +6,10 @@ import { useNavigate } from "react-router-dom";
 
 const AuthRedirect = ({ children }: { children: ReactElement<any, any> }) => {
   const isAuth = useSelector(selectIsAuthUser);
+
   const dispatch = useDispatch();
   const navigation = useNavigate();
+
   useEffect(() => {
     if (!isAuth) {
       navigation("/home");

@@ -14,6 +14,7 @@ const searchGameCard = (
   filterOptions: FilterOptions
 ) => {
   const { age, genres, type, criteria } = filterOptions;
+
   const filteredArray = data.filter((item) => {
     const findByGenres = genres === "All" ? true : item.genres === genres;
     const findByAge = age === "All" ? true : item.age.toString() === age;

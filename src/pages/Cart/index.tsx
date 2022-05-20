@@ -35,14 +35,10 @@ type ArraySubTitle = {
 
 const CartPage = () => {
   const selectedGames = useSelector(selectorCartList);
-
   const dispatch = useDispatch();
 
   const onRemoveUnSelectedCards = useCallback(() => {
-    const deselectedGames = selectedGames.filter(
-      (selectedGame) => selectedGame.checked === false
-    );
-    dispatch(removeCurrentGames(deselectedGames));
+    dispatch(removeCurrentGames(selectedGames));
   }, [selectedGames]);
 
   const onBuyPress = useCallback(() => {
@@ -51,6 +47,7 @@ const CartPage = () => {
   }, [onRemoveUnSelectedCards]);
 
   const selectedGamesLength = selectedGames.length;
+  const isEmptyCart = selectedGames.length !== 0;
   const isButtonRemoveDisabled = selectedGames.some(
     (selectedGame) => selectedGame.checked
   );
@@ -71,7 +68,7 @@ const CartPage = () => {
           <PageTitle>Cart page</PageTitle>
           <BottomTitleLine />
         </PageTitleBlock>
-        {selectedGamesLength && (
+        {isEmptyCart && (
           <MobileBlock>
             <SubTitleBlock>
               {arraySubTitle.map((subtitle: ArraySubTitle) => (
@@ -96,7 +93,7 @@ const CartPage = () => {
           />
         ))}
         <RemoveBtnBlock>
-          {selectedGamesLength && (
+          {isEmptyCart && (
             <BtnWrapper>
               <Button
                 disabled={!isButtonRemoveDisabled}
@@ -108,7 +105,7 @@ const CartPage = () => {
             </BtnWrapper>
           )}
         </RemoveBtnBlock>
-        {selectedGamesLength ? (
+        {isEmptyCart ? (
           <>
             <BottomLine />
             <TotalCoast>

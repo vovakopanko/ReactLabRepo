@@ -38,7 +38,10 @@ const cartSlice = createSlice({
       state.cartList = [];
     },
     removeCurrentGames: (state, actions: PayloadAction<cartList[]>) => {
-      return { ...state, cartList: actions.payload };
+      const deselectedGames = actions.payload.filter(
+        (selectedGame) => selectedGame.checked === false
+      );
+      return { ...state, cartList: deselectedGames };
     },
     decreaseAmount: (state, actions: PayloadAction<Amount>) => {
       const index = state.cartList.findIndex(

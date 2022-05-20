@@ -1,5 +1,4 @@
 import Button from "@/components/ui/atoms/Button";
-import { colors } from "@/styles/palette";
 import {
   ContentBlock,
   ImageContainer,
@@ -16,6 +15,7 @@ import { Props } from "./types";
 
 const Avatar = ({ photoUser, email }: Props) => {
   const [photoLink, setPhotoLink] = useState(true);
+
   const dispatch = useDispatch();
   const inputRef = useRef<HTMLInputElement>(null);
 

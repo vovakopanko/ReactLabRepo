@@ -9,8 +9,8 @@ import {
   BtnSubmit,
   CloseOutlined,
 } from "./styles";
-import image from "./../../../../assets/svgIcon/closeBtn.svg";
-import { useState } from "react";
+import image from "@/assets/svgIcon/closeBtn.svg";
+import { useCallback, useState } from "react";
 import { registerUser } from "@/api/AuthAPI";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
@@ -72,45 +72,39 @@ export default function AuthPortal({
     } else dispatch(setStatusAuthWindow(false));
   };
 
-  const onPressSignUp = async ({
-    email,
-    password,
-  }: {
-    email: string;
-    password: string;
-  }) => {
-    await registerUser
-      .loginUser(email, password)
-      .then((response) => {
-        if (response?.data.accessToken !== null) {
-          authenticate(response?.data.user!);
-        } else dispatch(setAuthCurrentUser(false));
-      })
-      .catch((errors) => {
-        setInvalidValue(errors.message);
-      });
-  };
+  const onPressSignUp = useCallback(
+    async ({ email, password }: { email: string; password: string }) => {
+      await registerUser
+        .loginUser(email, password)
+        .then((response) => {
+          if (response?.data.accessToken !== null) {
+            authenticate(response?.data.user!);
+          } else dispatch(setAuthCurrentUser(false));
+        })
+        .catch((errors) => {
+          setInvalidValue(errors.message);
+        });
+    },
+    []
+  );
 
-  const onPressSignIn = async ({
-    email,
-    password,
-  }: {
-    email: string;
-    password: string;
-  }) => {
-    await registerUser
-      .registrationProfile(email, password)
-      .then((response) => {
-        if (response?.data.accessToken !== null) {
-          authenticate(response?.data.user!);
-        } else dispatch(setAuthCurrentUser(false));
-      })
-      .catch((errors) => {
-        setInvalidValue(errors.message);
-      });
-  };
+  const onPressSignIn = useCallback(
+    async ({ email, password }: { email: string; password: string }) => {
+      await registerUser
+        .registrationProfile(email, password)
+        .then((response) => {
+          if (response?.data.accessToken !== null) {
+            authenticate(response?.data.user!);
+          } else dispatch(setAuthCurrentUser(false));
+        })
+        .catch((errors) => {
+          setInvalidValue(errors.message);
+        });
+    },
+    []
+  );
 
-  const onSubmit = async (dataForm: FormValues) => {
+  const onSubmit = useCallback(async (dataForm: FormValues) => {
     const { email, password } = dataForm;
     if (!isRegistrationModal) {
       await onPressSignUp({ email, password });
@@ -118,7 +112,7 @@ export default function AuthPortal({
       await onPressSignIn({ email, password });
     }
     reset();
-  };
+  }, []);
 
   return ReactDOM.createPortal(
     <>

@@ -18,6 +18,8 @@ const srcPath = path.resolve(__dirname, "./src/");
 const destPath = path.resolve(__dirname, "./build/"); // ('../Api/wwwroot')
 const assetsPath = "./public";
 const filesThreshold = 8196; // (bytes) threshold for compression, url-loader plugins
+const BundleAnalyzerPlugin =
+  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 /* eslint-disable func-names */
 module.exports = function (env, argv) {
@@ -51,15 +53,22 @@ module.exports = function (env, argv) {
     },
     optimization: {
       // config is taken from vue-cli
+
       splitChunks: {
-        // for avoiding duplicated dependencies across modules
         minChunks: 1, // Minimum number of chunks that must share a module before splitting.
+        chunks: "async",
+        minSize: 20000,
+        minRemainingSize: 0,
+        maxAsyncRequests: 30,
+        maxInitialRequests: 30,
+        enforceSizeThreshold: 50000,
         cacheGroups: {
           defaultVendors: {
             name: "chunk-vendors", // move js-files from node_modules into splitted file [chunk-vendors].js
             test: /[\\/]node_modules[\\/]/, // filtering files that should be included
             priority: -10, // a module can belong to multiple cache groups. The optimization will prefer the cache group with a higher priority
             chunks: "initial", // type of optimization: [initial | async | all]
+            reuseExistingChunk: true,
           },
           common: {
             name: "chunk-common", // move reusable nested js-files into splitted file [chunk-common].js
@@ -67,6 +76,15 @@ module.exports = function (env, argv) {
             priority: -20,
             chunks: "initial",
             reuseExistingChunk: true, // If the current chunk contains modules already split out from the main bundle, it will be reused instead of a new one being generated. This can impact the resulting file name of the chunk
+          },
+          default: {
+            minChunks: 2,
+            priority: -20,
+            reuseExistingChunk: true,
+          },
+          vendors: {
+            test: /[\\/]node_modules[\\/]/,
+            priority: -10,
           },
         },
       },
@@ -208,6 +226,7 @@ module.exports = function (env, argv) {
       ],
     },
     plugins: [
+      new BundleAnalyzerPlugin(),
       new webpack.WatchIgnorePlugin({ paths: [/\.d\.ts$/] }), // ignore d.ts files in --watch mode
       new webpack.IgnorePlugin({
         resourceRegExp: /^\.\/locale$/,

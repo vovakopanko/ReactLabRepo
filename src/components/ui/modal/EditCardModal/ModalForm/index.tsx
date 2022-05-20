@@ -102,11 +102,11 @@ const ModalForm = ({
     resolver: yupResolver(scheme),
   });
 
-  const onDeleteCard = () => {
+  const onDeleteCard = useCallback(() => {
     dispatch(setSelectedNameCard(gameName));
     dispatch(setUniqueIdCurrentCard(idCard));
     dispatch(isShowDeleteNotification(true));
-  };
+  }, [gameName, idCard]);
 
   const onSubmit = useCallback(
     handleSubmit(async (dataForm: FormValue) => {

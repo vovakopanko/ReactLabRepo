@@ -1,9 +1,9 @@
 import { FC } from "react";
 import DropDownContainer from "../DropDown";
 import { HeaderContainerMenu, StyledNavLink, StyleItem } from "./styles";
-import { MenuItem } from "./type";
+import { MenuItems } from "./type";
 
-const MenuItem: FC<MenuItem> = ({ id, link, label, withDropdown }) => {
+const MenuItem: FC<MenuItems> = ({ id, link, label, withDropdown }) => {
   return (
     <HeaderContainerMenu>
       {withDropdown ? (

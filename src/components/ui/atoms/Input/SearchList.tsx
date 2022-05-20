@@ -1,20 +1,7 @@
-import { colors } from "@/styles/palette";
 import { useCallback } from "react";
 import styled from "styled-components";
-import { TGameCard } from "../../organisms/GameList/types";
 import { StyledItem } from "./styles";
-
-type Props = {
-  value: string;
-  list: TGameCard[];
-  setValue: (val: string) => void;
-  setToggle: (val: boolean) => void;
-  width: number | string;
-};
-
-type StyledProps = {
-  width: number | string;
-};
+import { Props, StyledProps } from "./type";
 
 const SearchList = ({ value, list, setValue, setToggle, width }: Props) => {
   if (value) {

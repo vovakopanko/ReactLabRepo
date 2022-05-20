@@ -6,7 +6,6 @@ import {
   MenuBurger,
   RegistrationContainer,
   SignUpContainer,
-  TitleItem,
   CloseBurger,
   CloseBtn,
   BasketImage,
@@ -33,10 +32,11 @@ import {
   selectIsAuthUser,
   selectorCartList,
 } from "@/redux/selectors/authSelector";
-import basketImage from "../../../../assets/svgIcon/basket.svg";
-import ExportOutlined from "../../../../assets/svgIcon/outlined.svg";
-import UserOutlined from "../../../../assets/svgIcon/logo.svg";
+import basketImage from "@/assets/svgIcon/basket.svg";
+import ExportOutlined from "@/assets/svgIcon/outlined.svg";
+import UserOutlined from "@/assets/svgIcon/logo.svg";
 import { clearCartList } from "@/redux/reducers/cart";
+import UserName from "../../atoms/UserName";
 
 const webSiteName: string = "Game Store";
 
@@ -112,15 +112,13 @@ const Header = () => {
           {isAuth ? (
             <>
               <StyledNavLink to={"/profile"}>
-                <StyleItem>
-                  <TitleItem>{userName}</TitleItem>
-                </StyleItem>
+                <UserName userName={userName} />
                 <ProfileLogoImage src={UserOutlined} />
               </StyledNavLink>
               <StyledNavLink to={"/basket"}>
                 <StyleItem>
                   <BasketImage src={basketImage} />
-                  <TitleItem>{cardsListLength}</TitleItem>
+                  <span>{cardsListLength}</span>
                 </StyleItem>
               </StyledNavLink>
               <StyledBtnLogOut onClick={onLogOut}>
@@ -156,15 +154,13 @@ const Header = () => {
         {isAuth ? (
           <>
             <StyledNavLink to={"/profile"}>
-              <StyleItem>
-                <TitleItem>{userName}</TitleItem>
-              </StyleItem>
+              <UserName userName={userName} />
               <ProfileLogoImage src={UserOutlined} />
             </StyledNavLink>
             <StyledNavLink to={"/basket"}>
               <StyleItem>
                 <BasketImage src={basketImage} />
-                <TitleItem>{cardsListLength}</TitleItem>
+                <span>{cardsListLength}</span>
               </StyleItem>
             </StyledNavLink>
             <StyledBtnLogOut onClick={onLogOut}>

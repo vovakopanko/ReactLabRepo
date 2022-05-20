@@ -10,9 +10,10 @@ import ChangePassword from "./components/ChangePassword";
 import { SectionHeader } from "@/components/ui";
 
 const Profile = () => {
+  const [isOpen, setIsOpen] = useState(true);
+
   const { address, description, email, phoneNumber, photoUser, userName } =
     useSelector(selectUserData);
-  const [isOpen, setIsOpen] = useState(true);
 
   return (
     <AuthRedirect>

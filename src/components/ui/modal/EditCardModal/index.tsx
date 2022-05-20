@@ -1,11 +1,11 @@
 import { useNavigate, useParams } from "react-router-dom";
-import closeImage from "../../../../assets/svgIcon/closeBtn.svg";
+import closeImage from "@/assets/svgIcon/closeBtn.svg";
 import { useEffect, useState } from "react";
 import { contentAPI } from "@/api/ContentAPI";
 import { TGameCard } from "../../organisms/GameList/types";
 import ModalForm from "./ModalForm";
 import { BackgroundContainer } from "../../portals/AuthPortal/styles";
-import image from "../../../../assets/images/no_image.png";
+import image from "@/assets/images/no_image.png";
 import {
   Blur,
   CardInfoContainer,

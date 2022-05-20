@@ -7,6 +7,7 @@ const Button = ({
   onClick,
   type = "primary",
   disabled,
+  id,
 }: Props) => {
   return (
     <ButtonBlock>
@@ -17,6 +18,7 @@ const Button = ({
         width={width + "px"}
         buttonType={type}
         disabled={disabled}
+        data-testid={id}
       />
     </ButtonBlock>
   );

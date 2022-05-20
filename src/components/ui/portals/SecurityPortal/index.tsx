@@ -18,7 +18,7 @@ import { onStatusPasswordChange } from "@/redux/reducers/profile";
 import { registerUser } from "@/api/AuthAPI";
 import { selectEmailUser } from "@/redux/selectors/authSelector";
 import { BtnSubmit, CloseOutlined } from "../AuthPortal/styles";
-import image from "./../../../../assets/svgIcon/closeBtn.svg";
+import image from "@/assets/svgIcon/closeBtn.svg";
 
 export default function SecurityPortal({ title }: { title: string }) {
   const [invalidValue, setInvalidValue] = useState("");
@@ -42,23 +42,26 @@ export default function SecurityPortal({ title }: { title: string }) {
     reset();
   };
 
-  const changeUserPassword = async ({
-    emailUser,
-    password,
-    currentPassword,
-  }: {
-    emailUser: string;
-    password: string;
-    currentPassword: string;
-  }) => {
-    await registerUser
-      .changePassword(emailUser, password, currentPassword)
-      .then(() => dispatch(onStatusPasswordChange(false)))
-      .catch(() => {
-        dispatch(onStatusPasswordChange(true));
-        setInvalidValue("Invalid current password");
-      });
-  };
+  const changeUserPassword = useCallback(
+    async ({
+      emailUser,
+      password,
+      currentPassword,
+    }: {
+      emailUser: string;
+      password: string;
+      currentPassword: string;
+    }) => {
+      await registerUser
+        .changePassword(emailUser, password, currentPassword)
+        .then(() => dispatch(onStatusPasswordChange(false)))
+        .catch(() => {
+          dispatch(onStatusPasswordChange(true));
+          setInvalidValue("Invalid current password");
+        });
+    },
+    []
+  );
 
   const onSetStatusChangePassword = useCallback(() => {
     dispatch(onStatusPasswordChange(false));

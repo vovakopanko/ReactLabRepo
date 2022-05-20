@@ -2,6 +2,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const { merge } = require("webpack-merge");
 const CompressionPlugin = require("compression-webpack-plugin");
+const BrotliPlugin = require("brotli-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const common = require("./webpack.common");
@@ -38,7 +39,9 @@ module.exports = (env, argv) => {
             mangle: {
               safari10: true, // for preventing Safari 10/11 bugs in loop scoping and await
             },
-            compress: { pure_funcs: ["console.info", "console.debug", "console.warn"] }, // remove this functions when their return values are not used
+            compress: {
+              pure_funcs: ["console.info", "console.debug", "console.warn"],
+            }, // remove this functions when their return values are not used
           },
         }),
         new OptimizeCSSAssetsPlugin({}), // it minifies css and optimize it with cssnano: https://cssnano.co/guides/optimisations
@@ -57,6 +60,7 @@ module.exports = (env, argv) => {
         filename: "[path][base].br[query]",
         threshold: common.filesThreshold, // (bytes). Only assets bigger than this size are processed
       }),
+      new BrotliPlugin(),
     ],
   };
 

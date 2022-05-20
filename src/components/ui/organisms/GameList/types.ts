@@ -12,7 +12,7 @@ export type TCardItem = {
 
 export type TGameCard = { uniqueId: string } & TCardItem;
 
-export enum amountFavoriteGame {
+export const enum amountFavoriteGame {
   STANDARTSHEME = 3,
 }
 

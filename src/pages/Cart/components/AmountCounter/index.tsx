@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import iconPlus from "../../../../assets/svgIcon/iconPlus.svg";
-import iconMinus from "../../../../assets/svgIcon/iconMinus.svg";
+import iconPlus from "@/assets/svgIcon/iconPlus.svg";
+import iconMinus from "@/assets/svgIcon/iconMinus.svg";
 import { useCallback } from "react";
 import { decreaseAmount, increaseAmount } from "@/redux/reducers/cart";
 import { useDispatch } from "react-redux";

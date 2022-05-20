@@ -10,8 +10,8 @@ import {
   SecureContainer,
 } from "../styles";
 import { InputProps } from "../types";
-import showPassword from "./../../../../assets/svgIcon/showPassword.svg";
-import hidePassword from "./../../../../assets/svgIcon/hidePassword.svg";
+import showPassword from "@/assets/svgIcon/showPassword.svg";
+import hidePassword from "@/assets/svgIcon/hidePassword.svg";
 
 function FormInput<T>({
   title,
@@ -49,11 +49,12 @@ function FormInput<T>({
                 : "password"
             }
           />
-          {isDisplayEye && (
-            <SecureContainer onClick={toggleIsShowPassword}>
-              <SecureImage src={isShowPassword ? showPassword : hidePassword} />
-            </SecureContainer>
-          )}
+          <SecureContainer
+            onClick={toggleIsShowPassword}
+            isDisplayEye={isDisplayEye!}
+          >
+            <SecureImage src={isShowPassword ? showPassword : hidePassword} />
+          </SecureContainer>
         </FieldContainer>
       </InputContainer>
       <MessageError>{error?.message}</MessageError>
