@@ -3,14 +3,7 @@ import {
   SortContainer,
   SortTitle,
 } from "@/pages/Product/styles";
-import { ChangeEvent } from "react";
-
-type Props = {
-  title: string;
-  value: string | number;
-  array: { titleName: string; value: string }[];
-  handleChange: (event: ChangeEvent<HTMLSelectElement>) => void;
-};
+import { Props } from "./types";
 
 const SelectedBtnGroup = ({ title, value, array, handleChange }: Props) => {
   return (

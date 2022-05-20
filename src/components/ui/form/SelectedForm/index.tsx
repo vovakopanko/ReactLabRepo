@@ -1,7 +1,7 @@
 import { useController } from "react-hook-form";
 import { MessageError } from "../styles";
 import { SelectedProps } from "../types";
-import { SelectedContainer, SortContainer, SortTitle } from "./styled";
+import { SelectedContainer, SortContainer, SortTitle } from "./../styles";
 
 function FormSelected<T>({ title, name, array, control }: SelectedProps<T>) {
   const {

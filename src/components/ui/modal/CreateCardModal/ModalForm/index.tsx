@@ -13,7 +13,7 @@ import { arrayAge } from "../../EditCardModal/ModalForm/constants";
 import { FormValue, scheme } from "../scheme";
 import { ButtonWrapper, CardFormContainer, EditCardForm } from "./styles";
 import { arrayStars, imagePlatforms } from "./constants";
-import { CheckBox } from "@/components/ui/form/CheckedForm/CheckBox";
+import { CheckBox } from "@/components/ui/form/CheckedForm";
 import { imagesPlatforms } from "@/components/ui/organisms/GameList/types";
 
 const ModalForm = () => {

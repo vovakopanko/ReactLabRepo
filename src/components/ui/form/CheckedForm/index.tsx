@@ -1,6 +1,6 @@
 import { useController } from "react-hook-form";
-import { HookFormPropsBase, InputBaseProps } from "../../types";
-import { CheckBoxContent, CheckBoxTitle } from "../styles";
+import { HookFormPropsBase, InputBaseProps } from "../types";
+import { CheckBoxContent, CheckBoxTitle } from "./../styles";
 
 type Props<T> = InputBaseProps & HookFormPropsBase<T>;
 

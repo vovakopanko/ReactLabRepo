@@ -1,12 +1,7 @@
 import Spinner from "@/components/ui/atoms/Spinner";
 import { CardItem } from "@/components/ui/organisms/GameList";
-import { TGameCard } from "@/components/ui/organisms/GameList/types";
 import { EmptyList, GamesBlock, ProductList } from "../../styles";
-
-type Props = {
-  gamesCards: TGameCard[];
-  isLoading: boolean;
-};
+import { Props } from "./types";
 
 const ProductsList = ({ gamesCards, isLoading }: Props) => {
   if (isLoading) {

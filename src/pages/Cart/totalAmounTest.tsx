@@ -1,13 +1,4 @@
-type imagesPlatforms = { id: number; src: string; alt: string };
-
-type cartList = {
-  name: string;
-  platforms: imagesPlatforms[];
-  orderDate: string;
-  amount: number;
-  price: number;
-  checked: boolean;
-};
+import { cartList } from "./types";
 
 export const totalAmount = (selectedGames: cartList[]) => {
   return Number(

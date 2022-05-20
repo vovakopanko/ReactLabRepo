@@ -1,7 +1,8 @@
+import { colors } from "@/styles/palette";
 import styled from "styled-components";
 
 export const AmountValue = styled.span`
-  color: white;
+  color: ${colors.WHITE};
   font-size: 21px;
   min-width: 25px;
   width: auto;

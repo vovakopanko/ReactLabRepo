@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FC } from "react";
 import Category from "../Category";
-import { BlockItem } from "./style";
+import { BlockItem } from "./styles";
 import { TCategory } from "./types";
 import { contentAPI } from "@/api/ContentAPI";
 

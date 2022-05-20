@@ -61,7 +61,7 @@ export function EditCardModal() {
             <Image
               src={selectedGame.url}
               onError={({ currentTarget }) => {
-                currentTarget.onerror = null; // prevents looping
+                currentTarget.onerror = null;
                 currentTarget.src = image;
               }}
             />

@@ -12,16 +12,9 @@ export type FormValue = {
   pc: boolean;
   xbox: boolean;
   playstation: boolean;
-  // imagePlatforms: ImagePlatforms[];
   idCard: string;
   stars: number;
 };
-
-// type ImagePlatforms = {
-//   alt: string;
-//   id: number;
-//   src: string;
-// };
 
 export const scheme = yup.object().shape({
   gameName: yup

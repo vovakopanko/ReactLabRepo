@@ -36,7 +36,7 @@ export const PhotoInputContainer = styled.div`
 export const PhotoInput = styled.input`
   display: block;
   border-radius: 4px;
-  border: 1px solid white;
+  border: 1px solid ${colors.WHITE};
   padding: 10px;
   margin-bottom: 10px;
   font-size: 14;
@@ -105,7 +105,7 @@ export const InputField = styled.input`
   width: 300px;
   border-radius: 4px;
   color: ${colors.WHITE};
-  border: 1px solid white;
+  border: 1px solid ${colors.WHITE};
   padding: 10px;
   font-size: 14;
   background-color: transparent;
