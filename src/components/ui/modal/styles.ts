@@ -49,9 +49,10 @@ export const TitleContainer = styled.div`
 
 export const Title = styled.div`
   font-size: 29px;
-  color: ${colors.BLACK};
+  color: ${colors.PURPURE};
   padding: 20px;
   width: 95%;
+  text-align: center;
   @media (max-width: 768px) {
     padding-bottom: 20px;
   }
