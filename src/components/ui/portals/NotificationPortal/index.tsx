@@ -35,7 +35,7 @@ export default function NotificationPortal() {
   const navigate = useNavigate();
 
   const onClick = useCallback(() => {
-    contentAPI.deleteGameCard(idCard)?.then((response: any) => {
+    contentAPI.deleteGameCard(idCard)?.then((response) => {
       dispatch(updateCurrentState(response));
     });
     dispatch(setSelectedNameCard(""));

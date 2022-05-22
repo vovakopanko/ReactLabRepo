@@ -137,7 +137,7 @@ const ModalForm = ({
           selectedPlatforms as ImagePlatforms[],
           idCard
         )
-        ?.then((response: any) => {
+        ?.then((response) => {
           dispatch(updateCurrentState(response));
         });
       navigate(-1);

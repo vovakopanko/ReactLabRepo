@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { colors } from "../../../../styles/palette/index";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 export const BackgroundContainer = styled.div`
   position: fixed;
   top: 0px;
@@ -12,7 +12,19 @@ export const BackgroundContainer = styled.div`
   z-index: 10;
 `;
 
+const modeAnimation = keyframes`
+0% {opacity: 0.6;}}
+30% {opacity:0.7}
+80% {opacity: 0.8}
+80% {opacity: 1}
+`;
+
 export const AuthContainer = styled.div`
+  animation-name: ${modeAnimation};
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -27,8 +39,9 @@ export const AuthContainer = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 25px;
-  @media (max-width: 768px) {
-    min-width: 250px;
+  @media (max-width: 380px) {
+    min-width: 260px;
+    width: 80%;
   }
 `;
 

@@ -2,16 +2,15 @@ import { useNavigate } from "react-router-dom";
 import closeImage from "@/assets/svgIcon/closeBtn.svg";
 import ModalForm from "./ModalForm";
 import { BackgroundContainer } from "../../portals/AuthPortal/styles";
+import { CardInfoContainer, InfoContainer } from "./styles";
 import {
   Blur,
-  CardInfoContainer,
+  EditCardContainer,
+  TitleContainer,
+  Title,
   CloseButton,
   CloseOutlined,
-  EditCardContainer,
-  InfoContainer,
-  Title,
-  TitleContainer,
-} from "./styles";
+} from "../styles";
 
 export function CreateCardModal() {
   const navigate = useNavigate();

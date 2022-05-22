@@ -1,4 +1,5 @@
 import { debouncedFetchData } from "@/api/SearchAPI";
+import useOnFocusElement from "@/hooks/handlers/useOnFocusSearchBar";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { TGameCard } from "../../organisms/GameList/types";
 import SearchList from "./SearchList";
@@ -7,8 +8,11 @@ import { FinderContainer, StyleInput } from "./styles";
 const SearchBar = ({ width = "80%" }: { width?: number | string }) => {
   const [searchData, setSearchData] = useState("");
   const [findArray, setFindArray] = useState<TGameCard[]>([]);
-  const [isFocus, setIsFocus] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+
+  const { onFocus, isFocus, setIsFocus } = useOnFocusElement({
+    ref,
+  });
 
   useEffect(() => {
     debouncedFetchData(searchData, (res: TGameCard[]) => {
@@ -16,29 +20,10 @@ const SearchBar = ({ width = "80%" }: { width?: number | string }) => {
     });
   }, [searchData]);
 
-  useEffect(() => {
-    if (isFocus) {
-      document.addEventListener("click", handleClickOutside, true);
-      return () => {
-        document.removeEventListener("click", handleClickOutside, true);
-      };
-    }
-  }, [isFocus]);
-
-  const handleClickOutside = useCallback((event: MouseEvent) => {
-    if (!event.target) {
-      return;
-    }
-    if (ref.current && !ref.current?.contains(event.target as Node)) {
-      setIsFocus((prev) => !prev);
-    }
-  }, []);
-
   const onChangeData = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchData(e.target.value.trim());
   };
 
-  const onFocus = useCallback(() => setIsFocus(true), []);
   const onChange = useCallback((e) => onChangeData(e), []);
 
   return (

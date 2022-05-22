@@ -6,8 +6,6 @@ import { logoGamesT } from "@/components/ui/organisms/Footer/types";
 import {
   ImagePlatforms,
   TCategory,
-  CardInfo,
-  CardId,
 } from "@/pages/Home/components/CategoryList/types";
 import uuid from "react-native-uuid";
 
@@ -24,7 +22,7 @@ export const contentAPI = {
   deleteGameCard(uniqueId: string) {
     try {
       return instanceMongoDB
-        .delete<CardId>(AppUrls.DELETE_CARD, {
+        .delete<TState[]>(AppUrls.DELETE_CARD, {
           data: {
             uniqueId,
           },
@@ -75,7 +73,7 @@ export const contentAPI = {
   ) {
     try {
       return instanceMongoDB
-        .post<CardInfo>(AppUrls.UPDATE_CARD_INFO, {
+        .post<TState[]>(AppUrls.UPDATE_CARD_INFO, {
           title: gameName,
           alt: gameName,
           description,

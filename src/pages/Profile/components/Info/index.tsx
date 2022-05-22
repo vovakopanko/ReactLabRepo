@@ -34,7 +34,7 @@ const Info = ({
     control,
     formState: { isValid, isSubmitting },
     handleSubmit,
-  } = useForm<any>({
+  } = useForm<FormValues>({
     mode: "onChange",
     defaultValues: {
       address,

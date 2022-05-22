@@ -7,19 +7,21 @@ import ModalForm from "./ModalForm";
 import { BackgroundContainer } from "../../portals/AuthPortal/styles";
 import image from "@/assets/images/no_image.png";
 import {
-  Blur,
   CardInfoContainer,
-  CloseButton,
-  CloseOutlined,
-  EditCardContainer,
   Image,
   ImageContainer,
   ImageTitle,
   InfoContainer,
   InfoTitle,
-  Title,
-  TitleContainer,
 } from "./styles";
+import {
+  Blur,
+  EditCardContainer,
+  TitleContainer,
+  Title,
+  CloseButton,
+  CloseOutlined,
+} from "../styles";
 
 export function EditCardModal() {
   const [games, setGames] = useState<TGameCard[]>([]);

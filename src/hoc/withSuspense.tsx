@@ -1,6 +1,6 @@
 import Spinner from "@/components/ui/atoms/Spinner";
 import { Suspense } from "react";
-import styled from "styled-components";
+import { Content } from "./styles";
 
 export const withSuspense = (Component: () => JSX.Element) => {
   return (
@@ -15,10 +15,3 @@ export const withSuspense = (Component: () => JSX.Element) => {
     </Suspense>
   );
 };
-
-const Content = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-`;
