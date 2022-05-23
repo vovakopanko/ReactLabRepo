@@ -45,7 +45,10 @@ const Product = () => {
     setSearchData(e.target.value.trim());
   }, []);
 
-  const onChange = useCallback((e) => onChangeData(e), []);
+  const onChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => onChangeData(e),
+    []
+  );
 
   const backgroundLocation = useMemo(
     () => ({ backgroundLocation: location }),
@@ -64,10 +67,13 @@ const Product = () => {
     },
     []
   );
-  const onAgeFilterPress = useCallback((e) => setAgeFilter(e.target.value), []);
+  const onAgeFilterPress = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => setAgeFilter(e.target.value),
+    []
+  );
 
   const onGenresFilterPress = useCallback(
-    (e) => setGenresFilter(e.target.value),
+    (e: ChangeEvent<HTMLInputElement>) => setGenresFilter(e.target.value),
     []
   );
 

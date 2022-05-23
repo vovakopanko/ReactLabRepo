@@ -1,7 +1,11 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import { StyleLogo } from "./styles";
 
-const Logo: FC = ({ children }) => {
+type Props = {
+  children?: ReactNode;
+};
+
+const Logo: FC<Props> = ({ children }) => {
   return <StyleLogo>{children}</StyleLogo>;
 };
 

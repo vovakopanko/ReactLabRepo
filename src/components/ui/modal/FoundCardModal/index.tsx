@@ -73,10 +73,13 @@ export function FoundCardModal() {
     navigate(-1);
   }, []);
 
-  const onError = useCallback(({ currentTarget }) => {
-    currentTarget.onerror = null;
-    currentTarget.src = image;
-  }, []);
+  const onError = useCallback(
+    ({ currentTarget }: React.SyntheticEvent<HTMLImageElement, Event>) => {
+      currentTarget.onerror = null;
+      currentTarget.src = image;
+    },
+    []
+  );
 
   if (!selectedGame) return null;
 

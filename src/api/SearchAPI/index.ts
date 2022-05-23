@@ -24,4 +24,4 @@ const fetchData = async (query: string, cb: (val: TGameCard[]) => void) => {
 
 export const debouncedFetchData = debounce((query, cb) => {
   fetchData(query, cb);
-}, 300);
+}, 450);

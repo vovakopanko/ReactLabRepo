@@ -1,30 +1,33 @@
-import { debouncedFetchData } from "@/api/SearchAPI";
 import useOnFocusElement from "@/hooks/handlers/useOnFocusSearchBar";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { TGameCard } from "../../organisms/GameList/types";
+import useSearchGameCards from "@/hooks/handlers/useSearchGameCards";
+import { useCallback, useDeferredValue, useRef, useState } from "react";
 import SearchList from "./SearchList";
 import { FinderContainer, StyleInput } from "./styles";
 
 const SearchBar = ({ width = "80%" }: { width?: number | string }) => {
   const [searchData, setSearchData] = useState("");
-  const [findArray, setFindArray] = useState<TGameCard[]>([]);
   const ref = useRef<HTMLDivElement>(null);
 
   const { onFocus, isFocus, setIsFocus } = useOnFocusElement({
     ref,
   });
 
-  useEffect(() => {
-    debouncedFetchData(searchData, (res: TGameCard[]) => {
-      setFindArray(res);
-    });
-  }, [searchData]);
+  const { gamesCards } = useSearchGameCards({
+    searchData,
+    pageInfo: "",
+    age: "All",
+    genres: "All",
+    criteria: "default",
+    type: "default",
+  });
 
-  const onChangeData = (e: React.ChangeEvent<HTMLInputElement>) => {
+  console.log("gamesCards", gamesCards);
+
+  const deferredGameCards = useDeferredValue(gamesCards);
+
+  const onChangeData = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchData(e.target.value.trim());
-  };
-
-  const onChange = useCallback((e) => onChangeData(e), []);
+  }, []);
 
   return (
     <FinderContainer ref={ref}>
@@ -32,17 +35,15 @@ const SearchBar = ({ width = "80%" }: { width?: number | string }) => {
         type="text"
         name="searchTerm"
         autoComplete="off"
-        onFocus={() => {
-          onFocus();
-        }}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e)}
+        onFocus={onFocus}
+        onChange={onChangeData}
         value={searchData}
       />
       {isFocus && (
         <SearchList
           width={width}
           value={searchData}
-          list={findArray}
+          list={deferredGameCards}
           setValue={setSearchData}
           setToggle={setIsFocus}
         />

@@ -31,14 +31,18 @@ const useSearchGameCards = ({
   useEffect(() => {
     setIsLoading(true);
     debouncedFetchData(searchData, (res: TGameCard[]) => {
-      const array: TGameCard[] = [];
-      res
-        .map((card) => card.imagePlatforms.map((platform) => platform.alt))
-        .map((alt, index) => {
-          if (alt.includes(pageInfo)) {
-            array.push(res[index]);
-          }
-        });
+      let array: TGameCard[] = [];
+      if (pageInfo) {
+        res
+          .map((card) => card.imagePlatforms.map((platform) => platform.alt))
+          .map((alt, index) => {
+            if (alt.includes(pageInfo)) {
+              array.push(res[index]);
+            }
+          });
+      } else {
+        array = res;
+      }
       const filteredArray = searchGameCard(array, searchData, {
         age,
         genres,

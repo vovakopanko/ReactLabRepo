@@ -26,7 +26,7 @@ const SearchList = ({ value, list, setValue, setToggle, width }: Props) => {
     [location]
   );
 
-  const onClickHandler = useCallback((title) => {
+  const onClickHandler = useCallback((title: string) => {
     setValue(title);
     setToggle(false);
     setValue("");
