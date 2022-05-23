@@ -20,14 +20,6 @@ export const StyleInput = styled.input`
   }
 `;
 
-export const BlurEffect = styled.div`
-  width: 80%;
-  padding: 20px;
-  margin-top: 20px;
-  backdrop-filter: blur(3px) grayscale(0.5);
-  border-radius: 25px;
-`;
-
 export const FinderContainer = styled.div`
    {
     width: 100%;

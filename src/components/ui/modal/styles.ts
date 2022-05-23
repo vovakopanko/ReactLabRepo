@@ -11,7 +11,6 @@ const modeAnimation = keyframes`
 export const EditCardContainer = styled.div`
   animation-name: ${modeAnimation};
   animation-duration: 1s;
-  animation-iteration-count: infinite;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
   position: fixed;
@@ -69,5 +68,15 @@ export const CloseOutlined = styled.img`
   height: 30px;
   &:hover {
     cursor: pointer;
+  }
+`;
+
+export const CardInfoContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  @media (max-width: 768px) {
+    flex-direction: column;
   }
 `;

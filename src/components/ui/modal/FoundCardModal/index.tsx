@@ -6,7 +6,6 @@ import { TGameCard } from "../../organisms/GameList/types";
 import { BackgroundContainer } from "../../portals/AuthPortal/styles";
 import image from "@/assets/images/no_image.png";
 import {
-  CardInfoContainer,
   Image,
   ImageContainer,
   InfoContainer,
@@ -15,6 +14,7 @@ import {
   SubtitleInfo,
 } from "./styles";
 import {
+  CardInfoContainer,
   Blur,
   EditCardContainer,
   TitleContainer,

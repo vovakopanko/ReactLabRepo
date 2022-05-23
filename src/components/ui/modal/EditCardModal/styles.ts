@@ -1,16 +1,6 @@
 import styled from "styled-components";
 import { colors } from "../../../../styles/palette/index";
 
-export const CardInfoContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 100%;
-  @media (max-width: 768px) {
-    flex-direction: column;
-  }
-`;
-
 export const ImageContainer = styled.div`
   width: 45%;
   display: flex;

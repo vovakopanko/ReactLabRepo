@@ -7,7 +7,6 @@ import ModalForm from "./ModalForm";
 import { BackgroundContainer } from "../../portals/AuthPortal/styles";
 import image from "@/assets/images/no_image.png";
 import {
-  CardInfoContainer,
   Image,
   ImageContainer,
   ImageTitle,
@@ -15,6 +14,7 @@ import {
   InfoTitle,
 } from "./styles";
 import {
+  CardInfoContainer,
   Blur,
   EditCardContainer,
   TitleContainer,
@@ -26,8 +26,8 @@ import {
 export function EditCardModal() {
   const [games, setGames] = useState<TGameCard[]>([]);
   const { name } = useParams<"name">();
-
   const navigate = useNavigate();
+
   useEffect(() => {
     const query = async () => {
       const gamesList = await contentAPI
