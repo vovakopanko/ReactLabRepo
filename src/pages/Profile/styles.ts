@@ -2,7 +2,7 @@ import { colors } from "@/styles/palette";
 import styled from "styled-components";
 
 export const InfoContainer = styled.div`
-  min-width: 300px;
+  min-width: 280px;
   background-color: ${colors.PURPURE};
   border-radius: 15px;
   padding-top: 10px;
@@ -13,6 +13,9 @@ export const InfoContainer = styled.div`
   @media (max-width: 768px) {
     max-width: 300px;
   }
+  @media (max-width: 320px) {
+    max-width: 290px;
+  }
 `;
 
 export const BorderContainer = styled.div`
@@ -21,6 +24,9 @@ export const BorderContainer = styled.div`
   border: 3px solid ${colors.PURPURE};
   background-color: ${colors.LIGHT_GRAY};
   opacity: 0.97;
+  @media (max-width: 320px) {
+    max-width: 290px;
+  }
 `;
 
 export const InfoTitle = styled.h2`
@@ -44,6 +50,9 @@ export const PhotoInput = styled.input`
 
 export const ImageContainer = styled.div`
   border-top-left-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-self: center;
 `;
 
 export const ImagePlatform = styled.img`
@@ -69,6 +78,9 @@ export const BottomLine = styled.div`
 
 export const ContentBlock = styled.div`
   margin: 10px;
+  @media (max-width: 320px) {
+    min-width: 280px;
+  }
 `;
 
 export const ProfilePageContent = styled.div`
@@ -79,6 +91,8 @@ export const ProfilePageContent = styled.div`
   @media (max-width: 800px) {
     flex-direction: column;
     align-items: center;
+  }
+  @media (max-width: 320px) {
   }
 `;
 

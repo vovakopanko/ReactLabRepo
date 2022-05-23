@@ -1,15 +1,33 @@
 import { useCallback, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import { ModalLink } from "../../molecules/GameCard/style";
-import { TGameCard } from "../../organisms/GameList/types";
 import { StyledItem, StyledList } from "./styles";
 import { Props } from "./type";
+
+type TSearchListItem = {
+  title: string;
+  onClick: (val: string) => void;
+};
+
+const SearchListItem = ({ title, onClick }: TSearchListItem) => {
+  const onClickHandler = useCallback(() => onClick(title), [onClick, title]);
+  return (
+    <StyledItem danger="" onClick={onClickHandler}>
+      {title}
+    </StyledItem>
+  );
+};
 
 const SearchList = ({ value, list, setValue, setToggle, width }: Props) => {
   const location = useLocation();
 
-  const onClickHandler = useCallback((item: TGameCard) => {
-    setValue(item.title);
+  const backgroundLocation = useMemo(
+    () => ({ backgroundLocation: location }),
+    [location]
+  );
+
+  const onClickHandler = useCallback((title) => {
+    setValue(title);
     setToggle(false);
     setValue("");
   }, []);
@@ -37,11 +55,9 @@ const SearchList = ({ value, list, setValue, setToggle, width }: Props) => {
         <ModalLink
           key={index}
           to={`/found/${item.title}`}
-          state={{ backgroundLocation: location }}
+          state={backgroundLocation}
         >
-          <StyledItem danger="" onClick={() => onClickHandler(item)}>
-            {item.title}
-          </StyledItem>
+          <SearchListItem title={item.title} onClick={onClickHandler} />
         </ModalLink>
       ))}
     </StyledList>

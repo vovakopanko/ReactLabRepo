@@ -21,7 +21,7 @@ const modeAnimation = keyframes`
 
 export const AuthContainer = styled.div`
   animation-name: ${modeAnimation};
-  animation-duration: 1s;
+  animation-duration: 500ms;
   animation-iteration-count: infinite;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
@@ -39,9 +39,13 @@ export const AuthContainer = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 25px;
-  @media (max-width: 380px) {
-    min-width: 260px;
-    width: 80%;
+  @media (max-width: 420px) {
+    padding: 10px;
+    min-width: 330px;
+  }
+  @media (max-width: 320px) {
+    padding: 10px;
+    min-width: 270px;
   }
 `;
 

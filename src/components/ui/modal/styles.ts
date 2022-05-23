@@ -10,7 +10,7 @@ const modeAnimation = keyframes`
 
 export const EditCardContainer = styled.div`
   animation-name: ${modeAnimation};
-  animation-duration: 1s;
+  animation-duration: 500ms;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
   position: fixed;

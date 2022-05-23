@@ -56,6 +56,7 @@ const GameCard = ({
     () => ({ backgroundLocation: location }),
     [location]
   );
+
   const setGameCard = useCallback(() => {
     const now = new Date();
     const game = [
@@ -116,7 +117,7 @@ const GameCard = ({
           </ButtonPosition>
           {isAuth && isAdmin && (
             <ButtonPosition>
-              <ModalLink to={`/games/${title}`} state={{ backgroundLocation }}>
+              <ModalLink to={`/games/${title}`} state={backgroundLocation}>
                 <Button title={"Edit"} width={100} type="secondary" />
               </ModalLink>
             </ButtonPosition>

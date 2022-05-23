@@ -10,6 +10,12 @@ export const InputContainer = styled.div`
   flex-direction: row;
   width: 100%;
   min-width: 320px;
+  @media (max-width: 320px) {
+    min-width: 280px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 export const TextAreaField = styled.textarea`
@@ -25,6 +31,11 @@ export const TextAreaField = styled.textarea`
   font-size: 14;
   @media (max-width: 768px) {
     min-width: 140px;
+  }
+  @media (max-width: 320px) {
+    max-width: 120px;
+    min-width: 120px;
+    margin-left: 0px;
   }
 `;
 
@@ -47,12 +58,24 @@ export const InputName = styled.label`
     min-width: 100px;
     font-size: 16px;
   }
+  @media (max-width: 420px) {
+    text-align: center;
+    max-width: 100px;
+  }
+  @media (max-width: 320px) {
+    max-width: 180px;
+  }
 `;
 
 export const FieldContainer = styled.div`
   position: relative;
   justify-content: center;
   align-self: center;
+  @media (max-width: 320px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 export const MessageError = styled.span`
@@ -74,6 +97,12 @@ export const InputField = styled.input`
   @media (max-width: 768px) {
     min-width: 118px;
     padding-right: 36px;
+  }
+  @media (max-width: 320px) {
+    display: flex;
+    margin: 0 auto;
+    min-width: auto;
+    align-self: center;
   }
 `;
 

@@ -137,7 +137,7 @@ const Product = () => {
             />
             {isAdmin && (
               <CreateButtonContainer>
-                <ModalLink to={`/createCard`} state={{ backgroundLocation }}>
+                <ModalLink to={`/createCard`} state={backgroundLocation}>
                   <Button title={"Create card"} width={120} type="secondary" />
                 </ModalLink>
               </CreateButtonContainer>
