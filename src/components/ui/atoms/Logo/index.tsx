@@ -1,16 +1,12 @@
-import { colors } from "@/styles/palette";
-import { FC } from "react";
-import styled from "styled-components";
+import { FC, ReactNode } from "react";
+import { StyleLogo } from "./styles";
 
-const Logo: FC = ({ children }) => {
-  return <StyleLogo>{children}</StyleLogo>;
+type Props = {
+  children?: ReactNode;
 };
 
-export const StyleLogo = styled.h1`
-  font-weight: 400;
-  color: ${colors.WHITE};
-  font-size: 21px;
-  padding-left: 16px;
-`;
+const Logo: FC<Props> = ({ children }) => {
+  return <StyleLogo>{children}</StyleLogo>;
+};
 
 export default Logo;

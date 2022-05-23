@@ -1,15 +1,6 @@
 import RadioBtn from "@/components/ui/atoms/RadioBtn";
 import { FlexContainer } from "@/pages/Product/styles";
-import { ChangeEvent } from "react";
-
-type Props = {
-  radioButtons: {
-    title: string;
-    value: string;
-  }[];
-  onChange: (val: ChangeEvent<HTMLInputElement>) => void;
-  currentValue: string;
-};
+import { Props } from "./types";
 
 const RadioBtnGroup = ({ radioButtons, onChange, currentValue }: Props) => {
   return (

@@ -1,5 +1,6 @@
 import { colors } from "./../../../../styles/palette/index";
 import styled from "styled-components";
+import { StyledProps } from "./type";
 
 export const StyleInput = styled.input`
   color: ${colors.WHITE};
@@ -14,14 +15,9 @@ export const StyleInput = styled.input`
   &:focus {
     outline: none;
   }
-`;
-
-export const BlurEffect = styled.div`
-  width: 80%;
-  padding: 20px;
-  margin-top: 20px;
-  backdrop-filter: blur(3px) grayscale(0.5);
-  border-radius: 25px;
+  @media (max-width: 320px) {
+    max-width: 240px;
+  }
 `;
 
 export const FinderContainer = styled.div`
@@ -50,5 +46,18 @@ export const StyledItem = styled.div`
         ? `0px 0px 10px 0px transparent`
         : `0px 0px 10px 0px ${colors.PURPURE}`};
     cursor: ${({ danger }) => danger || "pointer"};
+  }
+`;
+
+export const StyledList = styled.div<StyledProps>`
+   {
+    width: ${(props) => props.width};
+    backdrop-filter: blur(10px) grayscale(0.5);
+    z-index: 2;
+    position: absolute;
+    margin-top: 38px;
+    border: 1px solid none;
+    border-radius: 15px;
+    padding: 15px 0px;
   }
 `;

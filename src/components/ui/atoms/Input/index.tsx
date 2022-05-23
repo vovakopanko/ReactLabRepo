@@ -1,45 +1,33 @@
-import { debouncedFetchData } from "@/api/SearchAPI";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { TGameCard } from "../../organisms/GameList/types";
+import useOnFocusElement from "@/hooks/handlers/useOnFocusSearchBar";
+import useSearchGameCards from "@/hooks/handlers/useSearchGameCards";
+import { useCallback, useDeferredValue, useRef, useState } from "react";
 import SearchList from "./SearchList";
 import { FinderContainer, StyleInput } from "./styles";
 
 const SearchBar = ({ width = "80%" }: { width?: number | string }) => {
   const [searchData, setSearchData] = useState("");
-  const [findArray, setFindArray] = useState<TGameCard[]>([]);
-  const [isFocus, setIsFocus] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    debouncedFetchData(searchData, (res: TGameCard[]) => {
-      setFindArray(res);
-    });
-  }, [searchData]);
+  const { onFocus, isFocus, setIsFocus } = useOnFocusElement({
+    ref,
+  });
 
-  useEffect(() => {
-    if (isFocus) {
-      document.addEventListener("click", handleClickOutside, true);
-      return () => {
-        document.removeEventListener("click", handleClickOutside, true);
-      };
-    }
-  }, [isFocus]);
+  const { gamesCards } = useSearchGameCards({
+    searchData,
+    pageInfo: "",
+    age: "All",
+    genres: "All",
+    criteria: "default",
+    type: "default",
+  });
 
-  const handleClickOutside = useCallback((event: MouseEvent) => {
-    if (!event.target) {
-      return;
-    }
-    if (ref.current && !ref.current?.contains(event.target as Node)) {
-      setIsFocus((prev) => !prev);
-    }
-  }, []);
+  console.log("gamesCards", gamesCards);
 
-  const onChangeData = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const deferredGameCards = useDeferredValue(gamesCards);
+
+  const onChangeData = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchData(e.target.value.trim());
-  };
-
-  const onFocus = useCallback(() => setIsFocus(true), []);
-  const onChange = useCallback((e) => onChangeData(e), []);
+  }, []);
 
   return (
     <FinderContainer ref={ref}>
@@ -47,17 +35,15 @@ const SearchBar = ({ width = "80%" }: { width?: number | string }) => {
         type="text"
         name="searchTerm"
         autoComplete="off"
-        onFocus={() => {
-          onFocus();
-        }}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e)}
+        onFocus={onFocus}
+        onChange={onChangeData}
         value={searchData}
       />
       {isFocus && (
         <SearchList
           width={width}
           value={searchData}
-          list={findArray}
+          list={deferredGameCards}
           setValue={setSearchData}
           setToggle={setIsFocus}
         />

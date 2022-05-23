@@ -15,6 +15,7 @@ import { PageContainerInfo } from "./molecules/PageInfo";
 import GameCard from "./molecules/GameCard";
 import { CreateCardModal } from "./modal/CreateCardModal";
 import ChangePassword from "./molecules/ChangePassword";
+import { FoundCardModal } from "./modal/FoundCardModal";
 
 export {
   MenuItem,
@@ -34,4 +35,5 @@ export {
   GameCard,
   CreateCardModal,
   ChangePassword,
+  FoundCardModal,
 };

@@ -5,16 +5,7 @@ import { useCallback } from "react";
 import { decreaseAmount, increaseAmount } from "@/redux/reducers/cart";
 import { useDispatch } from "react-redux";
 import { AmountBlock, AmountValue, LeftIcon, RightIcon } from "./styles";
-
-type Props = {
-  counter: number;
-  name: string;
-  setCounter?: Function;
-};
-
-type Data = {
-  disabled: boolean;
-};
+import { Props, Data } from "./types";
 
 const AmountCounter = ({ counter, name }: Props) => {
   const dispatch = useDispatch();

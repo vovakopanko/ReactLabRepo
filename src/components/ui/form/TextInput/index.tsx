@@ -25,7 +25,6 @@ function FormInput<T>({
     fieldState: { error },
   } = useController({ name, control });
   const [isShowPassword, setIsShowPassword] = useState(false);
-
   const toggleIsShowPassword = useCallback(
     () => setIsShowPassword((prevState) => !prevState),
     []

@@ -1,57 +1,67 @@
-import { useCallback } from "react";
-import styled from "styled-components";
-import { StyledItem } from "./styles";
-import { Props, StyledProps } from "./type";
+import { useCallback, useMemo } from "react";
+import { useLocation } from "react-router-dom";
+import { ModalLink } from "../../molecules/GameCard/style";
+import { StyledItem, StyledList } from "./styles";
+import { Props } from "./type";
+
+type TSearchListItem = {
+  title: string;
+  onClick: (val: string) => void;
+};
+
+const SearchListItem = ({ title, onClick }: TSearchListItem) => {
+  const onClickHandler = useCallback(() => onClick(title), [onClick, title]);
+  return (
+    <StyledItem danger="" onClick={onClickHandler}>
+      {title}
+    </StyledItem>
+  );
+};
 
 const SearchList = ({ value, list, setValue, setToggle, width }: Props) => {
-  if (value) {
-    const filteredList = list.filter((item) =>
-      item.title.toString().toLowerCase().startsWith(value.toLowerCase())
-    );
+  const location = useLocation();
 
-    if (filteredList.length) {
-      const onClickHandler = useCallback((item) => {
-        setValue(item.title);
-        alert("got product" + " " + `${item.title}`);
-        setToggle(false);
-        setValue("");
-      }, []);
+  const backgroundLocation = useMemo(
+    () => ({ backgroundLocation: location }),
+    [location]
+  );
 
-      return (
-        <StyledList width={width}>
-          {filteredList.map((item, index) => (
-            <StyledItem
-              key={index}
-              danger=""
-              onClick={() => onClickHandler(item)}
-            >
-              {item.title}
-            </StyledItem>
-          ))}
-        </StyledList>
+  const onClickHandler = useCallback((title: string) => {
+    setValue(title);
+    setToggle(false);
+    setValue("");
+  }, []);
+
+  const filteredList = useMemo(() => {
+    if (value) {
+      return list.filter((item) =>
+        item.title.toString().toLowerCase().startsWith(value.toLowerCase())
       );
     }
+    return null;
+  }, [value]);
 
+  if (!filteredList?.length) {
     return (
       <StyledList width={width}>
         <StyledItem danger="orangered">Not Found</StyledItem>
       </StyledList>
     );
   }
-  return null;
-};
 
-const StyledList = styled.div<StyledProps>`
-   {
-    width: ${(props) => props.width};
-    backdrop-filter: blur(10px) grayscale(0.5);
-    z-index: 2;
-    position: absolute;
-    margin-top: 38px;
-    border: 1px solid none;
-    border-radius: 15px;
-    padding: 15px 0px;
-  }
-`;
+  return (
+    <StyledList width={width}>
+      {filteredList.map((item, index) => (
+        <ModalLink
+          key={index}
+          to={`/found/${item.title}`}
+          state={backgroundLocation}
+        >
+          <SearchListItem title={item.title} onClick={onClickHandler} />
+        </ModalLink>
+      ))}
+    </StyledList>
+  );
+};
 
 export default SearchList;

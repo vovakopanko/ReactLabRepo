@@ -12,6 +12,7 @@ function FormTextArea<T>({ title, name, control, ...rest }: TextAreaProps<T>) {
     field: { onChange, onBlur, value },
     fieldState: { error },
   } = useController({ name, control });
+
   return (
     <>
       <InputContainer>

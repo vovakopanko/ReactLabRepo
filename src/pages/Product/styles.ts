@@ -43,11 +43,11 @@ export const FilterContainer = styled.div`
 `;
 
 export const FilterBlock = styled.div`
-  border: 1px solid grey;
+  border: 1px solid ${colors.GRAY};
   border-radius: 25px;
   padding: 10px;
   margin: 10px;
-  background: black;
+  background: ${colors.BLACK};
   opacity: 0.8;
 `;
 

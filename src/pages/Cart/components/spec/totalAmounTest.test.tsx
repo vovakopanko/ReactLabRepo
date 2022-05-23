@@ -1,4 +1,4 @@
-import { totalAmount } from "./totalAmounTest";
+import { totalAmount } from "../../totalAmounTest";
 
 const selectedGame = [
   {

@@ -8,9 +8,14 @@ type StyledProps = {
 export const InputContainer = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-self: flex-start;
   width: 100%;
+  min-width: 320px;
+  @media (max-width: 320px) {
+    min-width: 280px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 export const TextAreaField = styled.textarea`
@@ -19,16 +24,23 @@ export const TextAreaField = styled.textarea`
   min-width: 160px;
   height: 80px;
   border-radius: 4px;
-  border: 1px solid white;
+  margin-left: 10px;
+  border: 1px solid ${colors.WHITE};
   padding: 10px;
   margin-bottom: 10px;
   font-size: 14;
   @media (max-width: 768px) {
+    min-width: 140px;
+  }
+  @media (max-width: 320px) {
+    max-width: 120px;
     min-width: 120px;
+    margin-left: 0px;
   }
 `;
 
 export const InputName = styled.label`
+  padding-left: 20px;
   text-align: center;
   line-height: 2;
   text-align: left;
@@ -42,8 +54,16 @@ export const InputName = styled.label`
   align-items: center;
   width: 50%;
   @media (max-width: 768px) {
+    padding-left: 10px;
     min-width: 100px;
     font-size: 16px;
+  }
+  @media (max-width: 420px) {
+    text-align: center;
+    max-width: 100px;
+  }
+  @media (max-width: 320px) {
+    max-width: 180px;
   }
 `;
 
@@ -51,6 +71,11 @@ export const FieldContainer = styled.div`
   position: relative;
   justify-content: center;
   align-self: center;
+  @media (max-width: 320px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 export const MessageError = styled.span`
@@ -64,7 +89,7 @@ export const InputField = styled.input`
   min-width: 138px;
   margin-left: 10px;
   border-radius: 4px;
-  border: 1px solid white;
+  border: 1px solid ${colors.WHITE};
   padding: 10px;
   padding-right: 30px;
   margin-bottom: 10px;
@@ -72,6 +97,12 @@ export const InputField = styled.input`
   @media (max-width: 768px) {
     min-width: 118px;
     padding-right: 36px;
+  }
+  @media (max-width: 320px) {
+    display: flex;
+    margin: 0 auto;
+    min-width: auto;
+    align-self: center;
   }
 `;
 
@@ -89,4 +120,60 @@ export const SecureContainer = styled.div<StyledProps>`
   @media (max-width: 768px) {
     margin-left: 150px;
   }
+`;
+
+export const SortContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-width: 320px;
+`;
+
+export const SelectedContainer = styled.select`
+  min-width: 180px;
+  height: 40px;
+  border-radius: 4px;
+  border: 1px solid ${colors.WHITE};
+  padding: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  font-size: 14;
+  @media (max-width: 768px) {
+    min-width: 160px;
+  }
+`;
+
+export const CheckedTitleWrapper = styled.div`
+  display: flex;
+  padding-bottom: 5px;
+  width: 50%;
+`;
+
+export const CheckedContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  padding-top: 10px;
+  width: 100%;
+`;
+
+export const CheckedTitle = styled.span`
+  font-size: 14;
+  line-height: 2;
+  font-weight: 700;
+  color: ${colors.BLACK};
+  width: 50%;
+`;
+
+export const CheckedContent = styled.div`
+  width: 50%;
+`;
+
+export const CheckBoxTitle = styled.span`
+  color: ${colors.BLACK};
+  font-size: 18px;
+`;
+
+export const CheckBoxContent = styled.div`
+  display: flex;
+  padding-bottom: 5px;
 `;

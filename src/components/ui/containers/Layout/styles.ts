@@ -1,32 +1,7 @@
 import { images } from "@/constants/image";
-import { Outlet } from "react-router-dom";
 import styled from "styled-components";
-import {
-  ChangePassword,
-  Footer,
-  Header,
-  Notification,
-  SignIn,
-  SignUp,
-} from "../components/ui";
 
-const Layout = () => {
-  return (
-    <Container>
-      <Header />
-      <Background>
-        <Outlet />
-        <SignIn />
-        <SignUp />
-        <ChangePassword />
-        <Notification />
-      </Background>
-      <Footer />
-    </Container>
-  );
-};
-
-const Background = styled.div`
+export const Background = styled.div`
   background-image: url(${images.BACKGROUND});
   height: 100%;
   min-height: 90vh;
@@ -39,7 +14,7 @@ const Background = styled.div`
   }
 `;
 
-const Container = styled.div`
+export const Container = styled.div`
   position: absolute;
   left: 0;
   top: 0;
@@ -48,5 +23,3 @@ const Container = styled.div`
   width: 100%;
   overflow: hidden;
 `;
-
-export { Layout };

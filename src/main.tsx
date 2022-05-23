@@ -1,5 +1,5 @@
 import { BrowserRouter as Router } from "react-router-dom";
-import ErrorBoundary from "./components/ui/container/ErrorBoundary";
+import ErrorBoundary from "./components/ui/containers/ErrorBoundary";
 import AppContainer from "./index";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";

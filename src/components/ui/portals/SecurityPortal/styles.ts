@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { colors } from "../../../../styles/palette/index";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 export const BackgroundContainer = styled.div`
   position: fixed;
   top: 0px;
@@ -12,7 +12,19 @@ export const BackgroundContainer = styled.div`
   z-index: 1000;
 `;
 
+const modeAnimation = keyframes`
+0% {opacity: 0.6;}}
+30% {opacity:0.7}
+80% {opacity: 0.8}
+80% {opacity: 1}
+`;
+
 export const AuthContainer = styled.div`
+  animation-name: ${modeAnimation};
+  animation-duration: 500ms;
+  animation-iteration-count: infinite;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -27,6 +39,17 @@ export const AuthContainer = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 25px;
+  @media (max-width: 768px) {
+    min-width: 340px;
+  }
+  @media (max-width: 420px) {
+    padding: 10px;
+    min-width: 330px;
+  }
+  @media (max-width: 320px) {
+    padding: 10px;
+    min-width: 270px;
+  }
 `;
 
 export const HeaderStyle = styled.div`
@@ -76,6 +99,10 @@ export const HeaderName = styled.h1`
   width: 90%;
   text-align: center;
   justify-content: center;
+  @media (max-width: 420px) {
+    width: 90%;
+    font-size: 21px;
+  }
 `;
 
 export const ErrorContainer = styled.div`
@@ -116,7 +143,7 @@ export const InputField = styled.input`
   display: block;
   width: 50%;
   border-radius: 4px;
-  border: 1px solid white;
+  border: 1px solid ${colors.WHITE};
   padding: 10px;
   margin-bottom: 10px;
   font-size: 14;

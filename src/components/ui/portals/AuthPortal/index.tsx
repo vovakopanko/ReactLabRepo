@@ -27,12 +27,7 @@ import { getScheme, initialFormData, FormValues } from "./scheme";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useMemo } from "react";
 import { Data } from "@/api/AuthAPI/types";
-
-type Props = {
-  title: string;
-  type: string;
-  id: number;
-};
+import { Props } from "./types";
 
 export default function AuthPortal({
   title,
@@ -137,8 +132,6 @@ export default function AuthPortal({
             title={"Email"}
             uniqueType={"email"}
             type={"text"}
-            maxLength={25}
-            minLength={7}
           />
           <FormInput
             control={control}
@@ -146,8 +139,6 @@ export default function AuthPortal({
             title={"Password"}
             type={"password"}
             uniqueType={"password"}
-            maxLength={30}
-            minLength={5}
             isDisplayEye={true}
           />
           {isRegistrationModal && (
@@ -157,8 +148,6 @@ export default function AuthPortal({
               title={"Repeat password"}
               uniqueType={"duplicatePassword"}
               type={"password"}
-              maxLength={30}
-              minLength={5}
               isDisplayEye={true}
             />
           )}

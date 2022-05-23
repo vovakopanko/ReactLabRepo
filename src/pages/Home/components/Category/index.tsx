@@ -1,4 +1,4 @@
-import { GameLogo, GameImage, Subtitle, CategoryContainer } from "./style";
+import { GameLogo, GameImage, Subtitle, CategoryContainer } from "./styles";
 import { TCategory } from "./types";
 
 const Category = ({ alt, title, image }: TCategory) => {

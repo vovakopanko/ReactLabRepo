@@ -18,7 +18,7 @@ import { arrayAge } from "./constants";
 import { imagesPlatforms } from "../../../molecules/GameCard/types";
 import { FormValue, scheme } from "../scheme";
 import { ButtonWrapper, CardFormContainer, EditCardForm } from "./styles";
-import { CheckBox } from "@/components/ui/form/CheckedForm/CheckBox";
+import { CheckBox } from "@/components/ui/form/CheckedForm";
 import { imagePlatforms as images } from "../../CreateCardModal/ModalForm/constants";
 import { PlatformImage } from "@/pages/Product/constants";
 
@@ -137,7 +137,7 @@ const ModalForm = ({
           selectedPlatforms as ImagePlatforms[],
           idCard
         )
-        ?.then((response: any) => {
+        ?.then((response) => {
           dispatch(updateCurrentState(response));
         });
       navigate(-1);

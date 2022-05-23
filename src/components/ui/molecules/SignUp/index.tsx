@@ -6,6 +6,7 @@ import { fieldData } from "./constant";
 
 export default function SignIn() {
   const isOpen = useSelector(selectorStatusWindowAuth);
+
   return (
     <>
       {isOpen && (

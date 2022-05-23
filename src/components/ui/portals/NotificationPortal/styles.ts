@@ -36,7 +36,7 @@ export const HeaderName = styled.h2`
 export const NotificationTitle = styled.span`
   display: flex;
   font-size: 21px;
-  color: black;
+  color: ${colors.BLACK};
   justify-content: center;
   text-align: center;
   font-style: italic;
