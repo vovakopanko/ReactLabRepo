@@ -11,7 +11,7 @@ import {
   ProductName,
   StyleInput,
 } from "./styles";
-import { ChangeEvent, useCallback, useEffect, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useMemo, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import {
   ageRadioButtons,
@@ -47,6 +47,10 @@ const Product = () => {
 
   const onChange = useCallback((e) => onChangeData(e), []);
 
+  const backgroundLocation = useMemo(
+    () => ({ backgroundLocation: location }),
+    [location]
+  );
   const handleChangeCriteria = useCallback(
     (event: ChangeEvent<HTMLSelectElement>) => {
       setCriteria(event.target.value as Criteria);
@@ -133,10 +137,7 @@ const Product = () => {
             />
             {isAdmin && (
               <CreateButtonContainer>
-                <ModalLink
-                  to={`/createCard`}
-                  state={{ backgroundLocation: location }}
-                >
+                <ModalLink to={`/createCard`} state={{ backgroundLocation }}>
                   <Button title={"Create card"} width={120} type="secondary" />
                 </ModalLink>
               </CreateButtonContainer>

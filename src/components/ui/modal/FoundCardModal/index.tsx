@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import closeImage from "@/assets/svgIcon/closeBtn.svg";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { contentAPI } from "@/api/ContentAPI";
 import { TGameCard } from "../../organisms/GameList/types";
 import { BackgroundContainer } from "../../portals/AuthPortal/styles";
@@ -69,9 +69,14 @@ export function FoundCardModal() {
     dispatch(setCartList(game));
   };
 
-  function onDismiss() {
+  const onDismiss = useCallback(() => {
     navigate(-1);
-  }
+  }, []);
+
+  const onError = useCallback(({ currentTarget }) => {
+    currentTarget.onerror = null;
+    currentTarget.src = image;
+  }, []);
 
   if (!selectedGame) return null;
 
@@ -87,13 +92,7 @@ export function FoundCardModal() {
         </TitleContainer>
         <CardInfoContainer>
           <ImageContainer>
-            <Image
-              src={selectedGame.url}
-              onError={({ currentTarget }) => {
-                currentTarget.onerror = null;
-                currentTarget.src = image;
-              }}
-            />
+            <Image src={selectedGame.url} onError={onError} />
           </ImageContainer>
           <InfoContainer>
             <InfoTitle>Information</InfoTitle>

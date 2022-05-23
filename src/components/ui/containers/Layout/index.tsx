@@ -6,7 +6,7 @@ import {
   Notification,
   SignIn,
   SignUp,
-} from "../components/ui";
+} from "../..";
 import { Background, Container } from "./styles";
 
 const Layout = () => {

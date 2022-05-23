@@ -24,7 +24,7 @@ import {
   selectIsAuthUser,
   selectorCartList,
 } from "@/redux/selectors/authSelector";
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import no_image from "@/assets/images/no_image.png";
 
@@ -52,6 +52,10 @@ const GameCard = ({
   const length = description.length < 150 ? " " : "...";
   const toShow = description.substring(0, 150) + length;
 
+  const backgroundLocation = useMemo(
+    () => ({ backgroundLocation: location }),
+    [location]
+  );
   const setGameCard = useCallback(() => {
     const now = new Date();
     const game = [
@@ -112,10 +116,7 @@ const GameCard = ({
           </ButtonPosition>
           {isAuth && isAdmin && (
             <ButtonPosition>
-              <ModalLink
-                to={`/games/${title}`}
-                state={{ backgroundLocation: location }}
-              >
+              <ModalLink to={`/games/${title}`} state={{ backgroundLocation }}>
                 <Button title={"Edit"} width={100} type="secondary" />
               </ModalLink>
             </ButtonPosition>

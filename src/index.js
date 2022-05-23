@@ -1,6 +1,6 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
-import { Layout } from "./Layout";
+import { Layout } from "./components/ui/containers/Layout";
 import {
   CreateCardModal,
   EditCardModal,

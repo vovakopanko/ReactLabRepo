@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import closeImage from "@/assets/svgIcon/closeBtn.svg";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { contentAPI } from "@/api/ContentAPI";
 import { TGameCard } from "../../organisms/GameList/types";
 import ModalForm from "./ModalForm";
@@ -42,9 +42,15 @@ export function EditCardModal() {
 
   const selectedGame = games.find((game) => game.title === name);
 
-  function onDismiss() {
+  const onDismiss = useCallback(() => {
     navigate(-1);
-  }
+  }, []);
+
+  const onError = useCallback(({ currentTarget }) => {
+    currentTarget.onerror = null;
+    currentTarget.src = image;
+  }, []);
+
   if (!selectedGame) return null;
 
   return (
@@ -60,13 +66,7 @@ export function EditCardModal() {
         <CardInfoContainer>
           <ImageContainer>
             <ImageTitle>Card image</ImageTitle>
-            <Image
-              src={selectedGame.url}
-              onError={({ currentTarget }) => {
-                currentTarget.onerror = null;
-                currentTarget.src = image;
-              }}
-            />
+            <Image src={selectedGame.url} onError={onError} />
           </ImageContainer>
           <InfoContainer>
             <InfoTitle>Information</InfoTitle>
