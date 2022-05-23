@@ -21,8 +21,6 @@ const SearchBar = ({ width = "80%" }: { width?: number | string }) => {
     type: "default",
   });
 
-  console.log("gamesCards", gamesCards);
-
   const deferredGameCards = useDeferredValue(gamesCards);
 
   const onChangeData = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {

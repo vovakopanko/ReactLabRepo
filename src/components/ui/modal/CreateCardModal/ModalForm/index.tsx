@@ -22,12 +22,12 @@ const ModalForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleChangeAgeUser = (event: ChangeEvent<any>) => {
-    setAgeUser(event.target.value as number);
+  const handleChangeAgeUser = (event: ChangeEvent<HTMLSelectElement>) => {
+    setAgeUser(Number(event.target.value));
   };
 
-  const handleChangeStars = (event: ChangeEvent<any>) => {
-    setStarsUser(event.target.value as number);
+  const handleChangeStars = (event: ChangeEvent<HTMLSelectElement>) => {
+    setStarsUser(Number(event.target.value));
   };
 
   const {

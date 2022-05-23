@@ -11,7 +11,7 @@ const Home: React.FC = () => {
         <SearchBar />
       </Container>
       {homeComponent.map(({ id, name, renderComponent }) => (
-        <SectionList key={id} name={name} renderComponent={renderComponent} />
+        <SectionList key={id} name={name} RenderComponent={renderComponent} />
       ))}
     </>
   );

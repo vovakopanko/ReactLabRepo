@@ -1,6 +1,10 @@
-import Axios from "axios";
+import Axios, { AxiosRequestConfig } from "axios";
 
 const API_MONGODB = "http://localhost:8000/api/auth/";
+
+type Interceptor = {
+  Authorization: string;
+};
 
 export const instanceMongoDB = Axios.create({
   headers: {
@@ -12,7 +16,9 @@ export const instanceMongoDB = Axios.create({
   baseURL: API_MONGODB,
 });
 
-instanceMongoDB.interceptors.request.use((config: any) => {
-  config.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
-  return config;
-});
+instanceMongoDB.interceptors.request.use<AxiosRequestConfig<Interceptor>>(
+  (config) => {
+    config.headers!.Authorization = `Bearer ${localStorage.getItem("token")}`;
+    return config;
+  }
+);

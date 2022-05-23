@@ -4,12 +4,14 @@ import Blur from "../../../../components/ui/atoms/Blur";
 import SectionHeader from "../../../../components/ui/atoms/SectionHeader";
 import { Container } from "./styles";
 
-const SectionList: FC<ItemComponent> = ({ name, renderComponent }) => {
+const SectionList: FC<ItemComponent> = ({ name, RenderComponent }) => {
   return (
     <Container>
       <Blur>
-        <SectionHeader name={name} />
-        {renderComponent}
+        <>
+          <SectionHeader name={name} />
+          <RenderComponent />
+        </>
       </Blur>
     </Container>
   );

@@ -1,12 +1,13 @@
-import { ReactElement } from "react";
+import { FC, ReactNode } from "react";
 export type ItemComponent = {
   id?: number;
   name: string;
-  renderComponent: JSX.Element;
+  RenderComponent: FC;
+  children?: ReactNode;
 };
 
 export type THomeComponent = {
   id: number;
   name: "Categories" | "New games";
-  renderComponent: ReactElement<any, any>;
+  renderComponent: FC;
 };

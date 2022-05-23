@@ -1,8 +1,12 @@
 import Spinner from "@/components/ui/atoms/Spinner";
-import { Suspense } from "react";
+import { LazyExoticComponent, ReactElement, Suspense } from "react";
 import { Content } from "./styles";
 
-export const withSuspense = (Component: () => JSX.Element) => {
+export function withSuspense<T>(
+  Component:
+    | LazyExoticComponent<() => ReactElement<T>>
+    | React.LazyExoticComponent<React.MemoExoticComponent<() => JSX.Element>>
+) {
   return (
     <Suspense
       fallback={
@@ -14,4 +18,4 @@ export const withSuspense = (Component: () => JSX.Element) => {
       <Component />
     </Suspense>
   );
-};
+}

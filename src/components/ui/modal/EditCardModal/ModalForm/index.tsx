@@ -89,8 +89,8 @@ const ModalForm = ({
     };
   }, []);
 
-  const handleChangeCriteria = (event: ChangeEvent<any>) => {
-    setAgeUser(event.target.value as number);
+  const handleChangeCriteria = (event: ChangeEvent<HTMLSelectElement>) => {
+    setAgeUser(Number(event.target.value));
   };
   const {
     control,
